@@ -20,13 +20,13 @@ import com.SoftWoehr.JaXWT.StockDialog;
 /** The application controller for the GUI form of FIJI.
  *
  * @author jax
- * @version $Id: FIJIGui.java,v 1.1.1.1 2001-08-21 02:35:19 jwoehr Exp $
+ * @version $Id: FIJIGui.java,v 1.2 2001-09-06 01:45:18 jwoehr Exp $
  */
 public class FIJIGui extends Object implements Runnable {
     
     /** The screen title */
     public static final String BASE_TITLE = "SoftWoehr FIJI ForthIsh Java Interpreter";
-    public static final String RELEASE_LEVEL = "beta";
+    public static final String RELEASE_LEVEL = "gamma";
     
     private FijiProperties properties = new FijiProperties();
     
