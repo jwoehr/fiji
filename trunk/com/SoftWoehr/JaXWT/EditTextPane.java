@@ -41,12 +41,14 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     });
   }
 
-  /** Mark changed/unchanged */
+  /** Mark changed/unchanged
+   * @param tf  */
   public void set_changed (boolean tf) {
     changed = tf;
   }
 
-  /** Is text changed? */
+  /** Is text changed?
+   * @return  */
   public boolean get_changed () {
     return changed;
   }
@@ -54,21 +56,25 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
   // Key processing
   /////////////////
   
-  /** Return the proxied key processor or null */
+  /** Return the proxied key processor or null
+   * @return  */
   public EditTextPaneKeyProcessor get_key_processor () {
     return my_key_processor;
   }
-  /** Set the proxied key processor or null */
+  /** Set the proxied key processor or null
+   * @param kp  */
   public void set_key_processor (EditTextPaneKeyProcessor kp) {
     my_key_processor = kp;
   }
 
-  /** TRUE sets key processing on by key processor, FALSE off. */
+  /** TRUE sets key processing on by key processor, FALSE off.
+   * @param on_off  */
   public void set_key_processing (boolean on_off) {
     key_processing = on_off;
   }
 
-  /** TRUE means key processing on by key processor, FALSE off. */
+  /** TRUE means key processing on by key processor, FALSE off.
+   * @return  */
   public boolean get_key_processing () {
     return key_processing;
   }
@@ -85,7 +91,8 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
   }
 
 
-  /** Process certain key events before textedit gets 'em */
+  /** Process certain key events before textedit gets 'em
+   * @param e  */
   protected void processKeyEvent(java.awt.event.KeyEvent e) {
     /* Debug */
     // int keyCode = e.getKeyCode();
@@ -127,23 +134,34 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
   // Scrollable
   /////////////
 
-  /** Refer interface call to super. */
+  /** Refer interface call to super.
+   * @return  */
   public boolean getScrollableTracksViewportHeight() {
     return super.getScrollableTracksViewportHeight();
   }
-  /** Refer interface call to super. */
+  /** Refer interface call to super.
+   * @param p1
+   * @param p2
+   * @param p3
+   * @return  */
   public int getScrollableUnitIncrement(final java.awt.Rectangle p1,int p2,int p3) {
     return super.getScrollableUnitIncrement(p1, p2, p3);
   }
-  /** Refer interface call to super. */
+  /** Refer interface call to super.
+   * @param p1
+   * @param p2
+   * @param p3
+   * @return  */
   public int getScrollableBlockIncrement(final java.awt.Rectangle p1,int p2,int p3) {
     return super. getScrollableBlockIncrement(p1, p2, p3);
   }
-  /** Refer interface call to super. */
+  /** Refer interface call to super.
+   * @return  */
   public java.awt.Dimension getPreferredScrollableViewportSize() {
     return super.getPreferredScrollableViewportSize();
   }
-  /** Refer interface call to super. */
+  /** Refer interface call to super.
+   * @return  */
   public boolean getScrollableTracksViewportWidth() {
     return super.getScrollableTracksViewportWidth();
   }
@@ -151,7 +169,9 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
   // Interface FindAndReplaceServer
   /////////////////////////////////
 
-  /** Find text and select it. True if found */
+  /** Find text and select it. True if found
+   * @param s
+   * @return  */
   public boolean find_forward_and_select (String s) {
     boolean result = false;
     if (null != s) {
@@ -165,7 +185,9 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     return result;
   }
 
-  /** Find backwards and hilite. False iff not found */
+  /** Find backwards and hilite. False iff not found
+   * @param s
+   * @return  */
   public boolean find_backward_and_select(String s) {
     boolean result = false;
     if (null != s) {
@@ -180,7 +202,9 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     return result;
   }
 
-  /** Replace selected with replacement. False iff nothing selected. */
+  /** Replace selected with replacement. False iff nothing selected.
+   * @param replacement
+   * @return  */
   public boolean replace_selected (String replacement) {
     boolean result = false;
     if (null != getSelectedText()) {
@@ -190,7 +214,10 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     return result;
   }
 
-  /** Replace all matches with replacement. False iff nothing replaced. */
+  /** Replace all matches with replacement. False iff nothing replaced.
+   * @param sought
+   * @param replacement
+   * @return  */
   public int replace_globally(String sought,String replacement) {
     int result = 0;
     setCaretPosition(0);

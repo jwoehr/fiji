@@ -20,8 +20,9 @@ import javax.swing.JFrame;
 
 /** Predecessor to EditPanePanel ... not currently used.
  *
- * @author  jax
- * @version $Id: EditPanelFiler.java,v 1.1.1.1 2001-08-21 02:42:16 jwoehr Exp $
+ * @author jax
+ * @version $Id: EditPanelFiler.java,v 1.2 2001-09-14 23:29:24 jwoehr Exp $
+ * @deprecated Predecessor to EditPanePanel ... not currently used.
  */
 public class EditPanelFiler extends Object implements TextFiler {
     
@@ -32,26 +33,32 @@ public class EditPanelFiler extends Object implements TextFiler {
     
     private EditPanel edit_panel;
     
-  /** Creates new EditPanelFiler */
+    /** Creates new EditPanelFiler
+     * @param ep  */
     public EditPanelFiler(EditPanel ep) {
         set_edit_panel(ep);
     }
     
-  /** Set the edit text area to which we refer */
+    /** Set the edit text area to which we refer
+     * @param ep  */
     protected void set_edit_panel(EditPanel ep) {
         edit_panel = ep;
     }
     
-  /** Set the edit text area to which we refer */
+    /** Set the edit text area to which we refer
+     * @return  */
     protected EditPanel get_edit_panel() {
         return edit_panel;
     }
     
+    /**
+     * @return  */    
     protected JFrame get_panel_frame() {
         return get_edit_panel().get_frame();
     }
     
-  /** Get the edit text area to which we refer */
+    /** Get the edit text area to which we refer
+     * @return  */
     protected EditTextArea get_edit_text_area() {
         return edit_panel.get_text_area();
     }
@@ -60,7 +67,10 @@ public class EditPanelFiler extends Object implements TextFiler {
     public static class UnknownEncodingException extends Exception {
     }
     
-  /** Get read and write char encoding from string */
+    /** Get read and write char encoding from string
+     * @param encoding
+     * @throws UnknownEncodingException
+     * @return  */
     public static int get_encoding_value(String encoding)
     throws UnknownEncodingException
     {
@@ -82,7 +92,10 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** Get read and write char encoding string from int*/
+    /** Get read and write char encoding string from int
+     * @param encoding
+     * @throws UnknownEncodingException
+     * @return  */
     public static String get_encoding_string(int encoding)
     throws UnknownEncodingException
     {
@@ -100,7 +113,10 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** If file is readable, read text into area from it */
+    /** If file is readable, read text into area from it
+     * @param f
+     * @param encoding
+     * @return  */
     protected boolean read_text_area_from_file(File f, int encoding) {
         boolean result = false;
         String text = read_text_from_file(f, encoding);
@@ -111,7 +127,11 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** If file is readable, insert into area from it */
+    /** If file is readable, insert into area from it
+     * @param f
+     * @param encoding
+     * @param offset
+     * @return  */
     protected boolean insert_text_area_from_file(File f, int encoding, int offset) {
         boolean result = false;
         String text = read_text_from_file(f, encoding);
@@ -122,7 +142,10 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** If file is readable, read text from it */
+    /** If file is readable, read text from it
+     * @param f
+     * @param encoding
+     * @return  */
     protected String read_text_from_file (File f, int encoding) {
         FileInputStream fis = null;
         InputStreamReader isr = null;
@@ -184,7 +207,11 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** Save string if possible. True if success. */
+    /** Save string if possible. True if success.
+     * @param f
+     * @param encoding
+     * @param s
+     * @return  */
     protected boolean save_to_file(File f, int encoding, String s) {
         boolean result = false;
         if (!f.isDirectory()) {
@@ -208,7 +235,12 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** If file is writable, write text area to it */
+    /** If file is writable, write text area to it
+     * @param f
+     * @param encoding
+     * @param s
+     * @throws UnknownEncodingException
+     * @return  */
     protected boolean write_to_file (File f, int encoding, String s)
     throws UnknownEncodingException
     {
@@ -268,9 +300,11 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** Save edit text area to a file.
-   * True iff saved.
-   */
+    /** Save edit text area to a file.
+     * True iff saved.
+     * @param f
+     * @param encoding
+     * @return  */
     public boolean save(File f,int encoding) {
         boolean result = save_to_file(f, encoding, get_edit_text_area().getText());
         if (result) {
@@ -279,7 +313,10 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** Open a file in text area */
+    /** Open a file in text area
+     * @param f
+     * @param encoding
+     * @return  */
     public boolean open(File f,int encoding) {
         boolean result = read_text_area_from_file(f, encoding);
         if (result) {
@@ -288,7 +325,11 @@ public class EditPanelFiler extends Object implements TextFiler {
         return result;
     }
     
-  /** Insert a file in some area at some offset */
+    /** Insert a file in some area at some offset
+     * @param f
+     * @param encoding
+     * @param position
+     * @return  */
     public boolean insert(File f,int encoding,int position) {
         boolean result = insert_text_area_from_file(f, encoding, position);
         return result;
