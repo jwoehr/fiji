@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <project name="fiji" basedir=".." default="all">
 
+<!-- FIJI the ForthIsh Java Interpreter is copyright *C* 1998-2001 by Jack J. Woehr
+     P.O. Box 51, Golden, Colorado 80402-0051 USA
+     jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net
+     http://www.softwoehr.com http://fiji.sourceforge.net -->
+
+    <!-- Instruct how to use this file.  -->
     <target name="usage">
         <echo>
 
@@ -41,6 +47,7 @@
         </echo>
     </target>
 
+    <!-- Define properties and announce them.  -->
     <target name="init">
         <property name="fiji.release" value="1.2_beta"/>
         <property name="fiji.source.directory" value="."/>
@@ -66,6 +73,7 @@
         </echo>
     </target>
 
+    <!-- Compile FIJI.  -->
     <target name="compile" depends="init">
         <!-- Both srcdir and destdir should be package roots. -->
         <!-- They could be different of course; in that case NetBeans can also be set -->
@@ -77,6 +85,7 @@
         </javac>
     </target>
 
+    <!-- Build a jar of the compiled classes and source code combined.  -->
     <target name="jar" depends="init,compile">
         <!-- To make a standalone app: -->
         <!-- 1. Create a myapp.mf manifest somewhere. -->
@@ -94,10 +103,12 @@
        </jar>
     </target>
 
+    <!-- Compile and build the jar. Pretty safe for a default target.  -->
     <target name="all" depends="init,jar" description="Build everything.">
         <echo message="Fiji built"/>
     </target>
 
+    <!-- Generate FIJI's javadocs -->
     <target name="javadoc" depends="init" description="Javadoc for my API.">
         <mkdir dir="${fiji.javadoc.destination.directory}"/>
         <javadoc packagenames="com.*" destdir="${fiji.javadoc.destination.directory}">
@@ -107,27 +118,39 @@
        </javadoc>
     </target>
 
+    <!-- Build the zip archive for the distribution. -->
     <target name="gen_zipfile" depends="init">
         <delete file="${fiji.zipfile.filename}"/>
         <zip basedir="${fiji.destination.directory}" zipfile="${fiji.zipfile.filename}" excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs"/>
     </target>
 
-    <target name="distrib" depends="init,jar,javadoc" description="build distribution archive">
+    <!-- Copy the readmes and license from the doc dirs to the top dir for zipping.  -->
+    <target name="copy_readmes" depends="init">
         <copy todir="${fiji.destination.directory}">
-	    <fileset dir="${fiji.destination.directory}">
-	        <include name="html/FIJI/README.TXT"/>
-	        <include name="html/FIJI/COPYING*"/>
+	    <fileset dir="${fiji.destination.directory}/html/FIJI">
+	        <exclude name="**/*.html"/>
+	        <exclude name="**/CVS"/>
+		<exclude name="moredoc/**"/>
 	    </fileset>
 	</copy>
+    </target>
+
+    <!-- Build a .zip distribution archive for posting on the Internet.  -->
+    <target name="distrib" depends="init,jar,javadoc" description="build distribution archive">
+        <antcall target="copy_readmes"/>
 	<antcall target="gen_zipfile"/>
     </target>
 
+    <!-- Delete the class files, jar file, javadocs, zip file and the readmes we copied to the root. -->
     <target name="clean" depends="init" description="Clean all build products.">
         <delete>
             <fileset dir="${fiji.destination.directory}">
                 <include name="**/*.class"/>
+		<include name="COPYING*"/>
+		<include name="README.TXT"/>
             </fileset>
         </delete>
+	<delete file="${fiji.zipfile.fully.qualified.pathname}"/>
         <delete file="${fiji.jar.fully.qualified.pathname}"/>
         <delete dir="${fiji.javadoc.destination.directory}"/>
     </target>
