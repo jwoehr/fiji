@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- FIJI the ForthIsh Java Interpreter -->
 <!-- Copyright *C* 1998-2001 by Jack J. Woehr -->
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.10 2001-08-30 21:38:48 jwoehr Exp $ -->
-
+<!-- $Id: build.xml,v 1.11 2001-08-30 21:43:29 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
@@ -92,18 +90,16 @@
     </target>
 
     <!-- Autogenerate a manifest file for FIJI -->
-    <target depends="init" name="gen_manifest">
+    <target depends="init" description="Autogenerate a Jar Manifest file" name="gen_manifest">
 <echo file="${fiji.jar.manifest.filename}">Manifest-Version: ${fiji.version}
 Main-Class: com.SoftWoehr.FIJI.FIJIGui
 </echo>
     </target>
 
     <!-- Build a jar of the compiled classes and source code combined.  -->
-    <target depends="compile,gen_manifest" 
-            description="Generates the .jar file in which class and source reside"
-            name="jar">
+    <target depends="compile,gen_manifest" description="Generates the .jar file in which class and source reside" name="jar">
         <delete file="${fiji.jar.fully.qualified.pathname}"/>
-        <jar basedir="${fiji.destination.directory}" compress="true" manifest="${fiji.jar.manifest.filename}" jarfile="${fiji.jar.fully.qualified.pathname}">
+        <jar basedir="${fiji.destination.directory}" compress="true" jarfile="${fiji.jar.fully.qualified.pathname}" manifest="${fiji.jar.manifest.filename}">
 	    <include name="com/**/*.*"/>
 	    <exclude name="${fiji.source.directory}/com/SoftWoehr/util/SQL*.*"/>
 	    <exclude name="${fiji.destination.directory}/com/SoftWoehr/util/SQL*.*"/>
@@ -155,8 +151,8 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
 	<delete file="${fiji.destination.directory}/README.TXT"/>
     </target>
 
-    <target depends="init" name="run">
-        <java jar="${fiji.jar.filename}" fork="true"/>
+    <target depends="init" description="Run FIJIGui from the .jar once unpacked." name="run">
+        <java fork="true" jar="${fiji.jar.filename}"/>
     </target>
 
     <!-- Delete the class files, jar file, javadocs, zip file and the readmes we copied to the root. -->
