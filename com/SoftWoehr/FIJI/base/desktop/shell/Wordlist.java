@@ -36,12 +36,12 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.6 2001-09-16 21:22:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Wordlist.java,v 1.7 2001-09-23 04:39:02 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
@@ -351,6 +351,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
             defaultList.put(new Primitive("system"       , "system"               ));
             defaultList.put(new Primitive("interpret"    , "interpret"            ));
             defaultList.put(new Primitive("load"         , "load"                 ));
+            defaultList.put(new Primitive("save"         , "save"                 ));
+            defaultList.put(new Primitive("reload"       , "reload"               ));
             defaultList.put(new Primitive("version"      , "version"              ));
             defaultList.put(new Primitive("getorder"     , "getOrder"             ));
             defaultList.put(new Primitive("setorder"     , "setOrder"             ));
