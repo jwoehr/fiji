@@ -14,10 +14,10 @@
 
 package com.SoftWoehr.FIJI;
 
-/**
- *
+/** An input panel with a clear button, a drop-down history
+ * and an Interpret button.
  * @author jax
- * @version $Id: FijiInputPanel.java,v 1.2 2001-09-17 02:28:31 jwoehr Exp $
+ * @version $Id: FijiInputPanel.java,v 1.3 2001-09-17 03:02:10 jwoehr Exp $
  */
 public class FijiInputPanel extends javax.swing.JPanel {
     
@@ -62,7 +62,7 @@ public class FijiInputPanel extends javax.swing.JPanel {
             }
         });
         
-        add(clearButton, java.awt.BorderLayout.CENTER);
+        add(clearButton, java.awt.BorderLayout.WEST);
         
         interpretButton.setToolTipText("Interpret the text input in the combo box.");
         interpretButton.setText("Interpret");
@@ -72,10 +72,10 @@ public class FijiInputPanel extends javax.swing.JPanel {
             }
         });
         
-        add(interpretButton, java.awt.BorderLayout.NORTH);
+        add(interpretButton, java.awt.BorderLayout.EAST);
         
         fijiInputComboBox.setToolTipText("Edit and recall input.");
-        add(fijiInputComboBox, java.awt.BorderLayout.SOUTH);
+        add(fijiInputComboBox, java.awt.BorderLayout.CENTER);
         
     }//GEN-END:initComponents
   
