@@ -3,7 +3,11 @@
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1998, All Rights Reserved.  */
+/* Copyright *C* 1998, 2001 Jack J. Woehr    */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -31,12 +35,12 @@ import  com.SoftWoehr.SoftWoehr;
  * programming of applications which
  * implement <code>com.SoftWoehr.util.verbose</code>.
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @see com.SoftWoehr.util.verbose
  */
 public class verbosity implements SoftWoehr {
     /** Identifies revision level of source for SoftWoehr interface */
-    private static final String rcsid = "$Id: verbosity.java,v 1.2 2001-09-10 17:13:32 jwoehr Exp $";
+    private static final String rcsid = "$Id: verbosity.java,v 1.3 2001-09-10 17:20:10 jwoehr Exp $";
     
     /** Returns revision info for SoftWoehr interface.
      * @return the rcsid

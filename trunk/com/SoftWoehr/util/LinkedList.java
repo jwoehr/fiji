@@ -1,5 +1,10 @@
 // LinkedList.java
 // A linked list implementation.
+/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 
 package com.SoftWoehr.util;
 
@@ -8,17 +13,25 @@ import java.util.*;
 public class LinkedList {
     
     public interface Linkable {
+        /**
+         * @return  */        
         public Linkable getNext();
+        /**
+         * @param node  */        
         public void setNext(Linkable node);
     }
     
     Linkable head = null;
     
+    /**
+     * @param node  */    
     public void addHead (Linkable node) {
         node.setNext(head);
         head = node;
     }
     
+    /**
+     * @param node  */    
     public void addTail (Linkable node) {
         Enumeration e = enumerate();
         if (!e.hasMoreElements()) {
@@ -39,6 +52,8 @@ public class LinkedList {
         }
     }
     
+    /**
+     * @param node  */    
     public void remove (Linkable node) {
         Linkable previous = null;
         Linkable current = head;
@@ -71,6 +86,8 @@ public class LinkedList {
         }
     }
     
+    /**
+     * @return  */    
     public int numberOfElements() {
         Enumeration e = enumerate();
         int elements = 0;
@@ -81,6 +98,8 @@ public class LinkedList {
         return elements;
     }
     
+    /**
+     * @return  */    
     public Enumeration enumerate() {
         
         return new Enumeration() {
@@ -102,6 +121,8 @@ public class LinkedList {
         };
     }
     
+    /**
+     * @param argv  */    
     public static void main (String argv[]) {
         
         if (argv.length == 0) {
@@ -153,9 +174,17 @@ class LinkableString implements LinkedList.Linkable {
     private LinkedList.Linkable next = null;
     
     public LinkableString() {this("");}
+    /**
+     * @param s  */    
     public LinkableString(String s) { this.s = s; }
+    /**
+     * @return  */    
     public String string() { return s; }
+    /**
+     * @return  */    
     public LinkedList.Linkable getNext () { return next; }
+    /**
+     * @param node  */    
     public void setNext(LinkedList.Linkable node) { next = node; }
 }
 

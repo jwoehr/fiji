@@ -3,7 +3,11 @@
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1998, All Rights Reserved.  */
+/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -30,7 +34,7 @@ package com.SoftWoehr.util;
   * Implementors then can use <code>com.SoftWoehr.util.verbosity</code>
   * to handle verbose output.
   * @author $Author: jwoehr $
-  * @version $Revision: 1.1.1.1 $
+  * @version $Revision: 1.2 $
   * @see com.SoftWoehr.util.verbosity
   */
 public interface verbose {

@@ -4,6 +4,12 @@
  * Created on October 19, 2000, 12:15 PM
  */
 
+/*   Copyright *C* 2001 Jack J. Woehr        */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
+
 package com.SoftWoehr.util;
 
 /** A Properties class which knows how to load and store itself.
