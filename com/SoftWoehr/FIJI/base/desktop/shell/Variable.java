@@ -27,9 +27,9 @@
  *  along with this program; if not, write to the Free Software
  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
+import java.io.Serializable;
 import  com.SoftWoehr.*;
 import  com.SoftWoehr.util.*;
 
@@ -37,12 +37,12 @@ import  com.SoftWoehr.util.*;
  * object reference of any type.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
-public class Variable extends Semantic implements SoftWoehr, verbose {
+public class Variable extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Variable.java,v 1.4 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Variable.java,v 1.5 2001-09-16 21:00:15 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
