@@ -37,12 +37,12 @@ import  com.SoftWoehr.util.*;
 /** This class provides the SearchOrder entity used by
  * FIJI to collate Wordlists.
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class SearchOrder implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: SearchOrder.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: SearchOrder.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return  */
     public String rcsId() {return rcsid;}
@@ -73,8 +73,9 @@ public class SearchOrder implements SoftWoehr, verbose {
     }
     
     /** The SearchOrder notifies subcomponents of shutdown then shuts itself down.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return  always zero 0
+     */
     public int shutdown() {
         shutdownHelper.shutdownClients();
         // Your shutdown code for this object goes here.
@@ -110,7 +111,7 @@ public class SearchOrder implements SoftWoehr, verbose {
      * the first occurrence of same in the search order. Remove
      * the entry if no previous Semantic for the name exists.
      *
-     * @see com.SoftWoehr.desktop.shell.Wordlist.forget#
+     * @see com.SoftWoehr.desktop.shell.Wordlist.forget
      * @param name
      * @return  */
     public boolean forget(String name) {
@@ -132,7 +133,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     /** Discard utterly a wordlist entry by finding
      * the first occurrence of same in the search order.
      *
-     * @see com.SoftWoehr.desktop.shell.Wordlist.discard#
+     * @see com.SoftWoehr.desktop.shell.Wordlist.discard
      * @param name
      * @return  */
     public boolean discard(String name) {
@@ -198,14 +199,14 @@ public class SearchOrder implements SoftWoehr, verbose {
     }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return  */
     public boolean isVerbose()              {return isverbose;}
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf  */
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
@@ -218,8 +219,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s  */
     public void    announce    (String s)   {v.announce(s);   }
     

@@ -47,12 +47,12 @@ import  com.SoftWoehr.util.*;
  * wants to be considered as when Class.getDefinedMethod()
  * is called.
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class JavaParam implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: JavaParam.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: JavaParam.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return  */
     public String rcsId() {return rcsid;}
@@ -97,7 +97,7 @@ public class JavaParam implements SoftWoehr, verbose {
     }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return  */
     public int shutdown() { return 0; }
     
@@ -134,20 +134,20 @@ public class JavaParam implements SoftWoehr, verbose {
     }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return  */
     public boolean isVerbose()              {return isverbose;}
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf  */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s  */
     public void    announce    (String s)   {v.announce(s);   }
     

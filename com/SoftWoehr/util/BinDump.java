@@ -47,11 +47,11 @@ import java.io.*;
  * be used for any BinDump purpose after a close(), and must be
  * discarded for garbage collection.</b>
  * @author  $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class BinDump implements SoftWoehr {
     /** Identifies revision level of source for SoftWoehr interface */
-    private static final String rcsid = "$Id: BinDump.java,v 1.2 2001-09-04 22:13:14 jwoehr Exp $";
+    private static final String rcsid = "$Id: BinDump.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Returns revision info for SoftWoehr interface.
      * @return The rcs id.
@@ -59,7 +59,7 @@ public class BinDump implements SoftWoehr {
     public  String		rcsId() { return rcsid; }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return Always 0.
      */
     public int shutdown() { return 0; }

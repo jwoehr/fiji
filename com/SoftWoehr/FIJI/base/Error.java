@@ -35,15 +35,16 @@ import  com.SoftWoehr.util.*;
 /** An Error class for SoftWoehr
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class Error extends java.lang.Error implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Error.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: Error.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -65,14 +66,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class BadBase extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public BadBase(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                 * @param s the String message
+                 * @param t The throwable to carry along  */
                 public BadBase(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -82,14 +83,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class BadEncoding extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public BadEncoding(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public BadEncoding(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -99,14 +100,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class BadName extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public BadName(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public BadName(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -116,14 +117,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class NonVariable extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public NonVariable(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public NonVariable(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -133,14 +134,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class NonValue extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public NonValue(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public NonValue(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -150,14 +151,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class BadPrimitiveExecute extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public BadPrimitiveExecute(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public BadPrimitiveExecute(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -167,14 +168,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class BadPrimitiveCompile extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public BadPrimitiveCompile(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public BadPrimitiveCompile(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -184,14 +185,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class CompileToValue extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along The throwable to carry along  */
                 public CompileToValue(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along The throwable to carry along  */
                 public CompileToValue(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -201,14 +202,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class NameNotFound extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public NameNotFound(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public NameNotFound(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -218,14 +219,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
             public static class ControlFlowStackImbalance extends com.SoftWoehr.FIJI.base.Error {
                 
                 /** Arity/1 Throwable constructor.
-                 * @param t  */
+                 * @param t The throwable to carry along  */
                 public ControlFlowStackImbalance(Throwable t) {
                     super(t);
                 }
                 
                 /** Arity/2 Throwable constructor.
-                 * @param s
-                 * @param t  */
+                  * @param s the String message
+                 * @param t The throwable to carry along  */
                 public ControlFlowStackImbalance(String s, java.lang.Throwable t) {
                     super(s,t);
                 }
@@ -237,14 +238,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
     public static class bAcKtOmain extends com.SoftWoehr.FIJI.base.Error {
         
         /** Arity/1 Throwable constructor.
-         * @param t  */
+         * @param t The throwable to carry along  */
         public bAcKtOmain(Throwable t) {
             super(t);
         }
         
         /** Arity/2 Throwable constructor.
-         * @param s
-         * @param t  */
+          * @param s the String message
+         * @param t The throwable to carry along  */
         public bAcKtOmain(String s, java.lang.Throwable t) {
             super(s,t);
         }
@@ -255,14 +256,14 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
     public static class bAdArGtOmain extends com.SoftWoehr.FIJI.base.Error {
         
         /** Arity/1 Throwable constructor.
-         * @param t  */
+         * @param t The throwable to carry along  */
         public bAdArGtOmain(Throwable t) {
             super(t);
         }
         
         /** Arity/2 Throwable constructor.
-         * @param s
-         * @param t  */
+          * @param s the String message
+         * @param t The throwable to carry along  */
         public bAdArGtOmain(String s, java.lang.Throwable t) {
             super(s,t);
         }
@@ -273,27 +274,23 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
     }
     
     /** Arity/1 Throwable constructor.
-     * @param t  */
+     * @param t The throwable to carry along  */
     public Error(Throwable t) {
         this.t = t;
     }
     
     /** Arity/2 Throwable constructor.
-     * @param s
-     * @param t  */
+      * @param s the String message
+     * @param t The throwable to carry along  */
     public Error(String s, java.lang.Throwable t) {
         super(s);
         this.t = t;
     }
     
-    /**
-     * @return  */
-    public String toString()
-    {return super.toString();}
-    
     /** The XZZY notifies subcomponents of shutdown then shuts itself down.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return zero always
+     */
     public int shutdown() {
         shutdownHelper.shutdownClients();
         // Your shutdown code for this object goes here.
@@ -304,38 +301,37 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
         return 0;
     }
     
-    /**
-     * @throws Throwable  */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
-    
     /** Return the Throwable, if any, which occasioned this error.
-     * @return  */
+     * @return  the throwable
+     */
     public Throwable getThrowable() {
         return t;
     }
- 
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @return  */
+    
+    /** Is this verbose and announcing?
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
+    /** Set verbose and announcing.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+    /** Emit a string message if set verbose.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Demonstrate <code>Error</code>.
-     * @param argv  */
+     * @param argv  args to main() -- not used
+     */
     public static void main(String argv[]) {
         
         GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */

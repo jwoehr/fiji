@@ -35,12 +35,12 @@ import  com.SoftWoehr.SoftWoehr;
  * programming of applications which
  * implement <code>com.SoftWoehr.util.verbose</code>.
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  * @see com.SoftWoehr.util.verbose
  */
 public class verbosity implements SoftWoehr {
     /** Identifies revision level of source for SoftWoehr interface */
-    private static final String rcsid = "$Id: verbosity.java,v 1.3 2001-09-10 17:20:10 jwoehr Exp $";
+    private static final String rcsid = "$Id: verbosity.java,v 1.4 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Returns revision info for SoftWoehr interface.
      * @return the rcsid
@@ -48,7 +48,7 @@ public class verbosity implements SoftWoehr {
     public  String              rcsId() { return rcsid; }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return Always 0
      */
     public int shutdown() { return 0; }

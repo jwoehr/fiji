@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.4 2001-09-10 05:31:16 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.5 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -205,7 +205,7 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return Always returns 0
      */
     public int shutdown() { return 0; }
@@ -245,8 +245,8 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** Returns verbosity of the debugging output.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return <CODE>true</CODE> iff verbose.
      */
     public boolean isVerbose() {
@@ -254,8 +254,8 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** Sets verbosity of the debugging output.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf <CODE>true</CODE> iff verbose.
      */
     public void    setVerbose  (boolean tf) {
@@ -265,8 +265,8 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** Outputs to verbose stream if verbose.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s Message to announce
      */
     public void    announce    (String s)   {v.announce(s);   }
@@ -2388,7 +2388,7 @@ class JavaArgs extends Vector {
      * All the objects in the JavaArgs vector are stored in JavaParam's,
      * along with their nominal class for the purpose of method signature
      * resolution.
-     * @see com.SoftWoehr.FIJI.base.desktop.shell.JavaParam#
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.JavaParam
      * @return An array of objects representing the arguments stored
      * in a JavaArgs
      */
@@ -2405,7 +2405,7 @@ class JavaArgs extends Vector {
     /** Return a Class array of the classes of the elements of the vector.
      * All the objects and their nominal classes for the purpose of
      * method signature resolution are stored as JavaParams in the vector.
-     * @see com.SoftWoehr.desktop.shell.JavaParam#
+     * @see com.SoftWoehr.desktop.shell.JavaParam
      * @return The array of classes from the vector.
      */
     public synchronized Class[] toClassArray() {

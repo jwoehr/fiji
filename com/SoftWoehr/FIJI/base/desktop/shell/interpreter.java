@@ -39,13 +39,13 @@ import  com.SoftWoehr.util.*;
 /** A class to interpret input of a stream of FIJI commands.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class interpreter implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: interpreter.java,v 1.3 2001-09-10 05:20:50 jwoehr Exp $";
+    private static final String rcsid = "$Id: interpreter.java,v 1.4 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The rcs string */
@@ -104,7 +104,7 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** shutdown() here closes the output streams.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return always 0
      */
     public int shutdown() {
@@ -253,7 +253,7 @@ public class interpreter implements SoftWoehr, verbose {
      * One must subsequently do a <code>setOutput()</code> to make
      * the codepage take effect.
      *
-     * @see setOutput#
+     * @see setOutput
      * @param codepage the codepage
      */
     public void setOutputStreamEncoding(String codepage) {
@@ -495,16 +495,16 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** true if verbose
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return verbosity */
     public boolean isVerbose()              {return isverbose;}
     
     /**
      * As this class overloads setVerbose()
      * it control engine's verbosity, too.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf verbosity */
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
@@ -515,8 +515,8 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** Announce a string if verbose.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s string to announce */
     public void    announce    (String s)   {v.announce(s);   }
     
