@@ -1,8 +1,9 @@
 /* ControlFlowElement.java ...               */
 /* FIJI representation of control flow.      */
 /*********************************************/
-/* Copyright *C* 1999, All Rights Reserved.  */
-/* Jack J. Woehr jax@well.com jwoehr@ibm.net */
+/* Copyright *C* 1999, 2001                  */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
@@ -42,14 +43,15 @@ import  com.SoftWoehr.util.*;
  * control flow stack.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.1.1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ControlFlowElement implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.1.1.1 2001-08-21 02:39:02 jwoehr Exp $";
+    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.2 2001-09-10 03:56:57 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -74,37 +76,27 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     
     /** Creates a ControlFlowElement for a
      * specific Semantic  with a null element.
-     * @param s
-     * @param e  */
-    public ControlFlowElement(Semantic s, engine e) {
-        reinit(s,e);
-    }
+     * @param s Semantic associated with this ControlFlowElement
+     * @param e Engine against which to run
+     */
+     public ControlFlowElement(Semantic s, engine e) {
+     reinit(s,e);
+     }
     
     /** Creates a ControlFlowElement representing specific
      * type of Semantic with a non-null element.
-     * @param s
-     * @param e
-     * @param c  */
+     * @param s Semantic associated with this ControlFlowElement
+     * @param e Engine against which to run
+     * @param c Class of Semantic
+     */
     public ControlFlowElement(Semantic s, engine e, Class c) {
         reinit(s,e,c);
     }
     
-    /** Return a string representation of the object.
-     * @return  */
-    public String toString()
-    {return super.toString();}
-    
-    /** Finalize the object.
-     *
-     *@exception Throwable If something throws during finalization.
-     */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
-    
     /** The ControlFlowElement notifies subcomponents of shutdown then shuts itself down.
      * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @return  Always false.
+     */
     public int shutdown() {
         shutdownHelper.shutdownClients();
         // Your shutdown code for this object goes here.
@@ -116,16 +108,18 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     }
     
     /** Reinitialize the ControlFlowElement, discarding previous state.
-     * @param s
-     * @param e  */
+     * @param s Semantic associated with this ControlFlowElement
+     * @param e Engine against which to run
+     */
     public void reinit(Semantic s, engine e) {
         reinit(s, e, s.getClass());
     }
     
     /** Reinitialize the ControlFlowElement, discarding previous state.
-     * @param s
-     * @param e
-     * @param c  */
+     * @param s Semantic associated with this ControlFlowElement
+     * @param e Engine against which to run
+     * @param c Class of the Semantic
+     */
     public void reinit(Semantic s, engine e, Class c) {
         element = s;
         state = e.state;
@@ -133,37 +127,43 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     }
     
     /** Return the class of the Semantic element this entry represents.
-     * @return  */
+     * @return  the class
+     */
     public Class elementClass() {
         return semanticClass;
     }
     
     /** Return the Semantic element this entry represents.
-     * @return  */
+     * @return the Semantic
+     */
     public Semantic getElement() {
         return element;
     }
     
-    /**
+    /** Is this verbose and announcing?
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @return  */
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
+    /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Demonstrate <code>ControlFlowElement</code>.
-     * @param argv  */
+     * @param argv Args to main () not currently used.
+     */
     public static void main(String argv[]) {
         
         GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
