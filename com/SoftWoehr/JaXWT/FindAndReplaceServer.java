@@ -8,19 +8,19 @@ package com.SoftWoehr.JaXWT;
 
 /**
  * A find-and-replace engine for a text area.
- * @author  jax
- * @version $Id: FindAndReplaceServer.java,v 1.2 2001-09-15 07:02:14 jwoehr Exp $
+ * @author jax
+ * @version $Id: FindAndReplaceServer.java,v 1.3 2001-09-15 07:30:04 jwoehr Exp $
  */
 public interface FindAndReplaceServer {
     
     /** Find backwards and hilite. False iff not found
      * @param sought String sought
-     * @return  False iff not found */
+     * @return False iff not found */
     public boolean find_forward_and_select(String sought);
     
     /** Find backwards and hilite. False iff not found
      * @param sought String sought
-     * @return  False iff not found */
+     * @return False iff not found */
     public boolean find_backward_and_select(String sought);
     
     /** Replace selected with replacement. False iff nothing selected.

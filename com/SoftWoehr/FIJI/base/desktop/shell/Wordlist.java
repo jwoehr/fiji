@@ -35,11 +35,11 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class Wordlist extends Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.4 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Wordlist.java,v 1.5 2001-09-15 07:30:04 jwoehr Exp $";
 
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
@@ -99,14 +99,14 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param tf  set verbose on (true) or off.
+     * @param tf set verbose on (true) or off.
      */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
     /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param s  The string to conditionally announce.
+     * @param s The string to conditionally announce.
      */
     public void    announce    (String s)   {v.announce(s);   }
     

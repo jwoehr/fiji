@@ -37,14 +37,15 @@ import  com.SoftWoehr.util.*;
 /** This class provides the SearchOrder entity used by
  * FIJI to collate Wordlists.
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class SearchOrder implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: SearchOrder.java,v 1.4 2001-09-15 07:02:14 jwoehr Exp $";
+    private static final String rcsid = "$Id: SearchOrder.java,v 1.5 2001-09-15 07:30:04 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -62,14 +63,6 @@ public class SearchOrder implements SoftWoehr, verbose {
     /** Arity/0 ctor. */
     public SearchOrder() {
         reinit();
-    }
-    
-    /** Finalize the object.
-     *
-     *@exception Throwable
-     */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
     }
     
     /** The SearchOrder notifies subcomponents of shutdown then shuts itself down.
@@ -92,8 +85,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     }
     
     /** Find a Semantic (or null) somewhere in the search order.
-     * @param name
-     * @return  */
+     * @param name Semantic to find.
+     * @return the Semantic */
     public Semantic find(String name) {
         Semantic result = null;
         Wordlist w = null;
@@ -110,10 +103,10 @@ public class SearchOrder implements SoftWoehr, verbose {
     /** Pop the active Semantic of a wordlist entry by finding
      * the first occurrence of same in the search order. Remove
      * the entry if no previous Semantic for the name exists.
-     *
-     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist.forget
-     * @param name
-     * @return  */
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist#forget
+     * @param name Semantic to forget
+     * @return <code>true</code> if found and forgotten
+     */
     public boolean forget(String name) {
         boolean rc = false;
         Semantic result = null;
@@ -132,10 +125,10 @@ public class SearchOrder implements SoftWoehr, verbose {
     
     /** Discard utterly a wordlist entry by finding
      * the first occurrence of same in the search order.
-     *
-     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist.discard
-     * @param name
-     * @return  */
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist#DISCard
+     * @param name Entry to discard
+     * @return  <code>true</code> if found and discarded
+     */
     public boolean discard(String name) {
         boolean rc = false;
         Semantic result = null;
@@ -153,7 +146,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     }                                 /* public boolean forget(String name)*/
     
     /** Push the search order topped by number of Wordlists in search order.
-     * @param z  */
+     * @param z associated engine
+     */
     public void getOrder(engine z) {
         for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
             z.push(e.nextElement());
@@ -162,7 +156,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     }                                     /* public void getOrder(engine z)*/
     
     /** Grab search order from stack
-     * @param z  */
+     * @param z associated engine
+     */
     public void setOrder(engine z) {
         reinit();                                        /* Empty search order.*/
         int numWordlists = ((Long) z.pop()).intValue();
@@ -172,7 +167,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     }                                     /* public void setOrder(engine z)*/
     
     /** Return names of all words in the search order.
-     * @return  */
+     * @return String of words
+     */
     public String words() {
         String result = "";
         Wordlist w = null;
@@ -185,29 +181,30 @@ public class SearchOrder implements SoftWoehr, verbose {
     
     
     /** Add a Wordlist to the SearchOrder
-     * @param w
-     * @return  */
+     * @param w Wordlist to add
+     * @return <code>true</code> on success
+     */
     public boolean add(Wordlist w) {
         return my_vector.add(w);
     }
     
-    /** A simple Wordlist-typed method to addElement().
-     * @param i
-     * @return  */
+    /** Return nth (zero-based) Wordlist.
+     * @param i index
+     * @return the Wordlist or null */
     public Wordlist nthElement(int i) {
         return (Wordlist) my_vector.elementAt(i);
     }
     
-    /**
+    /** Test verbosity
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @return  */
+     * @return <code>true</code> if verbose */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbosity
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param tf  */
+     * @param tf <code>true</code> if verbose */
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
         announce("Setting search order verbose.");
@@ -218,7 +215,7 @@ public class SearchOrder implements SoftWoehr, verbose {
         }                                                          /* End for*/
     }
     
-    /**
+    /** Announce a String if verbose.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
      * @param s  */
@@ -226,7 +223,8 @@ public class SearchOrder implements SoftWoehr, verbose {
     
     
     /** Demonstrate <code>SearchOrder</code>.
-     * @param argv  */
+     * @param argv  Args to test, currently not used.
+     */
     public static void main(String argv[]) {
         
         GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
