@@ -3,7 +3,7 @@ FIJI README.TXT
 This is the installation documentation for FIJI. Please read this document
 before attempting to use the software.
 
-This is the beta release of version 1.2 of FIJI ForthIsh Java Interpreter.
+This is the gamma release of version 1.2 of FIJI ForthIsh Java Interpreter.
 
 FIJI and all its source files and documentation are
 Copyright 1998, 1999, 2000, 2001
@@ -70,6 +70,11 @@ starts the command-line form of FIJI and
 
 starts the GUI version of FIJI.
 
+Alternatively, you may just run the GUI version of FIJI directly from the .jar
+file:
+
+      java -jar fiji.{version}.jar
+
 Source Code
 -----------
 The source code for FIJI is in fiji.{version}.jar along with the classes.
@@ -101,6 +106,9 @@ You should examine all additional files.
 
 Changes from Previous Versions
 ------------------------------
+1.2 gamma
+    2001-10-15 ... Added manifest file to jar to launch FIJIGui direct from
+                   jar.
 1.2 beta
     2001-08-15 ... Fixed bug in interpreter.interpret (popping empty tokenizer
                    stack).
@@ -163,5 +171,4 @@ just be written in FIJI itself, instead of in Java in the engine.
 ---
 Jack Woehr
 Fairmount, Colorado
-2001-08-25
-
+2001-10-15
