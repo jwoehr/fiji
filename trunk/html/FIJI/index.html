@@ -46,6 +46,11 @@ Software, please visit the
 <li>
 <a href="#Where is the Source Code">Where is the Source Code?</a></li>
 
+<ul>
+<li>
+<a href="#How Do I Build FIJI">How Do I Build FIJI?</a></li>
+</ul>
+
 <li>
 <a href="#Where are the examples">Where are the Examples?</a></li>
 
@@ -91,12 +96,26 @@ and unpacks to the following structure:
 <a NAME="Where is the Source Code"></a>Where is the Source Code?</h2>
 <a href="#Table of Contents">[Go Back to Table of Contents]</a>
 <p>This one question has been asked over and over again!
-<blockquote><b>The soure code is packed into the .jar file with classes!</b>
+<p><b>The soure code is packed into the .jar file with classes!</b>
 <p>Please use the Java <b>jar</b> tool, e.g.
-<blockquote><tt><font size=+1>jar xf fiji.jar</font></tt></blockquote>
+<blockquote><font size=+1><tt>jar xf fiji.</tt><i>version</i><tt>.jar</tt></font></blockquote>
 to unpack the source code if you wish to browse or recompile SoftWoehr
-Java class libraries.</blockquote>
-
+Java class libraries.
+<h3>
+<a NAME="How Do I Build FIJI"></a>How Do I Build FIJI?</h3>
+Notice that in the same directory with the fiji.Once you have unpacked
+the source from the jar in the same directory where the jar file is located
+there is a directory called <tt>scripts</tt> in which is located a <a href="http://jakarta.apache.org/ant/index.html">Jakarta
+Ant</a> build file <tt>build.xml</tt> which is used to build FIJI. Presuming
+you have unpacked the FIJI source from the jar file as described above,
+then in that same directory invoke <tt>ant</tt> as follows:
+<blockquote><tt>ant -f ./scripts/build.xml</tt></blockquote>
+This will build the default target all which includes generating the FIJI
+jar file. Try
+<blockquote><tt>ant -f ./scripts/build.xml usage</tt></blockquote>
+to see a usage message on all the targets you may invoke when using the
+supplied build file.
+<p>
 <hr WIDTH="100%">
 <h2>
 <a NAME="Where are the examples"></a>Where are the Examples?</h2>
@@ -145,7 +164,7 @@ List of examples with brief descriptions.</dd>
 
 <hr WIDTH="100%">
 <br><a href="http://www.softwoehr.com">Visit the SoftWoehr Home Page</a>
-<br><a href="mailto:jax@softwoehr.com">Email the Author</a><i></i>
-<p><i>$Id: index.html,v 1.3 2001-09-11 00:11:34 jwoehr Exp $</i>
+<br><a href="mailto:jax@softwoehr.com">Email the Author</a>
+<p><i>$Id: index.html,v 1.4 2001-09-12 22:05:20 jwoehr Exp $</i>
 </body>
 </html>
