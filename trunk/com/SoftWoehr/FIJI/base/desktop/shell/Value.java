@@ -1,7 +1,8 @@
 /* Value.java ...  */
 /*********************************************/
-/* Copyright *C* 1999, All Rights Reserved.  */
-/* Jack J. Woehr jax@well.com jwoehr@ibm.net */
+/* Copyright *C* 1999, 2001                  */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
@@ -31,162 +32,136 @@ package com.SoftWoehr.FIJI.base.desktop.shell;
 import  com.SoftWoehr.SoftWoehr;
 import  com.SoftWoehr.util.*;
 
- /** Value is a self-fetching Variable.
-   *
-   * @author $Author: jwoehr $
-   * @version $Revision: 1.1.1.1 $
-   */
-public class Value extends Semantic implements SoftWoehr, verbose
-{
-  /*****************************************/
-  /*% SoftWoehr default variables section. */
-  /*****************************************/
-
-  /** Revision level */
-  private static final String rcsid = "$Id: Value.java,v 1.1.1.1 2001-08-21 02:39:25 jwoehr Exp $";
-  /** Implements com.SoftWoehr.SoftWoehr */
-  public String rcsId() {return rcsid;}
-
-  /**  Flags whether we are in verbose mode. */
-  private boolean isverbose = true;
-  /**  Helper for verbose mode. */
-  private verbosity v = new verbosity(this);
-
-  /** Does the work of notifying shutdown clients. */
-  private ShutdownHelper shutdownHelper = new ShutdownHelper();
-
-  /**********************************************/
-  /*% SoftWoehr default variables section ends. */
-  /**********************************************/
-
-  /***********************************/
-  /*% User variables section starts. */
-  /***********************************/
-  private Object datum = null;
-
-  /*********************************/
-  /*% User variables section ends. */
-  /*********************************/
-
-  /*********************************/
-  /*% User methods section starts. */
-  /*********************************/
-
-  /** Arity/0 ctor, anonymous */
-  public Value () {
-    super("Anonymous Value");
+/** Value is a self-fetching Variable.
+ *
+ * @author $Author: jwoehr $
+ * @version $Revision: 1.2 $
+ */
+public class Value extends Semantic implements SoftWoehr, verbose {
+    
+    /** Revision level */
+    private static final String rcsid = "$Id: Value.java,v 1.2 2001-09-10 03:47:52 jwoehr Exp $";
+    /** Implements com.SoftWoehr.SoftWoehr
+     * @return the rcsid
+     */
+    public String rcsId() {return rcsid;}
+    
+    /**  Flags whether we are in verbose mode. */
+    private boolean isverbose = true;
+    /**  Helper for verbose mode. */
+    private verbosity v = new verbosity(this);
+    
+    /** Does the work of notifying shutdown clients. */
+    private ShutdownHelper shutdownHelper = new ShutdownHelper();
+    
+    /** The value of the Value */
+    private Object datum = null;
+    
+    /** Arity/0 ctor, anonymous */
+    public Value() {
+        super("Anonymous Value");
     }
-
-  /** Arity/1 ctor, the most useful one. */
-  public Value (String name) {
-    super(name);
-  }
-
-  /** Return a String representation of the object. */
-  public String toString () {
-    return "A Value named " + getName() + " whose value is " + datum;
+    
+    /** Arity/1 ctor, the most useful one.
+     * @param name  Name of this Value
+     */
+    public Value(String name) {
+        super(name);
     }
-
-  protected void finalize () throws Throwable
-    {           /* Called by garbage collector in case no longer referenced*/
-      super.finalize();
+    
+    /** Return a String representation of the object.
+     * @return  String representation */
+    public String toString() {
+        return "A Value named " + getName() + " whose value is " + datum;
     }
-
-  /** The Value notifies subcomponents of shutdown then shuts itself down.
-    * @see com.SoftWoehr.SoftWoehr
-    */
-  public int shutdown() {
-    shutdownHelper.shutdownClients();
-    // Your shutdown code for this object goes here.
-    // ...
-
-    // ...
-    // Your shutdown code for this object went there.
-    return 0;
+  
+    /** The Value notifies subcomponents of shutdown then shuts itself down.
+     * @see com.SoftWoehr.SoftWoehr#
+     * @return  always null
+     */
+    public int shutdown() {
+        shutdownHelper.shutdownClients();
+        // Your shutdown code for this object goes here.
+        // ...
+        
+        // ...
+        // Your shutdown code for this object went there.
+        return 0;
     }
-
-  /** Reinitialize the Value, discarding previous state. */
-  //public void reinit() {
-  //  }
-
-  /** Execution semantics are to push own datum. */
-  public void execute (engine e) {
-    e.push(datum);
+    
+    /** Reinitialize the Value, discarding previous state. */
+    //public void reinit() {
+    //  }
+    
+    /** Execution semantics are to push own datum.
+     * @param e  The engine against which to execute self.
+     */
+    public void execute(engine e) {
+        e.push(datum);
     }
-
-  /** Get the datum. */
-  public Object getDatum() {
-    return datum;
+    
+    /** Get the datum.
+     * @return the value of this Value. */
+    public Object getDatum() {
+        return datum;
     }
-
-  /** Set the datum. */
-  public void setDatum(Object o) {
-    datum = o;
+    
+    /** Set the datum.
+     * @param o Set the value of this Value to this. */
+    public void setDatum(Object o) {
+        datum = o;
     }
-
-  /*******************************/
-  /*% User methods section ends. */
-  /*******************************/
-
-  /**********************************************/
-  /*% SoftWoehr default methods section starts. */
-  /**********************************************/
-
-   /**
-    * @see com.SoftWoehr.util.verbose
-    * @see com.SoftWoehr.util.verbosity
-    */
-   public boolean isVerbose()              {return isverbose;}
-
-   /**
-    * @see com.SoftWoehr.util.verbose
-    * @see com.SoftWoehr.util.verbosity
-    */
-   public void    setVerbose  (boolean tf) {isverbose = tf;  }
-
-   /**
-    * @see com.SoftWoehr.util.verbose
-    * @see com.SoftWoehr.util.verbosity
-    */
-   public void    announce    (String s)   {v.announce(s);   }
-
-  /********************************************/
-  /*% SoftWoehr default methods section ends. */
-  /********************************************/
-
-  /*********/
-  /*% Main */
-  /*********/
-
-  /** Demonstrate <code>Value</code>. */
-  public static void main (String argv[]) {
-
-    GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
-    Value theValue = new Value();      /* Instance of Value we're demoing. */
-
+    
+    /**
+     * @see com.SoftWoehr.util.verbose#
+     * @see com.SoftWoehr.util.verbosity#
+     * @return  true if verbose
+     */
+    public boolean isVerbose()              {return isverbose;}
+    
+    /**
+     * @see com.SoftWoehr.util.verbose#
+     * @see com.SoftWoehr.util.verbosity#
+     * @param tf  set verbose on (true) or off.
+     */
+    public void    setVerbose  (boolean tf) {isverbose = tf;  }
+    
+    /**
+     * @see com.SoftWoehr.util.verbose#
+     * @see com.SoftWoehr.util.verbosity#
+     * @param s  The string to conditionally announce.
+     */
+    public void    announce    (String s)   {v.announce(s);   }
+    
+    /** Demonstrate <code>Value</code>. Not currently used.
+     * @param argv  Args to the main() function ... not currently used.
+     */
+    public static void main(String argv[]) {
+        
+        GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
+        Value theValue = new Value();      /* Instance of Value we're demoing. */
+        
     /* GPL'ed SoftWoehr announces itself. */
-    System.out.println("Value, Copyright (C) 1999 Jack J. Woehr.");
-    System.out.println("Value comes with ABSOLUTELY NO WARRANTY;");
-    System.out.println("Please see the file COPYING and/or COPYING.LIB");
-    System.out.println("which you should have received with this software.");
-    System.out.println("This is free software, and you are welcome to redistribute it");
-    System.out.println("under certain conditions enumerated in COPYING and/or COPYING.LIB.");
-
+        System.out.println("Value, Copyright (C) 1999 Jack J. Woehr.");
+        System.out.println("Value comes with ABSOLUTELY NO WARRANTY;");
+        System.out.println("Please see the file COPYING and/or COPYING.LIB");
+        System.out.println("which you should have received with this software.");
+        System.out.println("This is free software, and you are welcome to redistribute it");
+        System.out.println("under certain conditions enumerated in COPYING and/or COPYING.LIB.");
+        
     /* See if user passed in the -v flag to request verbosity. */
-    for (int i = 0; i < myArgs.optionCount() ; i++)
-      {
-      if (myArgs.nthOption(i).getOption().substring(1,2).equals("v"))
-        {
-        theValue.setVerbose(true);
-        }                                                         /* End if*/
-      }
-
-    // Your code goes here.
-    // -------------------
-
-    // -------------------
-
-    return;
+        for (int i = 0; i < myArgs.optionCount() ; i++) {
+            if (myArgs.nthOption(i).getOption().substring(1,2).equals("v")) {
+                theValue.setVerbose(true);
+            }                                                         /* End if*/
+        }
+        
+        // Your code goes here.
+        // -------------------
+        
+        // -------------------
+        
+        return;
     }
 }                                                      /* End of Value class*/
 
