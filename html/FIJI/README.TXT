@@ -6,12 +6,15 @@ before attempting to use the software.
 This is the beta release of version 1.2 of FIJI ForthIsh Java Interpreter.
 
 FIJI and all its source files and documentation are
-Copyright 1998, 1999, 2000
+Copyright 1998, 1999, 2000, 2001
 Jack J. Woehr, PO Box 51, Golden, Colorado 80402-0051
 jax@softwoehr.com http://www.softwoehr.com
 
 --------------------------------------------------------------------
-This program is free software; you can redistribute it and/or modify
+FIJI is now maintained/distributed from http://fiji.sourceforge.net.
+--------------------------------------------------------------------
+
+    This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
@@ -33,50 +36,53 @@ INSTALLATION
 The program is distributed as a Zip archive. Unpacking the archive
 creates a directory tree of which the top level is:
 
-        fiji-+
+             +-fiji.{version}.jar (FIJI's Java class *and source* files)
              |
-             +-fiji.jar
+             +-html<DIR> (the documentation for FIJI)
              |
-             +-doc<DIR>
-             |
-             +-examples<DIR>
+             +-COPYING (The Gnu Public License)
              |
              +-README.TXT (this file).
+             |
+             +-script<DIR> (contains the jakarta-ant build.xml file to build FIJI)
 
-Add fiji.jar to your classpath to make the library accessible to
+Add fiji.{version}.jar to your classpath to make the library accessible to
 java, or use the -c or -classpath switches to 'jre' or 'java' to make
 fiji accessible to Java.
 
 RTFM
 ----
 To learn how to launch and use FIJI, read the HTML documentation.
-Point your browser at the 'doc' subdirectory which should bring up
-fiji/doc/index.html which is the root of the documentation for this product.
+Point your browser at the 'html' subdirectory which should bring up
+html/index.html which is the root of the documentation for this product.
 
 Quick Start
 -----------
-For the impatient, however, here's the scoop: Once fiji.jar is in the
-CLASSPATH
+For the impatient, however, here's the scoop: Once fiji.{version}.jar is
+in the CLASSPATH
 
-      jre com.SoftWoehr.FIJI.FIJI
+      java com.SoftWoehr.FIJI.FIJI
 
 starts the command-line form of FIJI and
 
-      jre com.SoftWoehr.FIJI.FIJIGui
+      java com.SoftWoehr.FIJI.FIJIGui
 
 starts the GUI version of FIJI.
 
-
 Source Code
 -----------
-The source code for FIJI is in fiji.jar along with the classes.
-To examine/modify/recompile the source code, please use the Sun
-jar tool to extract the directory hiearchy, e.g.,
+The source code for FIJI is in fiji.{version}.jar along with the classes.
+To examine/modify/recompile the source code, please use the Sun jar tool
+to extract the directory hiearchy, e.g.,
 
-           jar xf fiji.jar
+           jar xf fiji.{version}.jar
 
 Examples
 --------
+
+Examples are found in the class hierarchy inside the jar file, under
+com/SoftWoehr/FIJI/examples.
+
 To use the examples, change directory to the specific example directory
 or subdirectory, start FIJI and use the 'load' command to load the
 example file. For example, change directory to examples/io, start fiji,
@@ -85,11 +91,9 @@ and enter
        cat.fiji load
 
 If you follow links from index.html to the main FIJI documentation,
-the documentation itself displays FIJI running as an applet! I can only
-get this to work in HotJava at the moment. I'm not quite sure what the
-problem is with Netscape. And certainly FIJI doesn't run as a sandbox
-applet, throwing a security violation. I believe the method resolution
-via java.lang.reflect is problematic or verboten to an applet.
+the documentation itself cant display FIJI running as an applet if you
+have the Java 1.3 plugin installed in your browser. Currently FIJI doesn't
+run as a sandbox applet, throwing a security violation.
 
 There may be additional files in the root directory of the FIJI distribution.
 You should examine all additional files.
@@ -99,6 +103,7 @@ Changes from Previous Versions
 1.2 beta
     2001-08-15 ... Fixed bug in interpreter.interpret (popping empty tokenizer
                    stack).
+               ... First SourceForge release!
 1.2 alpha
     2000-10-15 ... New GUI
                    Cleanups in engine
@@ -157,5 +162,5 @@ just be written in FIJI itself, instead of in Java in the engine.
 ---
 Jack Woehr
 Fairmount, Colorado
-2000-10-15
+2001-08-25
 
