@@ -39,18 +39,18 @@ import com.SoftWoehr.*;
  * and issues queries via JDBC
  * using various drivers.
  * @author  $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class SQLSession implements SoftWoehr, verbose {
     /** Revision info */
-    private final String rcsid = "$Id: SQLSession.java,v 1.3 2001-09-15 07:02:14 jwoehr Exp $";
+    private final String rcsid = "$Id: SQLSession.java,v 1.4 2001-09-15 07:30:04 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
     public String rcsId() {return rcsid;}
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return always 0.
      */
     public int shutdown() { return 0; }
