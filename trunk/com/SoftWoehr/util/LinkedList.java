@@ -1,38 +1,67 @@
-// LinkedList.java
-// A linked list implementation.
-/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/* LinkedList.java			     */
+/* A classic linked list implementation.     */
+/*********************************************/
+/*  Copyright *C* 1998, 2001 Jack J. Woehr   */
 /*	      All Rights Reserved	     */
 /* PO Box 51 Golden, Colorado 80402-0051 USA */
-/*	    http://www.softwoehr.com	     */
+/*	   http://www.softwoehr.com	     */
 /*	  http://fiji.sourceforge.net	     */
-
+/*					     */
+/*	     This Program is Free	     */
+/*		   Softwoehr		     */
+/*					     */
+/*  Permission to distribute this Softwoehr  */
+/* with copyright notice attached is granted.*/
+/*					     */
+/*  Permission to modify for personal use at */
+/*  at home or for your personal use on the  */
+/*  job is granted, but you may not publicly */
+/*  make available modified versions of this */
+/*   program without asking and getting the  */
+/*   permission of the author, Jack Woehr.   */
+/*					     */
+/* The permission will usually be granted if */
+/* granted reciprocally by you for the mods. */
+/*					     */
+/* THERE IS NO GUARANTEE, NO WARRANTY AT ALL */
+/*********************************************/
 package com.SoftWoehr.util;
 
 import java.util.*;
 
+/** A simple linked list implementation
+ */
 public class LinkedList {
     
+    /** Interface presented by a node
+     */
     public interface Linkable {
-        /**
-         * @return  */        
+        
+        /** Get next pointer
+         * @return next pointer
+         */
         public Linkable getNext();
-        /**
-         * @param node  */        
+        
+        /** Set next pointer to next node
+         * @param node next node
+         */
         public void setNext(Linkable node);
     }
     
     Linkable head = null;
     
-    /**
-     * @param node  */    
-    public void addHead (Linkable node) {
+    /** Prepend a node
+     * @param node to prepend
+     */
+    public void addHead(Linkable node) {
         node.setNext(head);
         head = node;
     }
     
-    /**
-     * @param node  */    
-    public void addTail (Linkable node) {
+    /** Postpend a node
+     * @param node to postpend
+     */
+    public void addTail(Linkable node) {
         Enumeration e = enumerate();
         if (!e.hasMoreElements()) {
             addHead(node);
@@ -52,9 +81,10 @@ public class LinkedList {
         }
     }
     
-    /**
-     * @param node  */    
-    public void remove (Linkable node) {
+    /** Walk through list and find node to remove
+     * @param node node to remove
+     */
+    public void remove(Linkable node) {
         Linkable previous = null;
         Linkable current = head;
         Enumeration e = enumerate();
@@ -86,8 +116,9 @@ public class LinkedList {
         }
     }
     
-    /**
-     * @return  */    
+    /** Walk through and count elements (nodes) in list.
+     * @return number of elements in list.
+     */
     public int numberOfElements() {
         Enumeration e = enumerate();
         int elements = 0;
@@ -98,8 +129,9 @@ public class LinkedList {
         return elements;
     }
     
-    /**
-     * @return  */    
+    /** Return an enumeration of the list
+     * @return the enumeration of the list
+     */
     public Enumeration enumerate() {
         
         return new Enumeration() {
@@ -121,9 +153,10 @@ public class LinkedList {
         };
     }
     
-    /**
-     * @param argv  */    
-    public static void main (String argv[]) {
+    /** Test linked list of argument strings
+     * @param argv strings to link
+     */
+    public static void main(String argv[]) {
         
         if (argv.length == 0) {
             System.out.println("usage: java LinkedList [arg] [arg] ...");
@@ -134,7 +167,7 @@ public class LinkedList {
         LinkedList l = new LinkedList();
         
         for (int i = 0; i < argv.length; i++) {
-            l.addHead (new LinkableString(argv[i]));
+            l.addHead(new LinkableString(argv[i]));
         }
         
         System.out.println("I created a LinkedList of your command-line arguments.");
@@ -142,24 +175,24 @@ public class LinkedList {
         System.out.println("Here's a backwards-linked-list listing of all (if any) of the command line arguments:");
         Enumeration e = l.enumerate();
         while (e.hasMoreElements()) {
-            System.out.println (((LinkableString) e.nextElement()).string());
+            System.out.println(((LinkableString) e.nextElement()).string());
         }
         
         System.out.println("Now I'll add an element to the tail.");
-        l.addTail (new LinkableString("Hi, I'm the tail node!"));
+        l.addTail(new LinkableString("Hi, I'm the tail node!"));
         System.out.println("Here's a backwards-linked-list listing of all (if any) of the command line arguments:");
         e = l.enumerate();
         while (e.hasMoreElements()) {
-            System.out.println (((LinkableString) e.nextElement()).string());
+            System.out.println(((LinkableString) e.nextElement()).string());
         }
         
         while (l.head != null) {
-            System.out.println ("Now I'll remove the head element.");
+            System.out.println("Now I'll remove the head element.");
             l.remove(l.head);
             System.out.println("The list now has " + l.numberOfElements() + " element(s) remaining.");
             e = l.enumerate();
             while (e.hasMoreElements()) {
-                System.out.println (((LinkableString) e.nextElement()).string());
+                System.out.println(((LinkableString) e.nextElement()).string());
             }
         }
         
@@ -168,23 +201,33 @@ public class LinkedList {
     
 }
 
+/** A test class to use to test Linked List. A linkable String class */
 class LinkableString implements LinkedList.Linkable {
     
+    /** The string itself */
     public String s;
+    
     private LinkedList.Linkable next = null;
     
+    /** Create empty linkable string */
     public LinkableString() {this("");}
-    /**
-     * @param s  */    
+    
+    /** Create a linkable string with content.
+     * @param s  */
     public LinkableString(String s) { this.s = s; }
-    /**
-     * @return  */    
+    
+    /** Return the string itself
+     * @return the string
+     */
     public String string() { return s; }
-    /**
-     * @return  */    
-    public LinkedList.Linkable getNext () { return next; }
-    /**
-     * @param node  */    
+    
+    /** Get the next node
+     * @return the next node */
+    public LinkedList.Linkable getNext() { return next; }
+    
+    /** Set the next node
+     * @param node node to set
+     */
     public void setNext(LinkedList.Linkable node) { next = node; }
 }
 
