@@ -1,14 +1,10 @@
 /* Wordlist.java ...  lists of semantics     */
 /*********************************************/
-/* Copyright *C* 1999, All Rights Reserved.  */
-/* Jack J. Woehr jax@well.com jwoehr@ibm.net */
+/* Copyright *C* 1999, 2001                  */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
-/*********************************************/
-/*                                           */
-/*    This Program is Free SoftWoehr.        */
-/*                                           */
-/* THERE IS NO GUARANTEE, NO WARRANTY AT ALL */
 /*********************************************/
 /*
  *  This program is free software; you can redistribute it and/or modify
@@ -38,20 +34,24 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.1.1.1 $
+ * @version $Revision: 1.2 $
  */
 public class Wordlist extends Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.1.1.1 2001-08-21 02:39:34 jwoehr Exp $";
+    private static final String rcsid = "$Id: Wordlist.java,v 1.2 2001-09-10 04:11:22 jwoehr Exp $";
+
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
     public boolean isverbose = false;
+    
     /**  Helper for verbose mode. */
     private verbosity v = new verbosity(this);
     
+    /** The storage of the wordlist */
     private Hashtable wordlist;
     
     /** Arity/0 ctor. */
@@ -60,20 +60,23 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Arity/1 ctor.
-     * @param name  */
+     * @param name name of Wordlist (if any)
+     */
     public Wordlist(String name) {
         reinit(name);
     }
     
     /** Reinit discarding previous state.
-     * @param name  */
+     * @param name name of Wordlist (if any)
+     */
     public void reinit(String name) {
         setName(name);
         wordlist=new Hashtable();
     }
     
     /** Do a string dump wordlist's name.
-     * @return  */
+     * @return the string representation
+     */
     public String toString() {
         String result = "A Wordlist named " + getName();
         return result;
@@ -81,33 +84,29 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     
     /** shutdown() here does nothing.
      * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @return  always 0
+     */
     public int shutdown() { return 0; }
     
-    /**
-     * @throws Throwable  */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
-    
-    /**
+    /** Is this verbose and announcing?
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @return  */
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
-    public void    setVerbose  (boolean tf) {isverbose = tf;
-    announce(getName() + " Wordlist is set verbose.");
-    }
+     * @param tf  set verbose on (true) or off.
+     */
+    public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
+    /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+     * @param s  The string to conditionally announce.
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Add a Semantic in, comes with its own key. If key
@@ -115,7 +114,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
      * (so that it can later be restored if the user 'forget's
      * the active Semantic) and set the active Semantic to the
      * Semantic presented to this method.
-     * @param s  */
+     * @param s the Semantic
+     */
     public void put(Semantic s) {
         String name = s.getName();
         WordlistEntry entry = findEntry(name);
@@ -134,8 +134,9 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     }                             /* public Semantic findEntry(String name)*/
     
     /** Find a Semantic by name in a wordlist.
-     * @param name
-     * @return  */
+     * @param name name of sought Semantic
+     * @return The sought Semantic or <CODE>null</CODE>
+     */
     public Semantic find(String name) {
         Semantic s = null;
         WordlistEntry entry = findEntry(name);
@@ -148,7 +149,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     /** 'Forget' the active Semantic for a name, popping the previous
      * Semantic in its place. If no previous Semantic
      * is stacked, remove the entry from the Wordlist.
-     * @param name  */
+     * @param name Semantic to forget.
+     */
     public void forget(String name) {
         WordlistEntry entry = (WordlistEntry)wordlist.get(name);
         if (null != entry) {
@@ -160,13 +162,15 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     }                                   /* public void forget (String name)*/
     
     /** Utterly discard a wordlist entry.
-     * @param name  */
+     * @param name entry to discard
+     */
     public void discard(String name) {
         wordlist.remove(name);
     }
     
     /** Return a string of all words in the wordlist.
-     * @return  */
+     * @return The string
+     */
     public String words() {
         String result = "";
         WordlistEntry entry = null;
@@ -186,7 +190,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
      * list could be a static member, but then
      * it had better be read-only to interpreter
      * instances due to its being shared.
-     * @return  */
+     * @return The default Wordlist itself
+     */
     public static Wordlist defaultWordlist() {
         Wordlist defaultList = new Wordlist("FIJI");
         try {
@@ -361,7 +366,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Demonstrate <code>Wordlist<code>.
-     * @param argv  */
+     * @param argv not currently used
+     */
     public static void main(String argv[]) {
     }
 }                                                  /* End of Wordlist class*/
@@ -374,23 +380,13 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose {
  */
 class WordlistEntry {
     /** Create a WordlistEntry on a Semantic.
-     * @param s  */
+     * @param s the Semantic
+     */
     public WordlistEntry(Semantic s) {
         semantic = s;
         semanticStack = null;/* Only have a stack if one needed, memory impact.*/
     }
-    
-    /**
-     * @return  */
-    public String toString()
-    {return super.toString();}
-    
-    /**
-     * @throws Throwable  */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
-    
+
     /** The active Semantic of a word. */
     private Semantic semantic;
     
@@ -398,19 +394,24 @@ class WordlistEntry {
     private Stack semanticStack;
     
     /** Get the Semantic to which this entry refers.
-     * @return  */
+     * @return the Semantic
+     */
     public Semantic getSemantic() {
         return semantic;
     }
     
     /** Get the name of the semantic to which this entry refers.
-     * @return  */
+     * @return name of the Semantic
+     */
     public String getName() {
         return semantic.getName();
     }
     
     /** Change the active Semantic.
-     * @param s  */
+     * Save the old one on a stack
+     *
+     * @param s the Semantic
+     */
     public void push(Semantic s) {
         if (null == semanticStack) {
             semanticStack = new Stack();                    /* Create as needed.*/
@@ -423,7 +424,8 @@ class WordlistEntry {
      * discarding that which was the active Semantic. Returns
      * that Semantic which becomes the active Semantic as a
      * a result of this operation.
-     * @return  */
+     * @return the previous Semantic
+     */
     public Semantic pop() {
         semantic = null;                         /* Throw away active Semantic.*/
         if (null != semanticStack)/* If we have a stack of previous Semantic(s) ...*/ {
