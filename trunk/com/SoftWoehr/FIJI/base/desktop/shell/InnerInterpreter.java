@@ -2,8 +2,9 @@
 /*********************************************/
 /* Copyright *C* 1999, 2001                  */
 /* All Rights Reserved.                      */
-/* Jack J. Woehr jwoehr@softwoehr.com        */
+/* Jack J. Woehr jax@softwoehr.com           */
 /* http://www.softwoehr.com                  */
+/* http://fiji.sourceforge.net               */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
 /*                                           */
@@ -56,12 +57,12 @@ import  com.SoftWoehr.util.*;
  * it out into its own class makes it easier to keep straight while coding.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.1.1.1 $
+ * @version $Revision: 1.2 $
  */
 public class InnerInterpreter implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: InnerInterpreter.java,v 1.1.1.1 2001-08-21 02:39:16 jwoehr Exp $";
+    private static final String rcsid = "$Id: InnerInterpreter.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return rcs string
