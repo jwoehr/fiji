@@ -5,7 +5,7 @@
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.9 2001-08-30 02:44:45 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.10 2001-08-30 21:38:48 jwoehr Exp $ -->
 
 <project basedir=".." default="all" name="fiji">
 
@@ -29,6 +29,7 @@
 			   and builds the distribution zip file.
 		jar     .. builds the jar (and Fiji if necessary).
 		javadoc .. generates javadoc for Fiji.
+                run     .. run Fiji in the GUI form.
 		usage   .. displays this message.
 
 	    The behavior of the build is controlled by passing variables on the
@@ -39,33 +40,33 @@
 	    in {curly braces} indicate the variables whose substitutions will
 	    be made at build time to compose the new variable.
 
-		fiji.release=1.2_gamma
+		fiji.version=1.2_gamma
 		fiji.source.directory=.
 		fiji.destination.directory=.
-		fiji.jar.filename=fiji.{fiji.release}.jar
-		fiji.jar.manifest.filename=fiji.{fiji.release}.mf
+		fiji.jar.filename=fiji.{fiji.version}.jar
+		fiji.jar.manifest.filename=fiji.{fiji.version}.mf
 		fiji.javadoc.destination.directory={fiji.destination.directory}/html/doc
 		fiji.compile.debug=false
-		fiji.zipfile.filename=fiji.{fiji.release}.zip
+		fiji.zipfile.filename=fiji.{fiji.version}.zip
 	</echo>
     </target>
 
     <!-- Define properties and announce them.  -->
     <target description="Set properties all targets need" name="init">
-	<property name="fiji.release" value="1.2_gamma"/>
+	<property name="fiji.version" value="1.2_gamma"/>
 	<property name="fiji.source.directory" value="."/>
 	<property name="fiji.destination.directory" value="."/>
-	<property name="fiji.jar.filename" value="fiji.${fiji.release}.jar"/>
+	<property name="fiji.jar.filename" value="fiji.${fiji.version}.jar"/>
 	<property name="fiji.jar.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.jar.filename}"/>
-	<property name="fiji.jar.manifest.filename" value="fiji.${fiji.release}.mf"/>
+        <property name="fiji.jar.manifest.filename" value="fiji.${fiji.version}.mf"/>
 	<property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
 	<property name="fiji.compile.debug" value="false"/>
-	<property name="fiji.zipfile.filename" value="fiji.${fiji.release}.zip"/>
+	<property name="fiji.zipfile.filename" value="fiji.${fiji.version}.zip"/>
 	<property name="fiji.zipfile.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
 	<echo>
 	   Values of all properties for this build:
 	   ----------------------------------------
-	   fiji.release=${fiji.release}
+	   fiji.version=${fiji.version}
 	   fiji.source.directory=${fiji.source.directory}
 	   fiji.destination.directory=${fiji.destination.directory}
 	   fiji.jar.filename=${fiji.jar.filename}
@@ -90,22 +91,28 @@
 	</javac>
     </target>
 
+    <!-- Autogenerate a manifest file for FIJI -->
+    <target depends="init" name="gen_manifest">
+<echo file="${fiji.jar.manifest.filename}">Manifest-Version: ${fiji.version}
+Main-Class: com.SoftWoehr.FIJI.FIJIGui
+</echo>
+    </target>
+
     <!-- Build a jar of the compiled classes and source code combined.  -->
-    <target depends="init,compile" description="Generates the .jar file in which class and source reside" name="jar">
-	<!-- To make a standalone app: -->
-	<!-- 1. Create a myapp.mf manifest somewhere. -->
-	<!-- 2. Put in it: -->
-	<!--    Manifest-Version: 1.0 -->
-	<!--    Main-Class: com.foo.Main -->
-	<!-- 3. Pass to <jar>: manifest="myapp.mf" -->
-       <jar basedir="${fiji.destination.directory}" compress="true" jarfile="${fiji.jar.fully.qualified.pathname}">
+    <target depends="compile,gen_manifest" 
+            description="Generates the .jar file in which class and source reside"
+            name="jar">
+        <delete file="${fiji.jar.fully.qualified.pathname}"/>
+        <jar basedir="${fiji.destination.directory}" compress="true" manifest="${fiji.jar.manifest.filename}" jarfile="${fiji.jar.fully.qualified.pathname}">
 	    <include name="com/**/*.*"/>
 	    <exclude name="${fiji.source.directory}/com/SoftWoehr/util/SQL*.*"/>
 	    <exclude name="${fiji.destination.directory}/com/SoftWoehr/util/SQL*.*"/>
 	    <exclude name="${fiji.source.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
 	    <exclude name="${fiji.destination.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
+            <exclude name="${fiji.jar.manifest.filename}"/>
 	    <exclude name="**.jar"/>
-       </jar>
+        </jar>
+        <delete file="${fiji.jar.manifest.filename}"/> <!-- clean up -->
     </target>
 
     <!-- Compile and build the jar. Pretty safe for a default target.  -->
@@ -141,9 +148,15 @@
     </target>
 
     <!-- Build a .zip distribution archive for posting on the Internet.  -->
-    <target depends="init,jar,javadoc" description="Build distribution archive" name="distrib">
-	<antcall target="copy_readmes"/>
+    <target depends="init,jar,javadoc,copy_readmes" description="Build distribution archive" name="distrib">
 	<antcall target="gen_zipfile"/>
+	<delete file="${fiji.destination.directory}/COPYING"/>
+	<delete file="${fiji.destination.directory}/COPYING.LIB"/>
+	<delete file="${fiji.destination.directory}/README.TXT"/>
+    </target>
+
+    <target depends="init" name="run">
+        <java jar="${fiji.jar.filename}" fork="true"/>
     </target>
 
     <!-- Delete the class files, jar file, javadocs, zip file and the readmes we copied to the root. -->
