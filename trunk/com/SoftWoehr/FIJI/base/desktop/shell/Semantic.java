@@ -30,17 +30,18 @@
 
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
+import java.io.Serializable;
 import  com.SoftWoehr.*;
 import  com.SoftWoehr.util.*;
 
 /**
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
-public class Semantic implements SoftWoehr, verbose {
+public class Semantic implements SoftWoehr, verbose, Serializable {
     /** Revision level */
-    private static final String rcsid = "$Id: Semantic.java,v 1.4 2001-09-15 07:02:14 jwoehr Exp $";
+    private static final String rcsid = "$Id: Semantic.java,v 1.5 2001-09-16 21:00:15 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -48,6 +49,7 @@ public class Semantic implements SoftWoehr, verbose {
     
     /**  Flags whether we are in verbose mode. */
     public boolean isverbose = false;
+    
     /**  Helper for verbose mode. */
     private verbosity v = new verbosity(this);
     

@@ -30,6 +30,7 @@
 
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
+import java.io.Serializable;
 import  com.SoftWoehr.SoftWoehr;
 import  com.SoftWoehr.util.*;
 
@@ -39,12 +40,12 @@ import  com.SoftWoehr.util.*;
  * compiled 'to'.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
-public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verbose {
+public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: ParameterizedPrimitive.java,v 1.3 2001-09-15 04:29:56 jwoehr Exp $";
+    private static final String rcsid = "$Id: ParameterizedPrimitive.java,v 1.4 2001-09-16 21:00:15 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
