@@ -43,8 +43,8 @@ import  java.util.*;
  *<p> GetArgs breaks up the passed-in string
  * into two lists, one of the plain arguments,
  * and one of the option-argument pairs.
- * GetArgs creates com.SoftWoehr.Argument objects
- * of each of these entities.
+ * GetArgs creates com.SoftWoehr.util.Argument
+ * objects of each of these entities.
  *
  * <p>Each option is identified by a single character
  * preceded by an option introducer. Remaining characters
@@ -75,13 +75,13 @@ import  java.util.*;
  * object also.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
- * @see com.SoftWoehr.Argument
+ * @version $Revision: 1.4 $
+ * @see com.SoftWoehr.util.Argument
  */
 public class GetArgs implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: GetArgs.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: GetArgs.java,v 1.4 2001-09-15 07:02:14 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */

@@ -7,9 +7,9 @@
 package com.SoftWoehr.JaXWT;
 
 /**
- *
+ * A dialog to support find-and-replace operations.
  * @author  jax
- * @version
+ * @version $Id: FindAndReplaceDialog.java,v 1.3 2001-09-15 07:02:14 jwoehr Exp $
  */
 public class FindAndReplaceDialog extends javax.swing.JDialog {
 

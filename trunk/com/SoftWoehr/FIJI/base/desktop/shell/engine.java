@@ -38,10 +38,10 @@ import com.SoftWoehr.SoftWoehr;
 import com.SoftWoehr.util.*;
 
 /** The execution engine for our interaction.
- * An instance of com.SoftWoehr.desktop.shell.interpreter
- * creates itself an instance of com.SoftWoehr.desktop.shell.engine.
+ * An instance of com.SoftWoehr.FIJI.base.desktop.shell.interpreter
+ * creates itself an instance of com.SoftWoehr.FIJI.base.desktop.shell.engine.
  * The engine is the guts of the shell's work and contains the bodies
- * of the com.SoftWoehr.desktop.shell.Primitive instances of primitive
+ * of the com.SoftWoehr.FIJI.base.desktop.shell.Primitive instances of primitive
  * interpreter functions, since the engine knows how to carry out
  * these tasks.
  *
@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.5 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.6 2001-09-15 07:02:14 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -2346,7 +2346,7 @@ public class engine implements SoftWoehr, verbose {
      * place found in the search order, discarding the entry
      * if no previous Semantic exists by that name.
      *
-     * @see com.SoftWoehr.desktop.shell.SearchOrder.forget
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.SearchOrder#forget
      */
     public void forget() {
         boolean result;
@@ -2360,7 +2360,7 @@ public class engine implements SoftWoehr, verbose {
     /** Discard a wordlist entry in first
      * place found in the search order.
      *
-     * @see com.SoftWoehr.desktop.shell.SearchOrder.discard
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.SearchOrder#discard
      */
     public void discard() {
         boolean result;
@@ -2405,7 +2405,7 @@ class JavaArgs extends Vector {
     /** Return a Class array of the classes of the elements of the vector.
      * All the objects and their nominal classes for the purpose of
      * method signature resolution are stored as JavaParams in the vector.
-     * @see com.SoftWoehr.desktop.shell.JavaParam
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.JavaParam
      * @return The array of classes from the vector.
      */
     public synchronized Class[] toClassArray() {

@@ -36,13 +36,14 @@ import  com.SoftWoehr.util.*;
 /**
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Semantic.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Semantic.java,v 1.4 2001-09-15 07:02:14 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -58,18 +59,19 @@ public class Semantic implements SoftWoehr, verbose {
     }
     
     /** Arity/1 ctor.
-     * @param name  */
+     * @param name Name of the Semantic
+     */
     public Semantic(String name) {
         myName = name;
     }
     
-    /**
-     * @return  */
+    /** Return a string representation of the object.
+     * @return string rep */
     public String toString()
     {return "A Semantic named " + getName();}
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr# shutdown
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return always zero 0
      */
     public int shutdown() { return 0; }
@@ -94,24 +96,27 @@ public class Semantic implements SoftWoehr, verbose {
      * @param s string to announce if verbose
      */
     public void    announce    (String s)   {v.announce(s);   }
-
+    
     /** Identification.
-     * @return  */
+     * @return Name of the Semantic
+     */
     public String getName() {
         return myName;
     }
     
     /** Set string id.
-     * @param s  */
+     * @param s Name of the Semantic
+     */
     public void setName(String s) {
         myName = s;
     }
     
     /** Execution semantics, the default behavior
      * being to push self to stack.
-     * @param e
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @param e associated engine
+     * @throws BadPrimitiveExecute res ipse loq
+     * @throws BadDefinitionExecute res ipse loq
+     */
     public void execute(engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute {
@@ -120,11 +125,12 @@ public class Semantic implements SoftWoehr, verbose {
     
     /** Compilation semantics, the default behavior
      * being to append self to the current definition.
-     * @param e
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @param e associated engine
+     * @throws BadPrimitiveCompile res ipse loq
+     * @throws BadDefinitionCompile res ipse loq
+     * @throws BadPrimitiveExecute res ipse loq
+     * @throws BadDefinitionExecute res ipse loq
+     */
     
     public void compile(engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveCompile
@@ -135,13 +141,14 @@ public class Semantic implements SoftWoehr, verbose {
     }
     
     /** Decompilation semantics. The default is to
-     * push a Sematic array with 'this' as only entry.
-     * @return  */
+     * push a Semantic array with 'this' as only entry.
+     * @return the Semantic array representing this Semantic
+     */
     public Semantic[] decompile() {
         Semantic decompilation [] = new Semantic[1];
         decompilation[0] = this;
         return decompilation;
-    }    
+    }
 }                                                  /* End of Semantic class*/
 
 /*  End of Semantic.java */
