@@ -36,12 +36,12 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.8 2001-09-24 21:31:06 jwoehr Exp $";
+    private static final String rcsid = "$Id: Wordlist.java,v 1.9 2001-10-01 04:51:46 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
@@ -369,7 +369,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
         }                                                        /* End catch*/
         return defaultList;
     }
-        
+    
     /** Write out the wordlist to disk
      * with an eye to a later reload.
      * @param f The file obect to write us out to.
@@ -377,13 +377,32 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * @throws IOException If error writing file.
      */
     public void save(File f)
-    throws FileNotFoundException, IOException
-    {
+    throws FileNotFoundException, IOException {
         FileOutputStream ostream = new FileOutputStream(f);
         ObjectOutputStream p = new ObjectOutputStream(ostream);
         p.writeObject(this);
         p.flush();
         ostream.close();
+    }
+    
+    /** Reload a Wordlist from a file
+     * @param f The file obect to write us out to.
+     * @throws FileNotFoundException If file can't be used.
+     * @throws IOException If error writing file.
+     * @throws ClassNotFoundException If can't be made a class.
+     * @return the Wordlist
+     */
+    public static Wordlist reload(File f)
+    throws java.io.FileNotFoundException,
+    java.io.IOException,
+    java.lang.ClassNotFoundException
+    
+    {
+        FileInputStream istream = new FileInputStream(f);
+        ObjectInputStream p = new ObjectInputStream(istream);
+        Wordlist w = (Wordlist) p.readObject();
+        istream.close();
+        return w;
     }
     
     /** Demonstrate <code>Wordlist<code>.
