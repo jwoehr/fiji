@@ -37,12 +37,12 @@ import  com.SoftWoehr.util.*;
 /** This class provides the SearchOrder entity used by
  * FIJI to collate Wordlists.
  * @author $Author: jwoehr $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class SearchOrder implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: SearchOrder.java,v 1.5 2001-09-15 07:30:04 jwoehr Exp $";
+    private static final String rcsid = "$Id: SearchOrder.java,v 1.6 2001-09-15 16:34:35 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -125,9 +125,9 @@ public class SearchOrder implements SoftWoehr, verbose {
     
     /** Discard utterly a wordlist entry by finding
      * the first occurrence of same in the search order.
-     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist#DISCard
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.Wordlist#discard
      * @param name Entry to discard
-     * @return  <code>true</code> if found and discarded
+     * @return <code>true</code> if found and discarded
      */
     public boolean discard(String name) {
         boolean rc = false;

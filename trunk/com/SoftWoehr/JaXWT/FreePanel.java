@@ -1,15 +1,23 @@
 /*
  * FreePanel.java
  *
+ * Copyright *C* 2001 Jack J. Woehr
+ * All Rights Reserved
+ * PO Box 51, Golden, Colorado 80402-0051 USA
+ * http://www.softwoehr.com
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * Free Software NO WARRANTY NO GUARANTEE
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ *
  * Created on September 26, 2000, 1:15 PM
  */
 
 package com.SoftWoehr.JaXWT;
 
-/**
- *
+/** A panel to dock into a FreeDockPanel
+ * @see com.SoftWoehr.JaXWT.FreeDockPanel
  * @author  jax
- * @version
+ * @version $Id: FreePanel.java,v 1.2 2001-09-15 16:34:35 jwoehr Exp $
  */
 public class FreePanel extends javax.swing.JPanel {
 
@@ -29,7 +37,7 @@ public class FreePanel extends javax.swing.JPanel {
   }//GEN-END:initComponents
 
   /** Undock from current (or null) and dock into new (or null)
-   * @param fdp
+   * @param fdp associated free docking panel
    */
   public void dock (FreeDockPanel fdp) {
     if (null != getParent()) {

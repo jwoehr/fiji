@@ -6,10 +6,9 @@
 
 package com.SoftWoehr.JaXWT;
 
-/**
- *
- * @author  jax
- * @version
+/** A docking panel for FreePanel
+ * @author jax
+ * @version $Id: FreeDockPanel.java,v 1.2 2001-09-15 16:34:35 jwoehr Exp $
  */
 public class FreeDockPanel extends javax.swing.JPanel {
 
@@ -28,36 +27,36 @@ public class FreeDockPanel extends javax.swing.JPanel {
 
   }//GEN-END:initComponents
 
-  /**
-   * @param fp
+  /** Extend this to call right at docking.
+   * @param fp associated FreePanel
    */
   protected void hookBeforeDocking(FreePanel fp) {
 
   }
 
-  /**
-   * @param fp
+  /** Extend this to call right after docking.
+   * @param fp associated FreePanel
    */
   protected void hookAfterDocking(FreePanel fp) {
 
   }
 
-  /**
-   * @param fp
+  /** Extend this to call right at undocking.
+   * @param fp associated FreePanel
    */
   protected void hookBeforeUnDocking(FreePanel fp) {
 
   }
 
-  /**
-   * @param fp
+  /** Extend this to call right after undocking.
+   * @param fp associated FreePanel
    */
   protected void hookAfterUnDocking(FreePanel fp) {
 
   }
 
-  /**
-   * @param fp
+  /** Add a FreePanel.
+   * @param fp associated FreePanel
    */
   public void dock(FreePanel fp) {
     hookBeforeDocking(fp);
@@ -65,8 +64,8 @@ public class FreeDockPanel extends javax.swing.JPanel {
     hookAfterDocking(fp);
   }
 
-  /**
-   * @param fp
+  /** Remove a FreePanel.
+   * @param fp associated FreePanel
    */
   public void undock(FreePanel fp) {
     hookBeforeUnDocking(fp);
