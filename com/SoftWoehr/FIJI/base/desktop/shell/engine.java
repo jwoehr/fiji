@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.8 2001-10-01 04:51:46 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.9 2001-10-08 22:29:55 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -2304,10 +2304,9 @@ public class engine implements SoftWoehr, verbose {
     java.io.IOException
     
     {
-        Wordlist w = (Wordlist) pop();
         File f = (File) pop();
+        Wordlist w = (Wordlist) pop();
         w.save(f);
-        // System.err.println("Not implemented yet.");
     }
     
     /**
