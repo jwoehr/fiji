@@ -4,89 +4,89 @@
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.11 2001-08-30 21:43:29 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.12 2001-09-04 22:42:41 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
     <target description="Give usage help" name="usage">
-	<echo>
+        <echo>
 
-	    USING ant TO BUILD FIJI.
+            USING ant TO BUILD FIJI.
 
-	    This script is written to reside in $CVSROOT/scripts/ but
-	    to be invoked from the level immediately above the tree. A good
-	    way to invoke it is to cd into the base directory and enter:
+            This script is written to reside in $CVSROOT/scripts/ but
+            to be invoked from the level immediately above the tree. A good
+            way to invoke it is to cd into the base directory and enter:
 
-		ant -f scripts/build.xml [-Dvar=val [-Dvar=val ...]] target
+                ant -f scripts/build.xml [-Dvar=val [-Dvar=val ...]] target
 
-	    Targets are:
+            Targets are:
 
-		all     .. builds Fiji and makes a jar of it.
-		clean   .. deletes the jar and all class files.
-		distrib .. builds Fiji, makes the jar, generates javadocs
-			   and builds the distribution zip file.
-		jar     .. builds the jar (and Fiji if necessary).
-		javadoc .. generates javadoc for Fiji.
+                all     .. builds Fiji and makes a jar of it.
+                clean   .. deletes the jar and all class files.
+                distrib .. builds Fiji, makes the jar, generates javadocs
+                           and builds the distribution zip file.
+                jar     .. builds the jar (and Fiji if necessary).
+                javadoc .. generates javadoc for Fiji.
                 run     .. run Fiji in the GUI form.
-		usage   .. displays this message.
+                usage   .. displays this message.
 
-	    The behavior of the build is controlled by passing variables on the
-	    command line to this build script. You pass in a variable by adding
-	    a java-style -Dvar=value switch to the ant command line.
+            The behavior of the build is controlled by passing variables on the
+            command line to this build script. You pass in a variable by adding
+            a java-style -Dvar=value switch to the ant command line.
 
-	    The variables are shown below with their default values. Elements
-	    in {curly braces} indicate the variables whose substitutions will
-	    be made at build time to compose the new variable.
+            The variables are shown below with their default values. Elements
+            in {curly braces} indicate the variables whose substitutions will
+            be made at build time to compose the new variable.
 
-		fiji.version=1.2_gamma
-		fiji.source.directory=.
-		fiji.destination.directory=.
-		fiji.jar.filename=fiji.{fiji.version}.jar
-		fiji.jar.manifest.filename=fiji.{fiji.version}.mf
-		fiji.javadoc.destination.directory={fiji.destination.directory}/html/doc
-		fiji.compile.debug=false
-		fiji.zipfile.filename=fiji.{fiji.version}.zip
-	</echo>
+                fiji.version=1.2_gamma
+                fiji.source.directory=.
+                fiji.destination.directory=.
+                fiji.jar.filename=fiji.{fiji.version}.jar
+                fiji.jar.manifest.filename=fiji.{fiji.version}.mf
+                fiji.javadoc.destination.directory={fiji.destination.directory}/html/doc
+                fiji.compile.debug=false
+                fiji.zipfile.filename=fiji.{fiji.version}.zip
+        </echo>
     </target>
 
     <!-- Define properties and announce them.  -->
     <target description="Set properties all targets need" name="init">
-	<property name="fiji.version" value="1.2_gamma"/>
-	<property name="fiji.source.directory" value="."/>
-	<property name="fiji.destination.directory" value="."/>
-	<property name="fiji.jar.filename" value="fiji.${fiji.version}.jar"/>
-	<property name="fiji.jar.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.jar.filename}"/>
+        <property name="fiji.version" value="1.2_gamma"/>
+        <property name="fiji.source.directory" value="."/>
+        <property name="fiji.destination.directory" value="."/>
+        <property name="fiji.jar.filename" value="fiji.${fiji.version}.jar"/>
+        <property name="fiji.jar.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.jar.filename}"/>
         <property name="fiji.jar.manifest.filename" value="fiji.${fiji.version}.mf"/>
-	<property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
-	<property name="fiji.compile.debug" value="false"/>
-	<property name="fiji.zipfile.filename" value="fiji.${fiji.version}.zip"/>
-	<property name="fiji.zipfile.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
-	<echo>
-	   Values of all properties for this build:
-	   ----------------------------------------
-	   fiji.version=${fiji.version}
-	   fiji.source.directory=${fiji.source.directory}
-	   fiji.destination.directory=${fiji.destination.directory}
-	   fiji.jar.filename=${fiji.jar.filename}
+        <property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
+        <property name="fiji.compile.debug" value="false"/>
+        <property name="fiji.zipfile.filename" value="fiji.${fiji.version}.zip"/>
+        <property name="fiji.zipfile.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
+        <echo>
+           Values of all properties for this build:
+           ----------------------------------------
+           fiji.version=${fiji.version}
+           fiji.source.directory=${fiji.source.directory}
+           fiji.destination.directory=${fiji.destination.directory}
+           fiji.jar.filename=${fiji.jar.filename}
       <!-- fiji.jar.fully.qualified.pathname=${fiji.jar.fully.qualified.pathname} -->
-	   fiji.jar.manifest.filename=${fiji.jar.manifest.filename}
-	   fiji.javadoc.destination.directory=${fiji.javadoc.destination.directory}
-	   fiji.compile.debug=${fiji.compile.debug}
-	   fiji.zipfile.filename=${fiji.zipfile.filename}
+           fiji.jar.manifest.filename=${fiji.jar.manifest.filename}
+           fiji.javadoc.destination.directory=${fiji.javadoc.destination.directory}
+           fiji.compile.debug=${fiji.compile.debug}
+           fiji.zipfile.filename=${fiji.zipfile.filename}
       <!-- fiji.zipfile.fully.qualified.pathname=${fiji.zipfile.fully.qualitfied.pathname} -->
-	</echo>
+        </echo>
     </target>
 
     <!-- Compile FIJI.  -->
     <target depends="init" description="Builds FIJI from source" name="compile">
-	<!-- Both srcdir and destdir should be package roots. -->
-	<!-- They could be different of course; in that case NetBeans can also be set -->
-	<!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
-	<javac debug="${fiji.compile.debug}" deprecation="true" destdir="${fiji.destination.directory}" srcdir="${fiji.source.directory}">
-	    <exclude name="com/SoftWoehr/util/SQL*.java"/>
-	    <exclude name="com/SoftWoehr/JaXWT/*IFS*.java"/>
-	    <exclude name="com/SoftWoehr/FIJI/examples/**"/>
-	</javac>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+        <javac debug="${fiji.compile.debug}" deprecation="true" destdir="${fiji.destination.directory}" srcdir="${fiji.source.directory}">
+            <exclude name="com/SoftWoehr/util/SQL*.java"/>
+            <exclude name="com/SoftWoehr/JaXWT/*IFS*.java"/>
+            <exclude name="com/SoftWoehr/FIJI/examples/**"/>
+        </javac>
     </target>
 
     <!-- Autogenerate a manifest file for FIJI -->
@@ -100,55 +100,55 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
     <target depends="compile,gen_manifest" description="Generates the .jar file in which class and source reside" name="jar">
         <delete file="${fiji.jar.fully.qualified.pathname}"/>
         <jar basedir="${fiji.destination.directory}" compress="true" jarfile="${fiji.jar.fully.qualified.pathname}" manifest="${fiji.jar.manifest.filename}">
-	    <include name="com/**/*.*"/>
-	    <exclude name="${fiji.source.directory}/com/SoftWoehr/util/SQL*.*"/>
-	    <exclude name="${fiji.destination.directory}/com/SoftWoehr/util/SQL*.*"/>
-	    <exclude name="${fiji.source.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
-	    <exclude name="${fiji.destination.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
+            <include name="com/**/*.*"/>
+            <exclude name="${fiji.source.directory}/com/SoftWoehr/util/SQL*.*"/>
+            <exclude name="${fiji.destination.directory}/com/SoftWoehr/util/SQL*.*"/>
+            <exclude name="${fiji.source.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
+            <exclude name="${fiji.destination.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
             <exclude name="${fiji.jar.manifest.filename}"/>
-	    <exclude name="**.jar"/>
+            <exclude name="**.jar"/>
         </jar>
         <delete file="${fiji.jar.manifest.filename}"/> <!-- clean up -->
     </target>
 
     <!-- Compile and build the jar. Pretty safe for a default target.  -->
     <target depends="init,jar" description="Build everything." name="all">
-	<echo message="Fiji built"/>
+        <echo message="Fiji built"/>
     </target>
 
     <!-- Generate FIJI's javadocs -->
     <target depends="init" description="Javadoc for FIJI" name="javadoc">
-	<mkdir dir="${fiji.javadoc.destination.directory}"/>
-	<javadoc destdir="${fiji.javadoc.destination.directory}" packagenames="com.*">
-	    <sourcepath>
-		<pathelement location="${fiji.source.directory}"/>
-	    </sourcepath>
+        <mkdir dir="${fiji.javadoc.destination.directory}"/>
+        <javadoc destdir="${fiji.javadoc.destination.directory}" packagenames="com.*">
+            <sourcepath>
+                <pathelement location="${fiji.source.directory}"/>
+            </sourcepath>
        </javadoc>
     </target>
 
     <!-- Build the zip archive for the distribution. -->
     <target depends="init" description="Generates a distribution zipfile" name="gen_zipfile">
-	<delete file="${fiji.zipfile.filename}"/>
-	<zip basedir="${fiji.destination.directory}" excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs" zipfile="${fiji.zipfile.filename}"/>
+        <delete file="${fiji.zipfile.filename}"/>
+        <zip basedir="${fiji.destination.directory}" excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs" zipfile="${fiji.zipfile.filename}"/>
     </target>
 
     <!-- Copy the readmes and license from the doc dirs to the top dir for zipping.  -->
     <target depends="init" description="Copies certain files which should be in the root when the user unpacks the zip" name="copy_readmes">
-	<copy todir="${fiji.destination.directory}">
-	    <fileset dir="${fiji.destination.directory}/html/FIJI">
-		 <exclude name="**/*.html"/>
-		 <exclude name="**/CVS"/>
-		<exclude name="moredoc/**"/>
-	    </fileset>
-	</copy>
+        <copy todir="${fiji.destination.directory}">
+            <fileset dir="${fiji.destination.directory}/html/FIJI">
+                 <exclude name="**/*.html"/>
+                 <exclude name="**/CVS"/>
+                <exclude name="moredoc/**"/>
+            </fileset>
+        </copy>
     </target>
 
     <!-- Build a .zip distribution archive for posting on the Internet.  -->
     <target depends="init,jar,javadoc,copy_readmes" description="Build distribution archive" name="distrib">
-	<antcall target="gen_zipfile"/>
-	<delete file="${fiji.destination.directory}/COPYING"/>
-	<delete file="${fiji.destination.directory}/COPYING.LIB"/>
-	<delete file="${fiji.destination.directory}/README.TXT"/>
+        <antcall target="gen_zipfile"/>
+        <delete file="${fiji.destination.directory}/COPYING"/>
+        <delete file="${fiji.destination.directory}/COPYING.LIB"/>
+        <delete file="${fiji.destination.directory}/README.TXT"/>
     </target>
 
     <target depends="init" description="Run FIJIGui from the .jar once unpacked." name="run">
@@ -157,16 +157,30 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
 
     <!-- Delete the class files, jar file, javadocs, zip file and the readmes we copied to the root. -->
     <target depends="init" description="Clean all build products" name="clean">
-	<delete>
-	    <fileset dir="${fiji.destination.directory}">
-		<include name="**/*.class"/>
-		<include name="COPYING*"/>
-		<include name="README.TXT"/>
-	    </fileset>
-	</delete>
-	<delete file="${fiji.zipfile.fully.qualified.pathname}"/>
-	<delete file="${fiji.jar.fully.qualified.pathname}"/>
-	<delete dir="${fiji.javadoc.destination.directory}"/>
+        <delete>
+            <fileset dir="${fiji.destination.directory}">
+                <include name="**/*.class"/>
+                <include name="COPYING*"/>
+                <include name="README.TXT"/>
+            </fileset>
+        </delete>
+        <delete file="${fiji.zipfile.fully.qualified.pathname}"/>
+        <delete file="${fiji.jar.fully.qualified.pathname}"/>
+        <delete dir="${fiji.javadoc.destination.directory}"/>
     </target>
 
+    <!-- Copy the tree without the CVS directories to some other directory. -->
+<!--    <target depends="init" name="copy_tree" if="tree.destination.directory"> -->
+    <target depends="init" name="copy_tree" if="tree.destination.directory">
+        <echo message="foo"/>
+        <copy todir="${tree.destination.directory}">
+            <fileset dir="${fiji.source.directory}">
+                <include name="com/**"/>
+                <include name="scripts/**"/>
+                <include name="html/**"/>
+                <exclude name="CVSROOT/**"/>
+                <exclude name="**/CVS/**"/>
+            </fileset>
+        </copy>
+    </target>
 </project>
