@@ -30,6 +30,7 @@
 
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
+import java.io.Serializable;
 import  java.lang.reflect.*;
 
 import  com.SoftWoehr.SoftWoehr;
@@ -38,12 +39,12 @@ import  com.SoftWoehr.util.*;
 /** A Primitive is a Semantic coded all in Java.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
-class Primitive extends Semantic implements SoftWoehr, verbose {
+class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Primitive.java,v 1.4 2001-09-15 16:34:34 jwoehr Exp $";
+    private static final String rcsid = "$Id: Primitive.java,v 1.5 2001-09-16 21:22:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
