@@ -16,7 +16,9 @@
 
                 all     .. builds Fiji and makes a jar of it.
                 clean   .. deletes the jar and all class files.
-                jar     .. builds the jar (and Fiji if necessary.
+                distrib .. builds Fiji, makes the jar, generates javadocs
+                           and builds the distribution zip file.
+                jar     .. builds the jar (and Fiji if necessary).
                 javadoc .. generates javadoc for Fiji.
                 usage   .. displays this message.
 
@@ -25,8 +27,8 @@
             a java-style -Dvar=value switch to the ant command line.
 
             The variables are shown below with their default values. Elements
-            in {curly braces} indicate substitutions of the values of other
-            extant variables.
+            in {curly braces} indicate the variables whose substitutions will
+	    be made at build time to compose the new variable.
                 
                 fiji.release=1.2_beta
                 fiji.source.directory=.
@@ -35,9 +37,9 @@
                 fiji.jar.manifest.filename=fiji.{fiji.release}.mf
                 fiji.javadoc.destination.directory={fiji.destination.directory}/html/doc
                 fiji.compile.debug=false
+                fiji.zipfile.filename=fiji.{fiji.release}.zip
         </echo>
     </target>
-
 
     <target name="init">
         <property name="fiji.release" value="1.2_beta"/>
@@ -48,17 +50,19 @@
         <property name="fiji.jar.manifest.filename" value="fiji.${fiji.release}.mf"/>
         <property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
         <property name="fiji.compile.debug" value="false"/>
+	<property name="fiji.zipfile.filename" value="fiji.${fiji.release}.zip"/>
+	<property name="fiji.zipfile.fully.qualitfied.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
         <echo>
 	   Values of all properties for this build:
 	   ----------------------------------------
-           fiji.release = 1.2_beta
-           fiji.source.directory = .
-           fiji.destination.directory = .
-           fiji.jar.filename = fiji.${fiji.release}.jar
-           fiji.jar.fully.qualified.pathname = ${fiji.destination.directory}/${fiji.jar.filename}
-           fiji.jar.manifest.filename = fiji.${fiji.release}.mf
-           fiji.javadoc.destination.directory = ${fiji.destination.directory}/html/doc
-           fiji.compile.debug = false
+           fiji.release=${fiji.release}
+           fiji.source.directory=${fiji.source.directory}
+           fiji.destination.directory=${fiji.destination.directory}
+           fiji.jar.filename=${fiji.jar.filename} <!-- fiji.jar.fully.qualified.pathname=${fiji.jar.fully.qualified.pathname} -->
+           fiji.jar.manifest.filename=${fiji.jar.manifest.filename}
+           fiji.javadoc.destination.directory=${fiji.javadoc.destination.directory}
+           fiji.compile.debug=${fiji.compile.debug}
+           fiji.zipfile.name=${fiji.zipfile.name} <!-- fiji.zipfile.fully.qualitfied.pathname=${fiji.zipfile.fully.qualitfied.pathname} -->
         </echo>
     </target>
 
@@ -101,6 +105,35 @@
                 <pathelement location="${fiji.source.directory}"/>
             </sourcepath>
        </javadoc>
+    </target>
+
+    <target name="gen_zipfile" depends="init">
+        <delete file="${fiji.zipfile.filename}"/>
+	<!--
+        <zip basedir="${fiji.destination.directory}" zipfile="${fiji.zipfile.filename}" excludes="${fiji.zipfile.filename}">
+	    <fileset dir="${fiji.destination.directory}">
+	        <patternset>
+		    <exclude name="CVSROOT"/>
+		    <exclude name="com"/>
+		    <include name="$fiji.jarfile.filename"/>
+		    <include name="html/**/*"/>
+		    <include name="scripts/**/*"/>
+		    <include name="README.TXT"/>
+		    <include name="COPYING*"/>
+		</patternset>
+	    </fileset>
+	</zip>
+	-->
+    </target>
+
+    <target name="distrib" depends="init,jar,javadoc" description="build distribution archive">
+        <copy todir="${fiji.destination.directory}">
+	    <fileset dir="${fiji.destination.directory}">
+	        <include name="html/FIJI/README.TXT"/>
+	        <include name="html/FIJI/COPYING*"/>
+	    </fileset>
+	</copy>
+	<antcall taret="gen_zipfile"/>
     </target>
 
     <target name="clean" depends="init" description="Clean all build products.">
