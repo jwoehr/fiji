@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.7 2001-09-23 04:39:02 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.8 2001-10-01 04:51:46 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -2295,17 +2295,37 @@ public class engine implements SoftWoehr, verbose {
     
     /**
      * Save a compiled wordlist to a file.
+     * Wordlist java.io.File --
+     * @throws FileNotFoundException res ipse loq
+     * @throws IOException res ipse loq
      */
-    public void save() {
-        System.err.println("Not implemented yet.");
+    public void save()
+    throws java.io.FileNotFoundException,
+    java.io.IOException
+    
+    {
+        Wordlist w = (Wordlist) pop();
+        File f = (File) pop();
+        w.save(f);
+        // System.err.println("Not implemented yet.");
     }
     
     /**
      * Load a saved wordlist.
+     * java.io.File -- Wordlist
+     * @throws FileNotFoundException res ipse loq
+     * @throws IOException res ipse loq
+     * @throws ClassNotFoundException res ipse loq
      */
-    public void reload() {
-        System.err.println("Not implemented yet.");
+    public void reload()
+    throws java.io.FileNotFoundException,
+    java.io.IOException,
+    java.lang.ClassNotFoundException {
+        File f = (File) pop();
+        push(Wordlist.reload(f));
+        // System.err.println("Not implemented yet.");
     }
+    
     /** The version of FIJI
      * @return The FIJI version
      */
