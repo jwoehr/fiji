@@ -16,14 +16,15 @@ package com.SoftWoehr.FIJI;
 /** This class merely serves as a launcher for the FIJI
  * interpreter running at the command line.
  * @author  jax
- * @version $Id: FIJI.java,v 1.1.1.1 2001-08-21 02:35:20 jwoehr Exp $
+ * @version $Id: FIJI.java,v 1.2 2001-10-08 22:29:55 jwoehr Exp $
  */
 public class FIJI extends Object {
     
   /** Creates new FIJI */
     public FIJI() {
     }
-  /**
+    
+  /** Run FIJI at the command line level.
    * @param args the command line arguments
    */
     public static void main (String args[]) {
