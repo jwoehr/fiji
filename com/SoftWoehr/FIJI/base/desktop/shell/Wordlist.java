@@ -25,8 +25,9 @@
 
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
-import  java.util.*;
 import  java.lang.reflect.*;
+import java.io.Serializable;
+import  java.util.*;
 
 import  com.SoftWoehr.*;
 import  com.SoftWoehr.util.*;
@@ -35,12 +36,13 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
-public class Wordlist extends Semantic implements SoftWoehr, verbose {
+public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
+    
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.5 2001-09-15 07:30:04 jwoehr Exp $";
-
+    private static final String rcsid = "$Id: Wordlist.java,v 1.6 2001-09-16 21:22:48 jwoehr Exp $";
+    
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -387,7 +389,7 @@ class WordlistEntry {
         semantic = s;
         semanticStack = null;/* Only have a stack if one needed, memory impact.*/
     }
-
+    
     /** The active Semantic of a word. */
     private Semantic semantic;
     

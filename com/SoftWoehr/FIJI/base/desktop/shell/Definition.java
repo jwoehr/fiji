@@ -30,6 +30,7 @@
 
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
+import java.io.Serializable;
 import  java.util.*;
 
 import  com.SoftWoehr.*;
@@ -38,11 +39,13 @@ import  com.SoftWoehr.util.*;
 /** A class representing a list of Semantics to be executed.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
-public class Definition extends Semantic implements SoftWoehr, verbose {
+public class Definition extends Semantic implements SoftWoehr, verbose, Serializable {
+    
     /** Revision level */
-    private static final String rcsid = "$Id: Definition.java,v 1.4 2001-09-15 16:47:43 jwoehr Exp $";
+    private static final String rcsid = "$Id: Definition.java,v 1.5 2001-09-16 21:22:48 jwoehr Exp $";
+    
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -50,6 +53,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     
     /**  Flags whether we are in verbose mode. */
     public boolean isverbose = false;
+    
     /**  Helper for verbose mode. */
     private verbosity v = new verbosity(this);
     
@@ -57,7 +61,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     private Semantic body[];
     
     /** This is the definition under compilation */
-    private Vector composition;
+    private transient Vector composition;
     
     /** If true, the word's execution semantics are performed
      * at compile time.
@@ -137,7 +141,10 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
         composition = new Vector();
     }
     
-    /** Finish a definition. */
+    /** Finish a definition.
+     * This really should check that the
+     * composition is still valid.
+     */
     public void complete() {
         body = new Semantic[composition.size()];
         Enumeration e = composition.elements();
@@ -148,6 +155,9 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Append to definition
+     * This really should check that the
+     * composition is still valid.
+     *
      * @param s Semantic to append
      */
     public void append(Semantic s) {
