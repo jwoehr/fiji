@@ -44,12 +44,12 @@ import  com.SoftWoehr.util.*;
  * control flow stack.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ControlFlowElement implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.3 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.4 2001-09-15 04:29:56 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -80,9 +80,9 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @param s Semantic associated with this ControlFlowElement
      * @param e Engine against which to run
      */
-     public ControlFlowElement(Semantic s, engine e) {
-     reinit(s,e);
-     }
+    public ControlFlowElement(Semantic s, engine e) {
+        reinit(s,e);
+    }
     
     /** Creates a ControlFlowElement representing specific
      * type of Semantic with a non-null element.
@@ -142,22 +142,22 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     }
     
     /** Is this verbose and announcing?
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return true if verbose
      */
     public boolean isVerbose()              {return isverbose;}
     
     /** Set verbose and announcing.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf true to set verbose
      */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
     /** Emit a string message if set verbose.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
     public void    announce    (String s)   {v.announce(s);   }
