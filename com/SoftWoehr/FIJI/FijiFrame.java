@@ -18,7 +18,7 @@ package com.SoftWoehr.FIJI;
  * the hooks to the application controller and also to the
  * panel controller for the FijiPanel it contains.
  * @author  jax
- * @version $Id: FijiFrame.java,v 1.1.1.1 2001-08-21 02:35:53 jwoehr Exp $
+ * @version $Id: FijiFrame.java,v 1.2 2001-09-17 02:28:31 jwoehr Exp $
  */
 public class FijiFrame extends javax.swing.JFrame {
     
@@ -78,7 +78,6 @@ public class FijiFrame extends javax.swing.JFrame {
         fileMenu.setToolTipText("Files and closing FIJI");
         fileMenu.setMnemonic(java.awt.event.KeyEvent.VK_F);
         fileMenu.setText("File");
-        
         fileNewMenuItem.setToolTipText("Empty the text area and reinstance as a new file.");
         fileNewMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_N);
         fileNewMenuItem.setText("New");
@@ -86,10 +85,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileNewMenuItemActionPerformed(evt);
             }
-        }
-        );
-        fileMenu.add(fileNewMenuItem);
+        });
         
+        fileMenu.add(fileNewMenuItem);
         fileOpenMenuItem.setToolTipText("Open a file in the text area, replacing the text area's contents.");
         fileOpenMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_O);
         fileOpenMenuItem.setText("Open");
@@ -97,10 +95,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileOpenMenuItemActionPerformed(evt);
             }
-        }
-        );
-        fileMenu.add(fileOpenMenuItem);
+        });
         
+        fileMenu.add(fileOpenMenuItem);
         fileInsertMenuItem.setToolTipText("Insert a file into the text area at current cursor.");
         fileInsertMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         fileInsertMenuItem.setText("Insert");
@@ -108,12 +105,10 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileInsertMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         fileMenu.add(fileInsertMenuItem);
-        
         fileMenu.add(jSeparator4);
-        
         fileSaveMenuItem.setToolTipText("Save contents of the text area to file.");
         fileSaveMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_S);
         fileSaveMenuItem.setText("Save");
@@ -121,10 +116,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileSaveMenuItemActionPerformed(evt);
             }
-        }
-        );
-        fileMenu.add(fileSaveMenuItem);
+        });
         
+        fileMenu.add(fileSaveMenuItem);
         fileSaveAsMenuItem.setToolTipText("Save contents of the edit area under a changed filename.");
         fileSaveAsMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         fileSaveAsMenuItem.setText("Save as");
@@ -132,10 +126,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileSaveAsMenuItemActionPerformed(evt);
             }
-        }
-        );
-        fileMenu.add(fileSaveAsMenuItem);
+        });
         
+        fileMenu.add(fileSaveAsMenuItem);
         fileSaveSelectedMenuItem.setToolTipText("Save selected text from edit area to file.");
         fileSaveSelectedMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         fileSaveSelectedMenuItem.setText("Save Selected");
@@ -143,12 +136,10 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileSaveSelectedMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         fileMenu.add(fileSaveSelectedMenuItem);
-        
         fileMenu.add(jSeparator3);
-        
         fileExitMenuItem.setToolTipText("Bye!");
         fileExitMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_X);
         fileExitMenuItem.setText("Exit");
@@ -156,15 +147,13 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fileExitMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         fileMenu.add(fileExitMenuItem);
         menuBar.add(fileMenu);
-        
         editMenu.setToolTipText("Editing the text area");
         editMenu.setMnemonic(java.awt.event.KeyEvent.VK_E);
         editMenu.setText("Edit");
-        
         editCutMenuItem.setToolTipText("Cut to clipboard.");
         editCutMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_C);
         editCutMenuItem.setText("Cut");
@@ -172,10 +161,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCutMenuItemActionPerformed(evt);
             }
-        }
-        );
-        editMenu.add(editCutMenuItem);
+        });
         
+        editMenu.add(editCutMenuItem);
         editCopyMenuItem.setToolTipText("Copy into clipboard.");
         editCopyMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_O);
         editCopyMenuItem.setText("Copy");
@@ -183,10 +171,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editCopyMenuItemActionPerformed(evt);
             }
-        }
-        );
-        editMenu.add(editCopyMenuItem);
+        });
         
+        editMenu.add(editCopyMenuItem);
         editPasteMenuItem.setToolTipText("Copy from clipboard.");
         editPasteMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_P);
         editPasteMenuItem.setText("Paste");
@@ -194,10 +181,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editPasteMenuItemActionPerformed(evt);
             }
-        }
-        );
-        editMenu.add(editPasteMenuItem);
+        });
         
+        editMenu.add(editPasteMenuItem);
         editSelectAllMenuItem.setToolTipText("Select all the text in the text area.");
         editSelectAllMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         editSelectAllMenuItem.setText("Select All");
@@ -205,12 +191,10 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSelectAllMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         editMenu.add(editSelectAllMenuItem);
-        
         editMenu.add(jSeparator2);
-        
         editFindMenuItem.setToolTipText("Find text");
         editFindMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         editFindMenuItem.setText("Find");
@@ -218,10 +202,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editFindMenuItemActionPerformed(evt);
             }
-        }
-        );
-        editMenu.add(editFindMenuItem);
+        });
         
+        editMenu.add(editFindMenuItem);
         editReplaceMenuItem.setToolTipText("Find text and replace it.");
         editReplaceMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_R);
         editReplaceMenuItem.setText("Replace");
@@ -229,15 +212,13 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editReplaceMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         editMenu.add(editReplaceMenuItem);
         menuBar.add(editMenu);
-        
         interpretMenu.setToolTipText("Fiji interpreter");
         interpretMenu.setMnemonic(java.awt.event.KeyEvent.VK_J);
         interpretMenu.setText("Fiji");
-        
         interpretSelectedMenuItem.setToolTipText("Forward selected text to Fiji interpreter.");
         interpretSelectedMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         interpretSelectedMenuItem.setText("Interpret Selected");
@@ -245,10 +226,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 interpretSelectedMenuItemActionPerformed(evt);
             }
-        }
-        );
-        interpretMenu.add(interpretSelectedMenuItem);
+        });
         
+        interpretMenu.add(interpretSelectedMenuItem);
         interpretLoadMenuItem.setToolTipText("Load and interpret a FIJI source file.");
         interpretLoadMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         interpretLoadMenuItem.setText("Load FIJI Source");
@@ -256,15 +236,13 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 interpretLoadMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         interpretMenu.add(interpretLoadMenuItem);
         menuBar.add(interpretMenu);
-        
         helpMenu.setToolTipText("Help and About");
         helpMenu.setMnemonic(java.awt.event.KeyEvent.VK_H);
         helpMenu.setText("Help");
-        
         helpMenuItem.setToolTipText("Get help");
         helpMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         helpMenuItem.setText("Help");
@@ -272,10 +250,9 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpMenuItemActionPerformed(evt);
             }
-        }
-        );
-        helpMenu.add(helpMenuItem);
+        });
         
+        helpMenu.add(helpMenuItem);
         aboutMenuItem.setToolTipText("About Fiji ForthIsh Java Interpreter");
         aboutMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         aboutMenuItem.setText("About");
@@ -283,26 +260,22 @@ public class FijiFrame extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aboutMenuItemActionPerformed(evt);
             }
-        }
-        );
+        });
+        
         helpMenu.add(aboutMenuItem);
         menuBar.add(helpMenu);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }
-        }
-        );
-        
+        });
         
         fijiPanel.setPreferredSize(new java.awt.Dimension(600, 400));
         jScrollPane1.setViewportView(fijiPanel);
         
-        
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
-        
-        setJMenuBar(menuBar);
         
     }//GEN-END:initComponents
     
@@ -322,47 +295,38 @@ public class FijiFrame extends javax.swing.JFrame {
   }//GEN-LAST:event_fileSaveAsMenuItemActionPerformed
   
   private void editPasteMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPasteMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_text_area().paste();
   }//GEN-LAST:event_editPasteMenuItemActionPerformed
   
   private void editCopyMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCopyMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_text_area().copy();
   }//GEN-LAST:event_editCopyMenuItemActionPerformed
   
   private void editCutMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCutMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_text_area().cut();
   }//GEN-LAST:event_editCutMenuItemActionPerformed
   
   private void editSelectAllMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSelectAllMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_text_area().selectAll();
   }//GEN-LAST:event_editSelectAllMenuItemActionPerformed
   
   private void editFindMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editFindMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_find(evt);
   }//GEN-LAST:event_editFindMenuItemActionPerformed
   
   private void editReplaceMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editReplaceMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_replace(evt);
   }//GEN-LAST:event_editReplaceMenuItemActionPerformed
   
   private void interpretSelectedMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_interpretSelectedMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_interpret_selected(evt);
   }//GEN-LAST:event_interpretSelectedMenuItemActionPerformed
   
   private void fileExitMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileExitMenuItemActionPerformed
-      // Add your handling code here:
       exit_requested();
   }//GEN-LAST:event_fileExitMenuItemActionPerformed
   
   private void fileSaveMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileSaveMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_save(evt);
   }//GEN-LAST:event_fileSaveMenuItemActionPerformed
   
@@ -375,12 +339,10 @@ public class FijiFrame extends javax.swing.JFrame {
   }//GEN-LAST:event_helpMenuItemActionPerformed
   
   private void fileNewMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileNewMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_new(evt);
   }//GEN-LAST:event_fileNewMenuItemActionPerformed
   
   private void fileOpenMenuItemActionPerformed (java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileOpenMenuItemActionPerformed
-      // Add your handling code here:
       get_panel_controller().event_open(evt);
   }//GEN-LAST:event_fileOpenMenuItemActionPerformed
   

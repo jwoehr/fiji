@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.0" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
@@ -6,20 +6,20 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="fileMenu">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Files and closing FIJI"/>
+            <Property name="toolTipText" type="java.lang.String" value="Files and closing FIJI"/>
             <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="java.awt.event.KeyEvent.VK_F" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="File"/>
+            <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="fileNewMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Empty the text area and reinstance as a new file."/>
+                <Property name="toolTipText" type="java.lang.String" value="Empty the text area and reinstance as a new file."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_N" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="New"/>
+                <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
 
               <Events>
@@ -28,11 +28,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileOpenMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Open a file in the text area, replacing the text area&apos;s contents."/>
+                <Property name="toolTipText" type="java.lang.String" value="Open a file in the text area, replacing the text area&apos;s contents."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_O" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Open"/>
+                <Property name="text" type="java.lang.String" value="Open"/>
               </Properties>
 
               <Events>
@@ -41,11 +41,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileInsertMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Insert a file into the text area at current cursor."/>
+                <Property name="toolTipText" type="java.lang.String" value="Insert a file into the text area at current cursor."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_I" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Insert"/>
+                <Property name="text" type="java.lang.String" value="Insert"/>
               </Properties>
 
               <Events>
@@ -56,11 +56,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileSaveMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save contents of the text area to file."/>
+                <Property name="toolTipText" type="java.lang.String" value="Save contents of the text area to file."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_S" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save"/>
+                <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
 
               <Events>
@@ -69,11 +69,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileSaveAsMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save contents of the edit area under a changed filename."/>
+                <Property name="toolTipText" type="java.lang.String" value="Save contents of the edit area under a changed filename."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_A" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save as"/>
+                <Property name="text" type="java.lang.String" value="Save as"/>
               </Properties>
 
               <Events>
@@ -82,11 +82,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileSaveSelectedMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save selected text from edit area to file."/>
+                <Property name="toolTipText" type="java.lang.String" value="Save selected text from edit area to file."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_L" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Save Selected"/>
+                <Property name="text" type="java.lang.String" value="Save Selected"/>
               </Properties>
 
               <Events>
@@ -97,11 +97,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="fileExitMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Bye!"/>
+                <Property name="toolTipText" type="java.lang.String" value="Bye!"/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_X" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Exit"/>
+                <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
 
               <Events>
@@ -112,20 +112,20 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="editMenu">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Editing the text area"/>
+            <Property name="toolTipText" type="java.lang.String" value="Editing the text area"/>
             <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="java.awt.event.KeyEvent.VK_E" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="editCutMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Cut to clipboard."/>
+                <Property name="toolTipText" type="java.lang.String" value="Cut to clipboard."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_C" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Cut"/>
+                <Property name="text" type="java.lang.String" value="Cut"/>
               </Properties>
 
               <Events>
@@ -134,11 +134,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="editCopyMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Copy into clipboard."/>
+                <Property name="toolTipText" type="java.lang.String" value="Copy into clipboard."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_O" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Copy"/>
+                <Property name="text" type="java.lang.String" value="Copy"/>
               </Properties>
 
               <Events>
@@ -147,11 +147,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="editPasteMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Copy from clipboard."/>
+                <Property name="toolTipText" type="java.lang.String" value="Copy from clipboard."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_P" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Paste"/>
+                <Property name="text" type="java.lang.String" value="Paste"/>
               </Properties>
 
               <Events>
@@ -160,11 +160,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="editSelectAllMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Select all the text in the text area."/>
+                <Property name="toolTipText" type="java.lang.String" value="Select all the text in the text area."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_A" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Select All"/>
+                <Property name="text" type="java.lang.String" value="Select All"/>
               </Properties>
 
               <Events>
@@ -175,11 +175,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="editFindMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Find text"/>
+                <Property name="toolTipText" type="java.lang.String" value="Find text"/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_I" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Find"/>
+                <Property name="text" type="java.lang.String" value="Find"/>
               </Properties>
 
               <Events>
@@ -188,11 +188,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="editReplaceMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Find text and replace it."/>
+                <Property name="toolTipText" type="java.lang.String" value="Find text and replace it."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_R" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Replace"/>
+                <Property name="text" type="java.lang.String" value="Replace"/>
               </Properties>
 
               <Events>
@@ -203,20 +203,20 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="interpretMenu">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Fiji interpreter"/>
+            <Property name="toolTipText" type="java.lang.String" value="Fiji interpreter"/>
             <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="java.awt.event.KeyEvent.VK_J" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Fiji"/>
+            <Property name="text" type="java.lang.String" value="Fiji"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="interpretSelectedMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Forward selected text to Fiji interpreter."/>
+                <Property name="toolTipText" type="java.lang.String" value="Forward selected text to Fiji interpreter."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_I" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Interpret Selected"/>
+                <Property name="text" type="java.lang.String" value="Interpret Selected"/>
               </Properties>
 
               <Events>
@@ -225,11 +225,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="interpretLoadMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Load and interpret a FIJI source file."/>
+                <Property name="toolTipText" type="java.lang.String" value="Load and interpret a FIJI source file."/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_L" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Load FIJI Source"/>
+                <Property name="text" type="java.lang.String" value="Load FIJI Source"/>
               </Properties>
 
               <Events>
@@ -240,20 +240,20 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="helpMenu">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Help and About"/>
+            <Property name="toolTipText" type="java.lang.String" value="Help and About"/>
             <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="java.awt.event.KeyEvent.VK_H" type="code"/>
             </Property>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Help"/>
+            <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="helpMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Get help"/>
+                <Property name="toolTipText" type="java.lang.String" value="Get help"/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_L" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="Help"/>
+                <Property name="text" type="java.lang.String" value="Help"/>
               </Properties>
 
               <Events>
@@ -262,11 +262,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="About Fiji ForthIsh Java Interpreter"/>
+                <Property name="toolTipText" type="java.lang.String" value="About Fiji ForthIsh Java Interpreter"/>
                 <Property name="mnemonic" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="java.awt.event.KeyEvent.VK_A" type="code"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.beaninfo.editors.StringEditor" value="About"/>
+                <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
 
               <Events>
@@ -279,17 +279,16 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" editor="org.openide.util.SwingEditors$DefaultCloseOperationPropertyEditor" value="0"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="(No Menu)"/>
     <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,0,-56,0,0,1,44"/>
     <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,0,0,0,0,0,0"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="2"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
-    <SyntheticProperty name="encoding" type="java.lang.String" value="ISO-8859-1"/>
   </SyntheticProperties>
 
   <Events>
@@ -321,9 +320,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new FijiPanel(get_application_controller(), this);"/>
           </AuxValues>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout$JScrollPaneConstraintsDescription"/>
-          </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
         </Container>
