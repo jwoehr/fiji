@@ -58,7 +58,7 @@
         <property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
         <property name="fiji.compile.debug" value="false"/>
 	<property name="fiji.zipfile.filename" value="fiji.${fiji.release}.zip"/>
-	<property name="fiji.zipfile.fully.qualitfied.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
+	<property name="fiji.zipfile.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
         <echo>
 	   Values of all properties for this build:
 	   ----------------------------------------
@@ -69,7 +69,7 @@
            fiji.jar.manifest.filename=${fiji.jar.manifest.filename}
            fiji.javadoc.destination.directory=${fiji.javadoc.destination.directory}
            fiji.compile.debug=${fiji.compile.debug}
-           fiji.zipfile.name=${fiji.zipfile.name} <!-- fiji.zipfile.fully.qualitfied.pathname=${fiji.zipfile.fully.qualitfied.pathname} -->
+           fiji.zipfile.filename=${fiji.zipfile.filename} <!-- fiji.zipfile.fully.qualified.pathname=${fiji.zipfile.fully.qualitfied.pathname} -->
         </echo>
     </target>
 
