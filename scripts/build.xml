@@ -4,7 +4,7 @@
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.13 2001-09-05 00:37:40 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.14 2001-09-08 04:34:39 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
@@ -59,10 +59,17 @@
         <property name="fiji.jar.filename" value="fiji.${fiji.version}.jar"/>
         <property name="fiji.jar.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.jar.filename}"/>
         <property name="fiji.jar.manifest.filename" value="fiji.${fiji.version}.mf"/>
+        <property name="fiji.jar.manifest.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.jar.manifest.filename}"/>
         <property name="fiji.javadoc.destination.directory" value="${fiji.destination.directory}/html/doc"/>
         <property name="fiji.compile.debug" value="false"/>
         <property name="fiji.zipfile.filename" value="fiji.${fiji.version}.zip"/>
         <property name="fiji.zipfile.fully.qualified.pathname" value="${fiji.destination.directory}/${fiji.zipfile.filename}"/>
+        <condition property="fiji.dest.src.differ">
+            <not>
+                <equals arg1="${fiji.source.directory}" arg2="${fiji.destination.directory}"/>
+            </not>
+        </condition>
+
         <echo>
            Values of all properties for this build:
            ----------------------------------------
@@ -94,28 +101,23 @@
     <!-- Autogenerate a manifest file for FIJI -->
     <!-- Note that the clumsy formatting of this paragraph is a necessity. -->
     <target depends="init" description="Autogenerate a Jar Manifest file" name="gen_manifest">
-<echo file="${fiji.jar.manifest.filename}">Manifest-Version: ${fiji.version}
+<echo file="${fiji.jar.manifest.fully.qualified.pathname}">Manifest-Version: ${fiji.version}
 Main-Class: com.SoftWoehr.FIJI.FIJIGui
 </echo>
     </target>
 
-    <!-- Build a jar of the compiled classes and source code combined.  -->
-    <target depends="compile,gen_manifest" description="Generates the .jar file in which class and source reside" name="jar">
+    <!-- Build or append to a jar the compiled classes -->
+    <target depends="compile,gen_manifest" description="Generates the .jar file in which class and source reside" name="jar_all">
         <delete file="${fiji.jar.fully.qualified.pathname}"/>
-        <jar basedir="${fiji.destination.directory}" compress="true" jarfile="${fiji.jar.fully.qualified.pathname}" manifest="${fiji.jar.manifest.filename}">
-            <include name="com/**/*.*"/>
-            <exclude name="${fiji.source.directory}/com/SoftWoehr/util/SQL*.*"/>
-            <exclude name="${fiji.destination.directory}/com/SoftWoehr/util/SQL*.*"/>
-            <exclude name="${fiji.source.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
-            <exclude name="${fiji.destination.directory}/com/SoftWoehr/JaXWT/*IFS*.*"/>
-            <exclude name="${fiji.jar.manifest.filename}"/>
-            <exclude name="**.jar"/>
+        <jar compress="true" jarfile="${fiji.jar.fully.qualified.pathname}" manifest="${fiji.jar.manifest.fully.qualified.pathname}">
+           <fileset dir="${fiji.destination.directory}" includes="com/**/*.class"/>
+           <fileset dir="${fiji.source.directory}" includes="com/**/*" excludes="com/**/*.class,${fiji.source.directory}/com/SoftWoehr/util/SQL*.*,${fiji.source.directory}/com/SoftWoehr/JaXWT/*IFS*.*,${fiji.source.directory}/com/**/*.nbattr*"/>
         </jar>
-        <delete file="${fiji.jar.manifest.filename}"/> <!-- clean up -->
+        <delete file="${fiji.jar.manifest.fully.qualified.pathname}"/>
     </target>
 
     <!-- Compile and build the jar. Pretty safe for a default target.  -->
-    <target depends="init,jar" description="Build everything." name="all">
+    <target depends="init,jar_all" description="Build everything." name="all">
         <echo message="Fiji built"/>
     </target>
 
@@ -131,12 +133,34 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
 
     <!-- Build the zip archive for the distribution. -->
     <target depends="init" description="Generates a distribution zipfile" name="gen_zipfile">
-        <delete file="${fiji.zipfile.filename}"/>
-        <zip basedir="${fiji.destination.directory}" excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs" zipfile="${fiji.zipfile.filename}"/>
+        <delete file="${fiji.zipfile.fully.qualified.pathname}"/>
+        <echo message="making ${fiji.zipfile.fully.qualified.pathname}"/>
+        <zip  zipfile="${fiji.zipfile.fully.qualified.pathname}">
+            <fileset dir="${fiji.destination.directory}"
+                     excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs"
+            />
+        </zip>
+    </target>
+
+    <!-- Copy stuff from source dir to dest dir to get zipped -->
+    <target name="copy_src_dest" if="fiji.dest.src.differ">
+
+        <!-- maybe delete first since this is dest and src differ? -->
+        <mkdir dir="${fiji.destination.directory}/html"/>
+        <copy todir="${fiji.destination.directory}/html">
+            <fileset dir="${fiji.source.directory}/html"/>
+        </copy>
+
+        <!-- maybe delete first since this is dest and src differ? -->
+        <mkdir dir="${fiji.destination.directory}/scripts"/>
+        <copy todir="${fiji.destination.directory}/scripts">
+            <fileset dir="${fiji.source.directory}/scripts"/>
+        </copy>
+
     </target>
 
     <!-- Copy the readmes and license from the doc dirs to the top dir for zipping.  -->
-    <target depends="init" description="Copies certain files which should be in the root when the user unpacks the zip" name="copy_readmes">
+    <target depends="init,copy_src_dest" description="Copies certain files which should be in the root when the user unpacks the zip" name="copy_readmes">
         <copy todir="${fiji.destination.directory}">
             <fileset dir="${fiji.destination.directory}/html/FIJI">
                  <exclude name="**/*.html"/>
@@ -147,13 +171,14 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
     </target>
 
     <!-- Build a .zip distribution archive for posting on the Internet.  -->
-    <target depends="init,jar,javadoc,copy_readmes" description="Build distribution archive" name="distrib">
+    <target depends="init,jar_all,javadoc,copy_readmes" description="Build distribution archive" name="distrib">
         <antcall target="gen_zipfile"/>
         <delete file="${fiji.destination.directory}/COPYING"/>
         <delete file="${fiji.destination.directory}/COPYING.LIB"/>
         <delete file="${fiji.destination.directory}/README.TXT"/>
     </target>
 
+    <!-- Run FIJIGui from the .jar as the main class -->
     <target depends="init" description="Run FIJIGui from the .jar once unpacked." name="run">
         <java fork="true" jar="${fiji.jar.filename}"/>
     </target>
@@ -169,6 +194,7 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
         </delete>
         <delete file="${fiji.zipfile.fully.qualified.pathname}"/>
         <delete file="${fiji.jar.fully.qualified.pathname}"/>
+        <delete file="${fiji.jar.manifest.fully.qualified.pathname}"/>
         <delete dir="${fiji.javadoc.destination.directory}"/>
     </target>
 
