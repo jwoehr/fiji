@@ -51,7 +51,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.1.1.1 $
+ * @version $Revision: 1.2 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -62,7 +62,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.1.1.1 2001-08-21 02:41:08 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.2 2001-08-25 19:26:03 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -1532,12 +1532,12 @@ public class engine implements SoftWoehr, verbose {
      * entity into a Definition. The literal object will push itself
      * at runtime of the Definition.
      * @param o The literal object.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
      */
     public void compileLiteral(Object o)
     throws java.lang.NoSuchMethodException
@@ -1551,12 +1551,13 @@ public class engine implements SoftWoehr, verbose {
     
     /** Parse up to next doublequote and compile
      * stack --       input: text" --
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileDoubleQuote()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -1570,12 +1571,13 @@ public class engine implements SoftWoehr, verbose {
     
     /** Parse up to next backtick and compile
      * stack --       input: text` --
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileBackTick()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -1597,19 +1599,22 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** Execute a control flow change within the currently executing definition.
-     * @param delta  */
+     * @param delta delta by which to inc/dec the instruction pointer.
+     */
     public void bump(Integer delta) {
         innerInterpreter.bump(delta.intValue());
     }
     
     /** Save a control flow entry on the control flow stack.
-     * @param e  */
+     * @param e the control flow entry
+     */
     public void pushControl(ControlFlowElement e) {
         controlFlowStack.push(e);
     }
     
     /** Retrieve a control flow entry from the control flow stack.
-     * @return  */
+     * @return the control flow entry
+     */
     public ControlFlowElement popControl() {
         return (ControlFlowElement) controlFlowStack.pop();
     }
@@ -1617,8 +1622,9 @@ public class engine implements SoftWoehr, verbose {
     /** Retrieve a control flow entry guaranteed to contain a
      * ParameterizedPrimitive. Returns null on empty stack.
      *
-     * @exception com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
-     * @return  */
+     * @exception com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance If the control flow stack wasn't balanced.
+     * @return the control flow entry
+     */
     public ControlFlowElement popParamPrimControl()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance {
         ControlFlowElement c = null;
@@ -1637,8 +1643,9 @@ public class engine implements SoftWoehr, verbose {
     /** Execute the runtime of an unconditional branch. This is called from
      * a ParameterizedPrimitive so has an embedded object, the Integer which
      * is stored in the prim object indicating the index bump.
-     * @param p
-     * @throws InvalidParameterObject  */
+     * @param p Parameter to a primitive.
+     * @throws InvalidParameterObject self-explanatory
+     */
     public void doUnconditionalBranch(ParameterizedPrimitive.Branch p)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.InvalidParameterObject {
         if (!p.validate()) {
@@ -1656,8 +1663,9 @@ public class engine implements SoftWoehr, verbose {
      * from within the ctor for ParameterizedPrimitive.UnconditionalBranch p).
      * The point is that ParameterizedPrimitive.ConditionalBranch() calls
      * doUnconditionalBranch() so the signature of the latter must be Branch.
-     * @param p
-     * @throws InvalidParameterObject  */
+     * @param p parameter for primitive
+     * @throws InvalidParameterObject self-explanatory
+     */
     public void doUnconditionalBranch(ParameterizedPrimitive.UnconditionalBranch p)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.InvalidParameterObject {
         doUnconditionalBranch((ParameterizedPrimitive.Branch) p);
@@ -1666,9 +1674,10 @@ public class engine implements SoftWoehr, verbose {
     /** Execute the runtime of a conditional branch. This is called from
      * a ParameterizedPrimitive so has an embedded object, the Integer which
      * is stored in the prim object indicating the index bump.
-     * @param p
-     * @throws InvalidParameterObject
-     * @throws ConditionalNonBoolean  */
+     * @param p param for primitive
+     * @throws InvalidParameterObject self-explanatory
+     * @throws ConditionalNonBoolean self-explanatory
+     */
     public void doConditionalBranch(ParameterizedPrimitive.ConditionalBranch p)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.InvalidParameterObject
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ConditionalNonBoolean {
@@ -1687,13 +1696,14 @@ public class engine implements SoftWoehr, verbose {
     }                   /* public void doIfBranch(ParameterizedPrimitive p)*/
     
     /** Compile an unresolved conditional branch.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileConditionalBranch()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -1724,13 +1734,14 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /** Compile an unresolved unconditional branch.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileBranch()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -1766,8 +1777,9 @@ public class engine implements SoftWoehr, verbose {
      * This works because the reference on the control flow stack
      * is a reference to the same object that got compiled into the
      * definition.
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution  */
+     * @throws ControlFlowStackImbalance self-explanatory
+     * @throws BranchResolution self-explanatory
+     */
     public void resolveBranch()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution {
@@ -1805,15 +1817,16 @@ public class engine implements SoftWoehr, verbose {
     /** Make an 'else' by laying down an unconditional branch out
      * of the true-clause of the 'if' and then resolving the 'if'
      * to point just past it.
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws ControlFlowStackImbalance self-explanatory
+     * @throws BranchResolution self-explanatory
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileAndResolveBranch()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution
@@ -1843,9 +1856,10 @@ public class engine implements SoftWoehr, verbose {
      * The unconditional branch can be discarded for a conditional branch
      * if it turns out the the 'begin' is resolved by an 'until' instead
      * of an 'again' or 'repeat'.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     */
     public void pushUnconditionalBranch()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -1871,15 +1885,16 @@ public class engine implements SoftWoehr, verbose {
     /** Compile an 'again', that is, resolve and compile
      * the unconditional branch pushed to the control
      * flow stack by 'begin'.
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws ControlFlowStackImbalance self-explanatory
+     * @throws BranchResolution self-explanatory
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileUnconditionalBackwardsBranch()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution
@@ -1918,15 +1933,16 @@ public class engine implements SoftWoehr, verbose {
     /** Compile an 'until', that is, calc the delta from the unconditional
      * backwards branch pushed to the control flow stack by 'begin' and
      * compile a conditional branch.
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws ControlFlowStackImbalance self-explanatory
+     * @throws BranchResolution self-explanatory
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileConditionalBackwardsBranch()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution
@@ -1977,15 +1993,16 @@ public class engine implements SoftWoehr, verbose {
      * backwards branch pushed to the control flow stack by 'begin' and
      * compile it, all after resolving the conditional forward branch
      * pushed by 'while' ( == 'if').
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws ControlFlowStackImbalance self-explanatory
+     * @throws BranchResolution self-explanatory
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void resolveTwoBranches()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution
@@ -2005,7 +2022,8 @@ public class engine implements SoftWoehr, verbose {
     }                                   /* public void resolveTwoBranches()*/
     
     /** The runtime for 'do', i.e., push the indices to control stack.
-     * @param p  */
+     * @param p The <CODE>Do</CODE> Semantic we are going to run.
+     */
     public void doDo(ParameterizedPrimitive.Do p) {
         int index = ((Long)pop()).intValue();
         announce("'do' index is " + new Integer(index));
@@ -2018,13 +2036,14 @@ public class engine implements SoftWoehr, verbose {
     
     /** Push control flow entry representing an unresolved 'do' and compile
      * the runtime for it.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws OpenIfBranch
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException self-explanatory
+     * @throws ClassNotFoundException self-explanatory
+     * @throws OpenIfBranch self-explanatory
+     * @throws BadPrimitiveCompile self-explanatory
+     * @throws BadDefinitionCompile self-explanatory
+     * @throws BadPrimitiveExecute self-explanatory
+     * @throws BadDefinitionExecute self-explanatory
+     */
     public void compileDo()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -2057,7 +2076,8 @@ public class engine implements SoftWoehr, verbose {
     
     /** Runtime for 'loop'. Called from a ParameterizedPrimitive having
      * embedded object, the Integer stored indicating the bump value.
-     * @param p  */
+     * @param p The <code>Loop</code> Semantic we are going to execute.
+     */
     public void loop(ParameterizedPrimitive.Loop p) {
         boolean done = innerInterpreter.loop();
         if (!done) {
@@ -2355,22 +2375,18 @@ public class engine implements SoftWoehr, verbose {
  * is a String.
  */
 class JavaArgs extends Vector {
-    /**
+    /** Create a JavaArgs object to pass args to java method invocation.
      */
     public JavaArgs() {}                     /* Needs an arity/1 on Object[]*/
-    
-    /**
-     * @throws Throwable  */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
     
     /** Return an object array of the elements of the vector.
      * All the objects in the JavaArgs vector are stored in JavaParam's,
      * along with their nominal class for the purpose of method signature
      * resolution.
-     * @see com.SoftWoehr.desktop.shell.JavaParam#
-     * @return  */
+     * @see com.SoftWoehr.FIJI.base.desktop.shell.JavaParam#
+     * @return An array of objects representing the arguments stored
+     * in a JavaArgs
+     */
     public synchronized Object[] toObjectArray() {
         int sz = size();
         Object result[] = new Object[sz];
@@ -2385,7 +2401,8 @@ class JavaArgs extends Vector {
      * All the objects and their nominal classes for the purpose of
      * method signature resolution are stored as JavaParams in the vector.
      * @see com.SoftWoehr.desktop.shell.JavaParam#
-     * @return  */
+     * @return The array of classes from the vector.
+     */
     public synchronized Class[] toClassArray() {
         int sz = size();
         Class result[] = new Class[sz];
