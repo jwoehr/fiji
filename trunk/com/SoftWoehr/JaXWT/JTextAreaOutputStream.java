@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
  * to a JTextArea
  *
  * @author jax
- * @version $Id: JTextAreaOutputStream.java,v 1.2 2001-09-04 21:31:58 jwoehr Exp $
+ * @version $Id: JTextAreaOutputStream.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $
  */
 public class JTextAreaOutputStream extends java.io.OutputStream implements com.SoftWoehr.util.verbose {
     
@@ -113,24 +113,24 @@ public class JTextAreaOutputStream extends java.io.OutputStream implements com.S
     }
     
     /** Returns true if instance is in verbose mode.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return <CODE>true</CODE> .iff this object is in verbose mode.
      */
     public boolean isVerbose() {
         return is_verbose;
     }
     /** Sets <code>true</code> or resets <code>false</code> verbose mode.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param b <CODE>true</CODE> sets object verbose.
      */
     public void setVerbose(boolean b) {
         is_verbose = b;
     }
     /** Say something if the object is in verbose mode, be silent otherwise.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param message Message to emit of Java is verbose.
      */
     public void announce(String message) {

@@ -44,12 +44,12 @@ import  com.SoftWoehr.util.*;
  * control flow stack.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ControlFlowElement implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.4 2001-09-15 04:29:56 jwoehr Exp $";
+    private static final String rcsid = "$Id: ControlFlowElement.java,v 1.5 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -95,7 +95,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     }
     
     /** The ControlFlowElement notifies subcomponents of shutdown then shuts itself down.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return  Always false.
      */
     public int shutdown() {

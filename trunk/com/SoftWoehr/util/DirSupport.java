@@ -29,7 +29,7 @@
 /* THERE IS NO GUARANTEE, NO WARRANTY AT ALL */
 /*********************************************/
 /* @author  $Author: jwoehr $                         */
-/* @version $Revision: 1.3 $                       */
+/* @version $Revision: 1.4 $                       */
 
 package com.SoftWoehr.util;
 import java.io.*;
@@ -37,12 +37,12 @@ import java.io.*;
 /**
  * A class offering support for working with directories.
  * @author  $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class DirSupport extends Object {
     
     /** Revision level */
-    private static final String rcsid = "$Id: DirSupport.java,v 1.3 2001-09-10 17:20:10 jwoehr Exp $";
+    private static final String rcsid = "$Id: DirSupport.java,v 1.4 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS string.
@@ -67,8 +67,9 @@ public class DirSupport extends Object {
     }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return Zero (0) if no problem */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return Zero (0) if no problem 
+     */
     public int shutdown() { return 0; }
     
     /** Cleans up our probable large memory usage as we exit

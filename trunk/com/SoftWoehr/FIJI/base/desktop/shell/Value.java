@@ -36,12 +36,12 @@ import  com.SoftWoehr.util.*;
 /** Value is a self-fetching Variable.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class Value extends Semantic implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Value.java,v 1.4 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: Value.java,v 1.5 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -77,8 +77,8 @@ public class Value extends Semantic implements SoftWoehr, verbose {
     }
   
     /** The Value notifies subcomponents of shutdown then shuts itself down.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return  always null
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return  always 0
      */
     public int shutdown() {
         shutdownHelper.shutdownClients();
@@ -114,22 +114,22 @@ public class Value extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Is this verbose and announcing?
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return true if verbose
      */
     public boolean isVerbose()              {return isverbose;}
     
     /** Set verbose and announcing.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf  set verbose on (true) or off.
      */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
     /** Emit a string message if set verbose.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s  The string to conditionally announce.
      */
     public void    announce    (String s)   {v.announce(s);   }

@@ -75,15 +75,16 @@ import  java.util.*;
  * object also.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @see com.SoftWoehr.Argument
  */
 public class GetArgs implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: GetArgs.java,v 1.2 2001-08-30 17:01:04 jwoehr Exp $";
+    private static final String rcsid = "$Id: GetArgs.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -100,14 +101,16 @@ public class GetArgs implements SoftWoehr, verbose {
     
     /** Arity/1 constructor. The arity/0 exists uselessly.
      * If you must use GetArgs/0 be sure to call reinit/1.
-     * @param argv  */
+     * @param argv Arg string
+     */
     public GetArgs(String argv[]) { reinit(argv); }
     
     /** Reinitialize the object, discarding previous state.
      * Creates two arrays, one of options and their
      * (possibly null) arguments, the other of plain arguments.
      * The members of these lists are accessible via other methods.
-     * @param argv  */
+     * @param argv Arg string
+     */
     public void reinit(String argv[]) {
         int i;
         
@@ -160,7 +163,8 @@ public class GetArgs implements SoftWoehr, verbose {
     
     /** Return a string of all the options and arguments,
      * options first, then arguments, but otherwise in order.
-     * @return  */
+     * @return string rep
+     */
     public String toString() {
         Argument a;
         String result = "";
@@ -194,23 +198,27 @@ public class GetArgs implements SoftWoehr, verbose {
     }
     
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return 0
+     */
     public int shutdown() { return 0; }
     
     /** Return string of option introducers.
-     * @return  */
+     * @return string of option introducers.
+     */
     public String getOptionIntroducers() { return optionIntroducers; }
     
     /** Set string of single-character option introducers.
      * Any individual char in the list will be considered an intro
      * to an option on the command line.
-     * @param s  */
+     * @param s string of single-character option introducers.
+     */
     public void setOptionIntroducers(String s ) { optionIntroducers = s; }
     
     /** Is the given char found in the string of option introducers?
-     * @param c
-     * @return  */
+     * @param c char to test
+     * @return <CODE>true</CODE> if option introdcer.
+     */
     public boolean isOptionIntroducer(char c) {
         int found = optionIntroducers.indexOf(c);
         return (found != -1);
@@ -218,8 +226,9 @@ public class GetArgs implements SoftWoehr, verbose {
     
     /** Return the nth option as an Argument object.
      * Returns null if no such nth option.
-     * @param n
-     * @return  */
+     * @param n nth 0-based opt to find
+     * @return the sought option or <CODE>null</CODE>.
+     */
     public Argument nthOption(int n) {
         Argument a = null;
         if (n < optList.size()) {
@@ -230,8 +239,9 @@ public class GetArgs implements SoftWoehr, verbose {
     
     /** Returns nth argument as Argument object.
      * Returns null of no such nth argument.
-     * @param n
-     * @return  */
+     * @param n nth 0-based argument
+     * @return sought Argument or <CODE>null</CODE>.
+     */
     public Argument nthArgument(int n) {
         Argument a = null;
         if (n < argList.size()) {
@@ -241,37 +251,43 @@ public class GetArgs implements SoftWoehr, verbose {
     }
     
     /** Number of options parsed.
-     * @return  */
+     * @return num opts
+     */
     public int optionCount() {
         return optList.size();
     }
     
     /** Number of plain arguments parsed.
-     * @return  */
+     * @return num args
+     */
     public int argumentCount() {
         return argList.size();
     }
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @return  */
-    public boolean isVerbose()		    {return isverbose;}
+    /** Is this verbose and announcing?
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @return true if verbose
+     */
+    public boolean isVerbose()              {return isverbose;}
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
+    /** Set verbose and announcing.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+    /** Emit a string message if set verbose.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Demo GetArgs by displaying any opts or args passed in.
-     * @param argv  */
+     * @param argv Args to use to test the GetArgs
+     */
     public static void main(String argv[]) {
         
         int i;

@@ -40,7 +40,7 @@ import  com.SoftWoehr.util.*;
  * an OutputStream.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class TextAreaOutputStream extends OutputStream
 implements SoftWoehr, verbose {
@@ -49,7 +49,7 @@ implements SoftWoehr, verbose {
     /*****************************************/
     
     /** Revision level */
-    private static final String rcsid = "$Id: TextAreaOutputStream.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: TextAreaOutputStream.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return Returns rcsid.
@@ -70,8 +70,9 @@ implements SoftWoehr, verbose {
     }
     
     /** Shutdown here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return false means no problem */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return zero means no problem 
+     */
     public int shutdown() {
         return 0;
     }
@@ -106,24 +107,24 @@ implements SoftWoehr, verbose {
     }
     
     /** Returns verbosity level.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return <code>true</code> if verbose. */
     public boolean isVerbose() {
         return isverbose;
     }
     
     /** Set verbosity
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf Iff true, it's verbose. */
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
     }
     
     /** Announce to verbose output stream if verbosity set.
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s  String to announce (during debugging). */
     public void    announce    (String s)   {v.announce(s);   }
     

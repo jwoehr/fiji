@@ -38,11 +38,11 @@ import  com.SoftWoehr.util.*;
 /** A class representing a list of Semantics to be executed.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class Definition extends Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Definition.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: Definition.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return  */
     public String rcsId() {return rcsid;}
@@ -89,20 +89,20 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     public int shutdown() { return 0; }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @return  */
     public boolean isVerbose()              {return isverbose;}
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param tf  */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
     /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
      * @param s  */
     public void    announce    (String s)   {v.announce(s);   }
     

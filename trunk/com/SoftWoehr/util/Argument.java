@@ -37,13 +37,13 @@ import  com.SoftWoehr.*;
  * case, records the position in the command
  * line that the arg or opt-arg pair came in.
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  * @see com.SoftWoehr.util.GetArgs
  */
 public class Argument implements SoftWoehr {
 
     /** The rcs id */
-    public static final String rcsid = "$Id: Argument.java,v 1.2 2001-09-04 21:58:51 jwoehr Exp $";
+    public static final String rcsid = "$Id: Argument.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
 
     /** Implement com.SoftWoehr.SoftWoehr ...
      * return the RCS id for the class.
@@ -52,7 +52,7 @@ public class Argument implements SoftWoehr {
     public String rcsId() { return rcsid; }
 
     /** shutdown() here does nothing.
-     * @see com.SoftWoehr.SoftWoehr#
+     * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return alway zero (0).
      */
     public int shutdown() { return 0; }
