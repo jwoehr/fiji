@@ -26,7 +26,7 @@
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
 import  java.lang.reflect.*;
-import java.io.Serializable;
+import java.io.*;
 import  java.util.*;
 
 import  com.SoftWoehr.*;
@@ -36,12 +36,12 @@ import  com.SoftWoehr.util.*;
  * are keyed by their names. If a Semantic of an
  * existing name is keyed in, the previous is lost.
  * @author $Author: jwoehr $
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Wordlist.java,v 1.7 2001-09-23 04:39:02 jwoehr Exp $";
+    private static final String rcsid = "$Id: Wordlist.java,v 1.8 2001-09-24 21:31:06 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
@@ -369,6 +369,22 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
         }                                                        /* End catch*/
         return defaultList;
     }
+        
+    /** Write out the wordlist to disk
+     * with an eye to a later reload.
+     * @param f The file obect to write us out to.
+     * @throws FileNotFoundException If file can't be used.
+     * @throws IOException If error writing file.
+     */
+    public void save(File f)
+    throws FileNotFoundException, IOException
+    {
+        FileOutputStream ostream = new FileOutputStream(f);
+        ObjectOutputStream p = new ObjectOutputStream(ostream);
+        p.writeObject(this);
+        p.flush();
+        ostream.close();
+    }
     
     /** Demonstrate <code>Wordlist<code>.
      * @param argv not currently used
@@ -383,7 +399,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
  * the previous definition of that same name in this same wordlist is
  * restored to visibility.
  */
-class WordlistEntry {
+class WordlistEntry implements Serializable {
     /** Create a WordlistEntry on a Semantic.
      * @param s the Semantic
      */
