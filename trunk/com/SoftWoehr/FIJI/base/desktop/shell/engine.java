@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.3 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.4 2001-09-10 05:31:16 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -853,7 +853,7 @@ public class engine implements SoftWoehr, verbose {
     , JavaArgs javaArgs
     ) {
         Method method     = null;          /* The method we'll invoke.         */
-        try {                              /* Resolve the method.*/ 
+        try {                              /* Resolve the method.*/
             if (cClass == o.getClass()) {  /* It's a class object, not an instance object.*/
                 try {                       /* Try to resolve it as an object method.*/
                     method     =
@@ -902,7 +902,7 @@ public class engine implements SoftWoehr, verbose {
     }                                                 /* End callJavaMethod*/
     
     /** Return a java.lang.Field for an object instance.
-     * @param o  The object whose field to find.   
+     * @param o  The object whose field to find.
      * @param fieldName Name of field to find.
      * @throws NoSuchFieldException Field doesn't exist.
      * @return The Field instance.
@@ -1311,7 +1311,7 @@ public class engine implements SoftWoehr, verbose {
     /** Fetch a wordlist from the search order, converting it to a value. */
     
     /** Create a new value and add it to the current wordlist.
-     * @throws BadName If no valid name found. 
+     * @throws BadName If no valid name found.
      */
     public void newValue()
     throws  com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadName {
@@ -2089,7 +2089,7 @@ public class engine implements SoftWoehr, verbose {
     
     /** Runtime for '+loop'. Called from a ParameterizedPrimitive having
      * embedded object, the Integer stored indicating the bump value.
-     * @param p  */
+     * @param p PlusLoop object */
     public void plusLoop(ParameterizedPrimitive.PlusLoop p) {
         int increment = ((Long)pop()).intValue();/* Get loop increment from stack.*/
         boolean done = innerInterpreter.plusLoop(increment);
@@ -2105,14 +2105,15 @@ public class engine implements SoftWoehr, verbose {
      * current definition, changing the Primitive to hold the bump delta,
      * and compiling it into the current definition.
      * Doesn't validate that it's a Loop yet, should do that.
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws ControlFlowStackImbalance on exception
+     * @throws BranchResolution on exception
+     * @throws ClassNotFoundException on exception
+     * @throws NoSuchMethodException on exception
+     * @throws BadPrimitiveCompile on exception
+     * @throws BadDefinitionCompile on exception
+     * @throws BadPrimitiveExecute on exception
+     * @throws BadDefinitionExecute on exception
+     */
     public void compileLoop()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.ControlFlowStackImbalance
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BranchResolution
@@ -2159,14 +2160,15 @@ public class engine implements SoftWoehr, verbose {
      * current definition, changing the Primitive to hold the bump delta,
      * and compiling it into the current definition.
      * Doesn't validate that it's a Loop yet, should do that.
-     * @throws NoSuchMethodException
-     * @throws ClassNotFoundException
-     * @throws ControlFlowStackImbalance
-     * @throws BranchResolution
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @throws NoSuchMethodException on exception
+     * @throws ClassNotFoundException on exception
+     * @throws ControlFlowStackImbalance on exception
+     * @throws BranchResolution on exception
+     * @throws BadPrimitiveCompile on exception
+     * @throws BadDefinitionCompile on exception
+     * @throws BadPrimitiveExecute on exception
+     * @throws BadDefinitionExecute on exception
+     */
     public void compilePlusLoop()
     throws java.lang.NoSuchMethodException
     , java.lang.ClassNotFoundException
@@ -2221,7 +2223,7 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /*************/
-  /* Utilities */
+    /* Utilities */
     /*************/
     
     /** Do a newline on the output. */
@@ -2251,7 +2253,8 @@ public class engine implements SoftWoehr, verbose {
     }                                           /* public void decompile ()*/
     
     /** Execute a host command.
-     * @throws IOException  */
+     * @throws IOException if error on execution
+     */
     public void system()
     throws java.io.IOException {
         String s = (String) pop();
@@ -2291,7 +2294,8 @@ public class engine implements SoftWoehr, verbose {
     }                                                 /* public void load()*/
     
     /** The version of FIJI
-     * @return  */
+     * @return The FIJI version
+     */
     public static String fijiVersion() {
         return  "1.2";
     }
@@ -2302,7 +2306,7 @@ public class engine implements SoftWoehr, verbose {
     }
     
     /*************/
-  /* Wordlists */
+    /* Wordlists */
     /*************/
     
     /** Create a new Wordlist and add it to the current wordlist.
