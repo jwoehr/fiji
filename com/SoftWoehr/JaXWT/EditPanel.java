@@ -20,10 +20,11 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 
 /** An experimental predecessor to com.SoftWoehr.JaXWT.EditPanePanel
- * Not currently used in SoftWoehr.
+ * @deprecated Not currently used in SoftWoehr, superseded by
+ * com.SoftWoehr.JaXWT.EditPanePanel
  *
  * @author  jax
- * @version $Id: EditPanel.java,v 1.1.1.1 2001-08-21 02:41:50 jwoehr Exp $
+ * @version $Id: EditPanel.java,v 1.2 2001-09-14 23:29:24 jwoehr Exp $
  */
 public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServer {
     
@@ -52,7 +53,8 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
         });
     }
     
-  /** Creates new form EditPanel */
+    /** Creates new form EditPanel
+     * @param frame  */
     public EditPanel(JFrame frame) {
         this();
         my_frame = frame;
@@ -62,7 +64,8 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
         return my_frame;
     }
     
-  /** Return the text area for direct manipulation */
+    /** Return the text area for direct manipulation
+     * @return  */
     public com.SoftWoehr.JaXWT.EditTextArea get_text_area () {
         return my_edit_text_area;
     }
@@ -123,7 +126,9 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
   // implementing FindAndReplaceServer
   ////////////////////////////////////
   
-  /** Find text and select it. True if found */
+  /** Find text and select it. True if found
+   * @param s
+   * @return  */
   public boolean find_forward_and_select (String s) {
       boolean result = false;
       if (null != s) {
@@ -137,7 +142,9 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
       return result;
   }
   
-  /** Find backwards and hilite. False iff not found */
+  /** Find backwards and hilite. False iff not found
+   * @param s
+   * @return  */
   public boolean find_backward_and_select(String s) {
       boolean result = false;
       if (null != s) {
@@ -152,7 +159,9 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
       return result;
   }
   
-  /** Replace selected with replacement. False iff nothing selected. */
+  /** Replace selected with replacement. False iff nothing selected.
+   * @param replacement
+   * @return  */
   public boolean replace_selected (String replacement) {
       boolean result = false;
       if (null != my_edit_text_area.getSelectedText()) {
@@ -162,7 +171,10 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
       return result;
   }
   
-  /** Replace all matches with replacement. False iff nothing replaced. */
+  /** Replace all matches with replacement. False iff nothing replaced.
+   * @param sought
+   * @param replacement
+   * @return  */
   public int replace_globally(String sought, String replacement) {
       int result = 0;
       my_edit_text_area.setCaretPosition(0);
@@ -178,35 +190,49 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
   // Filing
   /////////
   
-  /** Get the associated text filer */
+  /** Get the associated text filer
+   * @return  */
   public TextFiler get_filer () {
       return my_text_filer;
   }
   
-  /** Get the associated text filer */
+  /** Get the associated text filer
+   * @param t  */
   public void set_filer (TextFiler t) {
       my_text_filer = t;
   }
   
   /** Save text to a file.
    * True iff saved.
-   */
+   * @param f
+   * @param encoding
+   * @return  */
   public boolean save (File f, int encoding) {
       return save (my_text_filer, f, encoding);
   }
   
-  /** Open a file in text area. True iff opened. */
+  /** Open a file in text area. True iff opened.
+   * @param f
+   * @param encoding
+   * @return  */
   public boolean open (File f, int encoding) {
       return open(my_text_filer, f, encoding);
   }
   
-  /** Insert a file into text area. */
+  /** Insert a file into text area.
+   * @param f
+   * @param encoding
+   * @param position
+   * @return  */
   public boolean insert (File f, int encoding, int position) {
       return insert(my_text_filer, f, encoding, position);
   }
   /** Save text to a file using a specific TextFiler.
    * True iff saved.
-   */
+   * @param t
+   * @param f
+   * @param encoding
+   * @return  */
   public boolean save (TextFiler t, File f, int encoding) {
       boolean result = t.save(f, encoding);
       if (result) {
@@ -215,7 +241,11 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
       return result;
   }
   
-  /** Open a file in text area using a specific TextFiler. True iff opened. */
+  /** Open a file in text area using a specific TextFiler. True iff opened.
+   * @param t
+   * @param f
+   * @param encoding
+   * @return  */
   public boolean open (TextFiler t, File f, int encoding) {
       boolean result = t.open(f, encoding);
       if (result) {
@@ -224,7 +254,12 @@ public class EditPanel extends javax.swing.JPanel implements FindAndReplaceServe
       return result;
   }
   
-  /** Insert a file into text area using a specific TextFiler. */
+  /** Insert a file into text area using a specific TextFiler.
+   * @param t
+   * @param f
+   * @param encoding
+   * @param position
+   * @return  */
   public boolean insert (TextFiler t, File f, int encoding, int position) {
       return t.insert(f, encoding, position);
   }

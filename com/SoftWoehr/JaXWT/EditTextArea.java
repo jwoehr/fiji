@@ -18,7 +18,7 @@ import javax.swing.event.DocumentEvent;
 
 /** A TextArea used for edit applications.
  * @author jax
- * @version $Id: EditTextArea.java,v 1.1.1.1 2001-08-21 02:42:26 jwoehr Exp $
+ * @version $Id: EditTextArea.java,v 1.2 2001-09-14 23:29:24 jwoehr Exp $
  */
 public class EditTextArea extends javax.swing.JTextArea
 implements javax.swing.Scrollable, FindAndReplaceServer {
@@ -51,31 +51,37 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         });
     }
     
-    /** Mark changed/unchanged */
+    /** Mark changed/unchanged
+     * @param tf  */
     public void set_changed (boolean tf) {
         changed = tf;
     }
     
-    /** Is text changed? */
+    /** Is text changed?
+     * @return  */
     public boolean get_changed () {
         return changed;
     }
     
-    /** Return the proxied key processor or null */
+    /** Return the proxied key processor or null
+     * @return  */
     public EditTextAreaKeyProcessor get_key_processor () {
         return my_key_processor;
     }
-    /** Set the proxied key processor or null */
+    /** Set the proxied key processor or null
+     * @param kp  */
     public void set_key_processor (EditTextAreaKeyProcessor kp) {
         my_key_processor = kp;
     }
     
-    /** TRUE sets key processing on by key processor, FALSE off. */
+    /** TRUE sets key processing on by key processor, FALSE off.
+     * @param on_off  */
     public void set_key_processing (boolean on_off) {
         key_processing = on_off;
     }
     
-    /** TRUE means key processing on by key processor, FALSE off. */
+    /** TRUE means key processing on by key processor, FALSE off.
+     * @return  */
     public boolean get_key_processing () {
         return key_processing;
     }
@@ -127,7 +133,8 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         }
     }
     
-    /** Put text at current cursor or replace */
+    /** Put text at current cursor or replace
+     * @param text  */
     public void put_text(String text) {
         if (getSelectionStart() == getSelectionEnd()) {
             insert(text, getCaretPosition());
@@ -137,15 +144,24 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         }
     }
     
-    /** Refer interface call to super. */
+    /** Refer interface call to super.
+     * @return  */
     public boolean getScrollableTracksViewportHeight() {
         return super.getScrollableTracksViewportHeight();
     }
-    /** Refer interface call to super. */
+    /** Refer interface call to super.
+     * @param p1
+     * @param p2
+     * @param p3
+     * @return  */
     public int getScrollableUnitIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super.getScrollableUnitIncrement(p1, p2, p3);
     }
-    /** Refer interface call to super. */
+    /** Refer interface call to super.
+     * @param p1
+     * @param p2
+     * @param p3
+     * @return  */
     public int getScrollableBlockIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super. getScrollableBlockIncrement(p1, p2, p3);
     }

@@ -16,14 +16,20 @@ public class FindAndReplaceDialog extends javax.swing.JDialog {
   private FindAndReplaceServer my_server;
   private javax.swing.JFrame my_frame;
 
-  /** Creates new form FindAndReplaceDialog */
+  /** Creates new form FindAndReplaceDialog on a java.awt.Frame
+   * @param parent Parent component
+   * @param modal <CODE>true</CODE> if modal
+   */
   public FindAndReplaceDialog(java.awt.Frame parent,boolean modal) {
     super (parent, modal);
     initComponents ();
     pack ();
   }
 
-  /** Creates new form FindAndReplaceDialog */
+  /** Creates new form FindAndReplaceDialog on a javax.swing.JFrame
+   * @param parent Parent component
+   * @param modal <CODE>true</CODE> if modal
+   */
   public FindAndReplaceDialog(javax.swing.JFrame parent,boolean modal) {
     super (parent, modal);
     my_frame = parent;
@@ -31,7 +37,11 @@ public class FindAndReplaceDialog extends javax.swing.JDialog {
     pack ();
   }
 
-  /** Creates new form FindAndReplaceDialog */
+  /** Creates new form FindAndReplaceDialog on a javax.swing.JFrame
+   * @param frs Associated FindAndReplaceServer
+   * @param parent Parent component
+   * @param modal <CODE>true</CODE> if modal
+   */
   public FindAndReplaceDialog(FindAndReplaceServer frs, javax.swing.JFrame parent,boolean modal) {
     this (parent, modal);
     my_server = frs;
@@ -322,7 +332,7 @@ public class FindAndReplaceDialog extends javax.swing.JDialog {
     dispose ();
   }//GEN-LAST:event_closeDialog
 
-  /**
+  /** Test the find and replace dialog.
    * @param args the command line arguments
    */
   public static void main (String args[]) {
