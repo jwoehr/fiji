@@ -4,7 +4,11 @@
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1998, All Rights Reserved.  */
+/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -35,12 +39,12 @@ import com.SoftWoehr.*;
   * and issues queries via JDBC
   * using various drivers.
   * @author  $Author: jwoehr $
-  * @version $Revision: 1.1.1.1 $
+  * @version $Revision: 1.2 $
   */
 public class SQLSession implements SoftWoehr, verbose
 {
   /** Revision info */
-    private final String rcsid = "$Id: SQLSession.java,v 1.1.1.1 2001-08-21 02:44:28 jwoehr Exp $";
+    private final String rcsid = "$Id: SQLSession.java,v 1.2 2001-09-10 17:20:10 jwoehr Exp $";
   /** Implements com.SoftWoehr.SoftWoehr */
     public String rcsId() {return rcsid;}
     

@@ -4,7 +4,11 @@
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1998, All Rights Reserved.  */
+/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -25,7 +29,7 @@
 /* THERE IS NO GUARANTEE, NO WARRANTY AT ALL */
 /*********************************************/
 /* @author  $Author: jwoehr $                         */
-/* @version $Revision: 1.2 $                       */
+/* @version $Revision: 1.3 $                       */
 
 package com.SoftWoehr.util;
 import java.io.*;
@@ -33,12 +37,12 @@ import java.io.*;
 /**
  * A class offering support for working with directories.
  * @author  $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class DirSupport extends Object {
     
     /** Revision level */
-    private static final String rcsid = "$Id: DirSupport.java,v 1.2 2001-08-30 16:53:04 jwoehr Exp $";
+    private static final String rcsid = "$Id: DirSupport.java,v 1.3 2001-09-10 17:20:10 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS string.
