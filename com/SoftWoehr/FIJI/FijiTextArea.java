@@ -21,7 +21,7 @@ import com.SoftWoehr.JaXWT.EditTextArea;
 /** The text area for free-form FIJI input and output.
  *
  * @author  jax
- * @version $Id: FijiTextArea.java,v 1.1.1.1 2001-08-21 02:38:10 jwoehr Exp $
+ * @version $Id: FijiTextArea.java,v 1.2 2001-09-14 17:49:37 jwoehr Exp $
  */
 public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable, com.SoftWoehr.JaXWT.FindAndReplaceServer {
     
@@ -36,7 +36,8 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
     }
     
     /** Creates new FijiTextArea
-     * @param fpc associated FijiPanelController */
+     * @param fpc associated FijiPanelController
+     */
     public FijiTextArea(FijiPanelController fpc) {
         set_controller(fpc);
     }
@@ -50,45 +51,52 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
     }
     
     /** Get controller
-     * @return associated FijiPanelController  */
+     * @return associated FijiPanelController
+     */
     public FijiPanelController get_controller() {
         return my_controller;
     }
     
     /** Set controller
-     * @param fpc associated FijiPanelController  */
+     * @param fpc associated FijiPanelController
+     */
     public void set_controller(FijiPanelController fpc) {
         my_controller = fpc;
     }
     
     /** Refer interface call to super.
-     * @return  height */
+     * @return see java.swing.Scrollable
+     */
     public boolean getScrollableTracksViewportHeight() {
         return super.getScrollableTracksViewportHeight();
     }
     /** Refer interface call to super.
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return  */
+     * @param p1 see java.swing.Scrollable
+     * @param p2 see java.swing.Scrollable
+     * @param p3 see java.swing.Scrollable
+     * @return see java.swing.Scrollable
+     */
     public int getScrollableUnitIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super.getScrollableUnitIncrement(p1, p2, p3);
     }
     /** Refer interface call to super.
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return  */
+     * @param p1 see java.swing.Scrollable
+     * @param p2 see java.swing.Scrollable
+     * @param p3 see java.swing.Scrollable
+     * @return see java.swing.Scrollable 
+     */
     public int getScrollableBlockIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super. getScrollableBlockIncrement(p1, p2, p3);
     }
     /** Refer interface call to super.
-     * @return  */
+     * @return  see java.swing.Scrollable
+     */
     public java.awt.Dimension getPreferredScrollableViewportSize() {
         return super.getPreferredScrollableViewportSize();
     }
     /** Refer interface call to super.
-     * @return  */
+     * @return see java.swing.Scrollable
+     */
     public boolean getScrollableTracksViewportWidth() {
         return super.getScrollableTracksViewportWidth();
     }
@@ -98,21 +106,24 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
     
     /** Find text and select it. True if found
      * @param s Text to seek
-     * @return  <code>true</code> iff found. */
+     * @return  <code>true</code> iff found. 
+     */
     public boolean find_forward_and_select(String s) {
         return super.find_forward_and_select(s);
     }
     
     /** Find backwards and hilite. False iff not found
      * @param s Text to seek
-     * @return <code>true</code> iff found. */
+     * @return <code>true</code> iff found. 
+     */
     public boolean find_backward_and_select(String s) {
         return super.find_backward_and_select(s);
     }
     
     /** Replace selected with replacement. False iff nothing selected.
      * @param replacement Text to replace selected with.
-     * @return <code>true</code> iff found and replaced. */
+     * @return <code>true</code> iff found and replaced. 
+     */
     public boolean replace_selected(String replacement) {
         return super.replace_selected(replacement);
     }
@@ -120,7 +131,8 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
     /** Replace all matches with replacement. False iff nothing replaced.
      * @param sought Text to seek
      * @param replacement Text to replace selected with.
-     * @return number of replacements carried out. */
+     * @return number of replacements carried out. 
+     */
     public int replace_globally(String sought,String replacement) {
         return super.replace_globally(sought, replacement);
     }
