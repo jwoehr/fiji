@@ -18,7 +18,7 @@ import javax.swing.event.DocumentEvent;
 
 /** A TextArea used for edit applications.
  * @author jax
- * @version $Id: EditTextArea.java,v 1.2 2001-09-14 23:29:24 jwoehr Exp $
+ * @version $Id: EditTextArea.java,v 1.3 2001-09-15 16:34:35 jwoehr Exp $
  */
 public class EditTextArea extends javax.swing.JTextArea
 implements javax.swing.Scrollable, FindAndReplaceServer {
@@ -33,7 +33,7 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     
     /** Creates new EditTextArea */
     public EditTextArea() {
-        getDocument().addDocumentListener(new DocumentListener () {
+        getDocument().addDocumentListener(new DocumentListener() {
             // Gives notification that an attribute or set of attributes changed.
             public void changedUpdate(DocumentEvent e) {
                 changed = true;
@@ -52,37 +52,43 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     }
     
     /** Mark changed/unchanged
-     * @param tf  */
-    public void set_changed (boolean tf) {
+     * @param tf <CODE>true</CODE> if changed.
+     */
+    public void set_changed(boolean tf) {
         changed = tf;
     }
     
     /** Is text changed?
-     * @return  */
-    public boolean get_changed () {
+     * @return <CODE>true</CODE> if changed.
+     */
+    public boolean get_changed() {
         return changed;
     }
     
     /** Return the proxied key processor or null
-     * @return  */
-    public EditTextAreaKeyProcessor get_key_processor () {
+     * @return the key processor or null
+     */
+    public EditTextAreaKeyProcessor get_key_processor() {
         return my_key_processor;
     }
     /** Set the proxied key processor or null
-     * @param kp  */
-    public void set_key_processor (EditTextAreaKeyProcessor kp) {
+     * @param kp the key processor or null
+     */
+    public void set_key_processor(EditTextAreaKeyProcessor kp) {
         my_key_processor = kp;
     }
     
     /** TRUE sets key processing on by key processor, FALSE off.
-     * @param on_off  */
-    public void set_key_processing (boolean on_off) {
+     * @param on_off TRUE sets key processing on by key processor, FALSE off.
+     */
+    public void set_key_processing(boolean on_off) {
         key_processing = on_off;
     }
     
     /** TRUE means key processing on by key processor, FALSE off.
-     * @return  */
-    public boolean get_key_processing () {
+     * @return TRUE means key processing on by key processor, FALSE off.
+     */
+    public boolean get_key_processing() {
         return key_processing;
     }
     
@@ -97,7 +103,9 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         }
     }
     
-    /** Process certain key events before textedit gets 'em */
+    /** Process certain key events before textedit gets 'em
+     * @param e the key event
+     */
     protected void processKeyEvent(java.awt.event.KeyEvent e) {
     /* Debug */
         // int keyCode = e.getKeyCode();
@@ -134,7 +142,8 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     }
     
     /** Put text at current cursor or replace
-     * @param text  */
+     * @param text text to put at current cursor or replace
+     */
     public void put_text(String text) {
         if (getSelectionStart() == getSelectionEnd()) {
             insert(text, getCaretPosition());
@@ -145,23 +154,25 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     }
     
     /** Refer interface call to super.
-     * @return  */
+     * @return super return */
     public boolean getScrollableTracksViewportHeight() {
         return super.getScrollableTracksViewportHeight();
     }
     /** Refer interface call to super.
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return  */
+     * @param p1 super param
+     * @param p2 super param
+     * @param p3 super param
+     * @return super return
+     */
     public int getScrollableUnitIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super.getScrollableUnitIncrement(p1, p2, p3);
     }
     /** Refer interface call to super.
-     * @param p1
-     * @param p2
-     * @param p3
-     * @return  */
+     * @param p1 super param
+     * @param p2 super param
+     * @param p3 super param
+     * @return super return
+     */
     public int getScrollableBlockIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super. getScrollableBlockIncrement(p1, p2, p3);
     }
@@ -171,7 +182,7 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         return super.getPreferredScrollableViewportSize();
     }
     /** Refer interface call to super.
-     * @return  */
+     * @return super ret */
     public boolean getScrollableTracksViewportWidth() {
         return super.getScrollableTracksViewportWidth();
     }
@@ -180,9 +191,10 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     /////////////////////////////////
     
     /** Find text and select it. True if found
-     * @param s
-     * @return  */
-    public boolean find_forward_and_select (String s) {
+     * @param s String to find
+     * @return  true if found
+     */
+    public boolean find_forward_and_select(String s) {
         boolean result = false;
         if (null != s) {
             int pos = getText().indexOf(s, getCaretPosition());
@@ -214,8 +226,9 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
     
     /** Replace selected with replacement. False iff nothing selected.
      * @param replacement
-     * @return  */
-    public boolean replace_selected (String replacement) {
+     * @return False iff nothing selected.
+     */
+    public boolean replace_selected(String replacement) {
         boolean result = false;
         if (null != getSelectedText()) {
             replaceSelection(replacement);
@@ -224,10 +237,11 @@ implements javax.swing.Scrollable, FindAndReplaceServer {
         return result;
     }
     
-    /** Replace all matches with replacement. False iff nothing replaced.
+    /** Replace all matches with replacement.
      * @param sought
      * @param replacement
-     * @return  */
+     * @return Count of replacements.
+     */
     public int replace_globally(String sought,String replacement) {
         int result = 0;
         setCaretPosition(0);

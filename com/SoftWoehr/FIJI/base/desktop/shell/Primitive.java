@@ -38,13 +38,16 @@ import  com.SoftWoehr.util.*;
 /** A Primitive is a Semantic coded all in Java.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 class Primitive extends Semantic implements SoftWoehr, verbose {
+    
     /** Revision level */
-    private static final String rcsid = "$Id: Primitive.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Primitive.java,v 1.4 2001-09-15 16:34:34 jwoehr Exp $";
+    
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -60,8 +63,9 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
     public Method compilationMethod;
     
     /** Arity/0 ctor.
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException  */
+     * @throws ClassNotFoundException res ipse loq
+     * @throws NoSuchMethodException res ipse loq
+     */
     public Primitive()
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
@@ -71,10 +75,11 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
     /** Arity/2 ctor. This creates
      * a named, resolved primitive, the only
      * useful constructor.
-     * @param name
-     * @param methodName
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException  */
+     * @param name name of prim
+     * @param methodName method to execute
+     * @throws ClassNotFoundException res ipse loq
+     * @throws NoSuchMethodException res ipse loq
+     */
     public Primitive(String name, String methodName)
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
@@ -86,11 +91,12 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
     /** Arity/2 ctor. This creates
      * a named, resolved primitive, the only
      * useful constructor.
-     * @param name
-     * @param methodName
-     * @param compilationMethodName
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException  */
+     * @param name name of prim
+     * @param methodName method to execute
+     * @param compilationMethodName compilation semantic
+     * @throws ClassNotFoundException res ipse loq
+     * @throws NoSuchMethodException res ipse loq
+     */
     public Primitive(String name, String methodName, String compilationMethodName)
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
@@ -103,31 +109,35 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
     
     /** shutdown() here does nothing.
      * @see com.SoftWoehr.SoftWoehr#shutdown
-     * @return  */
+     * @return always zero 0
+     */
     public int shutdown() { return 0; }
     
-    /**
+    /** Is this verbose and announcing?
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @return  */
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param tf  */
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
+    /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param s  */
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
-    
     /** Execution semantics
-     * @param anEngine
-     * @throws BadPrimitiveExecute  */
+     * @param anEngine associated engine
+     * @throws BadPrimitiveExecute res ipse loq
+     */
     public void execute(engine anEngine)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute {
         try {
@@ -145,11 +155,12 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
      * being to append self to the current definition.
      * If the Primitive has special compilation semantics,
      * carry them out instead.
-     * @param e
-     * @throws BadPrimitiveCompile
-     * @throws BadDefinitionCompile
-     * @throws BadPrimitiveExecute
-     * @throws BadDefinitionExecute  */
+     * @param e associated engine
+     * @throws BadPrimitiveCompile res ipse loq
+     * @throws BadDefinitionCompile res ipse loq
+     * @throws BadPrimitiveExecute res ipse loq
+     * @throws BadDefinitionExecute res ipse loq
+     */
     
     public void compile(engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveCompile
@@ -174,7 +185,8 @@ class Primitive extends Semantic implements SoftWoehr, verbose {
     
     /** Decompilation semantics.
      * A primitive just returns itself.
-     * @return  */
+     * @return self
+     */
     public Semantic[] decompile() {
         Semantic result [] = new Semantic[1];
         result[0] = this;
