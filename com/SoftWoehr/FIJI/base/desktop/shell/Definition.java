@@ -38,13 +38,14 @@ import  com.SoftWoehr.util.*;
 /** A class representing a list of Semantics to be executed.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class Definition extends Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Definition.java,v 1.3 2001-09-15 05:25:48 jwoehr Exp $";
+    private static final String rcsid = "$Id: Definition.java,v 1.4 2001-09-15 16:47:43 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -69,7 +70,8 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Arity/1 ctor, a named Definition.
-     * @param s  */
+     * @param s Name of definition.
+     */
     public Definition(String s) {
         super(s);
         immediate=false;
@@ -85,36 +87,46 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     
     /** shutdown() here does nothing.
      * @see com.SoftWoehr.SoftWoehr
+     * @return always 0
      */
     public int shutdown() { return 0; }
     
-    /**
+    /** Is this verbose and announcing?
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @return  */
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param tf  */
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
+    /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
-     * @param s  */
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Set the word immediate, i.e.,  if true, its execution
      * semantics will be performed at compile time.
-     * @param tf  */
+     * @param tf  if true, its execution semantics
+     * will be performed at compile time.
+     */
     public void setImmediate(boolean tf) {
         immediate = tf;
     }
     
-    /** See if the word is immediate.
-     * @return  */
+    /** See if the word is immediate, i.e., its
+     * runtime semantic is invoked at compile time
+     * instead of the default compile semantic or
+     * specialized compile semantic.
+     * @return <CODE>true</CODE> iff immediate
+     */
     public boolean getImmediate() {
         return immediate;
     }
@@ -135,16 +147,18 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
         composition = null;
     }
     
-    /** Append to a definition
-     * @param s  */
+    /** Append to definition
+     * @param s Semantic to append
+     */
     public void append(Semantic s) {
         composition.addElement(s);
     }
     
-    /** Execution semantics
-     * @param e
-     * @throws BadDefinitionExecute
-     * @throws BadPrimitiveExecute  */
+    /** Execution semantics (what this does at runtime).
+     * @param e associated engine
+     * @throws BadDefinitionExecute res ispe loq
+     * @throws BadPrimitiveExecute res ispe loq
+     */
     public void execute(engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute {
@@ -161,11 +175,12 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
         }                                                        /* End catch*/
     }
     
-    /** Compilation semantics.
-     * @param e
-     * @throws BadDefinitionCompile
-     * @throws BadDefinitionExecute
-     * @throws BadPrimitiveExecute  */
+    /** Compilation semantics (what this does at compile time).
+     * @param e associated engine
+     * @throws BadDefinitionCompile res ispe loq
+     * @throws BadDefinitionExecute res ispe loq
+     * @throws BadPrimitiveExecute res ispe loq
+     */
     public void compile(engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionCompile
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute
@@ -189,7 +204,8 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Decompilation semantics
-     * @return  */
+     * @return The body of this definition as an array of Semantics.
+     */
     public Semantic[] decompile() {
         Semantic result [] = new Semantic[body.length];
         for (int i = 0; i < body.length; i++) {
@@ -199,35 +215,40 @@ public class Definition extends Semantic implements SoftWoehr, verbose {
     }
     
     /** Return index of last Semantic in list.
-     * @return  */
+     * @return index of last Semantic on list.
+     */
     public int lastIndex() {
         return body.length - 1;
     }
     
     /** Return length of Semantic list.
-     * @return  */
+     * @return length of list
+     */
     public int length() {
         return body.length;
     }
     
     /** Returns nth Semantic in the list of Semantics which make up the
      * body of a Definition.
-     * @param index
-     * @return  */
+     * @param index desired Semantic (0-based)
+     * @return the Semantic
+     */
     public Semantic nthSemantic(int index) {
         return body[index];
     }
     
     /** Returns the current length of the definition under composition.
      * Used to calculate branches.
-     * @return  */
+     * @return the current length of the definition
+     */
     public int compositionLength() {
         return composition.size();
     }
     
     /** Demonstrate <code>Definition<code>.
      * Currently, does nothing.
-     * @param argv  */
+     * @param argv Args to main() ... not used.
+     */
     public static void main(String argv[]) {
     }
 }                                                /* End of Definition class*/
