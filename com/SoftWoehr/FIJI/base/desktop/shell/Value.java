@@ -35,12 +35,12 @@ import  com.SoftWoehr.util.*;
 /** Value is a self-fetching Variable.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class Value extends Semantic implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Value.java,v 1.2 2001-09-10 03:47:52 jwoehr Exp $";
+    private static final String rcsid = "$Id: Value.java,v 1.3 2001-09-10 03:57:39 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
      */
@@ -112,21 +112,21 @@ public class Value extends Semantic implements SoftWoehr, verbose {
         datum = o;
     }
     
-    /**
+    /** Is this verbose and announcing?
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @return  true if verbose
+     * @return true if verbose
      */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
+    /** Set verbose and announcing.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
      * @param tf  set verbose on (true) or off.
      */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
+    /** Emit a string message if set verbose.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
      * @param s  The string to conditionally announce.
