@@ -3,7 +3,11 @@
 /* http://www.well.com/user/jax/rcfb         */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1998, All Rights Reserved.  */
+/*   Copyright *C* 1998, 2001 Jack J. Woehr  */
+/*	      All Rights Reserved	     */
+/* PO Box 51 Golden, Colorado 80402-0051 USA */
+/*	    http://www.softwoehr.com	     */
+/*	  http://fiji.sourceforge.net	     */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -27,20 +31,23 @@
 package com.SoftWoehr;
 
 /**
-  * An interface implemented by some SoftWoehr classes.
-  *
-  * @author $Author: jwoehr $
-  * @version $Revision: 1.1.1.1 $
-  */
+ * An interface implemented by some SoftWoehr classes.
+ *
+ * @author $Author: jwoehr $
+ * @version $Revision: 1.2 $
+ */
 public interface SoftWoehr {
-
-  /** Versioning string returned. */
-  public String rcsId();
-
-  /** Shutdown children and then ready self for shutdown.
-    * Significance of int return is TBD.
-    */
-  public int shutdown ();
-
-  }                                          /* End of interface SoftWoehr.*/
+    
+    /** Versioning string returned.
+     * @return the rcsid
+     */
+    public String rcsId();
+    
+    /** Shutdown children and then ready self for shutdown.
+     * Significance of int return is TBD.
+     * @return Usually zero (0) for "okay to shutdown".
+     */
+    public int shutdown();
+    
+}                                          /* End of interface SoftWoehr.*/
 /*  End of SoftWoehr.java */
