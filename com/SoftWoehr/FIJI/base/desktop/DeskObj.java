@@ -1,9 +1,12 @@
 /* DeskObj.java ...  */
-/* jack j. woehr jax@well.com jwoehr@ibm.net */
-/* http://www.well.com/user/jax/rcfb         */
+/*********************************************/
+/* Copyright *C* 1999, 2001                  */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
+/* http://www.softwoehr.com                  */
+/* http://fiji.sourceforge.net               */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
-/* Copyright *C* 1999, All Rights Reserved.  */
 /*                                           */
 /*       This Program is Free                */
 /*            Softwoehr                      */
@@ -28,12 +31,12 @@ package com.SoftWoehr.FIJI.base.desktop;
  /**
    *
    * @author $Author: jwoehr $
-   * @version $Revision: 1.1.1.1 $
+   * @version $Revision: 1.2 $
    */
 interface DeskObj
 {
   /** Revision level */
-  public static final String DeskObj_rcsid = "$Id: DeskObj.java,v 1.1.1.1 2001-08-21 02:38:46 jwoehr Exp $";
+  public static final String DeskObj_rcsid = "$Id: DeskObj.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
 
   // public deskResult open(DeskObj droppedObjects[]);
 

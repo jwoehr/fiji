@@ -1,8 +1,10 @@
 /* Definition.java ... compiled definitions  */
 /*********************************************/
-/* Copyright *C* 1999, All Rights Reserved.  */
-/* Jack J. Woehr jax@well.com jwoehr@ibm.net */
-/* http://www.well.com/user/jax/rcfb         */
+/* Copyright *C* 1999, 2001                  */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
+/* http://www.softwoehr.com                  */
+/* http://fiji.sourceforge.net               */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
 /*                                           */
@@ -36,11 +38,11 @@ import  com.SoftWoehr.util.*;
 /** A class representing a list of Semantics to be executed.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.1.1.1 $
+ * @version $Revision: 1.2 $
  */
 public class Definition extends Semantic implements SoftWoehr, verbose {
     /** Revision level */
-    private static final String rcsid = "$Id: Definition.java,v 1.1.1.1 2001-08-21 02:39:06 jwoehr Exp $";
+    private static final String rcsid = "$Id: Definition.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
      * @return  */
     public String rcsId() {return rcsid;}

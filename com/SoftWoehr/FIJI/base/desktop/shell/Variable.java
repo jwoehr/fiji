@@ -3,7 +3,8 @@
 /* Copyright *C* 1999, 2001                  */
 /* All Rights Reserved.                      */
 /* Jack J. Woehr jax@softwoehr.com           */
-/* http://www.well.com/user/jax/rcfb         */
+/* http://www.softwoehr.com                  */
+/* http://fiji.sourceforge.net               */
 /* P.O. Box 51, Golden, Colorado 80402-0051  */
 /*********************************************/
 /*                                           */
@@ -36,12 +37,12 @@ import  com.SoftWoehr.util.*;
  * object reference of any type.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class Variable extends Semantic implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: Variable.java,v 1.2 2001-09-10 04:19:34 jwoehr Exp $";
+    private static final String rcsid = "$Id: Variable.java,v 1.3 2001-09-10 04:28:44 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
