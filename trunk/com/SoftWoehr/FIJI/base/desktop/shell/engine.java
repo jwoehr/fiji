@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.6 2001-09-15 07:02:14 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.7 2001-09-23 04:39:02 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -2293,6 +2293,19 @@ public class engine implements SoftWoehr, verbose {
         }                                                        /* End catch*/
     }                                                 /* public void load()*/
     
+    /**
+     * Save a compiled wordlist to a file.
+     */
+    public void save() {
+        System.err.println("Not implemented yet.");
+    }
+    
+    /**
+     * Load a saved wordlist.
+     */
+    public void reload() {
+        System.err.println("Not implemented yet.");
+    }
     /** The version of FIJI
      * @return The FIJI version
      */
