@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
    <meta name="Author" content="Jack J. Woehr">
    <meta name="Description" content="User's guide for FIJI ForthIsh Java Interpreter">
    <title>FIJI User's Guide</title>
@@ -12,20 +12,13 @@
 <center>
 <h1>
 <a NAME="TheTop"></a>FIJI ForthIsh Java Interpreter 1.2 User's Guide</h1></center>
-
 <!-- Netscape -->
-
-<EMBED type="application/x-java-applet;version=1.3" width="500" height="250"
+<center><embed type="application/x-java-applet;version=1.3" width="500" height="250"
      align="baseline" code="com.SoftWoehr.FIJI.base.desktop.FijiApplet.class" codebase="../../../"
-     pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html">
- <NOEMBED>
-     No Java 2 SDK, Standard Edition v 1.3 support for APPLET!!
- </NOEMBED>
-</EMBED>
-
-<!-- IE -->
-<!--
-<OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+     pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html"><noembed>No
+Java 2 SDK, Standard Edition v 1.3 support for APPLET!!&nbsp;</noembed></embed></center>
+<!-- IE --><!--
+<center><OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
      width="200" height="200" align="baseline" 
      codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0">
      <PARAM NAME="code" VALUE="com.SoftWoehr.FIJI.base.desktop.FijiApplet.class">
@@ -34,19 +27,16 @@
      <PARAM NAME="model" VALUE="models/HyaluronicAcid.xyz">
      <PARAM NAME="scriptable" VALUE="true">
          No Java 2 SDK, Standard Edition v 1.3 support for APPLET!!
- </OBJECT>
--->
-
-<!-- Old applet tag -->
-<!--
+ </OBJECT></center>
+--><!-- Old applet tag --><!--
 <center><applet 
        code="com.SoftWoehr.FIJI.base.desktop.FijiApplet.class"
        codebase="../../.."
        width="500"
        height="250"
-       ></applet>
+       ></applet></center>
 -->
-
+<center>
 <p>All <a href="http://www.softwoehr.com">SoftWoehr Free Software</a> packages
 and&nbsp; documentation pages are
 <br>Copyright &copy; 1998, 2001
@@ -407,12 +397,14 @@ about some of the other stuff, look in <tt><font size=+1>com.SoftWoehr.util</fon
 which contains some scraps of tools. Others tools include editors of various
 kinds and database access which I may eventually release to be used with
 FIJI.
-<p>Your <a href="mailto:jax@well.com">comments via email</a> are invited.
+<p>Your <a href="mailto:jwoehr@softwoehr.com">comments via email</a> are
+invited.
 <br>
 <hr WIDTH="100%">
 <h2>
 <a NAME="What Use is FIJI"></a>What Use is FIJI?</h2>
-FIJI is useful for
+<a href="#Table of Contents">[Table of Contents]</a>
+<p>FIJI is useful for
 <ul>
 <li>
 A command line interpreter in a Java-only environment.</li>
@@ -429,6 +421,74 @@ Learning more about Java.</li>
 </ul>
 
 <hr WIDTH="100%">
+<h1>
+<a NAME="Building FIJI"></a>Building FIJI</h1>
+<a href="#Table of Contents">[Table of Contents]</a>
+<p>To build FIJI afresh from source code:
+<ol>
+<li>
+Unpack the FIJI source tree from the .jar file in the same directory where
+you unpacked the .zip distribution archive.</li>
+
+<ul>
+<li>
+E.g.,<tt> jar -xf fiji.jar</tt></li>
+
+<li>
+The result should be that the <tt>com</tt>&nbsp; , <tt>html</tt> and <tt>scripts</tt>
+directories are all peer directories at the same level.</li>
+</ul>
+
+<li>
+Using <a href="http://jakarta.apache.org/ant/index.html">Jakarta Ant 1.4beta2</a>
+or later, invoke the build script from the same directory where you unpacked.</li>
+
+<ul>
+<li>
+<tt>ant -f scripts/build.xml</tt></li>
+
+<ul>
+<li>
+This will rebuild the tree and the fiji.{version}.jar file.</li>
+</ul>
+
+<li>
+The script has many targets including <tt>clean</tt> , <tt>distrib</tt>
+, etc.</li>
+
+<ul>
+<li>
+<tt>ant -f scripts/build.xml usage </tt>to see the targets and variables
+you can pass in.</li>
+</ul>
+</ul>
+</ol>
+Also, you can load the project in <a href="http://www.netbeans.org">NetBeans</a>
+(the .form files for the GUI components are included in the source distribution)
+and build it there. However, be aware that certain extra classes are in
+the distribution which are not used by FIJI nor by the build.xml file which
+NetBeans will try to build and fail to do so if you do not have certain
+external libraries present. These extraneous classes are there because
+FIJI is part of the <a href="http://www.softwoehr.com/oss/">SoftWoehr Class
+Libraries for Java</a> and certain of the directories don't 'belong' to
+FIJI but are just used by FIJI.
+<ul>
+<li>
+To make FIJI build under NetBeans</li>
+
+<ol>
+<li>
+<tt>cd com/SoftWoehr/util</tt></li>
+
+<li>
+<tt>rm *SQL*</tt></li>
+</ol>
+</ul>
+
+<h2>
+
+<hr WIDTH="100%"></h2>
+
 <h2>
 <a NAME="Invocation"></a>Invocation</h2>
 <a href="#Table of Contents">[Table of Contents]</a>
@@ -555,8 +615,8 @@ and press Enter or pull down the File-Quit menu option. You may also use
 <a NAME="Launching FIJIGui from the jar file"></a>Launching FIJIGui from
 the .jar file</h4>
 Alternatively to the <a href="#Swing form of the interpreter">above</a>,
-you may launch the Swing (Java Foundation Class)&nbsp;GUI form of FIJI
-by invoking it as the main class of the FIJI jar file.
+you may launch the Swing (Java Foundation Class) GUI form of FIJI by invoking
+it as the main class of the FIJI jar file.
 <blockquote><tt><font size=+1>java -jar fiji.version.jar</font></tt></blockquote>
 To leave the Swing form of the interpreter, type <tt><font size=+1><a href="#bye">bye</a></font></tt>&nbsp;
 and press Enter or pull down the File-Quit menu option. You may also use
@@ -3255,8 +3315,22 @@ especially under the GUI version of the interpreter. I'm looking at this.</li>
 <ul>
 <li>
 Better build file.</li>
+
+<ul>
+<li>
+&nbsp;Added manifest file to jar to launch FIJIGui direct from jar.</li>
 </ul>
-1.2 2001.08.15 beta
+
+<li>
+FijiApplet as a Java 1.3 plugin.</li>
+
+<li>
+Cleanup of many files and comments.</li>
+
+<li>
+Work on the docs.</li>
+</ul>
+1.2 2001-08-15 beta
 <ul>
 <li>
 Added <a href="http://jakarta.apache.org/ant/index.html">Jakarta Ant</a>
@@ -3271,7 +3345,7 @@ Fixed some bugs.</li>
 <li>
 Cleaned up and commented code.</li>
 </ul>
-1.2 2001.07.15 alpha
+1.2 2001-07-15 alpha
 <ul>
 <li>
 Fixed bugs</li>

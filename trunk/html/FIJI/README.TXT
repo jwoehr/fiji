@@ -109,6 +109,9 @@ Changes from Previous Versions
 1.2 gamma
     2001-10-15 ... Added manifest file to jar to launch FIJIGui direct from
                    jar.
+                   FijiApplet as a Java 1.3 plugin.
+                   Cleanup of many files and comments.
+                   Work on the docs.
 1.2 beta
     2001-08-15 ... Fixed bug in interpreter.interpret (popping empty tokenizer
                    stack).
