@@ -4,7 +4,7 @@
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.12 2001-09-04 22:42:41 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.13 2001-09-05 00:37:40 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
@@ -21,14 +21,16 @@
 
             Targets are:
 
-                all     .. builds Fiji and makes a jar of it.
-                clean   .. deletes the jar and all class files.
-                distrib .. builds Fiji, makes the jar, generates javadocs
-                           and builds the distribution zip file.
-                jar     .. builds the jar (and Fiji if necessary).
-                javadoc .. generates javadoc for Fiji.
-                run     .. run Fiji in the GUI form.
-                usage   .. displays this message.
+                all       .. builds Fiji and makes a jar of it.
+                clean     .. deletes the jar and all class files.
+                copy_tree .. if the property tree.destination.directory,
+                             copy the whole tree minus CVS dirs thither.
+                distrib   .. builds Fiji, makes the jar, generates javadocs
+                             and builds the distribution zip file.
+                jar       .. builds the jar (and Fiji if necessary).
+                javadoc   .. generates javadoc for Fiji.
+                run       .. run Fiji in the GUI form.
+                usage     .. displays this message.
 
             The behavior of the build is controlled by passing variables on the
             command line to this build script. You pass in a variable by adding
@@ -90,6 +92,7 @@
     </target>
 
     <!-- Autogenerate a manifest file for FIJI -->
+    <!-- Note that the clumsy formatting of this paragraph is a necessity. -->
     <target depends="init" description="Autogenerate a Jar Manifest file" name="gen_manifest">
 <echo file="${fiji.jar.manifest.filename}">Manifest-Version: ${fiji.version}
 Main-Class: com.SoftWoehr.FIJI.FIJIGui
@@ -170,9 +173,7 @@ Main-Class: com.SoftWoehr.FIJI.FIJIGui
     </target>
 
     <!-- Copy the tree without the CVS directories to some other directory. -->
-<!--    <target depends="init" name="copy_tree" if="tree.destination.directory"> -->
     <target depends="init" name="copy_tree" if="tree.destination.directory">
-        <echo message="foo"/>
         <copy todir="${tree.destination.directory}">
             <fileset dir="${fiji.source.directory}">
                 <include name="com/**"/>
