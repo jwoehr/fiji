@@ -1,1 +1,10 @@
 \ testfiji.fiji \
+
+\ variables \
+variable test-store
+
+\ test ! \
+` test: ! `
+1234 test-store !
+test-store @ .
+
