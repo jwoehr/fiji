@@ -109,21 +109,7 @@
 
     <target name="gen_zipfile" depends="init">
         <delete file="${fiji.zipfile.filename}"/>
-	<!--
-        <zip basedir="${fiji.destination.directory}" zipfile="${fiji.zipfile.filename}" excludes="${fiji.zipfile.filename}">
-	    <fileset dir="${fiji.destination.directory}">
-	        <patternset>
-		    <exclude name="CVSROOT"/>
-		    <exclude name="com"/>
-		    <include name="$fiji.jarfile.filename"/>
-		    <include name="html/**/*"/>
-		    <include name="scripts/**/*"/>
-		    <include name="README.TXT"/>
-		    <include name="COPYING*"/>
-		</patternset>
-	    </fileset>
-	</zip>
-	-->
+        <zip basedir="${fiji.destination.directory}" zipfile="${fiji.zipfile.filename}" excludes="${fiji.zipfile.filename},com/**,CVSROOT/**,**/CVS/**,**/.nbattrs"/>
     </target>
 
     <target name="distrib" depends="init,jar,javadoc" description="build distribution archive">
@@ -133,7 +119,7 @@
 	        <include name="html/FIJI/COPYING*"/>
 	    </fileset>
 	</copy>
-	<antcall taret="gen_zipfile"/>
+	<antcall target="gen_zipfile"/>
     </target>
 
     <target name="clean" depends="init" description="Clean all build products.">
@@ -142,7 +128,7 @@
                 <include name="**/*.class"/>
             </fileset>
         </delete>
-    <delete file="${fiji.jar.fully.qualified.pathname}"/>
+        <delete file="${fiji.jar.fully.qualified.pathname}"/>
         <delete dir="${fiji.javadoc.destination.directory}"/>
     </target>
 
