@@ -2,9 +2,15 @@
 
 \ variables \
 variable test-store
+\ values \
+value my_SimpleDataMembers
 
 \ test ! \
-` test: ! `
+` test: ! to a FIJI variable` . cr
 1234 test-store !
-test-store @ .
+test-store @ . cr
 
+` test: ! to a Long class member` . cr
+com.SoftWoehr.FIJI.examples.fiji.testclass.SimpleDataMembers class new ( ) to my_SimpleDataMembers
+99 foo my_SimpleDataMembers .sc cr
+my_SimpleDataMembers getFoo ( ) . cr
