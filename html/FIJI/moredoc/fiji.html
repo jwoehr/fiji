@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Mozilla/4.7 [en] (X11; I; SunOS 5.8 sun4u) [Netscape]">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
    <meta name="Author" content="Jack J. Woehr">
    <meta name="Description" content="User's guide for FIJI ForthIsh Java Interpreter">
    <title>FIJI User's Guide</title>
@@ -82,6 +82,11 @@ interpreter</a></li>
 
 <li>
 <a href="#Swing form of the interpreter">Swing form of the interpreter</a></li>
+
+<ul>
+<li>
+Launching FIJIGui from the .jar file</li>
+</ul>
 
 <li>
 <a href="#FijiApplet">FijiApplet</a></li>
@@ -489,9 +494,10 @@ The following:
 <blockquote><tt><font size=+1>java com.SoftWoehr.FIJI.FIJIGui [-v] [-b
 numeric-base] [file file ..]</font></tt></blockquote>
 will, when the SoftWoehr library swdesk.zip is in the CLASSPATH, start
-the interpreter in an AWT Frame&nbsp; with a TextArea client. To use the
-'java' command, you will need to have installed the <a href="http://www.javasoft.com">Java
-Development Kit (JDK)</a> available from Sun Microsystems.
+the interpreter in a Swing (Java Foundation Class) JFrame&nbsp; with a
+JTextArea client. To use the 'java' command, you will need to have installed
+the <a href="http://www.javasoft.com">Java Development Kit (JDK)</a> available
+from Sun Microsystems.
 <p>The options may any, all or none be present, and should be presented
 in the order indicated where
 <ul>
@@ -514,7 +520,17 @@ press Enter. To see the same stack entries with their class names besides,
 enter <tt><font size=+1>.sc</font></tt> and press Enter.
 <p>You may also select any region of the window with the mouse and pull
 down the File-Interpret option. The selected region will be interpreted.
-<p>To leave the AWT form of the interpreter, type <tt><font size=+1><a href="#bye">bye</a></font></tt>&nbsp;
+<p>To leave the Swing form of the interpreter, type <tt><font size=+1><a href="#bye">bye</a></font></tt>&nbsp;
+and press Enter or pull down the File-Quit menu option. You may also use
+<tt><font size=+1><a href="#sysexit">sysexit</a></font></tt>.
+<h4>
+<a NAME="Launching FIJIGui from the jar file"></a>Launching FIJIGui from
+the .jar file</h4>
+Alternatively to the <a href="#Swing form of the interpreter">above</a>,
+you may launch the Swing (Java Foundation Class)&nbsp;GUI form of FIJI
+by invoking it as the main class of the FIJI jar file.
+<blockquote><tt><font size=+1>java -jar fiji.version.jar</font></tt></blockquote>
+To leave the Swing form of the interpreter, type <tt><font size=+1><a href="#bye">bye</a></font></tt>&nbsp;
 and press Enter or pull down the File-Quit menu option. You may also use
 <tt><font size=+1><a href="#sysexit">sysexit</a></font></tt>.
 <h3>
@@ -523,16 +539,16 @@ The class <tt>com.SoftWoehr.FIJI.base.desktop.FijiApplet</tt> is an java.Applet
 form of the FIJI interpreter. It's like a terminal window.
 <p>FIJI currently offers one special attribute to the &lt;APPLET> tag,
 the
-<blockquote>loadfile="filename"</blockquote>
+<blockquote><tt><font size=+1>loadfile="filename"</font></tt></blockquote>
 attribute. Here is typical usage:
-<blockquote>&lt;applet
-<br>code="com.SoftWoehr.desktop.FijiApplet.class"
-<br>codebase="./softwoehr.jar"
-<br>width="500"
-<br>height="250"
-<br>loadfile="somefile.fiji"
-<br>>
-<br>&lt;/applet></blockquote>
+<blockquote><tt><font size=+1>&lt;applet</font></tt>
+<br><tt><font size=+1>code="com.SoftWoehr.desktop.FijiApplet.class"</font></tt>
+<br><tt><font size=+1>codebase="./softwoehr.jar"</font></tt>
+<br><tt><font size=+1>width="500"</font></tt>
+<br><tt><font size=+1>height="250"</font></tt>
+<br><tt><font size=+1>loadfile="somefile.fiji"</font></tt>
+<br><tt><font size=+1>></font></tt>
+<br><tt><font size=+1>&lt;/applet></font></tt></blockquote>
 which will cause the applet to load and interpret somefile.fiji before
 giving the oK prompt.
 <p><b>Note</b> that FIJI doesn't make a very good applet because it does
@@ -3173,7 +3189,12 @@ fun debugging together, it's easy to see!
 In the <a href="#AWT form of the interpreter">AWT form of the interpreter</a>,
 if the first element of a line of input is <tt><font size=+1>oK</font></tt>
 that input is not recognized. To get around this, enter the lexeme as <tt><font size=+1>'
-oK</font></tt> instead. This should not be a problem in new FijiGUI.</li>
+oK</font></tt> instead.</li>
+
+<ul>
+<li>
+This is not a problem in new FIJIGui based on the Java Foundation Classes.</li>
+</ul>
 </ul>
 
 <h3>
@@ -3202,7 +3223,27 @@ especially under the GUI version of the interpreter. I'm looking at this.</li>
 <h2>
 <a NAME="Revisions"></a>Revisions</h2>
 <a href="#Table of Contents">[Table of Contents]</a>
-<p>1.2 2001.07.15
+<p>1.2 2001-10-15 gamma
+<ul>
+<li>
+Better build file.</li>
+</ul>
+1.2 2001.08.15 beta
+<ul>
+<li>
+Added <a href="http://jakarta.apache.org/ant/index.html">Jakarta Ant</a>
+build file.</li>
+
+<li>
+Cleaned up some doc entries.</li>
+
+<li>
+Fixed some bugs.</li>
+
+<li>
+Cleaned up and commented code.</li>
+</ul>
+1.2 2001.07.15 alpha
 <ul>
 <li>
 Fixed bugs</li>
