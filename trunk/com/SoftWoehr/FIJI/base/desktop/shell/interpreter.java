@@ -39,13 +39,13 @@ import  com.SoftWoehr.util.*;
 /** A class to interpret input of a stream of FIJI commands.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class interpreter implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: interpreter.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: interpreter.java,v 1.3 2001-09-10 05:20:50 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The rcs string */
@@ -53,6 +53,7 @@ public class interpreter implements SoftWoehr, verbose {
     
     /**  Flags whether we are in verbose mode. */
     private boolean isverbose = false;
+    
     /**  Helper for verbose mode. */
     private verbosity v = new verbosity(this);
     
@@ -102,14 +103,10 @@ public class interpreter implements SoftWoehr, verbose {
         warmReset();
     }
     
-    /**
-     * @return  */
-    public String toString()
-    {return super.toString();}
-    
     /** shutdown() here closes the output streams.
      * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @return always 0
+     */
     public int shutdown() {
         closeCurrentInput();
         closeCurrentOutput();
@@ -117,7 +114,7 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** Get the engine associated with this interpreter.
-     * @return  */
+     * @return the engine */
     public engine getEngine() {
         return myEngine;
     }
@@ -148,74 +145,78 @@ public class interpreter implements SoftWoehr, verbose {
         }                                                        /* End catch*/
     }
     
-    /**
-     * @throws Throwable  */
-    protected void finalize() throws Throwable {           /* Called by garbage collector in case no longer referenced*/
-        super.finalize();
-    }
-    
     /** Set the kill flag.
-     * @param tf  */
+     * @param tf <code>true</code> means exit the interpreter loop
+     */
     public void setKillFlag(boolean tf) {
         killFlag = tf;
     }
     
     /** Get the kill flag.
-     * @return  */
+     * @return the flag which means exit the interpreter loop
+     */
     public boolean getKillFlag() {
         return killFlag;
     }
     
     /** Set the quit flag.
-     * @param tf  */
+     * @param tf <code>true</code> means do a 'quit'
+     */
     public void setQuitFlag(boolean tf) {
         quitFlag = tf;
     }
     
     /** Get the quit flag.
-     * @return  */
+     * @return the flag which means do a 'quit'
+     */
     public boolean getQuitFlag() {
         return quitFlag;
     }
     
     /** Set the interpreter numeric base.
-     * @param i  */
+     * @param i the base
+     */
     public void setBase(int i) {
         base = i;
     }
     
     /** Get the interpreter numeric base.
-     * @return  */
+     * @return the base
+     */
     public int getBase() {
         return base;
     }
     
     /** Set the string tokenizing default delimiters.
-     * @param delims  */
+     * @param delims the delimiters for lexing
+     */
     public void setDefaultDelimiters(String delims) {
         defaultDelimiters = delims;
     }
     
     /** Get the string tokenizing default delimiters.
-     * @return  */
+     * @return the delimiters for lexing
+     */
     public String getDefaultDelimiters() {
         return defaultDelimiters;
     }
     
     /** Set the current input
-     * @param i  */
+     * @param i current input stream
+     */
     public void setInput(InputStream i) {
         currentInput = i;
     }
     
     /** Get the current input
-     * @return  */
+     * @return current input stream
+     */
     public InputStream getInput() {
         return currentInput;
     }
     
     /** Set the current output
-     * @param o  */
+     * @param o current output stream */
     public void setOutput(OutputStream o) {
         currentOutput = o;
         if (getOutputStreamEncoding() == null) {
@@ -235,13 +236,15 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** Get the current output
-     * @return  */
+     * @return current output stream
+     */
     public OutputStream getOutput() {
         return currentOutput;
     }
     
     /** Get the output stream writer
-     * @return  */
+     * @return current output stream writer
+     */
     protected OutputStreamWriter getOutputStreamWriter() {
         return outputStreamWriter;
     }
@@ -251,13 +254,15 @@ public class interpreter implements SoftWoehr, verbose {
      * the codepage take effect.
      *
      * @see setOutput#
-     * @param codepage  */
+     * @param codepage the codepage
+     */
     public void setOutputStreamEncoding(String codepage) {
         outputStreamEncoding = codepage;
     }
     
     /** Get output stream codepage name.
-     * @return  */
+     * @return output stream codepage name.
+     */
     public String getOutputStreamEncoding() {
         return outputStreamEncoding;
     }
@@ -265,8 +270,9 @@ public class interpreter implements SoftWoehr, verbose {
     /** Get next lexeme in string being interpret()'ed
      * using the delimiter set passed in the 'delims'
      * argument.
-     * @param delims
-     * @return  */
+     * @param delims the delimiters
+     * @return the string
+     */
     public String nextLexeme(String delims) {
         String s = null;
         if (null != st) {
@@ -283,7 +289,8 @@ public class interpreter implements SoftWoehr, verbose {
     }                            /* public String nextLexeme(String delims)*/
     
     /** Get next lexeme in string being interpret()'ed using default delims.
-     * @return  */
+     * @return the next lexeme string
+     */
     public String nextLexeme() {
         return nextLexeme(defaultDelimiters);
     }                                         /* public String nextLexeme()*/
@@ -298,9 +305,10 @@ public class interpreter implements SoftWoehr, verbose {
      *
      * <code>class StringTokenizer</code> in Java 1.1.7
      * and before is not a full-bodied lexing facility.
-     * @param delims
-     * @param consumeDelim
-     * @return  */
+     * @param delims the delimiters
+     * @param consumeDelim <code>true</code> means consume delims
+     * @return the next lexeme string
+     */
     public String nextLexeme(String delims, boolean consumeDelim) {
         String s = null;
         if (null != st) {
@@ -316,7 +324,8 @@ public class interpreter implements SoftWoehr, verbose {
     }                    /* nextLexeme(String delims, boolean consumeDelim)*/
     
     /** Number of lexemes left in string being interpret()'ed .
-     * @return  */
+     * @return num lexemes left
+     */
     public int countLexemes() {
         int count = 0;
         if (null != st) {
@@ -326,7 +335,8 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** Output a string
-     * @param s  */
+     * @param s The String
+     */
     public void output(String s) {
         try {
             getOutputStreamWriter().write(s);
@@ -357,7 +367,8 @@ public class interpreter implements SoftWoehr, verbose {
     }
     
     /** Interpret one String.
-     * @param s  */
+     * @param s String to interpret as program text
+     */
     public void interpret(String s) {
         announce("String to interpret is: " + s);
         String aLexeme;                   /* Holds a lexeme as we examine it. */
@@ -465,9 +476,9 @@ public class interpreter implements SoftWoehr, verbose {
     }                                      /* End of interpreter.interpret*/
     
     
-   /* Load a file as FIJI source. */
-    /**
-     * @param filename  */
+    /** Load a file as FIJI source.
+     * @param filename  file to load
+     */
     public void load(String filename) {
         myEngine.push(filename);
         myEngine.load();
@@ -483,10 +494,10 @@ public class interpreter implements SoftWoehr, verbose {
         System.err.println(" file file ...      .. these files will be loaded as FIJI source code.");
     }
     
-    /**
+    /** true if verbose
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @return  */
+     * @return verbosity */
     public boolean isVerbose()              {return isverbose;}
     
     /**
@@ -494,7 +505,7 @@ public class interpreter implements SoftWoehr, verbose {
      * it control engine's verbosity, too.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
+     * @param tf verbosity */
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
         if (myEngine != null) {
@@ -503,14 +514,15 @@ public class interpreter implements SoftWoehr, verbose {
         }                                                          /* End if*/
     }
     
-    /**
+    /** Announce a string if verbose.
      * @see com.SoftWoehr.util.verbose#
      * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+     * @param s string to announce */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Demonstrate <code>interpreter</code>.
-     * @param argv  */
+     * @param argv  Arguments to interpreter
+     */
     public static void main(String argv[]) {
         interpreter i;
         InputStreamReader isr = null;
