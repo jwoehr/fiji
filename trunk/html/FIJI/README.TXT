@@ -9,6 +9,7 @@ FIJI and all its source files and documentation are
 Copyright 1998, 1999, 2000, 2001
 Jack J. Woehr, PO Box 51, Golden, Colorado 80402-0051
 jax@softwoehr.com http://www.softwoehr.com
+jwoehr@fiji.sourceforge.net http://fiji.sourceforge.net
 
 --------------------------------------------------------------------
 FIJI is now maintained/distributed from http://fiji.sourceforge.net.
