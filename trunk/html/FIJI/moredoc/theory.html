@@ -7,7 +7,7 @@
    <meta name="Description" content="Top-level description of the com.SoftWoehrJava class library hierarchy.">
    <title>Theory of com.SoftWoehr</title>
 </head>
-<body>
+<body text="#000000" bgcolor="#E1E9D6" link="#0000EE" vlink="#551A8B" alink="#FF0000">
 
 <center>
 <h1>
@@ -332,10 +332,11 @@ records of nested function execution. When a function calls another function
 as part of its execution, an activation record representing the caller
 and its suspended state is pushed to the return stack.
 <p>The FIJI return stack is implemented in the file <tt><font size=+1>InnerInterpreter.java</font></tt>.
-It is currently just a <tt><font size=+1>java.util.Stack</font></tt> and
-does not have a class of its own within the FIJI framework. The activation
-record which the <tt><font size=+1>InnerInterpreter</font></tt> uses to
-represent the execution state of a FIJI word is the class <tt><font size=+1>Interpretation</font></tt>
+It
+is currently just a <tt><font size=+1>java.util.Stack</font></tt> and does
+not have a class of its own within the FIJI framework. The activation record
+which the <tt><font size=+1>InnerInterpreter</font></tt> uses to represent
+the execution state of a FIJI word is the class <tt><font size=+1>Interpretation</font></tt>
 found in the same file.
 <h4>
 <a NAME="Words"></a>Words</h4>
@@ -473,8 +474,6 @@ which are described in the User's Guide.
 <hr WIDTH="100%">
 <br><i><a href="#Theory of com.SoftWoehr">Return to Top</a></i>
 <br><a href="http://www.well.com/~jax">Jack&nbsp; J. Woehr</a>
-<br>1999-01-17
-<br><i>Revised 2001-10-15</i>
-<br>Fairmount, Colorado
+<p><i>$Id: theory.html,v 1.3 2001-09-11 00:11:34 jwoehr Exp $</i>
 </body>
 </html>
