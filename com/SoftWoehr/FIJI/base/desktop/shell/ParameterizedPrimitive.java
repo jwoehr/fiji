@@ -39,14 +39,15 @@ import  com.SoftWoehr.util.*;
  * compiled 'to'.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: ParameterizedPrimitive.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+    private static final String rcsid = "$Id: ParameterizedPrimitive.java,v 1.3 2001-09-15 04:29:56 jwoehr Exp $";
     /** Implements com.SoftWoehr.SoftWoehr
-     * @return  */
+     * @return the rcsid
+     */
     public String rcsId() {return rcsid;}
     
     /**  Flags whether we are in verbose mode. */
@@ -64,11 +65,11 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /** The primitive for a branch. */
     public static class Branch extends ParameterizedPrimitive {
         /**
-         * @param name
-         * @param methodName
-         * @param delta
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */        
+         * @param name name of prim
+         * @param methodName method prim executes
+         * @param delta branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public Branch( String name
         , String methodName
         , int delta
@@ -82,9 +83,9 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /** The primitive for an unconditional branch. */
     public static class UnconditionalBranch extends Branch {
         /** Construct an unconditional branch.
-         * @param delta
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */
+         * @param delta branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public UnconditionalBranch(int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -95,7 +96,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         }
         
         /** Return string representation of the primitive.
-         * @return  */
+         * @return string rep
+         */
         public String toString() {
             Object  o = super.getObject();
             Integer i = (Integer) o;
@@ -107,9 +109,10 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /** The primitive for a conditional branch. */
     public static class ConditionalBranch extends Branch {
         /** Construct a conditional branch.
-         * @param delta
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */
+         * @param delta branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq
+         */
         public ConditionalBranch(int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -120,7 +123,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         }
         
         /** Return string representation of the primitive.
-         * @return  */
+         * @return string rep
+         */
         public String toString() {
             Object  o = super.getObject();
             Integer i = (Integer) o;
@@ -132,9 +136,9 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /** The primitive for a literal. */
     public static class Literal extends ParameterizedPrimitive {
         /** Construct a literal for any object.
-         * @param o
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */
+         * @param o the literalized obj
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public Literal(Object o)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -146,7 +150,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         }
         
         /** Return string representation of the primitive.
-         * @return  */
+         * @return  string rep
+         */
         public String toString() {
             Object  o = super.getObject();
             String s = "A Literal for " + o;
@@ -158,10 +163,10 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
      * in the Definition.
      */
     public static class Do extends ParameterizedPrimitive {
-        /**
-         * @param offset
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */        
+        /** Instance a prim for setting up a loop.
+         * @param offset branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public Do   (int offset)   /* Offset in definition at which 'do' occurs*/
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -171,10 +176,10 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     
     /** The primitive for a loop. */
     public static class Loop extends ParameterizedPrimitive {
-        /**
-         * @param delta
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */        
+        /** Instance a prim for looping by one.
+         * @param delta branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public Loop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -184,10 +189,10 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     
     /** The primitive for a +loop. */
     public static class PlusLoop extends ParameterizedPrimitive {
-        /**
-         * @param delta
-         * @throws ClassNotFoundException
-         * @throws NoSuchMethodException  */        
+        /** Instance a prim for looping by some increment.
+         * @param delta branch offset
+         * @throws ClassNotFoundException res ipse loq
+         * @throws NoSuchMethodException res ipse loq  */
         public PlusLoop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
@@ -200,12 +205,13 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
      * (possibly null) to be the datum for this primitive instance,
      * and an object class referring to the datum to allow validation
      * of dynamically initialized ParameterizedPrimitive's.
-     * @param name
-     * @param methodName
-     * @param object
-     * @param objectClass
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException  */
+     * @param name name of the prim
+     * @param methodName method prim executes
+     * @param object parameter of method
+     * @param objectClass class of method
+     * @throws ClassNotFoundException res ipse loq
+     * @throws NoSuchMethodException res ipse loq res ipse loq
+     */
     public ParameterizedPrimitive(String name
     ,String methodName
     ,Object object
@@ -217,20 +223,21 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     }
     
     /** Reinitialize object setting name, method name, object, object class.
-     * @param name
-     * @param methodName
-     * @param o
-     * @param objectClass
-     * @throws ClassNotFoundException
-     * @throws NoSuchMethodException  */
+     * @param name name of the prim
+     * @param methodName method prim executes
+     * @param obj object parameter of method
+     * @param objectClass class of method
+     * @throws ClassNotFoundException res ipse loq
+     * @throws NoSuchMethodException res ipse loq
+     */
     public void reinit( String name
     , String methodName
-    , Object o
+    , Object obj
     , Class objectClass
     )
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
-        myObject = o;
+        myObject = obj;
         myObjectClass = objectClass;
         setName(name);
         Class signature[] = new Class[1];
@@ -241,7 +248,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     
     /** Return string representation of object. Doesn't do any
      * checking for object validity.
-     * @return  */
+     * @return  string rep
+     */
     public String toString() {
         String s = "";
         s += "A ParameterizedPrimitive named " + getName();
@@ -252,8 +260,9 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     }
     
     /** The ParameterizedPrimitive notifies subcomponents of shutdown then shuts itself down.
-     * @see com.SoftWoehr.SoftWoehr#
-     * @return  */
+     * @see com.SoftWoehr.SoftWoehr#shutdown
+     * @return  always zero 0
+     */
     public int shutdown() {
         shutdownHelper.shutdownClients();
         // Your shutdown code for this object goes here.
@@ -269,7 +278,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     //  }
     
     /** Invoke engine method on has'd Object.
-     * @param e  */
+     * @param e  associated engine
+     */
     public void execute(engine e) {
         Object argArray[] = new Object[1];
         argArray[0] = this;
@@ -282,25 +292,29 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     }
     
     /** Get the object this paramprim operates on implicitly.
-     * @return  */
+     * @return  the object
+     */
     public Object getObject() {
         return myObject;
     }
     
     /** Set the object this paramprim operates on implicitly.
-     * @param o  */
+     * @param o object value
+     */
     public void setObject(Object o) {
         myObject = o;
     }
     
     /** Get the Class this paramprim operates on implicitly.
-     * @return  */
+     * @return type of param
+     */
     public Class getObjectClass() {
         return myObjectClass;
     }
     
     /** Set the Class this paramprim operates on implicitly.
-     * @param o  */
+     * @param o type of param
+     */
     public void setObjectClass(Class o) {
         myObjectClass = o;
     }
@@ -314,7 +328,8 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
      * of object. Cf. engine.runtimeTo() which calls validate()
      * but doesn't compare to class Value because it's assumed
      * that the code creating the primitive knew what class was meant.
-     * @return  */
+     * @return true .iff valid
+     */
     public boolean validate() {
         boolean result = true;
         if (null == myObject || null == myObjectClass) {
@@ -326,26 +341,30 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         return result;
     }
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @return  */
+    /** Is this verbose and announcing?
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @return true if verbose
+     */
     public boolean isVerbose()              {return isverbose;}
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param tf  */
+    /** Set verbose and announcing.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param tf true to set verbose
+     */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /**
-     * @see com.SoftWoehr.util.verbose#
-     * @see com.SoftWoehr.util.verbosity#
-     * @param s  */
+    /** Emit a string message if set verbose.
+     * @see com.SoftWoehr.util.verbose
+     * @see com.SoftWoehr.util.verbosity
+     * @param s string to announce if verbose
+     */
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Demonstrate <code>ParameterizedPrimitive</code>.
-     * @param argv  */
+     * @param argv  args to main -- not used
+     */
     public static void main(String argv[]) {
         
         GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
