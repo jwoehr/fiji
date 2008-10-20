@@ -20,7 +20,7 @@ import com.SoftWoehr.JaXWT.StockDialog;
 /** The application controller for the GUI form of FIJI.
  *
  * @author jax
- * @version $Id: FIJIGui.java,v 1.2 2001-09-06 01:45:18 jwoehr Exp $
+ * @version $Id: FIJIGui.java,v 1.3 2008-10-20 18:04:36 jwoehr Exp $
  */
 public class FIJIGui extends Object implements Runnable {
     
@@ -155,7 +155,10 @@ public class FIJIGui extends Object implements Runnable {
     public static void main (String args[]) {
         FIJIGui fiji = new FIJIGui();
         fiji.process_options(args);
-        fiji.new_frame().show ();
+        FijiFrame frame = fiji.new_frame();
+        frame.setOutToFijiTextArea();
+        frame.setErrToFijiTextArea();
+	frame.show ();
     }
     
     /** Run when used to create a Thread.
