@@ -4,7 +4,7 @@
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.14 2001-09-08 04:34:39 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.15 2008-10-20 20:50:25 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
@@ -40,7 +40,7 @@
             in {curly braces} indicate the variables whose substitutions will
             be made at build time to compose the new variable.
 
-                fiji.version=1.2_gamma
+                fiji.version=1.2_delta
                 fiji.source.directory=.
                 fiji.destination.directory=.
                 fiji.jar.filename=fiji.{fiji.version}.jar
@@ -53,7 +53,7 @@
 
     <!-- Define properties and announce them.  -->
     <target description="Set properties all targets need" name="init">
-        <property name="fiji.version" value="1.2_gamma"/>
+        <property name="fiji.version" value="1.2_delta"/>
         <property name="fiji.source.directory" value="."/>
         <property name="fiji.destination.directory" value="."/>
         <property name="fiji.jar.filename" value="fiji.${fiji.version}.jar"/>
