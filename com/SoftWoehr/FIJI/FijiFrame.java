@@ -18,7 +18,7 @@ package com.SoftWoehr.FIJI;
  * the hooks to the application controller and also to the
  * panel controller for the FijiPanel it contains.
  * @author  jax
- * @version $Id: FijiFrame.java,v 1.4 2001-10-08 22:29:55 jwoehr Exp $
+ * @version $Id: FijiFrame.java,v 1.5 2008-10-20 18:04:36 jwoehr Exp $
  */
 public class FijiFrame extends javax.swing.JFrame {
     
@@ -437,7 +437,25 @@ public class FijiFrame extends javax.swing.JFrame {
   protected FijiTextArea get_panel_text_area() {
       return fijiPanel.get_text_area();
   }
-  
+ 
+  /** Set System.out to the FijiTextArea
+   *  @return the original PrintStream to which out was set
+   */
+  public java.io.PrintStream setOutToFijiTextArea () {
+      java.io.PrintStream oldOut = System.out;
+      System.setOut(new com.SoftWoehr.JaXWT.JTextAreaPrintStream(get_panel_text_area().get_output_stream()));
+      return oldOut;
+  }
+ 
+  /** Set System.err to the FijiTextArea
+   *  @return the original PrintStream to which err was set
+   */
+  public java.io.PrintStream setErrToFijiTextArea () {
+      java.io.PrintStream oldErr = System.err;
+      System.setErr(new com.SoftWoehr.JaXWT.JTextAreaPrintStream(get_panel_text_area().get_output_stream()));
+      return oldErr;
+  }
+
   // Closing and Exiting
   //////////////////////
   
