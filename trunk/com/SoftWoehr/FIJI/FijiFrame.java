@@ -18,7 +18,7 @@ package com.SoftWoehr.FIJI;
  * the hooks to the application controller and also to the
  * panel controller for the FijiPanel it contains.
  * @author  jax
- * @version $Id: FijiFrame.java,v 1.5 2008-10-20 18:04:36 jwoehr Exp $
+ * @version $Id: FijiFrame.java,v 1.6 2008-10-20 20:50:25 jwoehr Exp $
  */
 public class FijiFrame extends javax.swing.JFrame {
     
@@ -36,6 +36,7 @@ public class FijiFrame extends javax.swing.JFrame {
      */
     public FijiFrame(FIJIGui fiji) {
         my_application_controller = fiji;
+	setPreferredSize(new java.awt.Dimension(1680, 1050));
         initComponents();
         setJMenuBar(menuBar); // Needed because NetBeans 3.2.1 nukes menu bars
         loadIcon("com/SoftWoehr/images/fiji.jpg", "FIJI Icon");
@@ -273,7 +274,7 @@ public class FijiFrame extends javax.swing.JFrame {
             }
         });
         
-        fijiPanel.setPreferredSize(new java.awt.Dimension(600, 400));
+        // fijiPanel.setPreferredSize(new java.awt.Dimension(1680, 1050));
         jScrollPane1.setViewportView(fijiPanel);
         
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
