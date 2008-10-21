@@ -52,7 +52,7 @@ import com.SoftWoehr.util.*;
  * stack diagram referring to the effect of the operation on the object
  * stack maintained by the engine.
  * @author $Author: jwoehr $
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class engine implements SoftWoehr, verbose {
     
@@ -63,7 +63,7 @@ public class engine implements SoftWoehr, verbose {
     public static final boolean COMPILING = true;
     
     /** Revision level */
-    private static final String rcsid = "$Id: engine.java,v 1.9 2001-10-08 22:29:55 jwoehr Exp $";
+    private static final String rcsid = "$Id: engine.java,v 1.10 2008-10-21 05:21:56 jwoehr Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The RCS id
@@ -607,7 +607,18 @@ public class engine implements SoftWoehr, verbose {
     
     /** Convert an arg to a JavaParam with the class signature set.
      * ()        o stringClassName|Class -- javaParam
-     * @throws NotClassName If argument not a class name.
+     * with special handling for the primitive type names:
+     * <ul>
+     * <li>boolean</li>
+     * <li>byte</li>
+     * <li>char</li>
+     * <li>double</li>
+     * <li>float</li>
+     * <li>int</li>
+     * <li>long</li>
+     * <li>short</li>     
+     * </ul>
+     * @throws NotClassName If argument not identifiable as a class or class name.
      */
     public void castParam()
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotClassName {
@@ -617,7 +628,24 @@ public class engine implements SoftWoehr, verbose {
             if (o.getClass() == cClass) {
                 c = (Class) pop();                                  /* Yes, use it.*/
             }
-            else                       /* TOS is presumed a string naming a class*/ {
+	      /* TOS is presumed a string naming a class or a primitive type */
+            else if (o.toString().equals("boolean")) {
+		    pop(); c = java.lang.Boolean.TYPE;
+	    } else if (o.toString().equals("byte")) {
+		    pop(); c = java.lang.Byte.TYPE;
+	    } else if (o.toString().equals("char")) {
+		    pop(); c = java.lang.Character.TYPE;
+	    } else if (o.toString().equals("double")) {
+		    pop(); c = java.lang.Double.TYPE;
+	    } else if (o.toString().equals("float")) {
+		    pop(); c = java.lang.Float.TYPE;
+	    } else if (o.toString().equals("int")) {
+		    pop(); c = java.lang.Integer.TYPE;
+	    } else if (o.toString().equals("long")) {
+		    pop(); c = java.lang.Long.TYPE;
+	    } else if (o.toString().equals("short")) {
+		    pop(); c = java.lang.Short.TYPE;
+	    } else {
                 classForName();         /* TOS presumed to be string name of class.*/
                 c = (Class) pop();                         /* Grab resultant class.*/
             }                                                         /* End if*/
