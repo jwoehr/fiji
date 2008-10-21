@@ -14,11 +14,12 @@
 
   <title>FIJI User's Guide</title>
   <meta http-equiv="Last-Modified" content=
-  "Mon, 20 Oct 2008 20:33:44 UTC">
+  "Tue, 21 Oct 2008 13:10:22 UTC">
 </head>
 
-<body alink="#FF0000" bgcolor="#E1E9D6" link="#0000EE" text=
-"#000000" vlink="#551A8B">
+<body style=
+"color: rgb(0, 0, 0); background-color: rgb(225, 233, 214);" alink=
+"#FF0000" link="#0000EE" vlink="#551A8B">
   <center>
     <h1><a name="TheTop"></a>FIJI ForthIsh Java Interpreter 1.2
     User's Guide</h1>
@@ -31,7 +32,7 @@
     "http://java.sun.com/products/plugin/1.3/plugin-install.html"
     align="bottom" height="250" width="500"><noembed>No Java 2 SDK,
     Standard Edition v 1.3 support for
-    APPLET!!&amp;amp;nbsp;</noembed>
+    APPLET!!&amp;amp;amp;amp;amp;amp;amp;amp;amp;nbsp;</noembed>
   </center><!-- IE --><!--
 <center><OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
      width="200" height="200" align="baseline" 
@@ -1038,7 +1039,7 @@
   its execution semantics to the current definition when
   encountered by FIJI in compile state. Many FIJI words possess
   special compilation semantics, among them&nbsp; <tt><font size=
-  "+1"><a href="#doublequotes">"</a><a href=
+  "+1"><a href="#doublequotes">"</a>&nbsp;<a href=
   "#backtick">`</a></font></tt>&nbsp; and&nbsp; <tt><a href=
   "#%5B"><font size="+1">[</font></a></tt>&nbsp; .
 
@@ -1667,6 +1668,58 @@
   <tt><font size="+1">`1048568 /*class
   java.lang.Long*/`</font></tt><br>
   <tt><font size="+1">oK</font></tt></p>
+
+  <h4><a name="Session_Three"></a>Session
+  Three</h4><big><span style="font-family: monospace;">variable
+  mywindow</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">javax.swing.JFrame class
+  new ( ) mywindow !</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">mywindow @ setVisible (
+  true (primitive) , )</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">mywindow @ setVisible (
+  false (primitive) , )</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">mywindow @
+  dispose</span></big><br>
+  <br>
+  The above:<br>
+
+  <ol>
+    <li>Creates a variable to store the <big><span style=
+    "font-family: monospace;">JFrame</span></big> object.</li>
+
+    <li>Creates the <big><span style=
+    "font-family: monospace;">JFrame</span></big> object and stores
+    it to the <big><span style=
+    "font-family: monospace;">variable</span></big>.</li>
+
+    <li>Shows the <big><span style=
+    "font-family: monospace;">JFrame</span></big>.
+
+      <ul>
+        <li>Note that FIJI <span style=
+        "font-family: monospace;">true</span> has to be signalled
+        to argument marshalling as a primitive <span style=
+        "font-family: monospace;">boolean</span> as opposed to
+        <big><span style=
+        "font-family: monospace;">java.lang.Boolean</span></big><br>
+        </li>
+      </ul>
+    </li>
+
+    <li>Hides the <big><span style=
+    "font-family: monospace;">JFrame</span></big>.</li>
+
+    <li>Disposes of the <big><span style="font-family: monospace;">
+      JFrame</span></big>
+
+      <ul>
+        <li>If you omit to dispose of a windowing object, then
+        later when you execute <big><span style=
+        "font-family: monospace;">bye</span></big> FIJI will exit
+        but the JVM will not exit.<br></li>
+      </ul>
+    </li>
+  </ol>
   <hr width="100%">
 
   <h2><a name="FIJI Wordlist"></a>FIJI Wordlist</h2><a href=
@@ -1927,10 +1980,9 @@
 
   <p>Some of the following will be unintelligible if you have not
   studied Java reflection and the relationship between Java classes
-  and Java primitive types.<br>
-  &nbsp;</p>
+  and Java primitive types.<br></p>
 
-  <table nosave="" border="1" width="100%">
+  <table style="width: 100%;" nosave="" border="1">
     <tbody>
       <tr nosave="">
         <td nosave=""><a name="!"></a><tt><font size=
@@ -2072,10 +2124,11 @@
 
         <td><tt><font size="+1">o s -- JavaParam</font></tt></td>
 
-        <td>
-          <tt><font size="+1">"Cast" creates a JavaParam from an
-          Object and a String. The String represents the name of
-          the class as which it is desired that the Object be
+        <td style="font-family: monospace;">
+          <font size="+1">"Cast" creates a JavaParam from an Object
+          and a String. The String represents the fully qualified
+          name of the class (or the undecorated name of a primitive
+          Java type) as which it is desired that the Object be
           represented when FIJI attempts to resolve a method call.
           The point is that java.lang.Class.getDeclaredMethod()
           does not promote types in resolving a method signature,
@@ -2083,12 +2136,44 @@
           some kind of explicit identification as to desired method
           signature for FIJI to resolve the call dynamically at
           runtime. See the discussion of <a href=
-          "#Calling%20Java">calling Java</a>.</font></tt>
+          "#Calling%20Java">calling Java</a>.<br>
+          <br>
+          As noted, "Cast" recognizes, in addition to fully
+          qualified class names, the</font> <font size=
+          "+1">undecorated name of a primitive Java
+          type:<br></font>
 
-          <p><tt><font size="+1">See also: <a href=
+          <ul>
+            <li><big>boolean</big></li>
+
+            <li><big>byte<br></big></li>
+
+            <li><big>character</big></li>
+
+            <li><big>double</big></li>
+
+            <li><big>float<br></big></li>
+
+            <li><big>int</big></li>
+
+            <li><big>long</big></li>
+
+            <li><big>short</big></li>
+          </ul><big>However, it is usually easier to say<br></big>
+
+          <div style="margin-left: 40px;">
+            <big>myJFrame @ setVisible ( true (primitive) ,
+            )<br></big>
+          </div><big>than<br></big>
+
+          <div style="margin-left: 40px;">
+            <big>myJFrame @ setVisible ( true boolean () , )</big>
+          </div>
+
+          <p><font size="+1">See also: <a href=
           "#%28primitive%29">(primitive)</a> <a href=
-          "#%3Eprimitive">&gt;primitive</a><a href=
-          "#primitive">primitive</a></font></tt></p>
+          "#%3Eprimitive">&gt;primitive</a>&nbsp;<a href=
+          "#primitive">primitive</a></font></p>
         </td>
       </tr>
 
@@ -2137,7 +2222,7 @@
           Java</a>.</font></tt>
 
           <p><tt><font size="+1">See also: <a href="#%28%29">()</a>
-          <a href="#%3Eprimitive">&gt;primitive</a><a href=
+          <a href="#%3Eprimitive">&gt;primitive</a>&nbsp;<a href=
           "#primitive">primitive</a></font></tt></p>
         </td>
       </tr>
@@ -2512,7 +2597,7 @@
       </tr>
 
       <tr>
-        <td><a name="&gt;primitive"></a><tt><font size=
+        <td><a name="&gt;primitive"></a>&nbsp;<tt><font size=
         "+1">&gt;primitive</font></tt></td>
 
         <td><tt><font size="+1">o -- c</font></tt></td>
@@ -2531,7 +2616,7 @@
           Java</a>.</font></tt>
 
           <p><tt><font size="+1">See also: <a href="#%28%29">()</a>
-          <a href="#%28primitive%29">(primitive)</a><a href=
+          <a href="#%28primitive%29">(primitive)</a>&nbsp;<a href=
           "#primitive">primitive</a></font></tt></p>
         </td>
       </tr>
@@ -2884,7 +2969,7 @@
         <td><a name="depth"></a><tt><font size=
         "+1">depth</font></tt></td>
 
-        <td width="90%"><tt><font size="+1">oN .. o1 -- oN .. o1
+        <td><tt><font size="+1">oN .. o1 -- oN .. o1
         N</font></tt></td>
 
         <td><tt><font size="+1">Pushes the number representing the
@@ -3501,7 +3586,7 @@
       </tr>
 
       <tr>
-        <td><a name="primitive"></a><tt><font size=
+        <td><a name="primitive"></a>&nbsp;<tt><font size=
         "+1">primitive</font></tt></td>
 
         <td><tt><font size="+1">c1 -- c2</font></tt></td>
@@ -3513,7 +3598,7 @@
           Java</a>.</font></tt>
 
           <p><tt><font size="+1">See also: <a href="#%28%29">()</a>
-          <a href="#%28primitive%29">(primitive)</a><a href=
+          <a href="#%28primitive%29">(primitive)</a>&nbsp;<a href=
           "#%3Eprimitive">&gt;primitive</a></font></tt></p>
         </td>
       </tr>
@@ -4266,11 +4351,9 @@
     form of the interpreter</a>, if the first element of a line of
     input is <tt><font size="+1">oK</font></tt> that input is not
     recognized. To get around this, enter the lexeme as
-    <tt><font size="+1">' oK</font></tt> instead.</li>
+    <tt><font size="+1">' oK</font></tt> instead.
 
-    <li style=
-    "list-style-type: none; list-style-image: none; list-style-position: outside;">
-    <ul>
+      <ul>
         <li>This is not a problem in new FIJIGui based on the Java
         Foundation Classes.</li>
       </ul>
@@ -4316,13 +4399,11 @@
   <p>1.2 2001-10-15 gamma</p>
 
   <ul>
-    <li>Better build file.</li>
+    <li>Better build file.
 
-    <li style=
-    "list-style-type: none; list-style-image: none; list-style-position: outside;">
-    <ul>
-        <li>&nbsp;Added manifest file to jar to launch FIJIGui
-        direct from jar.</li>
+      <ul>
+        <li>Added manifest file to jar to launch FIJIGui direct
+        from jar.</li>
       </ul>
     </li>
 
@@ -4356,11 +4437,9 @@
   </ul>1.1 1999-02-04
 
   <ul>
-    <li>Added to language</li>
+    <li>Added to language
 
-    <li style=
-    "list-style-type: none; list-style-image: none; list-style-position: outside;">
-    <ul>
+      <ul>
         <li><tt><a href="#and"><font size=
         "+1">and</font></a></tt></li>
 
