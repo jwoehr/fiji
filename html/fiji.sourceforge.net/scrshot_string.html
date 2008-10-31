@@ -1,0 +1,54 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <meta name="Author" content="Jack J. Woehr">
+   <meta name="Description" content="FIJI ForthIsh Java Interpreter open source software project intro page at SourceForge.net">
+   <meta name="Keywords" content="programming,Forth programming language,Java programming language,interpreter,compiler,open source software,free software">
+   <title>FIJI Screen Shot: a java.lang.String</title>
+</head>
+<body text="#000000" bgcolor="#E1E9D6" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+FIJI&nbsp;Screen Shot: Manipulating a <tt>java.lang.String</tt></h1></center>
+
+<center><table CELLPADDING=20 WIDTH="100%" NOSAVE >
+<tr ALIGN=CENTER VALIGN=CENTER NOSAVE>
+<td ALIGN=LEFT VALIGN=CENTER NOSAVE>FIJI can load any Java class, instance
+it, and manipulate it. Here's a simple example, a screen shot of FIJI manipulating
+an object of the type <tt>java.lang.String</tt>. FIJI possesses inherent
+syntax to push strings to the object reference stack. In the example, text
+for interpretation is being entered in the command line box below the main
+window. After the Interpret button is pressed, this input is echoed in
+the main window and interpreter. Input is parsed left-to-right just as
+in Forth. In the screen shot,&nbsp;
+<blockquote><tt>`A short string`</tt></blockquote>
+is encountered and pushed to the object stack. Then the lexeme
+<blockquote><tt>`length`</tt></blockquote>
+is pushed to the object stack. FIJI doesn't care what these mean. But then
+the operators
+<blockquote><tt>(</tt></blockquote>
+and
+<blockquote><tt>)</tt></blockquote>
+are encountered by the parser which cause the lower of the two referents
+on the object reference stack (the java.lang.String `A short string`) to
+have the upper referent (length) called as a method name upon it. The two
+referents disappear from the object&nbsp; reference stack and the return
+from the method call is pushed to the stack in their place. Then the FIJI
+operator
+<blockquote><tt>.</tt></blockquote>
+is encountered by the parser which causes the top object reference stack
+item, in this case the number 15, to be printed, removing it from the object
+reference stack.
+<p>The incidental item <tt>`This is a string`</tt> which happened to be
+on the stack when this operation started is still residing there at the
+end of this operation, undisturbed.</td>
+
+<td><img SRC="images/fiji_scrshot_string.jpg" ALT="A screen shot of FIJI manipulating a java.lang.String" NOSAVE height=455 width=613></td>
+</tr>
+</table></center>
+<a href="http://fiji.sourceforge.net/">Return to fiji.sourceforge.net</a>
+</body>
+</html>
