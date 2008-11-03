@@ -14,7 +14,7 @@
 
   <title>FIJI User's Guide</title>
   <meta http-equiv="Last-Modified" content=
-  "Mon, 3 Nov 2008 04:37:19 UTC">
+  "Mon, 3 Nov 2008 23:08:27 UTC">
 </head>
 
 <body style=
@@ -227,8 +227,15 @@
           <a href="#Calling%20Java">Calling Java</a>
 
           <ul>
-            <li><a href="#Method%20Invocation">Method
-            Invocation</a></li>
+            <li>
+              <a href="#Method%20Invocation">Method Invocation</a>
+
+              <ul>
+                <li><a href=
+                "#Invocation_on_Java_Collections_and_Java">Invocation
+                on Java Collections and Java Generics</a></li>
+              </ul>
+            </li>
 
             <li><a href="#Constructor%20Invocation">Constructor
             Invocation</a></li>
@@ -639,8 +646,8 @@
   <blockquote>
     <tt><font size="+1">java com.SoftWoehr.FIJI.FIJIGui [-v] [-b
     numeric-base] [file file ..]</font></tt>
-  </blockquote>will, when the SoftWoehr library swdesk.zip is in
-  the CLASSPATH, start the interpreter in a Swing (Java Foundation
+  </blockquote>will, when the SoftWoehr library is in the
+  CLASSPATH, start the interpreter in a Swing (Java Foundation
   Class) JFrame&nbsp; with a JTextArea client. To use the 'java'
   command, you will need to have installed the <a href=
   "http://www.javasoft.com">Java Development Kit (JDK)</a>
@@ -1472,7 +1479,25 @@
   to Object, by use of the String name of the desired class,
   <tt><font size="+1">java.lang.Object</font></tt>, and the "cast"
   operator <tt><a href="#%28%29"><font size="+1">()</font></a></tt>
-  .
+  .<br>
+
+  <h5><a name=
+  "Invocation_on_Java_Collections_and_Java"></a>Invocation on Java
+  Collections and Java Generics</h5>Java Generics (the typifying of
+  the java.util collection classes) are a <big><span style=
+  "font-family: monospace;">javac</span></big> compiler trick. The
+  collection itself thinks set members are of the type represented
+  in the Java language by <big><span style=
+  "font-family: monospace;">java.lang.Object</span></big> . When
+  using methods like <big><span style=
+  "font-family: monospace;">java.util.Vector&lt;<span style=
+  "font-style: italic;">sometype</span>&gt;.add(</span></big><big><span style="font-family: monospace;"><span style="font-style: italic;">sometype</span></span></big><big><span style="font-family: monospace;">)</span></big>
+  you will need to cast the target parameter <big><span style=
+  "font-family: monospace;"><span style=
+  "font-style: italic;">sometype</span></span></big> to
+  <big><span style=
+  "font-family: monospace;">java.lang.Object</span>
+  <small>.</small></big>
 
   <h4><a name="Constructor Invocation"></a>Constructor
   Invocation</h4>FIJI pretends that Java constructor invocation is
