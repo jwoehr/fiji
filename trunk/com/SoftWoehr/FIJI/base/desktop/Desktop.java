@@ -39,7 +39,7 @@ import  com.SoftWoehr.util.*;
  /**
    *
    * @author $Author: jwoehr $
-   * @version $Revision: 1.2 $
+   * @version $Revision: 1.3 $
    */
 public class Desktop extends Window implements ActionListener
                                              , Runnable
@@ -51,7 +51,7 @@ public class Desktop extends Window implements ActionListener
   /*****************************************/
 
   /** Revision level */
-  private static final String rcsid = "$Id: Desktop.java,v 1.2 2001-09-10 04:28:44 jwoehr Exp $";
+  private static final String rcsid = "$Id: Desktop.java,v 1.3 2008-11-09 04:30:26 jwoehr Exp $";
   /** Implements com.SoftWoehr.SoftWoehr */
   public String rcsId() {return rcsid;}
 
@@ -161,6 +161,10 @@ public class Desktop extends Window implements ActionListener
                            , new MenuShortcut(KeyEvent.VK_S));
     tempItem.addActionListener(this);
     myPopup.add(tempItem);
+    tempItem = new MenuItem("OldShell"                         /* Create item.*/
+                           , new MenuShortcut(KeyEvent.VK_0));
+    tempItem.addActionListener(this);
+    myPopup.add(tempItem);
     tempItem = new MenuItem("Edit"                          /* Create item.*/
                            , new MenuShortcut(KeyEvent.VK_E));
     tempItem.addActionListener(this);
@@ -211,6 +215,15 @@ public class Desktop extends Window implements ActionListener
     public void actionPerformed(ActionEvent e) {
       String a = e.getActionCommand();
       if (a.equals("Shell"))
+        {
+        /*! TODO: Reference shell in a controller, e.g., the
+         *  Shutdown array, or whatever subsumes that.
+         */
+        com.SoftWoehr.FIJI.FIJIGui fg = new com.SoftWoehr.FIJI.FIJIGui();
+        // fg.setVerbose(isVerbose());
+        /*! Yes, we're definitely going to have to be more sophisticated. */
+        new Thread (myThreadGroup, fg).start();
+        } else if (a.equals("OldShell"))
         {
         /*! TODO: Reference shell in a controller, e.g., the
          *  Shutdown array, or whatever subsumes that.
