@@ -38,14 +38,14 @@ import  com.SoftWoehr.util.*;
 
 /** A class to interpret input of a stream of FIJI commands.
  *
- * @author $Author: jwoehr $
- * @version $Revision: 1.5 $
+ * @author $Author: andrewholt $
+ * @version $Revision: 1.6 $
  */
 
 public class interpreter implements SoftWoehr, verbose {
     
     /** Revision level */
-    private static final String rcsid = "$Id: interpreter.java,v 1.5 2008-11-01 10:09:58 jwoehr Exp $";
+    private static final String rcsid = "$Id: interpreter.java,v 1.6 2009-02-01 18:02:46 andrewholt Exp $";
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return The rcs string */
@@ -90,6 +90,8 @@ public class interpreter implements SoftWoehr, verbose {
     private int base = 10;
     
     private String defaultDelimiters = " \t\n\r";
+    
+    
     
     /** Arity/0 ctor. */
     public interpreter() {
@@ -488,6 +490,7 @@ public class interpreter implements SoftWoehr, verbose {
     public static void usage() {
         System.err.println("Usage:");
         System.err.println(" java com.SoftWoehr.FIJI.base.desktop.shell.interpreter [-b base] [-o output_codepage] [-v] [file file ...]");
+        System.err.println(" -q                 .. enables quiet mode, disable startup banner messages. ");
         System.err.println(" -v                 .. enables verbose mode, weird, unintelligible debug msgs.");
         System.err.println(" -o output_codepage .. for VM/ESA with Java 1.1.4 use Cp1407.");
         System.err.println(" -b base            .. where base is numeric input base, e.g. 8 16 0x10 etc.");
@@ -528,6 +531,8 @@ public class interpreter implements SoftWoehr, verbose {
         InputStreamReader isr = null;
         BufferedReader br = null;
         GetArgs myArgs = new GetArgs(argv);/* Assimilate the command line.     */
+        /* ATH */
+        boolean quiet = false;
         
     /* Create the interpreter instance. */
         try {
@@ -583,7 +588,10 @@ public class interpreter implements SoftWoehr, verbose {
             else if (a.option.equals("-h") || a.option.equals("--")) {
                 i.usage();
                 return;
-            }                                                       /* End if*/
+            }   
+            else if (a.option.equals("-q")) {
+                quiet = true;
+            }                                                    /* End if*/
             else {
                 String s = "Bad option " + a.option + " " + a.argument;
                 System.err.println(s);
@@ -599,6 +607,7 @@ public class interpreter implements SoftWoehr, verbose {
         //      }                                                        /* End catch*/
         
     /* GPL announces itself. */
+        if ( quiet == false) {
         System.out.println( "FIJI ForthIsh Java Interpreter " + engine.fijiVersion());
         System.out.println("Copyright (C) 1999, 2001, 2008 by Jack J. Woehr.");
         System.out.println("FIJI comes with ABSOLUTELY NO WARRANTY;");
@@ -606,7 +615,7 @@ public class interpreter implements SoftWoehr, verbose {
         System.out.println("which you should have received with this software.");
         System.out.println("This is free software, and you are welcome to redistribute it");
         System.out.println("under certain conditions enumerated in COPYING and/or COPYING.LIB.");
-        
+        }
     /* Set up to run. */
         try {
             i.setOutput(System.out);/* Note this occurs after setOutputEncoding()*/
