@@ -15,7 +15,6 @@
 package com.SoftWoehr.JaXWT;
 
 import java.io.*;
-import javax.swing.JTextArea;
 import com.ibm.as400.access.AS400;
 import com.ibm.as400.access.AS400SecurityException;
 import com.ibm.as400.access.IFSJavaFile;
@@ -25,7 +24,7 @@ import com.ibm.as400.access.IFSTextFileOutputStream;
 /** A class to file to IFS from a text editor.
  * @deprecated Currently doesn't work!!! Not finished.
  * @author jax
- * @version $Id: IFSTextFiler.java,v 1.3 2001-09-30 08:24:22 jwoehr Exp $
+ * @version $Id: IFSTextFiler.java,v 1.4 2015-11-16 06:39:13 jwoehr Exp $
  */
 public class IFSTextFiler extends Object implements TextFiler {
     
