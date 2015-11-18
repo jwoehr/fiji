@@ -17,7 +17,7 @@ package com.SoftWoehr.FIJI;
  * the command line.
  *
  * @author jax
- * @version $Id: FIJI.java,v 1.3 2015-11-18 00:06:38 jwoehr Exp $
+ * @version $Id: FIJI.java,v 1.4 2015-11-18 00:34:08 jwoehr Exp $
  */
 public class FIJI extends Object {
 
@@ -34,11 +34,14 @@ public class FIJI extends Object {
      */
     public static void main(String args[]) {
         boolean gui = false;
-        String[] newArgs = new String[args.length - 1];
-        if (args[0].equals("--gui") || args[0].equals("-g")) {
-            gui = true;            
-            for (int i = 0; i < newArgs.length; i++) {
-                newArgs[i] = args[args.length - newArgs.length + i];
+        String[] newArgs = null;
+        if (args.length > 0) {
+            newArgs = new String[args.length - 1];
+            if (args[0].equals("--gui") || args[0].equals("-g")) {
+                gui = true;
+                for (int i = 0; i < newArgs.length; i++) {
+                    newArgs[i] = args[args.length - newArgs.length + i];
+                }
             }
         }
         if (gui) {
