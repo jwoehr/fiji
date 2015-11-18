@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- FIJI the ForthIsh Java Interpreter -->
-<!-- Copyright *C* 1998-2001 by Jack J. Woehr -->
+<!-- Copyright *C* 1998-2015 by Jack J. Woehr -->
 <!-- P.O. Box 51, Golden, Colorado 80402-0051 USA -->
 <!-- jwoehr@softwoehr.com jwoehr@fiji.sourceforge.net -->
 <!-- http://www.softwoehr.com http://fiji.sourceforge.net -->
-<!-- $Id: build.xml,v 1.15 2008-10-20 20:50:25 jwoehr Exp $ -->
+<!-- $Id: build.xml,v 1.16 2015-11-18 00:06:38 jwoehr Exp $ -->
 <project basedir=".." default="all" name="fiji">
 
     <!-- Instructions how to use this file.  -->
@@ -102,7 +102,7 @@
     <!-- Note that the clumsy formatting of this paragraph is a necessity. -->
     <target depends="init" description="Autogenerate a Jar Manifest file" name="gen_manifest">
 <echo file="${fiji.jar.manifest.fully.qualified.pathname}">Manifest-Version: ${fiji.version}
-Main-Class: com.SoftWoehr.FIJI.FIJIGui
+Main-Class: com.SoftWoehr.FIJI.FIJI
 </echo>
     </target>
 
