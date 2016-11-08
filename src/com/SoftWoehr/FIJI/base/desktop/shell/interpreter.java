@@ -40,20 +40,21 @@ import com.SoftWoehr.util.*;
  * A class to interpret input of a stream of FIJI commands.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class interpreter implements SoftWoehr, verbose {
 
     /**
      * Revision level
      */
-    private static final String rcsid = "$Id: interpreter.java,v 1.2 2016-11-08 02:33:35 jwoehr Exp $";
+    private static final String rcsid = "$Id: interpreter.java,v 1.3 2016-11-08 02:34:06 jwoehr Exp $";
 
     /**
      * Implements com.SoftWoehr.SoftWoehr
      *
      * @return The rcs string
      */
+    @Override
     public String rcsId() {
         return rcsid;
     }
