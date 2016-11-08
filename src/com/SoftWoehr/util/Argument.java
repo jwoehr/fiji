@@ -1,6 +1,6 @@
 /* Argument.java ... an option parsed.	      */
 /*					      */
-/* Copyright *C* 1998, 2001 Jack J. Woehr     */
+/* Copyright *C* 1998, 2016 Jack J. Woehr     */
 /*	      All Rights Reserved	      */
 /* PO Box 51, Golden, Colorado 80402-0051 USA */
 /*	    http://www.softwoehr.com	      */
@@ -37,13 +37,13 @@ import  com.SoftWoehr.*;
  * case, records the position in the command
  * line that the arg or opt-arg pair came in.
  * @author $Author: jwoehr $
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  * @see com.SoftWoehr.util.GetArgs
  */
 public class Argument implements SoftWoehr {
 
     /** The rcs id */
-    public static final String rcsid = "$Id: Argument.java,v 1.1 2016-11-06 21:20:42 jwoehr Exp $";
+    public static final String rcsid = "$Id: Argument.java,v 1.2 2016-11-08 01:10:54 jwoehr Exp $";
 
     /** Implement com.SoftWoehr.SoftWoehr ...
      * return the RCS id for the class.
@@ -84,6 +84,7 @@ public class Argument implements SoftWoehr {
     /** Return the option and argument as a String.
      * @return The string representation of the option and argument
      */
+    @Override
     public String toString()
     {return option + " " + argument;}
 
