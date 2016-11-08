@@ -57,14 +57,14 @@ import com.SoftWoehr.util.*;
  * its own class makes it easier to keep straight while coding.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class InnerInterpreter implements SoftWoehr, verbose {
 
     /**
      * Revision level
      */
-    private static final String rcsid = "$Id: InnerInterpreter.java,v 1.2 2016-11-08 02:30:04 jwoehr Exp $";
+    private static final String rcsid = "$Id: InnerInterpreter.java,v 1.3 2016-11-08 02:30:24 jwoehr Exp $";
 
     /**
      * Implements com.SoftWoehr.SoftWoehr
@@ -420,7 +420,7 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
         //   InnerInterpreter theInnerInterpreter = new InnerInterpreter();/* Instance of InnerInterpreter we're demoing.*/
 
         /* GPL'ed SoftWoehr announces itself. */
-        System.out.println("InnerInterpreter, Copyright (C) 1999, 2001 Jack J. Woehr.");
+        System.out.println("InnerInterpreter, Copyright (C) 1999, 2001, 2016 Jack J. Woehr.");
         System.out.println("InnerInterpreter comes with ABSOLUTELY NO WARRANTY;");
         System.out.println("Please see the file COPYING and/or COPYING.LIB");
         System.out.println("which you should have received with this software.");
