@@ -1,7 +1,7 @@
 /*
  * FIJIGui.java
  *
- * Copyright *C* 2001 Jack J. Woehr
+ * Copyright *C* 2001, 2016 Jack J. Woehr
  * All Rights Reserved
  * PO Box 51, Golden, Colorado 80402-0051 USA
  * http://www.softwoehr.com
@@ -21,7 +21,7 @@ import com.SoftWoehr.JaXWT.StockDialog;
  * The application controller for the GUI form of FIJI.
  *
  * @author jax
- * @version $Id: FIJIGui.java,v 1.1 2016-11-06 21:20:41 jwoehr Exp $
+ * @version $Id: FIJIGui.java,v 1.2 2016-11-08 02:19:10 jwoehr Exp $
  */
 public class FIJIGui extends Object implements Runnable {
 
@@ -197,6 +197,7 @@ public class FIJIGui extends Object implements Runnable {
      * Run when used to create a Thread. In this state, exiting the frame
      * doesn't call System.exit().
      */
+    @Override
     public void run() {
         setSystemExiting(false);
         new_frame().setVisible(true);

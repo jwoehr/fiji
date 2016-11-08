@@ -1,7 +1,7 @@
 /*
  * FijiTextArea.java
  *
- * Copyright *C* 2001 Jack J. Woehr
+ * Copyright *C* 2001, 2016 Jack J. Woehr
  * All Rights Reserved
  * PO Box 51, Golden, Colorado 80402-0051 USA
  * http://www.softwoehr.com
@@ -14,14 +14,13 @@
 
 package com.SoftWoehr.FIJI;
 
-import javax.swing.JTextArea;
 import com.SoftWoehr.JaXWT.JTextAreaOutputStream;
 import com.SoftWoehr.JaXWT.EditTextArea;
 
 /** The text area for free-form FIJI input and output.
  *
  * @author  jax
- * @version $Id: FijiTextArea.java,v 1.1 2016-11-06 21:20:41 jwoehr Exp $
+ * @version $Id: FijiTextArea.java,v 1.2 2016-11-08 02:18:15 jwoehr Exp $
  */
 public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable, com.SoftWoehr.JaXWT.FindAndReplaceServer {
     
@@ -67,6 +66,7 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
     /** Refer interface call to super.
      * @return see java.swing.Scrollable
      */
+    @Override
     public boolean getScrollableTracksViewportHeight() {
         return super.getScrollableTracksViewportHeight();
     }
@@ -76,6 +76,7 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
      * @param p3 see java.swing.Scrollable
      * @return see java.swing.Scrollable
      */
+    @Override
     public int getScrollableUnitIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super.getScrollableUnitIncrement(p1, p2, p3);
     }
@@ -85,18 +86,21 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
      * @param p3 see java.swing.Scrollable
      * @return see java.swing.Scrollable 
      */
+    @Override
     public int getScrollableBlockIncrement(final java.awt.Rectangle p1,int p2,int p3) {
         return super. getScrollableBlockIncrement(p1, p2, p3);
     }
     /** Refer interface call to super.
      * @return  see java.swing.Scrollable
      */
+    @Override
     public java.awt.Dimension getPreferredScrollableViewportSize() {
         return super.getPreferredScrollableViewportSize();
     }
     /** Refer interface call to super.
      * @return see java.swing.Scrollable
      */
+    @Override
     public boolean getScrollableTracksViewportWidth() {
         return super.getScrollableTracksViewportWidth();
     }
@@ -108,6 +112,7 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
      * @param s Text to seek
      * @return  <code>true</code> iff found. 
      */
+    @Override
     public boolean find_forward_and_select(String s) {
         return super.find_forward_and_select(s);
     }
@@ -116,6 +121,7 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
      * @param s Text to seek
      * @return <code>true</code> iff found. 
      */
+    @Override
     public boolean find_backward_and_select(String s) {
         return super.find_backward_and_select(s);
     }
@@ -124,6 +130,7 @@ public class FijiTextArea extends EditTextArea implements javax.swing.Scrollable
      * @param replacement Text to replace selected with.
      * @return <code>true</code> iff found and replaced. 
      */
+    @Override
     public boolean replace_selected(String replacement) {
         return super.replace_selected(replacement);
     }
