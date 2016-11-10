@@ -39,7 +39,7 @@ import com.SoftWoehr.util.*;
  * A class to encapsulate writing to a TextArea as an an OutputStream.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class TextAreaOutputStream extends OutputStream
         implements SoftWoehr, verbose {
@@ -54,13 +54,14 @@ public class TextAreaOutputStream extends OutputStream
     /**
      * Revision level
      */
-    private static final String rcsid = "$Id: TextAreaOutputStream.java,v 1.2 2016-11-08 02:25:30 jwoehr Exp $";
+    private static final String rcsid = "$Id: TextAreaOutputStream.java,v 1.3 2016-11-10 02:07:44 jwoehr Exp $";
 
     /**
      * Implements com.SoftWoehr.SoftWoehr
      *
      * @return Returns rcsid.
      */
+    @Override
     public String rcsId() {
         return rcsid;
     }
