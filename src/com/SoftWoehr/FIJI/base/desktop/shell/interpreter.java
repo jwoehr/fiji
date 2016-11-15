@@ -40,14 +40,14 @@ import com.SoftWoehr.util.*;
  * A class to interpret input of a stream of FIJI commands.
  *
  * @author $Author: jwoehr $
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class interpreter implements SoftWoehr, verbose {
 
     /**
      * Revision level
      */
-    private static final String rcsid = "$Id: interpreter.java,v 1.3 2016-11-08 02:34:06 jwoehr Exp $";
+    private static final String rcsid = "$Id: interpreter.java,v 1.4 2016-11-15 13:42:00 jwoehr Exp $";
 
     /**
      * Implements com.SoftWoehr.SoftWoehr
@@ -738,7 +738,7 @@ public final class interpreter implements SoftWoehr, verbose {
         /* GPL announces itself. */
         if (quiet == false) {
             System.out.println("FIJI ForthIsh Java Interpreter " + engine.fijiVersion());
-            System.out.println("Copyright (C) 1999, 2001, 2008 by Jack J. Woehr.");
+            System.out.println("Copyright (C) 1999, 2001, 2008, 2016 by Jack J. Woehr.");
             System.out.println("FIJI comes with ABSOLUTELY NO WARRANTY;");
             System.out.println("Please see the file COPYING and/or COPYING.LIB");
             System.out.println("which you should have received with this software.");
