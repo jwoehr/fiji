@@ -22,7 +22,7 @@ import javax.swing.JComboBox;
  * it's as good as typing it in.
  *
  * @author jax
- * @version $Id: FijiInputComboBox.java,v 1.2 2016-11-15 14:22:36 jwoehr Exp $
+ * @version $Id: FijiInputComboBox.java,v 1.3 2016-11-15 14:23:14 jwoehr Exp $
  */
 public class FijiInputComboBox extends JComboBox {
 
@@ -40,6 +40,7 @@ public class FijiInputComboBox extends JComboBox {
         setEditable(true);
         setAutoscrolls(true);
         addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fijiInputComboBoxActionPerformed(evt);
             }
