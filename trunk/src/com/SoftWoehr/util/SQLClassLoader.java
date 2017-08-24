@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  * <code>CREATE TABLE MYCOLLECT.MYTABLE(CLASSNAME VARCHAR(256), CLASSFILE BLOB)</code>
  *
  * @author jax
- * @version $Id: SQLClassLoader.java,v 1.5 2017-08-24 01:20:36 jwoehr Exp $
+ * @version $Id: SQLClassLoader.java,v 1.6 2017-08-24 02:10:46 jwoehr Exp $
  */
 public class SQLClassLoader extends java.lang.ClassLoader {
 
@@ -135,7 +135,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
     public byte[] read_class_file(String class_name) {
         byte[] input_bytes = null;
         int bytes_read;
-        File class_file = null;
+        File class_file;
         FileInputStream file_stream;
         String file_name;
         String path_name;
