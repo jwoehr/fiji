@@ -1,7 +1,7 @@
 /*
  * SQLClassLoader.java
  *
- * Copyright *C* 2001, 2016 Jack J. Woehr
+ * Copyright *C* 2001, 2017 Jack J. Woehr
  * All Rights Reserved
  * PO Box 51, Golden, Colorado 80402-0051 USA
  * http://www.softwoehr.com
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * Store and load Java classes to and from a database.
  *
  * @author jax
- * @version $Id: SQLClassLoader.java,v 1.2 2016-11-08 01:00:53 jwoehr Exp $
+ * @version $Id: SQLClassLoader.java,v 1.3 2017-08-24 00:21:03 jwoehr Exp $
  */
 public class SQLClassLoader extends java.lang.ClassLoader {
 
@@ -42,20 +42,9 @@ public class SQLClassLoader extends java.lang.ClassLoader {
             try {
                 my_rowset.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.err.println(e);
             }
         }
-    }
-
-    /**
-     * Clean up, e.g., free the RowSet connection resource
-     *
-     * @throws Throwable If an exception occurs during finalization.
-     */
-    @Override
-    public void finalize() throws Throwable {
-        super.finalize();
-        close_rowset();
     }
 
     /**
@@ -77,7 +66,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
         my_sql_collection_name = sql_collection_name;
         my_sql_table_name = sql_table_name;
         my_userid = user_id;
-        // System.out.println("server URL " + my_server_url + " collection name " + my_sql_collection_name + " table name " + my_sql_table_name + " type " + session_type);
+        // /* Debug */ System.out.println("server URL " + my_server_url + " collection name " + my_sql_collection_name + " table name " + my_sql_table_name + " type " + session_type);
         SQLSession.registerDriver(my_session_type);
 
         switch (session_type) {
@@ -165,12 +154,13 @@ public class SQLClassLoader extends java.lang.ClassLoader {
 
             // Read the class file into the buffer
             try {
-                bytes_read = file_stream.read(input_bytes);
+                /* bytes_read = */
+                file_stream.read(input_bytes);
             } catch (IOException e) {
-                System.err.println("Exception trying to read the class file");
+                System.err.println("Exception trying to read the class file: " + e);
             }
         } catch (FileNotFoundException e) {
-            System.err.println("File " + class_file.toString() + " doesn't exist");
+            System.err.println("File " + (class_file == null ? "??" : class_file.toString()) + " doesn't exist: " + e);
         }
         return input_bytes;
     }
@@ -217,8 +207,11 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                 + "'"
         );
         my_rowset.execute();
+        /* Debug */ System.out.println("1");
         my_rowset.next();
+        /* Debug */ System.out.println("2");
         Blob blob = my_rowset.getBlob("CLASSFILE");
+        /* Debug */ System.out.println(blob);
         return blob.getBytes(1, new Long(blob.length()).intValue());
     }
 
@@ -277,10 +270,10 @@ public class SQLClassLoader extends java.lang.ClassLoader {
             case SQLSession.JT400:
                 try {
                     b = selectAS400class(class_name);
+                    /* Debug */ System.out.println("3");
                 } catch (NoRowSetException | SQLException e) {
-                    e.printStackTrace();
+                    System.out.println(e);
                 }
-
                 break;
 
             case SQLSession.JDBCODBC:
@@ -299,55 +292,6 @@ public class SQLClassLoader extends java.lang.ClassLoader {
             c = defineClass(class_name, b, 0, b.length);
         }
 
-        return c;
-    }
-
-    /**
-     * This loadClass() varies from the default algorithm in that it searches in
-     * the order:
-     * <ol>
-     * <li>Loaded classes</li>
-     * <li>Database</li>
-     * <li>Parent classes</li>
-     * </ol>
-     *
-     * @param name Name of class to seek
-     * @param resolve <code>true</code> if class should be resolved before
-     * return
-     * @throws ClassNotFoundException If class is not found
-     * @return the class object
-     */
-    @Override
-    protected Class loadClass(String name, boolean resolve)
-            throws ClassNotFoundException {
-
-        // Try loaded classes
-        Class c = findLoadedClass(name);
-        if (c == null) {
-
-            try {
-                // Try the database
-                c = findClass(name);
-            } catch (ClassNotFoundException ex) {
-                ClassLoader parent = getParent();
-                if (parent != null) {
-                    // This can go ahead and throw on failure.
-                    // Try the parent class loader
-                    c = parent.loadClass(name);
-                } else { // null means system class loader is parent.
-                    // This can go ahead and throw on failure.
-                    // Try the system class loader.
-                    c = findSystemClass(name);
-                }
-            }
-        }
-
-        // Resolve if requested.
-        if (resolve) {
-            // C is never null because parent.loadClass or
-            // findSystemClass would already have thrown.
-            resolveClass(c);
-        }
         return c;
     }
 
@@ -381,28 +325,25 @@ public class SQLClassLoader extends java.lang.ClassLoader {
         SQLClassLoader sql = null;
         Class c = null;
         char cmd = '!';
-        // System.out.println("1");
+
         // Parse command
         if (command != null) {
             cmd = command.trim().charAt(0);
         } else {
             usage();
         }
-        // System.out.println("2");
 
         // Get connection
         if (server_name != null && table_name != null) {
             try {
-                // System.out.println("2.5");
                 sql = new SQLClassLoader(server_name, user_id, password, collection_name, table_name, session_type);
             } catch (java.sql.SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+                System.err.println(e);
             }
         } else {
             usage();
         }
 
-        // System.out.println("3");
         // Try it
         if (sql != null && class_name != null) {
             java.lang.reflect.Method[] methods;
@@ -410,8 +351,9 @@ public class SQLClassLoader extends java.lang.ClassLoader {
 
                 case 'r':
                     try {
-                        // System.out.println("4");
+                        // /* Debug */ System.out.println("test_me before loadClass ");
                         c = sql.loadClass(class_name, true);
+                        // /* Debug */ System.out.println("test_me after loadClass ");
                         System.out.println("Resolved class is: " + c.toString());
                         System.out.println("Methods are: ");
                         methods = c.getDeclaredMethods();
@@ -424,12 +366,12 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                                     System.out.println("Calling " + c + " method " + m);
                                     m.invoke(c, a);
                                 } catch (java.lang.reflect.InvocationTargetException | java.lang.IllegalAccessException e) {
-                                    e.printStackTrace();
+                                    System.err.println(e);
                                 }
                             }
                         }
                     } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                        System.err.println(e);
                     }
                     break;
 
@@ -439,7 +381,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                             // System.out.println("5");
                             sql.insertClassFile(class_name, file_name);
                         } catch (SQLClassLoader.NoRowSetException | SQLException e) {
-                            e.printStackTrace();
+                            System.err.println(e);
                         }
                     }
                     break;
@@ -526,7 +468,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                         my_session_type = Integer.parseInt(a.argument.trim());
                         System.out.println("Session type is " + my_session_type);
                     } catch (NumberFormatException e) {
-                        e.printStackTrace();
+                        System.err.println(e);
                     }
                     break;
                 case "-x":
