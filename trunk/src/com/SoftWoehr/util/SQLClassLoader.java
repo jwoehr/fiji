@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  * Store and load Java classes to and from a database.
  *
  * @author jax
- * @version $Id: SQLClassLoader.java,v 1.3 2017-08-24 00:21:03 jwoehr Exp $
+ * @version $Id: SQLClassLoader.java,v 1.4 2017-08-24 00:31:08 jwoehr Exp $
  */
 public class SQLClassLoader extends java.lang.ClassLoader {
 
@@ -207,11 +207,8 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                 + "'"
         );
         my_rowset.execute();
-        /* Debug */ System.out.println("1");
         my_rowset.next();
-        /* Debug */ System.out.println("2");
         Blob blob = my_rowset.getBlob("CLASSFILE");
-        /* Debug */ System.out.println(blob);
         return blob.getBytes(1, new Long(blob.length()).intValue());
     }
 
@@ -270,7 +267,6 @@ public class SQLClassLoader extends java.lang.ClassLoader {
             case SQLSession.JT400:
                 try {
                     b = selectAS400class(class_name);
-                    /* Debug */ System.out.println("3");
                 } catch (NoRowSetException | SQLException e) {
                     System.out.println(e);
                 }
