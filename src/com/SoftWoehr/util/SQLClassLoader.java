@@ -21,8 +21,12 @@ import java.lang.reflect.Method;
 /**
  * Store and load Java classes to and from a database.
  *
+ * The class database can be created with SQL something like this:
+ *
+ * <code>CREATE TABLE MYCOLLECT.MYTABLE(CLASSNAME VARCHAR(256), CLASSFILE BLOB)</code>
+ *
  * @author jax
- * @version $Id: SQLClassLoader.java,v 1.4 2017-08-24 00:31:08 jwoehr Exp $
+ * @version $Id: SQLClassLoader.java,v 1.5 2017-08-24 01:20:36 jwoehr Exp $
  */
 public class SQLClassLoader extends java.lang.ClassLoader {
 
@@ -160,18 +164,20 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                 System.err.println("Exception trying to read the class file: " + e);
             }
         } catch (FileNotFoundException e) {
-            System.err.println("File " + (class_file == null ? "??" : class_file.toString()) + " doesn't exist: " + e);
+            System.err.println("File " + (path_name == null ? "??" : path_name) + " doesn't exist: " + e);
         }
         return input_bytes;
     }
 
     /**
+     * Store a class object to the AS400
+     *
      * @param class_name
-     * @param class_object
+     * @param class_object class as byte array
      * @throws NoRowSetException
      * @throws SQLException
      */
-    public void insertAS400class(String class_name, Object class_object)
+    public void insertAS400class(String class_name, byte[] class_object)
             throws NoRowSetException, SQLException {
         // Throws if object not set up correctly.
         validate_setup();
@@ -192,7 +198,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
      * @throws SQLException
      * @return
      */
-    public byte[] selectAS400class(String class_name)
+    protected byte[] selectAS400class(String class_name)
             throws NoRowSetException, ClassNotFoundException, SQLException {
         // Throws if object not set up correctly.
         validate_setup();
@@ -213,12 +219,14 @@ public class SQLClassLoader extends java.lang.ClassLoader {
     }
 
     /**
+     * Insert a class object into the database.
+     *
      * @param class_name
      * @param class_object
      * @throws NoRowSetException
      * @throws SQLException
      */
-    public void addClassToDataSource(String class_name, Object class_object)
+    protected void addClassToDataSource(String class_name, byte[] class_object)
             throws NoRowSetException, SQLException {
         switch (my_session_type) {
 
@@ -240,6 +248,8 @@ public class SQLClassLoader extends java.lang.ClassLoader {
     }
 
     /**
+     * Read a class file and insert it into the database under the given name
+     *
      * @param class_name
      * @param file_name
      * @throws NoRowSetException
@@ -247,7 +257,12 @@ public class SQLClassLoader extends java.lang.ClassLoader {
      */
     public void insertClassFile(String class_name, String file_name)
             throws NoRowSetException, SQLException {
-        addClassToDataSource(class_name, read_class_file(file_name));
+        byte[] b = read_class_file(file_name);
+        if (b != null) {
+            addClassToDataSource(class_name, b);
+        } else {
+            System.err.println("No class file data to insert.");
+        }
     }
 
     /**
@@ -258,7 +273,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
      * @throws ClassNotFoundException If class is not found.
      */
     @Override
-    public Class findClass(String class_name) throws ClassNotFoundException {
+    protected Class findClass(String class_name) throws ClassNotFoundException {
         byte[] b = null;
         Class c = null;
 
@@ -347,9 +362,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
 
                 case 'r':
                     try {
-                        // /* Debug */ System.out.println("test_me before loadClass ");
                         c = sql.loadClass(class_name, true);
-                        // /* Debug */ System.out.println("test_me after loadClass ");
                         System.out.println("Resolved class is: " + c.toString());
                         System.out.println("Methods are: ");
                         methods = c.getDeclaredMethods();
@@ -372,12 +385,17 @@ public class SQLClassLoader extends java.lang.ClassLoader {
                     break;
 
                 case 'w':
-                    if (file_name != null) {
-                        try {
-                            // System.out.println("5");
-                            sql.insertClassFile(class_name, file_name);
-                        } catch (SQLClassLoader.NoRowSetException | SQLException e) {
-                            System.err.println(e);
+                    if (class_name == null) {
+                        System.err.println("No class name given.");
+                    } else {
+                        if (file_name != null) {
+                            try {
+                                sql.insertClassFile(class_name, file_name);
+                            } catch (SQLClassLoader.NoRowSetException | SQLException e) {
+                                System.err.println(e);
+                            }
+                        } else {
+                            System.err.println("No filename given for write.");
                         }
                     }
                     break;
