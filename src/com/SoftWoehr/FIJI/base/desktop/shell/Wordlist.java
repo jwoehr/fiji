@@ -37,7 +37,7 @@ import com.SoftWoehr.util.*;
  * @author $Author: jwoehr $
  * @version $Revision: 1.1 $
  */
-public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
+public final class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
 
     /**
      * Revision level
@@ -49,6 +49,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      *
      * @return the rcsid
      */
+    @Override
     public String rcsId() {
         return rcsid;
     }
@@ -61,7 +62,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
     /**
      * Helper for verbose mode.
      */
-    private verbosity v = new verbosity(this);
+    private final verbosity v = new verbosity(this);
 
     /**
      * The storage of the wordlist
@@ -99,6 +100,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      *
      * @return the string representation
      */
+    @Override
     public String toString() {
         String result = "A Wordlist named " + getName();
         return result;
@@ -110,6 +112,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * @see com.SoftWoehr.SoftWoehr#shutdown
      * @return always 0
      */
+    @Override
     public int shutdown() {
         return 0;
     }
@@ -121,6 +124,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * @see com.SoftWoehr.util.verbosity
      * @return true if verbose
      */
+    @Override
     public boolean isVerbose() {
         return isverbose;
     }
@@ -132,6 +136,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * @see com.SoftWoehr.util.verbosity
      * @param tf set verbose on (true) or off.
      */
+    @Override
     public void setVerbose(boolean tf) {
         isverbose = tf;
     }
@@ -143,6 +148,7 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * @see com.SoftWoehr.util.verbosity
      * @param s The string to conditionally announce.
      */
+    @Override
     public void announce(String s) {
         v.announce(s);
     }
