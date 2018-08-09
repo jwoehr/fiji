@@ -1,0 +1,21 @@
+About License
+
+Today 2018-08-09 I have applied the GNU Public License (GPLv3) supplemented by
+the Lesser Gnu Public License (LGPL v3). A user asked that I specifically
+apply the LGPL so that he may incorporate FIJI in another work.
+
+I applied both licenses as recommended by SourceForge's licensing pages. This
+seems confusing to me, but I am not a lawyer. In any case, it is my express
+intent that the more liberal provisions of the LGPLv3 be applied.
+
+It is also my express intent that users be able to incorporate FIJI in other
+works, open or commercial, within the limits of the LGPL, i.e., giving credit
+and me retaining my copyright. Licensing is for me a means of retaining artistic
+control and professional use of my work, rather than restricting others from
+sharing that work by using it in their own professional pursuits.
+
+Please use FIJI and enjoy, respecting the terms of the LGPL!
+
+Jack J. Woehr
+Fairmount, Colorado
+2018-08-09
