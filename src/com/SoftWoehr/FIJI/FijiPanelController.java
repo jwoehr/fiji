@@ -16,7 +16,7 @@ package com.SoftWoehr.FIJI;
 import java.io.*;
 
 import com.SoftWoehr.FIJI.base.desktop.shell.interpreter;
-import com.SoftWoehr.FIJI.base.desktop.shell.engine;
+import com.SoftWoehr.FIJI.base.desktop.shell.Engine;
 import com.SoftWoehr.JaXWT.JTextAreaOutputStream;
 import com.SoftWoehr.JaXWT.ChooseFile;
 import com.SoftWoehr.JaXWT.ChooseFileFilter;
@@ -171,7 +171,7 @@ public class FijiPanelController extends Object {
      */
     protected final void instance_title() {
         if (null != get_frame()) {
-            get_frame().setTitle(FIJIGui.BASE_TITLE + " " + engine.fijiVersion() + FIJIGui.RELEASE_LEVEL + ((null == my_save_file_name) ? "" : (" - " + my_save_file_name)));
+            get_frame().setTitle(FIJIGui.BASE_TITLE + " " + Engine.fijiVersion() + FIJIGui.RELEASE_LEVEL + ((null == my_save_file_name) ? "" : (" - " + my_save_file_name)));
         }
     }
 
@@ -442,7 +442,7 @@ public class FijiPanelController extends Object {
     private void re_init_interpreter() {
         set_interpreter_output();
         output("FIJI ForthIsh Java Interpreter "
-                + engine.fijiVersion()
+                + Engine.fijiVersion()
                 + "\n"
         );
         output("Copyright 1999, 2001, 2016 by Jack J. Woehr\n");

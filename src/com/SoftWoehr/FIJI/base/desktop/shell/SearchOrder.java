@@ -148,7 +148,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     /** Push the search order topped by number of Wordlists in search order.
      * @param z associated engine
      */
-    public void getOrder(engine z) {
+    public void getOrder(Engine z) {
         for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
             z.push(e.nextElement());
         }                                                          /* End for*/
@@ -158,7 +158,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     /** Grab search order from stack
      * @param z associated engine
      */
-    public void setOrder(engine z) {
+    public void setOrder(Engine z) {
         reinit();                                        /* Empty search order.*/
         int numWordlists = ((Long) z.pop()).intValue();
         for (int i = 0; i < numWordlists; ++i) {

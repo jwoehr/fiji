@@ -106,7 +106,7 @@ implements ActionListener
     public void reinit(SoftWoehr sw) {
         mySoftWoehr = sw;
         this.setTitle("FIJI ForthIsh Java Interpreter Revision "
-        + engine.fijiVersion()
+        + Engine.fijiVersion()
         );
         MenuItem tempMenuItem;
         MenuShortcut tempMenuShortcut;
@@ -236,7 +236,7 @@ implements ActionListener
         
     /* GPL'ed SoftWoehr announces itself. */
         System.out.println( "FIJI ForthIsh Java Interpreter "
-        + engine.fijiVersion()
+        + Engine.fijiVersion()
         );
         System.out.println("Copyright (C) 1999, 2000 by Jack J. Woehr.");
         System.out.println("FIJI comes with ABSOLUTELY NO WARRANTY;");

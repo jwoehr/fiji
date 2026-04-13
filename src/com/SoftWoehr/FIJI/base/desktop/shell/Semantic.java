@@ -119,7 +119,7 @@ public class Semantic implements SoftWoehr, verbose, Serializable {
      * @throws BadPrimitiveExecute res ipse loq
      * @throws BadDefinitionExecute res ipse loq
      */
-    public void execute(engine e)
+    public void execute(Engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute {
         e.push(this);
@@ -134,7 +134,7 @@ public class Semantic implements SoftWoehr, verbose, Serializable {
      * @throws BadDefinitionExecute res ipse loq
      */
     
-    public void compile(engine e)
+    public void compile(Engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveCompile
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionCompile
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute

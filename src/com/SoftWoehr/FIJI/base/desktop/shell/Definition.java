@@ -169,7 +169,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
      * @throws BadDefinitionExecute res ispe loq
      * @throws BadPrimitiveExecute res ispe loq
      */
-    public void execute(engine e)
+    public void execute(Engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute {
         try {
@@ -191,7 +191,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
      * @throws BadDefinitionExecute res ispe loq
      * @throws BadPrimitiveExecute res ispe loq
      */
-    public void compile(engine e)
+    public void compile(Engine e)
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionCompile
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadDefinitionExecute
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.BadPrimitiveExecute {

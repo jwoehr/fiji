@@ -119,7 +119,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
         myTextAreaOutputStream = new TextAreaOutputStream(this);
         myInterpreter.setOutput(myTextAreaOutputStream);
         myInterpreter.output("FIJI ForthIsh Java Interpreter "
-                + engine.fijiVersion()
+                + Engine.fijiVersion()
                 + "\n"
         );
         myInterpreter.output("Copyright 1999, 2000 by Jack J. Woehr\n");

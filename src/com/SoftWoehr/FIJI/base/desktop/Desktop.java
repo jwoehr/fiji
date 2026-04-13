@@ -90,8 +90,8 @@ public class Desktop extends Window implements ActionListener,
      */
     Frame myFrame;
     PopupMenu myPopup;
-    ShutdownHelper myShutdownHelper;
-    ThreadGroup myThreadGroup;
+    private volatile ShutdownHelper myShutdownHelper;
+    private volatile ThreadGroup myThreadGroup;
 
     /**
      * ******************************
@@ -129,15 +129,16 @@ public class Desktop extends Window implements ActionListener,
      * @see com.SoftWoehr.SoftWoehr
      */
     @Override
-    public int shutdown() {
+    public synchronized int shutdown() {
         return myShutdownHelper.shutdownClients();
     }
 
     /**
      * Reinitialize object, discarding previous state.
      */
-    public final void reinit() {
+    public final synchronized void reinit() {
         myShutdownHelper = new ShutdownHelper();
+        myShutdownHelper.reinit();
         myThreadGroup = new ThreadGroup("MyDesktop");
         setSize(getMaximumSize());
         setBackground(Color.pink);
@@ -261,7 +262,7 @@ public class Desktop extends Window implements ActionListener,
      * @param e
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public synchronized void actionPerformed(ActionEvent e) {
         String a = e.getActionCommand();
         switch (a) {
             case "Shell":

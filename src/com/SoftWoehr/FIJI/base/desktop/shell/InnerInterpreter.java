@@ -108,14 +108,14 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
     /**
      * The engine we're associated with.
      */
-    private engine myEngine;
+    private Engine myEngine;
 
     /**
      * Arity/1 ctor. InnerInterpreter must be associated with an engine.
      *
      * @param e engine associated with this inner interpreter.
      */
-    public InnerInterpreter(engine e) {
+    public InnerInterpreter(Engine e) {
         reinit(e);
     }
 
@@ -173,7 +173,7 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
      *
      * @param e The engine associated with this instance.
      */
-    public void reinit(engine e) {
+    public void reinit(Engine e) {
         myEngine = e;
         returnStack = new Stack();
         loopStack = new Stack();
@@ -185,7 +185,7 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
      *
      * @return engine associated with this instance.
      */
-    public engine getEngine() {
+    public Engine getEngine() {
         return myEngine;
     }
 

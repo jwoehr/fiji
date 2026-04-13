@@ -97,14 +97,14 @@ public class Variable extends Semantic implements SoftWoehr, verbose, Serializab
     /** A method for the FIJI operator '@' to use.
      * @param e engine against which to run
      */
-    public void fetch(engine e) {
+    public void fetch(Engine e) {
         e.push(datum);
     }
     
     /** A method for the FIJI operator '!' to use.
      * @param e engine against which to run
      */
-    public void store(engine e) {
+    public void store(Engine e) {
         datum = e.pop();
     }
     

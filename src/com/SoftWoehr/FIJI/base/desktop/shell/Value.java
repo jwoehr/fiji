@@ -99,7 +99,7 @@ public class Value extends Semantic implements SoftWoehr, verbose, Serializable 
     /** Execution semantics are to push own datum.
      * @param e  The engine against which to execute self.
      */
-    public void execute(engine e) {
+    public void execute(Engine e) {
         e.push(datum);
     }
     

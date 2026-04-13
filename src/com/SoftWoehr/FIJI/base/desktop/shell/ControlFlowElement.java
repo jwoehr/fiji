@@ -80,7 +80,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @param s Semantic associated with this ControlFlowElement
      * @param e Engine against which to run
      */
-    public ControlFlowElement(Semantic s, engine e) {
+    public ControlFlowElement(Semantic s, Engine e) {
         reinit(s,e);
     }
     
@@ -90,7 +90,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @param e Engine against which to run
      * @param c Class of Semantic
      */
-    public ControlFlowElement(Semantic s, engine e, Class c) {
+    public ControlFlowElement(Semantic s, Engine e, Class c) {
         reinit(s,e,c);
     }
     
@@ -112,7 +112,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @param s Semantic associated with this ControlFlowElement
      * @param e Engine against which to run
      */
-    public void reinit(Semantic s, engine e) {
+    public void reinit(Semantic s, Engine e) {
         reinit(s, e, s.getClass());
     }
     
@@ -121,7 +121,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @param e Engine against which to run
      * @param c Class of the Semantic
      */
-    public void reinit(Semantic s, engine e, Class c) {
+    public void reinit(Semantic s, Engine e, Class c) {
         element = s;
         state = e.state;
         semanticClass = c;

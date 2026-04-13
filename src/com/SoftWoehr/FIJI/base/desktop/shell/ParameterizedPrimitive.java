@@ -77,7 +77,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         )
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super(name, methodName, new Integer(delta), engine.cInteger);
+            super(name, methodName, new Integer(delta), Engine.cInteger);
         }
     }                                                  /* End of Branch class*/
     
@@ -146,7 +146,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
             super ( "(literal)"
             , "doLiteral"
             , o
-            , engine.cObject
+            , Engine.cObject
             );
         }
         
@@ -171,7 +171,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public Do   (int offset)   /* Offset in definition at which 'do' occurs*/
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(do)", "doDo", new Integer(offset), engine.cInteger);
+            super("(do)", "doDo", new Integer(offset), Engine.cInteger);
         }
     }                                                      /* End of Do class*/
     
@@ -184,7 +184,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public Loop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(loop)", "loop", new Integer(delta), engine.cInteger);
+            super("(loop)", "loop", new Integer(delta), Engine.cInteger);
         }
     }                                                    /* End of Loop class*/
     
@@ -197,7 +197,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public PlusLoop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(+loop)", "plusLoop", new Integer(delta), engine.cInteger);
+            super("(+loop)", "plusLoop", new Integer(delta), Engine.cInteger);
         }
     }                                                    /* End of Loop class*/
     
@@ -243,7 +243,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         setName(name);
         Class signature[] = new Class[1];
         signature[0] = this.getClass();
-        Class c = Class.forName("com.SoftWoehr.FIJI.base.desktop.shell.engine");
+        Class c = Class.forName("com.SoftWoehr.FIJI.base.desktop.shell.Engine");
         method = c.getMethod(methodName, signature);     /* All Arity/0*/
     }
     
@@ -281,7 +281,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /** Invoke engine method on has'd Object.
      * @param e  associated engine
      */
-    public void execute(engine e) {
+    public void execute(Engine e) {
         Object argArray[] = new Object[1];
         argArray[0] = this;
         try {
