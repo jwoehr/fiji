@@ -32,8 +32,6 @@ package com.SoftWoehr.FIJI.base.desktop.shell;
 
 import java.io.Serializable;
 import  java.lang.reflect.*;
-import java.util.HashSet;
-import java.util.Set;
 
 import  com.SoftWoehr.SoftWoehr;
 import  com.SoftWoehr.util.*;
@@ -47,115 +45,6 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     
     /** Revision level */
     private static final String rcsid = "$Id: Primitive.java,v 1.1 2016-11-06 21:20:38 jwoehr Exp $";
-    
-    /** Whitelist of allowed method names for reflection-based invocation */
-    private static final Set<String> ALLOWED_METHODS = new HashSet<>();
-    
-    static {
-        // Initialize whitelist with all legitimate Engine methods
-        ALLOWED_METHODS.add("noop");
-        ALLOWED_METHODS.add("arf");
-        ALLOWED_METHODS.add("depth");
-        ALLOWED_METHODS.add("dup");
-        ALLOWED_METHODS.add("drop");
-        ALLOWED_METHODS.add("swap");
-        ALLOWED_METHODS.add("over");
-        ALLOWED_METHODS.add("rot");
-        ALLOWED_METHODS.add("roll");
-        ALLOWED_METHODS.add("pick");
-        ALLOWED_METHODS.add("dot_s");
-        ALLOWED_METHODS.add("dot_c");
-        ALLOWED_METHODS.add("dot_sc");
-        ALLOWED_METHODS.add("dot");
-        ALLOWED_METHODS.add("dotdot");
-        ALLOWED_METHODS.add("dot_r");
-        ALLOWED_METHODS.add("warm");
-        ALLOWED_METHODS.add("cold");
-        ALLOWED_METHODS.add("quit");
-        ALLOWED_METHODS.add("getStackEntryClass");
-        ALLOWED_METHODS.add("stackEntryToString");
-        ALLOWED_METHODS.add("javaArgs");
-        ALLOWED_METHODS.add("accumulateArg");
-        ALLOWED_METHODS.add("callJava");
-        ALLOWED_METHODS.add("lexeme");
-        ALLOWED_METHODS.add("classForName");
-        ALLOWED_METHODS.add("bye");
-        ALLOWED_METHODS.add("sysexit");
-        ALLOWED_METHODS.add("pushTrue");
-        ALLOWED_METHODS.add("pushNull");
-        ALLOWED_METHODS.add("pushFalse");
-        ALLOWED_METHODS.add("castParam");
-        ALLOWED_METHODS.add("classToPrimitiveType");
-        ALLOWED_METHODS.add("stackEntryToPrimitive");
-        ALLOWED_METHODS.add("stackEntryToPrimParam");
-        ALLOWED_METHODS.add("longToIntParam");
-        ALLOWED_METHODS.add("find");
-        ALLOWED_METHODS.add("execute");
-        ALLOWED_METHODS.add("compile");
-        ALLOWED_METHODS.add("leftBracket");
-        ALLOWED_METHODS.add("rightBracket");
-        ALLOWED_METHODS.add("popBase");
-        ALLOWED_METHODS.add("pushBase");
-        ALLOWED_METHODS.add("doState");
-        ALLOWED_METHODS.add("isImmediate");
-        ALLOWED_METHODS.add("compileOnly");
-        ALLOWED_METHODS.add("doubleQuote");
-        ALLOWED_METHODS.add("backTick");
-        ALLOWED_METHODS.add("comment");
-        ALLOWED_METHODS.add("doExit");
-        ALLOWED_METHODS.add("not");
-        ALLOWED_METHODS.add("and");
-        ALLOWED_METHODS.add("or");
-        ALLOWED_METHODS.add("xor");
-        ALLOWED_METHODS.add("isEqual");
-        ALLOWED_METHODS.add("greaterThan");
-        ALLOWED_METHODS.add("lessThan");
-        ALLOWED_METHODS.add("isUnequal");
-        ALLOWED_METHODS.add("add");
-        ALLOWED_METHODS.add("sub");
-        ALLOWED_METHODS.add("mul");
-        ALLOWED_METHODS.add("div");
-        ALLOWED_METHODS.add("mod");
-        ALLOWED_METHODS.add("array");
-        ALLOWED_METHODS.add("dimarray");
-        ALLOWED_METHODS.add("newVariable");
-        ALLOWED_METHODS.add("store");
-        ALLOWED_METHODS.add("fetch");
-        ALLOWED_METHODS.add("newValue");
-        ALLOWED_METHODS.add("toValue");
-        ALLOWED_METHODS.add("newAnonymousDefinition");
-        ALLOWED_METHODS.add("newDefinition");
-        ALLOWED_METHODS.add("cr");
-        ALLOWED_METHODS.add("doLeave");
-        ALLOWED_METHODS.add("index");
-        ALLOWED_METHODS.add("runtimeVerbose");
-        ALLOWED_METHODS.add("decompile");
-        ALLOWED_METHODS.add("system");
-        ALLOWED_METHODS.add("interpret");
-        ALLOWED_METHODS.add("load");
-        ALLOWED_METHODS.add("save");
-        ALLOWED_METHODS.add("reload");
-        ALLOWED_METHODS.add("version");
-        ALLOWED_METHODS.add("getOrder");
-        ALLOWED_METHODS.add("setOrder");
-        ALLOWED_METHODS.add("newWordlist");
-        ALLOWED_METHODS.add("setCurrent");
-        ALLOWED_METHODS.add("getCurrent");
-        ALLOWED_METHODS.add("words");
-        ALLOWED_METHODS.add("forget");
-        ALLOWED_METHODS.add("discard");
-    }
-    
-    /**
-     * Validates that a method name is in the whitelist of allowed methods.
-     * @param methodName the method name to validate
-     * @throws SecurityException if the method name is not whitelisted
-     */
-    private static void validateMethodName(String methodName) throws SecurityException {
-        if (methodName == null || !ALLOWED_METHODS.contains(methodName)) {
-            throw new SecurityException("Method name '" + methodName + "' is not in the whitelist of allowed methods");
-        }
-    }
     
     /** Implements com.SoftWoehr.SoftWoehr
      * @return the rcsid
@@ -196,7 +85,6 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
         this.setName(name);
-        validateMethodName(methodName);
         Class c = Class.forName("com.SoftWoehr.FIJI.base.desktop.shell.Engine");
         method = c.getMethod(methodName, new Class[0]);          /* All Arity/0*/
     }
@@ -214,8 +102,6 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     throws java.lang.ClassNotFoundException
     , java.lang.NoSuchMethodException {
         this.setName(name);
-        validateMethodName(methodName);
-        validateMethodName(compilationMethodName);
         Class c = Class.forName("com.SoftWoehr.FIJI.base.desktop.shell.Engine");
         method = c.getMethod(methodName, new Class[0]);          /* All Arity/0*/
         compilationMethod = c.getMethod(compilationMethodName
@@ -250,7 +136,7 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     public void    announce    (String s)   {v.announce(s);   }
     
     /** Execution semantics
-     * @param anEngine associated engine
+     * @param anEngine associated Engine
      * @throws BadPrimitiveExecute res ipse loq
      */
     public void execute(Engine anEngine)
@@ -270,7 +156,7 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
      * being to append self to the current definition.
      * If the Primitive has special compilation semantics,
      * carry them out instead.
-     * @param e associated engine
+     * @param e associated Engine
      * @throws BadPrimitiveCompile res ipse loq
      * @throws BadDefinitionCompile res ipse loq
      * @throws BadPrimitiveExecute res ipse loq

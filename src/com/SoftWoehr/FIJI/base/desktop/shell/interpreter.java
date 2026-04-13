@@ -110,6 +110,16 @@ public final class interpreter implements SoftWoehr, verbose {
     private int tokenIndex;
 
     /**
+     * Original input string being interpreted.
+     */
+    private String inputString;
+
+    /**
+     * Current position in the input string.
+     */
+    private int inputPosition;
+
+    /**
      * Stack for nested interpretation contexts (tokens and indices).
      */
     private Stack<TokenizerContext> tokenizerStack;
@@ -120,10 +130,14 @@ public final class interpreter implements SoftWoehr, verbose {
     private static class TokenizerContext {
         String[] tokens;
         int tokenIndex;
+        String inputString;
+        int inputPosition;
 
-        TokenizerContext(String[] tokens, int tokenIndex) {
+        TokenizerContext(String[] tokens, int tokenIndex, String inputString, int inputPosition) {
             this.tokens = tokens;
             this.tokenIndex = tokenIndex;
+            this.inputString = inputString;
+            this.inputPosition = inputPosition;
         }
     }
 
@@ -371,7 +385,15 @@ public final class interpreter implements SoftWoehr, verbose {
      */
     public String nextLexeme(String delims) {
         if (tokens != null && tokenIndex < tokens.length) {
-            return tokens[tokenIndex++];
+            String token = tokens[tokenIndex++];
+            // Update inputPosition to point after this token in the input string
+            if (inputString != null && token != null) {
+                int pos = inputString.indexOf(token, inputPosition);
+                if (pos >= 0) {
+                    inputPosition = pos + token.length();
+                }
+            }
+            return token;
         }
         return null;
     }
@@ -399,15 +421,55 @@ public final class interpreter implements SoftWoehr, verbose {
      * @return the next lexeme string
      */
     public String nextLexeme(String delims, boolean consumeDelim) {
-        if (tokens != null && tokenIndex < tokens.length) {
-            String s = tokens[tokenIndex++];
-            // Consume delimiter if requested (skip next token)
-            if (consumeDelim && tokenIndex < tokens.length) {
-                tokenIndex++;
-            }
-            return s;
+        if (inputString == null || inputPosition >= inputString.length()) {
+            return null;
         }
-        return null;
+        
+        // Find the next delimiter from current position
+        int delimPos = inputPosition;
+        while (delimPos < inputString.length() &&
+               delims.indexOf(inputString.charAt(delimPos)) == -1) {
+            delimPos++;
+        }
+        
+        // Extract the lexeme (everything up to the delimiter)
+        String result = inputString.substring(inputPosition, delimPos);
+        
+        // Strip leading blank if present (mimics old StringTokenizer behavior)
+        if (result.length() > 0 && result.charAt(0) == ' ') {
+            result = result.substring(1);
+        }
+        
+        // Update position to delimiter
+        inputPosition = delimPos;
+        
+        // Consume the delimiter if requested
+        if (consumeDelim && inputPosition < inputString.length() &&
+            delims.indexOf(inputString.charAt(inputPosition)) != -1) {
+            inputPosition++;
+        }
+        
+        // Synchronize token-based parsing with input position
+        // Re-tokenize the remaining input from current position
+        if (inputPosition < inputString.length()) {
+            String remaining = inputString.substring(inputPosition);
+            // Use split with limit -1 to preserve trailing empty strings
+            String[] newTokens = remaining.split("[" + defaultDelimiters + "]+", -1);
+            // Filter out leading empty string if present
+            if (newTokens.length > 0 && newTokens[0].isEmpty()) {
+                tokens = new String[newTokens.length - 1];
+                System.arraycopy(newTokens, 1, tokens, 0, tokens.length);
+            } else {
+                tokens = newTokens;
+            }
+            tokenIndex = 0;
+        } else {
+            // No more input, clear tokens
+            tokens = new String[0];
+            tokenIndex = 0;
+        }
+        
+        return result;
     }
 
     /**
@@ -455,6 +517,8 @@ public final class interpreter implements SoftWoehr, verbose {
     public void warmReset() {
         tokens = null;
         tokenIndex = 0;
+        inputString = null;
+        inputPosition = 0;
         tokenizerStack = new Stack<>();
         setKillFlag(false);
         setQuitFlag(false);
@@ -477,7 +541,10 @@ public final class interpreter implements SoftWoehr, verbose {
         // Interpret the passed-in string
         if (s != null) {
             // Save current tokenizer context
-            tokenizerStack.push(new TokenizerContext(tokens, tokenIndex));
+            tokenizerStack.push(new TokenizerContext(tokens, tokenIndex, inputString, inputPosition));
+            // Store the input string and reset position
+            inputString = s;
+            inputPosition = 0;
             // Split string into tokens efficiently
             tokens = s.split("[" + defaultDelimiters + "]+");
             tokenIndex = 0;
@@ -565,6 +632,8 @@ public final class interpreter implements SoftWoehr, verbose {
                     TokenizerContext context = tokenizerStack.pop();
                     tokens = context.tokens;
                     tokenIndex = context.tokenIndex;
+                    inputString = context.inputString;
+                    inputPosition = context.inputPosition;
                 }
             } catch (Exception e) {
                 e.printStackTrace(System.err);
