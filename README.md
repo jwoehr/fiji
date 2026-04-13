@@ -40,12 +40,14 @@ FIJI (ForthIsh Java Interpreter) is a stack-based programming language interpret
 ### Using Apache Ant
 
 1. Clone or download the repository:
+
    ```bash
    git clone <repository-url>
    cd fiji
    ```
 
 2. Build the project:
+
    ```bash
    ant clean
    ant jar
@@ -108,7 +110,7 @@ Once in the FIJI interpreter, you can use Forth-like stack operations:
 
 ## Project Structure
 
-```
+```text
 fiji/
 ├── src/                          # Source code
 │   └── com/SoftWoehr/
@@ -169,16 +171,17 @@ Contributions to FIJI are welcome! Here's how you can help:
 FIJI is free software distributed under the GNU Lesser General Public License (LGPL).
 
 See the following files for license details:
+
 - `LICENSE.TXT` - Main license file
 - `COPYING.LESSER` - LGPL license text
 - `About_License.txt` - Additional license information
 
-**NO WARRANTY - NO GUARANTEE**
+### NO WARRANTY - NO GUARANTEE OF FITNESS FOR ANY PARTICULAR PURPOSE
 
 This software is provided as-is without any warranty or guarantee of fitness for any particular purpose.
 
 ---
 
 **Author:** Jack J. Woehr  
-**Website:** http://www.softwoehr.com  
-**Copyright:** © 2001-2015 Jack J. Woehr. All Rights Reserved.
+**Website:** <http://www.softwoehr.com>  
+**Copyright:** © 2001-2015, 2026 Jack J. Woehr. All Rights Reserved.
