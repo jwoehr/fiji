@@ -3,7 +3,7 @@
 /*					      */
 /* Copyright *C* 2001 Jack J. Woehr	      */
 /* All Rights Reserved			      */
-/* PO Box 51, Golden, Colorado 80402-0051 USA */
+/* PO Box 82, Beulah, Colorado 81023 USA */
 /* http://www.softwoehr.com		      */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!     */
 /* Free Software NO WARRANTY NO GUARANTEE     */

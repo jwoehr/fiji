@@ -7,7 +7,7 @@ This is the gamma release of version 1.2 of FIJI ForthIsh Java Interpreter.
 
 FIJI and all its source files and documentation are
 Copyright 1998, 1999, 2000, 2001
-Jack J. Woehr, PO Box 51, Golden, Colorado 80402-0051
+Jack J. Woehr, PO Box 82, Beulah, Colorado 81023 USA
 jax@softwoehr.com http://www.softwoehr.com
 jwoehr@fiji.sourceforge.net http://fiji.sourceforge.net
 

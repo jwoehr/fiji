@@ -1,216 +1,333 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-  <meta name="generator" content=
-  "HTML Tidy for OpenBSD (vers 1 September 2005), see www.w3.org">
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=us-ascii">
-  <meta name="GENERATOR" content=
-  "Mozilla/4.78 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
-  <meta name="Author" content="Jack J. Woehr">
-  <meta name="Description" content="About SoftWoehr">
-  <meta name="Keywords" content=
-  "software, development, library, java, cross-platform, portable, environment, forth, object-oriented, virtual machine">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jack J. Woehr">
+    <meta name="description" content="FIJI - ForthIsh Java Interpreter - A forth-like interpretive procedural language for Java">
+    <meta name="keywords" content="software, development, library, java, cross-platform, portable, environment, forth, object-oriented, virtual machine, interpreter">
+    <title>FIJI - SoftWoehr Java Class Libraries</title>
+    <style>
+        :root {
+            --primary-bg: #f5f7f3;
+            --secondary-bg: #ffffff;
+            --text-color: #333333;
+            --link-color: #0066cc;
+            --link-hover: #004499;
+            --link-visited: #551a8b;
+            --border-color: #cccccc;
+            --code-bg: #f4f4f4;
+            --max-width: 1200px;
+        }
 
-  <title>SoftWoehr Java Class Libraries</title>
-  <meta http-equiv="Last-Modified" content=
-  "Fri, 31 Oct 2008 20:27:57 UTC">
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background-color: var(--secondary-bg);
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--text-color);
+            margin: 10px 0;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: var(--text-color);
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            color: var(--text-color);
+            margin-top: 30px;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: var(--link-visited);
+        }
+
+        .copyright {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: var(--code-bg);
+            border-radius: 4px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 10px 0;
+            font-size: 0.9em;
+            padding: 5px 10px;
+            background-color: var(--code-bg);
+            border-radius: 4px;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        code, tt {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+        }
+
+        blockquote {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--link-color);
+            margin: 20px 0;
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 40px 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer a {
+            display: block;
+            margin: 10px 0;
+        }
+
+        dl {
+            line-height: 1.8;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        dd {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--link-color);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
 
-<body alink="#FF0000" bgcolor="#E1E9D6" link="#0000EE" text=
-"#000000" vlink="#551A8B">
-  <center>
-    <h1>SoftWoehr Java Class Libraries</h1>
-  </center>
+<body>
+    <div class="container">
+        <header>
+            <h1>SoftWoehr Java Class Libraries</h1>
+            <h1>FIJI 1.2</h1>
+        </header>
 
-  <center>
-    <h1>FIJI 1.2</h1>
-  </center>
+        <div class="copyright">
+            All <a href="http://www.softwoehr.com">SoftWoehr Free Software</a> packages and documentation pages are<br>
+            Copyright &copy; 1998, 2001, 2008, 2026<br>
+            <a href="mailto:jwoehr@softwoehr.com">Jack J. Woehr</a><br>
+            PO Box 82, Beulah, Colorado 81023
+        </div>
 
-  <center>
-    All <a href="http://www.softwoehr.com">SoftWoehr Free
-    Software</a> packages and&nbsp; documentation pages are<br>
-    Copyright &copy; 1998, 2001, 2008<br>
-    <a href="mailto:jwoehr@softwoehr.com">Jack J. Woehr</a><br>
-    Golden, Colorado 80402-0051
-  </center>
+        <p>All <a href="http://www.softwoehr.com">SoftWoehr Free Software</a> packages are provided Without Warranty of Any Kind
+            per the <a href="moredoc/COPYING">GNU Public License</a> and/or
+            the <a href="moredoc/COPYING.LIB">GNU Library Public License</a>,
+            whichever is appropriate. For more information on Free Software,
+            please visit the <a href="http://www.gnu.org">GNU Home Page</a>.</p>
 
-  <p>All&nbsp; <a href="http://www.softwoehr.com">SoftWoehr Free
-  Software</a> packages are provided Without Warranty of Any Kind
-  per the <a href="moredoc/COPYING">Gnu Public License</a> and/or
-  the <a href="moredoc/COPYING.LIB">Gnu Library Public License</a>,
-  whichever is appropriate. For more information on Free Software,
-  please visit the <a href="http://www.gnu.org">Gnu Home
-  Page</a>.</p>
+        <h2 id="table-of-contents">Table of Contents</h2>
 
-  <h2><a name="Table of Contents"></a>Table of Contents</h2>
+        <ul>
+            <li><a href="#what-is-fiji">What is FIJI?</a></li>
+            <li><a href="#where-do-i-get-fiji">Where do I get FIJI?</a></li>
+            <li><a href="#how-is-fiji-distributed">How is FIJI distributed?</a></li>
+            <li>
+                <a href="#where-is-the-source-code">Where is the Source Code?</a>
+                <ul>
+                    <li><a href="#how-do-i-build-fiji">How Do I Build FIJI?</a></li>
+                </ul>
+            </li>
+            <li><a href="#where-are-the-examples">Where are the Examples?</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+        </ul>
 
-  <ul>
-    <li><a href="#What%20Is%20FIJI">What is FIJI?</a></li>
+        <hr>
 
-    <li><a href="#Where%20Do%20I%20Get%20FIJI">Where do I get
-    FIJI?</a></li>
+        <h2 id="what-is-fiji">What is FIJI?</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-    <li><a href="#How%20is%20FIJI%20distributed">How is FIJI
-    distibuted?</a></li>
+        <p>FIJI is a forth-like interpretive procedural language which is
+            in reality a Java interpreter. You can load and exercise Java
+            classes interactively in FIJI, or you can compile FIJI programs
+            to do so.</p>
 
-    <li>
-      <a href="#Where%20is%20the%20Source%20Code">Where is the
-      Source Code?</a>
+        <p>FIJI is an open source project licensed under the GNU Public License.</p>
 
-      <ul>
-        <li><a href="#How%20Do%20I%20Build%20FIJI">How Do I Build
-        FIJI?</a></li>
-      </ul>
-    </li>
+        <hr>
 
-    <li><a href="#Where%20are%20the%20examples">Where are the
-    Examples?</a></li>
+        <h2 id="where-do-i-get-fiji">Where do I get FIJI?</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-    <li><a href="#Documentation">Documentation</a></li>
-  </ul>
-  <hr width="100%">
+        <p class="highlight"><a href="http://fiji.sourceforge.net">FIJI is now a SourceForge project.</a></p>
 
-  <h2><a name="What Is FIJI"></a>What is FIJI?</h2><a href=
-  "#Table%20of%20Contents">[Go Back to Table of Contents]</a>
+        <p>The latest FIJI release is also linked from the <a href="http://www.softwoehr.com">SoftWoehr Home Page</a>.</p>
 
-  <p>FIJI is a forth-like interpretive procedural language which is
-  in reality a Java interpreter. You can load and excercise Java
-  classes interactively in FIJI, or you can compile FIJI programs
-  to do so.</p>
+        <hr>
 
-  <p>FIJI is an open source project licensed under the GNU Public
-  License.</p>
-  <hr width="100%">
+        <h2 id="how-is-fiji-distributed">How is FIJI distributed?</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-  <h2><a name="Where Do I Get FIJI"></a>Where do I get
-  FIJI?</h2><a href="#Table%20of%20Contents">[Go Back to Table of
-  Contents]</a>
+        <p>FIJI is distributed in a .zip file <code>fiji.<em>version</em>.zip</code> and unpacks to the following structure:</p>
 
-  <p><b><a href="http://fiji.sourceforge.net"><font size="+1">FIJI
-  is now a SourceForge project.</font></a></b></p>
+        <blockquote>
+            <code>+- com</code> <em>(directory)</em><br>
+            <code>|</code><br>
+            <code>+- html</code> <em>(directory)</em><br>
+            <code>|</code><br>
+            <code>+- scripts</code> <em>(directory)</em><br>
+            <code>|</code><br>
+            <code>+- fiji.<em>version</em>.jar</code>
+        </blockquote>
 
-  <p>The latest FIJI release is also linked from the <a href=
-  "http://www.softwoehr.com">SoftWoehr Home Page</a>.</p>
-  <hr width="100%">
+        <hr>
 
-  <h2><a name="How is FIJI distributed"></a>How is FIJI
-  distributed?</h2><a href="#Table%20of%20Contents">[Go Back to
-  Table of Contents]</a>
+        <h2 id="where-is-the-source-code">Where is the Source Code?</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-  <p>FIJI is distributed in a .zip file
-  <tt>fiji.</tt><i>version</i><tt>.zip</tt> and unpacks to the
-  following structure:</p>
+        <p>This one question has been asked over and over again!</p>
 
-  <blockquote>
-    <tt>+- com</tt> <i>(directory)</i><br>
-    <tt>|</tt><br>
-    <tt>+- html</tt> <i>(directory)</i><br>
-    <tt>|</tt><br>
-    <tt>+- scripts</tt> <i>(directory)</i><br>
-    <tt>|</tt><br>
-    <tt>+- fiji.</tt><i>version</i><tt>.jar</tt>
-  </blockquote>
+        <p><strong>The source code is packed into the .jar file with classes!</strong></p>
 
-  <p><br></p>
-  <hr width="100%">
+        <p>Please use the Java <strong>jar</strong> tool, e.g.</p>
 
-  <h2><a name="Where is the Source Code"></a>Where is the Source
-  Code?</h2><a href="#Table%20of%20Contents">[Go Back to Table of
-  Contents]</a>
+        <blockquote>
+            <code>jar xf fiji.<em>version</em>.jar</code>
+        </blockquote>
 
-  <p>This one question has been asked over and over again!</p>
+        <p>to unpack the source code if you wish to browse or recompile SoftWoehr Java class libraries.</p>
 
-  <p><b>The soure code is packed into the .jar file with
-  classes!</b></p>
+        <h3 id="how-do-i-build-fiji">How Do I Build FIJI?</h3>
 
-  <p>Please use the Java <b>jar</b> tool, e.g.</p>
+        <p>Notice that in the same directory with the FIJI jar file, once you have unpacked the source from the jar, there is a directory called
+            <code>scripts</code> in which is located a <a href="http://jakarta.apache.org/ant/index.html">Jakarta Ant</a> build
+            file <code>build.xml</code> which is used to build FIJI. Presuming
+            you have unpacked the FIJI source from the jar file as described
+            above, then in that same directory invoke <code>ant</code> as follows:</p>
 
-  <blockquote>
-    <font size="+1"><tt>jar xf
-    fiji.</tt><i>version</i><tt>.jar</tt></font>
-  </blockquote>to unpack the source code if you wish to browse or
-  recompile SoftWoehr Java class libraries.
+        <blockquote>
+            <code>ant -f ./scripts/build.xml</code>
+        </blockquote>
 
-  <h3><a name="How Do I Build FIJI"></a>How Do I Build
-  FIJI?</h3>Notice that in the same directory with the fiji.Once
-  you have unpacked the source from the jar in the same directory
-  where the jar file is located there is a directory called
-  <tt>scripts</tt> in which is located a <a href=
-  "http://jakarta.apache.org/ant/index.html">Jakarta Ant</a> build
-  file <tt>build.xml</tt> which is used to build FIJI. Presuming
-  you have unpacked the FIJI source from the jar file as described
-  above, then in that same directory invoke <tt>ant</tt> as
-  follows:
+        <p>This will build the default target <code>all</code> which includes generating the FIJI jar file. Try:</p>
 
-  <blockquote>
-    <tt>ant -f ./scripts/build.xml</tt>
-  </blockquote>This will build the default target all which
-  includes generating the FIJI jar file. Try
+        <blockquote>
+            <code>ant -f ./scripts/build.xml usage</code>
+        </blockquote>
 
-  <blockquote>
-    <tt>ant -f ./scripts/build.xml usage</tt>
-  </blockquote>to see a usage message on all the targets you may
-  invoke when using the supplied build file.
-  <hr width="100%">
+        <p>to see a usage message on all the targets you may invoke when using the supplied build file.</p>
 
-  <h2><a name="Where are the examples"></a>Where are the
-  Examples?</h2><a href="#Table%20of%20Contents">[Go Back to Table
-  of Contents]</a>
+        <hr>
 
-  <p>The examples are in the same place the source code is: in the
-  .jar file with classes.</p>
+        <h2 id="where-are-the-examples">Where are the Examples?</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-  <p>Please use the Java <b>jar</b> tool, e.g.</p>
+        <p>The examples are in the same place the source code is: in the .jar file with classes.</p>
 
-  <blockquote>
-    <tt><font size="+1">jar xf fiji.jar</font></tt>
-  </blockquote>to unpack the examples found under
-  <tt>com/SoftWoehr/FIJI/examples</tt> .<br>
-  <hr width="100%">
+        <p>Please use the Java <strong>jar</strong> tool, e.g.</p>
 
-  <h2><a name="Documentation" id=
-  "Documentation"></a>Documentation</h2><a href=
-  "#Table%20of%20Contents">[Go Back to Table of Contents]</a>
+        <blockquote>
+            <code>jar xf fiji.jar</code>
+        </blockquote>
 
-  <blockquote>
-    <dl>
-      <dt><a href="moredoc/theory.html">Theory of <tt><font size=
-      "+1">com.SoftWoehr</font></tt></a></dt>
+        <p>to unpack the examples found under <code>com/SoftWoehr/FIJI/examples</code>.</p>
 
-      <dd>Discussion of how the class libraries work, as an adjunct
-      to reading the source code itself.</dd>
+        <hr>
 
-      <dd><br>
-      &nbsp;</dd>
+        <h2 id="documentation">Documentation</h2>
+        <a href="#table-of-contents" class="back-link">[Go Back to Table of Contents]</a>
 
-      <dt><a href="moredoc/fiji.html">FIJI ForthIsh Java
-      Interpreter User's Guide</a></dt>
+        <dl>
+            <dt><a href="moredoc/theory.html">Theory of <code>com.SoftWoehr</code></a></dt>
+            <dd>Discussion of how the class libraries work, as an adjunct to reading the source code itself.</dd>
 
-      <dd>The language description and user's guide for FIJI.</dd>
+            <dt><a href="moredoc/fiji.html">FIJI ForthIsh Java Interpreter User's Guide</a></dt>
+            <dd>The language description and user's guide for FIJI.</dd>
 
-      <dd><br>
-      &nbsp;</dd>
+            <dt><a href="../doc/index.html">Java Class Library Documentation for FIJI</a></dt>
+            <dd>The Javadoc documentation for the Java source to FIJI (and possibly to other com.SoftWoehr packages).</dd>
 
-      <dt><a href="../doc/index.html">Java Class Library
-      Documentation for FIJI</a></dt>
+            <dt><a href="moredoc/examples.html">Examples</a></dt>
+            <dd>List of examples with brief descriptions.</dd>
+        </dl>
 
-      <dd>The Javadoc documentation for the Java source to FIJI
-      (and possibly to other com.SoftWoehr packages).</dd>
+        <hr>
 
-      <dd><br>
-      &nbsp;</dd>
-
-      <dt><a href="moredoc/examples.html">Examples</a></dt>
-
-      <dd>List of examples with brief descriptions.</dd>
-    </dl>
-  </blockquote>
-  <hr width="100%">
-  <br>
-  <a href="http://www.softwoehr.com">Visit the SoftWoehr Home
-  Page</a><br>
-  <a href="mailto:jwoehr@softwoehr.com">Email the Author</a>
+        <footer>
+            <a href="http://www.softwoehr.com">Visit the SoftWoehr Home Page</a>
+            <a href="mailto:jwoehr@softwoehr.com">Email the Author</a>
+        </footer>
+    </div>
 </body>
+
 </html>

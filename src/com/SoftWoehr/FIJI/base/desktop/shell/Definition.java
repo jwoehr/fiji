@@ -5,7 +5,7 @@
 /* Jack J. Woehr jax@softwoehr.com           */
 /* http://www.softwoehr.com                  */
 /* http://fiji.sourceforge.net               */
-/* P.O. Box 51, Golden, Colorado 80402-0051  */
+/* P.O. Box 82, Beulah, Colorado 81023 USA  */
 /*********************************************/
 /*                                           */
 /*    This Program is Free SoftWoehr.        */

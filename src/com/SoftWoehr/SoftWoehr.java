@@ -1,7 +1,7 @@
 /* SoftWoehr.java ... base interface.          */
  /* jack j. woehr jax@well.com jwoehr@ibm.net  */
  /* http://www.well.com/user/jax/rcfb          */
- /* P.O. Box 51, Golden, Colorado 80402-0051   */
+ /* P.O. Box 82, Beulah, Colorado 81023 USA   */
 /** ****************************************** */
 /*  Copyright *C* 1998, 2016 Jack J. Woehr    */
  /*	      All Rights Reserved	       */
