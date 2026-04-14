@@ -13,8 +13,8 @@
 package com.SoftWoehr.FIJI;
 
 /**
- * This class merely serves as a launcher for the FIJI interpreter running at
- * the command line.
+ * This class merely serves as a launcher for the FIJI Interpreter running at
+the command line.
  *
  * @author jax
  * @version $Id: FIJI.java,v 1.1 2016-11-06 21:20:42 jwoehr Exp $
@@ -47,7 +47,7 @@ public class FIJI extends Object {
         if (gui) {
             com.SoftWoehr.FIJI.FIJIGui.main(newArgs);
         } else {
-            com.SoftWoehr.FIJI.base.desktop.shell.interpreter.main(args);
+            com.SoftWoehr.FIJI.base.desktop.shell.Interpreter.main(args);
         }
     }
 }

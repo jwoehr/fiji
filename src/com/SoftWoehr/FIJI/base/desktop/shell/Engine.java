@@ -177,8 +177,8 @@ public class Engine implements SoftWoehr, verbose {
     /** Stack for unfinished Definitions and unresolved branches. */
     public Stack controlFlowStack;
     
-    /** The input interpreter with which this engine is associated.*/
-    public interpreter myInterpreter;
+    /** The input Interpreter with which this engine is associated.*/
+    public Interpreter myInterpreter;
     
     /** Compilation state */
     public boolean state;
@@ -196,10 +196,10 @@ public class Engine implements SoftWoehr, verbose {
         cold();
     }
     
-    /** Open engine on an input interpreter and initialize cold.
-     * @param i the associated input interpreter
+    /** Open engine on an input Interpreter and initialize cold.
+     * @param i the associated input Interpreter
      */
-    public Engine(interpreter i) {
+    public Engine(Interpreter i) {
         this();
         myInterpreter = i;
     }
@@ -996,7 +996,7 @@ public class Engine implements SoftWoehr, verbose {
         pop();
     }
     
-    /** Signal interpreter that bye is requested. */
+    /** Signal Interpreter that bye is requested. */
     public void bye() {
         myInterpreter.setKillFlag(true);
     }
@@ -1826,12 +1826,12 @@ public class Engine implements SoftWoehr, verbose {
         
         if (p.validate()) {/* Now resolve the branch via the ref from the stack.*/
             int origin = ((Integer) p.getObject()).intValue();
-            int destination =   /* Okay - inner interpreter while loop tests .LT.*/
+            int destination =   /* Okay - inner Interpreter while loop tests .LT.*/
             getCurrentDefinition().compositionLength();
             p.setObject(new Integer((destination - origin) - 1));  /* Resolution.*/
       /* "Minus one" because this is the bump delta to the instruction
        * pointer, which latter has already been post-incremented in the
-       * inner interpreter loop.
+       * inner Interpreter loop.
        */
         }
         
@@ -2259,7 +2259,7 @@ public class Engine implements SoftWoehr, verbose {
         myInterpreter.output("\n");
     }
     
-    /** Set the interpreter verbose or non- at runtime. */
+    /** Set the Interpreter verbose or non- at runtime. */
     public void runtimeVerbose() {
         setVerbose(((Boolean)pop()).booleanValue());
     }

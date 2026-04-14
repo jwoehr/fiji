@@ -15,7 +15,7 @@ package com.SoftWoehr.FIJI;
 
 import java.io.*;
 
-import com.SoftWoehr.FIJI.base.desktop.shell.interpreter;
+import com.SoftWoehr.FIJI.base.desktop.shell.Interpreter;
 import com.SoftWoehr.FIJI.base.desktop.shell.Engine;
 import com.SoftWoehr.JaXWT.JTextAreaOutputStream;
 import com.SoftWoehr.JaXWT.ChooseFile;
@@ -43,7 +43,7 @@ public class FijiPanelController extends Object {
      */
     protected static final boolean OPEN_DIALOG = false;
 
-    private interpreter my_interpreter;
+    private Interpreter my_interpreter;
     private FIJIGui my_application_controller;
     private FijiPanel my_panel;
     private FijiFrame my_frame;
@@ -54,16 +54,16 @@ public class FijiPanelController extends Object {
     private String my_last_find_string = "";
 
     /**
-     * Creates new FijiPanelController complete with interpreter but without
-     * instancing panel.
+     * Creates new FijiPanelController complete with Interpreter but without
+instancing panel.
      */
     public FijiPanelController() {
-        set_interpreter(new interpreter());
+        set_interpreter(new Interpreter());
     }
 
     /**
-     * Creates new FijiPanelController complete with interpreter and instances
-     * panel reference.
+     * Creates new FijiPanelController complete with Interpreter and instances
+panel reference.
      *
      * @param fp the FijiPanel this controls.
      */
@@ -74,8 +74,8 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Creates new FijiPanelController complete with interpreter and instances
-     * app contoller and panel references.
+     * Creates new FijiPanelController complete with Interpreter and instances
+app contoller and panel references.
      *
      * @param fg Application controller
      * @param fp FijiPanel this controls.
@@ -223,10 +223,10 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Get the text area's pseudo output stream so the interpreter can write to
-     * it.
+     * Get the text area's pseudo output stream so the Interpreter can write to
+it.
      *
-     * @return output stream representing text area to interpreter.
+     * @return output stream representing text area to Interpreter.
      */
     protected JTextAreaOutputStream get_text_area_output_stream() {
         return get_text_area().get_output_stream();
@@ -404,25 +404,25 @@ public class FijiPanelController extends Object {
     // The Interpreter
     //////////////////
     /**
-     * Get controlled interpreter
+     * Get controlled Interpreter
      *
      * @return the Fiji inner interprer
      */
-    protected interpreter get_interpreter() {
+    protected Interpreter get_interpreter() {
         return my_interpreter;
     }
 
     /**
-     * Set controlled interpreter
+     * Set controlled Interpreter
      *
      * @param interp the Fiji inner interprer
      */
-    protected final void set_interpreter(interpreter interp) {
+    protected final void set_interpreter(Interpreter interp) {
         my_interpreter = interp;
     }
 
     /**
-     * Give the interpreter the text area's pseudo output stream.
+     * Give the Interpreter the text area's pseudo output stream.
      */
     protected void set_interpreter_output() {
         my_interpreter.setOutput(get_text_area_output_stream());
@@ -455,7 +455,7 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Load a FIJI source file in the interpreter.
+     * Load a FIJI source file in the Interpreter.
      *
      * @param filename Fiji source filename to load.
      */
@@ -464,7 +464,7 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Set interpreter numeric base.
+     * Set Interpreter numeric base.
      *
      * @param base numeric base
      */
@@ -473,7 +473,7 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Pass selected text to interpreter, then prompt.
+     * Pass selected text to Interpreter, then prompt.
      */
     protected void interpret_selected() {
         String text = get_text_area_selected_text();
@@ -481,7 +481,7 @@ public class FijiPanelController extends Object {
     }
 
     /**
-     * Pass a string to the interpreter, then prompt.
+     * Pass a string to the Interpreter, then prompt.
      *
      * @param text text to interpret.
      */

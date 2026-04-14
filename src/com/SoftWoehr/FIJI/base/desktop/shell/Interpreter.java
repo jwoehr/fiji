@@ -42,12 +42,12 @@ import com.SoftWoehr.util.*;
  * @author $Author: jwoehr $
  * @version $Revision: 1.4 $
  */
-public final class interpreter implements SoftWoehr, verbose {
+public final class Interpreter implements SoftWoehr, verbose {
 
     /**
      * Logger for this class
      */
-    private static final Logger LOGGER = Logger.getLogger(interpreter.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Interpreter.class.getName());
 
     /**
      * Revision level
@@ -162,12 +162,12 @@ public final class interpreter implements SoftWoehr, verbose {
     /**
      * Arity/0 ctor.
      */
-    public interpreter() {
+    public Interpreter() {
         reinit();
     }
 
     /**
-     * Reset the interpreter, losing all previous state.
+     * Reset the Interpreter, losing all previous state.
      */
     public void reinit() {
         myEngine = new Engine(this);
@@ -189,7 +189,7 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Get the engine associated with this interpreter.
+     * Get the engine associated with this Interpreter.
      *
      * @return the engine
      */
@@ -230,7 +230,7 @@ public final class interpreter implements SoftWoehr, verbose {
     /**
      * Set the kill flag.
      *
-     * @param tf <code>true</code> means exit the interpreter loop
+     * @param tf <code>true</code> means exit the Interpreter loop
      */
     public void setKillFlag(boolean tf) {
         killFlag = tf;
@@ -239,7 +239,7 @@ public final class interpreter implements SoftWoehr, verbose {
     /**
      * Get the kill flag.
      *
-     * @return the flag which means exit the interpreter loop
+     * @return the flag which means exit the Interpreter loop
      */
     public boolean getKillFlag() {
         return killFlag;
@@ -264,7 +264,7 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Set the interpreter numeric base.
+     * Set the Interpreter numeric base.
      *
      * @param i the base
      */
@@ -273,7 +273,7 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Get the interpreter numeric base.
+     * Get the Interpreter numeric base.
      *
      * @return the base
      */
@@ -706,13 +706,13 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Demonstrate <code>interpreter</code>.
+     * Demonstrate <code>Interpreter</code>.
      *
-     * @param argv Arguments to interpreter
+     * @param argv Arguments to Interpreter
      */
     public static void main(String argv[]) {
         GetArgs myArgs = new GetArgs(argv);
-        interpreter i = initializeInterpreter();
+        Interpreter i = initializeInterpreter();
         boolean quiet = parseArguments(myArgs, i);
         
         if (!quiet) {
@@ -725,13 +725,13 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Initialize the interpreter instance.
+     * Initialize the Interpreter instance.
      *
-     * @return initialized interpreter
+     * @return initialized Interpreter
      */
-    private static interpreter initializeInterpreter() {
+    private static Interpreter initializeInterpreter() {
         try {
-            return new interpreter();
+            return new Interpreter();
         } catch (Exception e) {
             e.printStackTrace(System.err);
             throw new com.SoftWoehr.FIJI.base.Error.bAcKtOmain(e);
@@ -739,13 +739,13 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Parse command line arguments and configure interpreter.
+     * Parse command line arguments and configure Interpreter.
      *
      * @param myArgs parsed command line arguments
-     * @param i interpreter instance to configure
+     * @param i Interpreter instance to configure
      * @return true if quiet mode is enabled
      */
-    private static boolean parseArguments(GetArgs myArgs, interpreter i) {
+    private static boolean parseArguments(GetArgs myArgs, Interpreter i) {
         boolean quiet = false;
         
         for (int x = 0; x < myArgs.optionCount(); x++) {
@@ -781,7 +781,7 @@ public final class interpreter implements SoftWoehr, verbose {
                     break;
                 case "-h":
                 case "--":
-                    interpreter.usage();
+                    Interpreter.usage();
                     System.exit(0);
                     break;
                 case "-q":
@@ -812,12 +812,12 @@ public final class interpreter implements SoftWoehr, verbose {
     }
 
     /**
-     * Set up input/output streams for the interpreter.
+     * Set up input/output streams for the Interpreter.
      *
-     * @param i interpreter instance to configure
+     * @param i Interpreter instance to configure
      * @return BufferedReader for reading input
      */
-    private static BufferedReader setupIO(interpreter i) {
+    private static BufferedReader setupIO(Interpreter i) {
         try {
             i.setOutput(System.out);
             i.setInput(System.in);
@@ -833,9 +833,9 @@ public final class interpreter implements SoftWoehr, verbose {
      * Load source files specified in command line arguments.
      *
      * @param myArgs parsed command line arguments
-     * @param i interpreter instance
+     * @param i Interpreter instance
      */
-    private static void loadSourceFiles(GetArgs myArgs, interpreter i) {
+    private static void loadSourceFiles(GetArgs myArgs, Interpreter i) {
         for (int j = 0; j < myArgs.argumentCount(); j++) {
             try {
                 Argument a = myArgs.nthArgument(j);
@@ -850,10 +850,10 @@ public final class interpreter implements SoftWoehr, verbose {
     /**
      * Run the Read-Eval-Print Loop (REPL).
      *
-     * @param i interpreter instance
+     * @param i Interpreter instance
      * @param br BufferedReader for reading input
      */
-    private static void runREPL(interpreter i, BufferedReader br) {
+    private static void runREPL(Interpreter i, BufferedReader br) {
         String tib;
 
         i.prompt();

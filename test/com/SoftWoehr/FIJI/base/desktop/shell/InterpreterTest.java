@@ -33,11 +33,11 @@ public class InterpreterTest {
     }
     
     /**
-     * Test that interpreter can be initialized successfully.
+     * Test that Interpreter can be initialized successfully.
      */
     @Test
     public void testInitializeInterpreter() {
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         assertNotNull("Interpreter should be initialized", i);
         assertNotNull("Engine should be initialized", i.myEngine);
     }
@@ -49,7 +49,7 @@ public class InterpreterTest {
     public void testParseArgumentsVerbose() {
         String[] args = {"-v"};
         GetArgs myArgs = new GetArgs(args);
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         
         // This would normally be called by parseArguments
         boolean quiet = false;
@@ -87,7 +87,7 @@ public class InterpreterTest {
     public void testParseArgumentsBaseValid() {
         String[] args = {"-b", "16"};
         GetArgs myArgs = new GetArgs(args);
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         
         for (int x = 0; x < myArgs.optionCount(); x++) {
             if (myArgs.nthOption(x).option.equals("-b")) {
@@ -108,7 +108,7 @@ public class InterpreterTest {
     public void testParseArgumentsBaseInvalid() {
         String[] args = {"-b", "invalid"};
         GetArgs myArgs = new GetArgs(args);
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         
         for (int x = 0; x < myArgs.optionCount(); x++) {
             if (myArgs.nthOption(x).option.equals("-b")) {
@@ -140,7 +140,7 @@ public class InterpreterTest {
     public void testParseArgumentsOutputEncoding() {
         String[] args = {"-o", "UTF-8"};
         GetArgs myArgs = new GetArgs(args);
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         
         for (int x = 0; x < myArgs.optionCount(); x++) {
             if (myArgs.nthOption(x).option.equals("-o")) {
@@ -156,11 +156,11 @@ public class InterpreterTest {
     }
     
     /**
-     * Test that interpreter can be created and basic operations work.
+     * Test that Interpreter can be created and basic operations work.
      */
     @Test
     public void testInterpreterBasicFunctionality() {
-        interpreter i = new interpreter();
+        Interpreter i = new Interpreter();
         assertNotNull("Interpreter should not be null", i);
         assertFalse("Kill flag should be false initially", i.killFlag);
         

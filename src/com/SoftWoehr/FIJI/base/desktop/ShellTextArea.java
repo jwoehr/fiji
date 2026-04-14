@@ -69,7 +69,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     /**
      * Interpreter instance associated with this ShellTextArea.
      */
-    private interpreter myInterpreter;
+    private Interpreter myInterpreter;
 
     /**
      * TextOutputStream in use.
@@ -115,7 +115,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
      */
     public final void reinit(ShellFrame frame) {
         myShellFrame = frame;
-        myInterpreter = new interpreter();
+        myInterpreter = new Interpreter();
         myTextAreaOutputStream = new TextAreaOutputStream(this);
         myInterpreter.setOutput(myTextAreaOutputStream);
         myInterpreter.output("FIJI ForthIsh Java Interpreter "
@@ -131,7 +131,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     }
 
     /**
-     * Load a file in the interpreter.
+     * Load a file in the Interpreter.
      *
      * @param filename
      */
@@ -140,7 +140,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     }
 
     /**
-     * Set interpreter numeric base.
+     * Set Interpreter numeric base.
      *
      * @param base
      */
@@ -149,7 +149,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     }
 
     /**
-     * Pass selected text to interpreter, then prompt.
+     * Pass selected text to Interpreter, then prompt.
      */
     public void interpretSelected() {
         String text = getSelectedText();
@@ -157,7 +157,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     }
 
     /**
-     * Pass a string to the interpreter, then prompt.
+     * Pass a string to the Interpreter, then prompt.
      *
      * @param text
      */
@@ -257,7 +257,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     }
 
     /**
-     * Sets the ShellTextArea and its interpreter verbose.
+     * Sets the ShellTextArea and its Interpreter verbose.
      *
      * @param tf
      * @see com.SoftWoehr.util.verbose
