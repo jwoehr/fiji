@@ -39,7 +39,7 @@ public class InterpreterTest {
     public void testInitializeInterpreter() {
         Interpreter i = new Interpreter();
         assertNotNull("Interpreter should be initialized", i);
-        assertNotNull("Engine should be initialized", i.myEngine);
+        assertNotNull("Engine should be initialized", i.getEngine());
     }
     
     /**
@@ -162,7 +162,7 @@ public class InterpreterTest {
     public void testInterpreterBasicFunctionality() {
         Interpreter i = new Interpreter();
         assertNotNull("Interpreter should not be null", i);
-        assertFalse("Kill flag should be false initially", i.killFlag);
+        assertFalse("Kill flag should be false initially", i.getKillFlag());
         
         // Test that we can set verbose mode
         i.setVerbose(true);
