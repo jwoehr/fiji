@@ -14,7 +14,7 @@ public class XYmap extends Frame implements MouseMotionListener {
 		super();
 		addMouseMotionListener(this);
 		setSize(200, 200);
-		show();
+		setVisible(true);
 	}
 	
 	public void mouseDragged(MouseEvent evt) {
