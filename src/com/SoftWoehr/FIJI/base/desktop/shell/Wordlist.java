@@ -31,7 +31,7 @@ package com.SoftWoehr.FIJI.base.desktop.shell;
 
 import com.SoftWoehr.SoftWoehr;
 import com.SoftWoehr.util.verbose;
-import com.SoftWoehr.util.verbosity;
+import com.SoftWoehr.util.GetArgs;
 import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -63,10 +63,6 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * Flags whether we are in verbose mode.
      */
     private boolean isverbose = false;
-    /**
-     * Helper for verbose mode.
-     */
-    private final verbosity v = new verbosity(this);
 
     /**
      * The storage of the wordlist
@@ -127,12 +123,14 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
      * Emit a string message if set verbose.
      *
      * @see com.SoftWoehr.util.verbose
-     * @see com.SoftWoehr.util.verbosity
      * @param s The string to conditionally announce.
      */
     @Override
     public void announce(String s) {
-        v.announce(s);
+        if (isVerbose()) {
+            System.err.println(s);
+            System.err.flush();
+        }
     }
 
     /**
@@ -276,6 +274,44 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
     }
 
     /**
+     * Save a Wordlist to a file using Java serialization.
+     *
+     * @param f The file to save to
+     * @throws java.io.FileNotFoundException if file cannot be created
+     * @throws java.io.IOException if I/O error occurs
+     */
+    public void save(java.io.File f)
+            throws java.io.FileNotFoundException,
+            java.io.IOException {
+        java.io.FileOutputStream fos = new java.io.FileOutputStream(f);
+        java.io.ObjectOutputStream oos = new java.io.ObjectOutputStream(fos);
+        oos.writeObject(this);
+        oos.close();
+        fos.close();
+    }
+
+    /**
+     * Load a saved Wordlist from a file using Java serialization.
+     *
+     * @param f The file to load from
+     * @return The loaded Wordlist
+     * @throws java.io.FileNotFoundException if file not found
+     * @throws java.io.IOException if I/O error occurs
+     * @throws java.lang.ClassNotFoundException if class cannot be found during deserialization
+     */
+    public static Wordlist reload(java.io.File f)
+            throws java.io.FileNotFoundException,
+            java.io.IOException,
+            java.lang.ClassNotFoundException {
+        java.io.FileInputStream fis = new java.io.FileInputStream(f);
+        java.io.ObjectInputStream ois = new java.io.ObjectInputStream(fis);
+        Wordlist w = (Wordlist) ois.readObject();
+        ois.close();
+        fis.close();
+        return w;
+    }
+
+    /**
      * Create a default wordlist for initial engine. Each invocation of this
      * method results in a unique instance. Alternatively, the list could be a
      * static member, but then it had better be read-only to interpreter
@@ -326,21 +362,21 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
             defaultList.put(new Primitive("execute", "execute"));
             defaultList.put(new Primitive("compile", "compile"));
             defaultList.put(new Primitive("[" /* Special compilation semantics.*/,
-                    "stopCompile"));
+                    "leftBracket"));
             defaultList.put(new Primitive("]" /* Special compilation semantics.*/,
-                    "startCompile"));
+                    "rightBracket"));
             defaultList.put(new Primitive("base", "popBase"));
             defaultList.put(new Primitive("base?", "pushBase"));
             defaultList.put(new Primitive("state", "doState"));
             defaultList.put(new Primitive("immediate?", "isImmediate"));
             defaultList.put(new Primitive("immediate"/* Special compilation semantics.*/,
-                    "doImmediate"));
+                    "setCurrentImmediate"));
             defaultList.put(new Primitive("\"" /* Special compilation semantics.*/,
-                    "doString"));
+                    "doubleQuote"));
             defaultList.put(new Primitive("`" /* Special compilation semantics.*/,
-                    "doBacktick"));
+                    "backTick"));
             defaultList.put(new Primitive("\\" /* Special compilation semantics.*/,
-                    "doComment"));
+                    "comment"));
             defaultList.put(new Primitive("exit", "doExit"));
             defaultList.put(new Primitive("not", "not"));
             defaultList.put(new Primitive("and", "and"));
@@ -362,36 +398,36 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
             defaultList.put(new Primitive("@", "fetch"));
             defaultList.put(new Primitive("value", "newValue"));
             defaultList.put(new Primitive("to" /* Special compilation semantics.*/,
-                    "doTo"));
+                    "toValue", "compileToValue"));
             defaultList.put(new Primitive("{", "newAnonymousDefinition"));
             defaultList.put(new Primitive("}",
-                    "endAnonymousDefinition" /* Special compilation semantics.*/));
+                    "concludeAnonymousDefinition" /* Special compilation semantics.*/));
             defaultList.put(new Primitive(":", "newDefinition"));
             defaultList.put(new Primitive(";" /* Special compilation semantics.*/,
-                    "endDefinition"));
+                    "compileOnly", "concludeDefinition"));
             defaultList.put(new Primitive("if" /* Special compilation semantics.*/,
-                    "doIf"));
+                    "compileConditionalBranch"));
             defaultList.put(new Primitive("else"/* Special compilation semantics.*/,
-                    "doElse"));
+                    "compileAndResolveBranch"));
             defaultList.put(new Primitive("then"/* Special compilation semantics.*/,
-                    "doThen"));
+                    "resolveBranch"));
             defaultList.put(new Primitive("begin"/* Special compilation semantics.*/,
-                    "doBegin"));
+                    "pushUnconditionalBranch"));
             defaultList.put(new Primitive("again"/* Special compilation semantics.*/,
-                    "doAgain"));
+                    "compileUnconditionalBackwardsBranch"));
             defaultList.put(new Primitive("until"/* Special compilation semantics.*/,
-                    "doUntil"));
+                    "compileConditionalBackwardsBranch"));
             defaultList.put(new Primitive("while"/* Special compilation semantics.*/,
-                    "doWhile"));
+                    "compileConditionalBranch"));
             defaultList.put(new Primitive("repeat"/* Special compilation semantics.*/,
-                    "doRepeat"));
+                    "compileUnconditionalBackwardsBranch"));
             defaultList.put(new Primitive("cr", "cr"));
             defaultList.put(new Primitive("do" /* Special compilation semantics.*/,
-                    "doDo"));
+                    "compileDo"));
             defaultList.put(new Primitive("loop"/* Special compilation semantics.*/,
-                    "doLoop"));
+                    "compileLoop"));
             defaultList.put(new Primitive("+loop"/* Special compilation semantics.*/,
-                    "doPlusLoop"));
+                    "compilePlusLoop"));
             defaultList.put(new Primitive("leave", "doLeave"));
             defaultList.put(new Primitive("index", "index"));
             defaultList.put(new Primitive("verbose", "runtimeVerbose"));
@@ -407,9 +443,8 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
             defaultList.put(new Primitive("words", "words"));
             defaultList.put(new Primitive("forget", "forget"));
             defaultList.put(new Primitive("discard", "discard"));
-            defaultList.put(new Primitive("see", "see"));
-            defaultList.put(new Primitive("dump", "dump"));
-        } catch (com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotStringOnStack ex) {
+            defaultList.put(new Primitive("see", "decompile"));
+        } catch (ClassNotFoundException | NoSuchMethodException ex) {
             System.err.println("Catastrophe in Wordlist.defaultWordlist() " + ex);
         }
         return defaultList;
@@ -445,12 +480,13 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
 
         // Your code goes here.
         // -------------------
-        System.out.println("Disard resulted in " + theWordlist.discard("arf"));
+        theWordlist.discard("arf");
+        System.out.println("Discard completed.");
         System.out.println("Words are " + theWordlist.words());
         System.out.println("Re-instating arf.");
         try {
             theWordlist.put(new Primitive("arf", "arf"));
-        } catch (com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotStringOnStack ex) {
+        } catch (ClassNotFoundException | NoSuchMethodException ex) {
             System.err.println("Catastrophe in Wordlist.main() " + ex);
         }
         System.out.println("Words are " + theWordlist.words());
