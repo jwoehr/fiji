@@ -215,7 +215,7 @@ public class SQLClassLoader extends java.lang.ClassLoader {
         my_rowset.execute();
         my_rowset.next();
         Blob blob = my_rowset.getBlob("CLASSFILE");
-        return blob.getBytes(1, new Long(blob.length()).intValue());
+        return blob.getBytes(1, Long.valueOf(blob.length()).intValue());
     }
 
     /**

@@ -60,7 +60,7 @@ public String rcsId() {return rcsid;}
   /**  Flags whether we are in verbose mode. */
   private boolean isverbose = true;
   /**  Helper for verbose mode. */
-  private verbosity v = new verbosity(this);
+
 
   /** Does the work of notifying shutdown clients. */
   private ShutdownHelper shutdownHelper = new ShutdownHelper();
@@ -237,7 +237,7 @@ public void    setVerbose  (boolean tf) {isverbose = tf;  }
    * @see com.SoftWoehr.util.verbose
    * @see com.SoftWoehr.util.verbosity
    */
-public void    announce    (String s)   {v.announce(s);   }
+
 
   /********************************************/
   /*% SoftWoehr default methods section ends. */

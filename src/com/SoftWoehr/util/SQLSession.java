@@ -75,22 +75,8 @@ public class SQLSession implements SoftWoehr, verbose {
     public boolean isverbose = true;
     /**  Flags whether we're being verbose. */
     
-    private static verbosity v =
-    new com.SoftWoehr.util.verbosity(new verbose() {
-        private boolean verby = false;
-        
-        /** Returns true if instance is in verbose mode.
-         */
-        public boolean isVerbose() { return verby; }
-        
-        /** Sets <code>true</code> or resets <code>false</code> verbose mode.
-         */
-        public void setVerbose(boolean b) { verby = b; }
-        
-        /** Say something if the object is in verbose mode, be silent otherwise.
-         */
-        public void announce(String message) {  System.out.println(message); }
-    });
+
+
     
     
     /**
@@ -395,7 +381,8 @@ public class SQLSession implements SoftWoehr, verbose {
     
     /** Announce synchronized if verbose */
     private static synchronized void sync_announce(String s) {
-        v.announce(s);
+        System.err.println(s);
+        System.err.flush();
     }
     
     /** Set verbosity

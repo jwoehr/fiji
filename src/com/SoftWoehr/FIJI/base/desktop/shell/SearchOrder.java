@@ -51,13 +51,13 @@ public class SearchOrder implements SoftWoehr, verbose {
     /**  Flags whether we are in verbose mode. */
     private boolean isverbose = true;
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Does the work of notifying shutdown clients. */
     private ShutdownHelper shutdownHelper = new ShutdownHelper();
     
     /** Vector which holds the search order */
-    private Vector my_vector = new Vector();
+    private List<Wordlist> my_vector = new ArrayList<>();
     
     
     /** Arity/0 ctor. */
@@ -81,7 +81,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     
     /** Reinitialize the SearchOrder, discarding previous state. */
     public void reinit() {
-        my_vector.setSize(0);
+        my_vector.clear();
     }
     
     /** Find a Semantic (or null) somewhere in the search order.
@@ -89,9 +89,7 @@ public class SearchOrder implements SoftWoehr, verbose {
      * @return the Semantic */
     public Semantic find(String name) {
         Semantic result = null;
-        Wordlist w = null;
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            w = (Wordlist) (e.nextElement());
+        for (Wordlist w : my_vector) {
             result = w.find(name);
             if (null != result) {
                 break;
@@ -110,9 +108,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     public boolean forget(String name) {
         boolean rc = false;
         Semantic result = null;
-        Wordlist w = null;
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            w = (Wordlist) (e.nextElement());
+        for (Wordlist w : my_vector) {
             result = w.find(name);
             if (null != result) {
                 w.forget(name);    /* Pop the previous Semantic or discard if none.*/
@@ -132,9 +128,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     public boolean discard(String name) {
         boolean rc = false;
         Semantic result = null;
-        Wordlist w = null;
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            w = (Wordlist) (e.nextElement());
+        for (Wordlist w : my_vector) {
             result = w.find(name);
             if (null != result) {
                 w.discard(name);   /* Pop the previous Semantic or discard if none.*/
@@ -149,10 +143,10 @@ public class SearchOrder implements SoftWoehr, verbose {
      * @param z associated engine
      */
     public void getOrder(Engine z) {
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            z.push(e.nextElement());
+        for (Wordlist w : my_vector) {
+            z.push(w);
         }                                                          /* End for*/
-        z.push(new Long(my_vector.size()));
+        z.push(Long.valueOf(my_vector.size()));
     }                                     /* public void getOrder(engine z)*/
     
     /** Grab search order from stack
@@ -162,7 +156,7 @@ public class SearchOrder implements SoftWoehr, verbose {
         reinit();                                        /* Empty search order.*/
         int numWordlists = ((Long) z.pop()).intValue();
         for (int i = 0; i < numWordlists; ++i) {
-            my_vector.addElement(z.pop());                       /* Add wordlists to order.*/
+            my_vector.add((Wordlist) z.pop());                       /* Add wordlists to order.*/
         }                                                          /* End for*/
     }                                     /* public void setOrder(engine z)*/
     
@@ -171,9 +165,7 @@ public class SearchOrder implements SoftWoehr, verbose {
      */
     public String words() {
         String result = "";
-        Wordlist w = null;
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            w = (Wordlist) (e.nextElement());
+        for (Wordlist w : my_vector) {
             result += w.words();
         }                                                          /* End for*/
         return result;
@@ -192,7 +184,7 @@ public class SearchOrder implements SoftWoehr, verbose {
      * @param i index
      * @return the Wordlist or null */
     public Wordlist nthElement(int i) {
-        return (Wordlist) my_vector.elementAt(i);
+        return my_vector.get(i);
     }
     
     /** Test verbosity
@@ -208,9 +200,7 @@ public class SearchOrder implements SoftWoehr, verbose {
     public void    setVerbose  (boolean tf) {
         isverbose = tf;
         announce("Setting search order verbose.");
-        Wordlist w = null;
-        for (Enumeration e = my_vector.elements(); e.hasMoreElements();) {
-            w = (Wordlist) (e.nextElement());
+        for (Wordlist w : my_vector) {
             w.setVerbose(isVerbose());
         }                                                          /* End for*/
     }
@@ -219,7 +209,7 @@ public class SearchOrder implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
      * @param s  */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     
     /** Demonstrate <code>SearchOrder</code>.

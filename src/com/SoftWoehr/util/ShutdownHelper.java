@@ -29,96 +29,95 @@
 
 package com.SoftWoehr.util;
 
+import com.SoftWoehr.SoftWoehr;
 import java.util.*;
 
-import  com.SoftWoehr.*;
-import  com.SoftWoehr.util.*;
-
- /** Helps implement com.SoftWoehr.SoftWoehr.shutdown();
-   *
-   * @author $Author: jwoehr $
-   * @version $Revision: 1.1 $
-   */
-public class ShutdownHelper implements SoftWoehr, verbose
-{
-  /*****************************************/
-  /*% SoftWoehr default variables section. */
-  /*****************************************/
-
-  /** Revision level */
+/** Support class to do shutdown on behalf of other entities.
+ * <br>An entity which instantiates <code>ShutdownHelper</code>
+ * allows others implementing <code>com.SoftWoehr.SoftWoehr</code>
+ * to register with it. The <code>ShutdownHelper</code> method
+ * <code>shutdownClients()</code> is then called in the owning
+ * entity's <code>shutdown()</code> code.
+ * @author $Author: jwoehr $
+ * @version $Revision: 1.1 $
+ */
+public class ShutdownHelper implements SoftWoehr, verbose {
+  
+  /** Identifies revision level of source for SoftWoehr interface */
   private static final String rcsid = "$Id: ShutdownHelper.java,v 1.1 2016-11-06 21:20:42 jwoehr Exp $";
-  /** Implements com.SoftWoehr.SoftWoehr */
-  public String rcsId() {return rcsid;}
-
-  /**  Flags whether we are in verbose mode. */
-  private boolean isverbose = true;
-  /**  Helper for verbose mode. */
-  private verbosity v = new verbosity(this);
-
-  /**********************************************/
-  /*% SoftWoehr default variables section ends. */
-  /**********************************************/
-
-  /***********************************/
-  /*% User variables section starts. */
-  /***********************************/
-
-  /** Clients to shutdown when told shutdown(). */
-  private Vector clients;
-
-  /*********************************/
-  /*% User variables section ends. */
-  /*********************************/
-
-  /*********************************/
-  /*% User methods section starts. */
-  /*********************************/
-
-  /** Arity/0 ctor. */
-  public ShutdownHelper () {}
-
-  public String toString ()
-    {return super.toString();}
-
-  protected void finalize () throws Throwable
-    {           /* Called by garbage collector in case no longer referenced*/
-      super.finalize();
-    }
-
+  
+  /** Returns revision info for SoftWoehr interface.
+   * @return the rcsid
+   */
+  public  String              rcsId() { return rcsid; }
+  
   /** The ShutdownHelper notifies subcomponents of shutdown then shuts itself down.
-    * @see com.SoftWoehr.SoftWoehr
-    */
-  public int shutdown (){
-    return shutdownClients();
-    }
-
-  /** Reinitialize the ShutdownHelper, discarding previous state. */
+   * @see com.SoftWoehr.SoftWoehr#shutdown
+   * @return return code
+   */
+  public int shutdown() { return shutdownClients(); }
+  
+  /** Is this verbose and announcing? */
+  public boolean isverbose = false;
+  
+  /** Array of clients for shutdown */
+  private List<SoftWoehr> clients;
+  
+  /** Returns <CODE>true</CODE> if entity is set verbose.
+   * @see com.SoftWoehr.util.verbose
+   * @see com.SoftWoehr.util.verbosity
+   * @return verbose indicator
+   */
+  public boolean isVerbose()              {return isverbose;}
+  
+  /** Set <CODE>true</CODE> to set entity verbose.
+   * @see com.SoftWoehr.util.verbose
+   * @see com.SoftWoehr.util.verbosity
+   * @param tf verbose setter
+   */
+  public void    setVerbose  (boolean tf) {isverbose = tf;  }
+  
+  
+  /** Arity/0 ctor */
+  public ShutdownHelper() {
+    reinit();
+  }
+  
+  /** Call to start anew with empty list of clients */
   public void reinit() {
-    clients = new Vector();
-    }
+    clients = new ArrayList<>();
+  }
+  
+  /** Register a client for shutdown
+   * @param sw Object to shut down
+   */
+  public void registerClient(SoftWoehr sw) {
+    clients.add(sw);
+  }
+  
+  /** Call all registered clients' shutdown() methods
+   */
+  public int shutdownClients() {
+   int result = 0;
+   for (SoftWoehr sw : clients) {
+        announce("Shutting down " + sw.toString());
+        result = sw.shutdown();
+        if (result != 0) {
+            break;
+        }
+   }
+   return result;
+  }
 
   /** Add client for later shutdown calls. */
   public void addShutdownClient(SoftWoehr s) {
-    clients.addElement(s);
+    clients.add(s);
     }
 
   /** Remove client for later shutdown calls. */
   public void removeShutdownClient(SoftWoehr s) {
-    clients.removeElement(s);
+    clients.remove(s);
     }
-
- /** Shutdown clients. */
- public int shutdownClients() {
-   int result = 0;
-   for (Enumeration e = clients.elements(); e.hasMoreElements();) {
-     result = ((SoftWoehr)(e.nextElement())).shutdown();
-     if (result != 0)
-       {
-       break;
-       }
-     }
-   return result;
-   }
 
   /*******************************/
   /*% User methods section ends. */
@@ -128,23 +127,13 @@ public class ShutdownHelper implements SoftWoehr, verbose
   /*% SoftWoehr default methods section starts. */
   /**********************************************/
 
-   /**
-    * @see com.SoftWoehr.util.verbose
-    * @see com.SoftWoehr.util.verbosity
-    */
-   public boolean isVerbose()              {return isverbose;}
+
 
    /**
     * @see com.SoftWoehr.util.verbose
     * @see com.SoftWoehr.util.verbosity
     */
-   public void    setVerbose  (boolean tf) {isverbose = tf;  }
 
-   /**
-    * @see com.SoftWoehr.util.verbose
-    * @see com.SoftWoehr.util.verbosity
-    */
-   public void    announce    (String s)   {v.announce(s);   }
 
   /********************************************/
   /*% SoftWoehr default methods section ends. */

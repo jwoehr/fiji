@@ -65,21 +65,17 @@ public class FijiInputPanel extends javax.swing.JPanel {
         
         clearButton.setToolTipText("Clear entire history list of commands which you entered at right.");
         clearButton.setText("Clear");
-        clearButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearButtonActionPerformed(evt);
-            }
-        });
+        clearButton.addActionListener(evt -> clearButtonActionPerformed(evt));
+        
+        interpretButton.setToolTipText("Interpret the text input in the combo box.");
+        interpretButton.setText("Interpret");
+        interpretButton.addActionListener(evt -> interpretButtonActionPerformed(evt));
         
         add(clearButton, java.awt.BorderLayout.WEST);
         
         interpretButton.setToolTipText("Interpret the text input in the combo box.");
         interpretButton.setText("Interpret");
-        interpretButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                interpretButtonActionPerformed(evt);
-            }
-        });
+        interpretButton.addActionListener(evt -> interpretButtonActionPerformed(evt));
         
         add(interpretButton, java.awt.BorderLayout.EAST);
         
@@ -105,20 +101,14 @@ public class FijiInputPanel extends javax.swing.JPanel {
   // End of variables declaration//GEN-END:variables
 
     /**
-     * Set up for user input
+     * Initializes the contained <code>FijiInputComboBox</code>
      */
     private void init_input_box() {
-        fijiInputComboBox.getEditor().addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fijiInputComboBoxEditorActionPerformed(evt);
-            }
-        }
-        );
+        fijiInputComboBox.getEditor().addActionListener(evt -> fijiInputComboBoxEditorActionPerformed(evt));
     }
 
     /**
-     * Handle combo box editor action event, i.e., user pressed Enter
+     * Handle combo box editor action event, ie., user pressed Enter
      */
     private void fijiInputComboBoxEditorActionPerformed(java.awt.event.ActionEvent evt) {
         interpret_input_string(evt.getActionCommand());

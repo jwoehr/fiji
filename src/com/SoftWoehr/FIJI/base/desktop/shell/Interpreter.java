@@ -72,7 +72,7 @@ public final class Interpreter implements SoftWoehr, verbose {
     /**
      * Helper for verbose mode.
      */
-    private verbosity v = new verbosity(this);
+
 
     /**
      * An execution engine
@@ -171,7 +171,6 @@ public final class Interpreter implements SoftWoehr, verbose {
      */
     public void reinit() {
         myEngine = new Engine(this);
-        v = new verbosity(this);
         warmReset();
     }
 
@@ -605,7 +604,7 @@ public final class Interpreter implements SoftWoehr, verbose {
                             a = Long.parseLong(aLexeme);
                             try {
                                 // Try to compile the long as a literal Long
-                                myEngine.compileLiteral(new Long(a));
+                                myEngine.compileLiteral(Long.valueOf(a));
                             } catch (Exception x) {
                                 announce("interpreter had problem compiling literal Long.");
                                 announce("Lexeme was: " + aLexeme);
@@ -700,11 +699,6 @@ public final class Interpreter implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
-
     /**
      * Demonstrate <code>Interpreter</code>.
      *

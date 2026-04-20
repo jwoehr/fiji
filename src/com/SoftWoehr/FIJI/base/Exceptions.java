@@ -61,7 +61,7 @@ public class Exceptions extends java.lang.Exception implements SoftWoehr, verbos
     /**
      * Helper for verbose mode.
      */
-    private verbosity v = new verbosity(this);
+
 
     /**
      * Does the work of notifying shutdown clients.
@@ -778,10 +778,6 @@ public class Exceptions extends java.lang.Exception implements SoftWoehr, verbos
      * @see com.SoftWoehr.util.verbosity
      * @param s String to announce.
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
 
     /**
      * Demonstrate <code>Exceptions</code>.

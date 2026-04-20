@@ -54,7 +54,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
     /**  Flags whether we are in verbose mode. */
     private boolean isverbose = true;
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Does the work of notifying shutdown clients. */
     private ShutdownHelper shutdownHelper = new ShutdownHelper();
@@ -77,7 +77,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         )
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super(name, methodName, new Integer(delta), Engine.cInteger);
+            super(name, methodName, Integer.valueOf(delta), Engine.cInteger);
         }
     }                                                  /* End of Branch class*/
     
@@ -171,7 +171,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public Do   (int offset)   /* Offset in definition at which 'do' occurs*/
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(do)", "doDo", new Integer(offset), Engine.cInteger);
+            super("(do)", "doDo", Integer.valueOf(offset), Engine.cInteger);
         }
     }                                                      /* End of Do class*/
     
@@ -184,7 +184,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public Loop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(loop)", "loop", new Integer(delta), Engine.cInteger);
+            super("(loop)", "loop", Integer.valueOf(delta), Engine.cInteger);
         }
     }                                                    /* End of Loop class*/
     
@@ -197,7 +197,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
         public PlusLoop   (int delta)
         throws java.lang.ClassNotFoundException
         , java.lang.NoSuchMethodException {
-            super("(+loop)", "plusLoop", new Integer(delta), Engine.cInteger);
+            super("(+loop)", "plusLoop", Integer.valueOf(delta), Engine.cInteger);
         }
     }                                                    /* End of Loop class*/
     
@@ -361,7 +361,7 @@ public class ParameterizedPrimitive extends Primitive implements SoftWoehr, verb
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demonstrate <code>ParameterizedPrimitive</code>.
      * @param argv  args to main -- not used

@@ -74,7 +74,7 @@ public class Engine implements SoftWoehr, verbose {
     public boolean isverbose = false;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Reference to a Class object for comparisons to avoid
      * frequent calls to Class.forName()
@@ -269,7 +269,7 @@ public class Engine implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s Message to announce
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Find a semantic by name in one of the wordlists
      * in the array of same currently searched by this engine.
@@ -318,7 +318,7 @@ public class Engine implements SoftWoehr, verbose {
     
     /** depth      xn .. x1 -- n */
     public void depth() {
-        push(new Long(stack.size()));
+        push(Long.valueOf(stack.size()));
     }
     
     /** dup          o -- o o
@@ -457,8 +457,7 @@ public class Engine implements SoftWoehr, verbose {
     /** .s        o1 .. oN -- o1 .. oN */
     public void dot_s() {
         if (stack.size() > 0) {
-            for (Enumeration e = stack.elements(); e.hasMoreElements();) {
-                Object o = e.nextElement();
+            for (Object o : stack) {
                 if (null != o) {
                     myInterpreter.output("`" + o + "` ");
                 }
@@ -469,15 +468,14 @@ public class Engine implements SoftWoehr, verbose {
             }
         }
         else {
-            myInterpreter.output("Empty stack. ");
+            myInterpreter.output("Stack empty.");
         }
-    }
+    }                                              /* public void dot_s() */
     
-    /** .c        o1 .. oN -- o1 .. oN */
+    /** Nondestructively dump types of FIJI data stack objects. */
     public void dot_c() {
         if (stack.size() > 0) {
-            for (Enumeration e = stack.elements(); e.hasMoreElements();) {
-                Object o = e.nextElement();
+            for (Object o : stack) {
                 if (null != o) {
                     myInterpreter.output("`" + o.getClass() + "` ");
                 }
@@ -487,17 +485,14 @@ public class Engine implements SoftWoehr, verbose {
             }
         }
         else {
-            myInterpreter.output("Empty stack. ");
+            myInterpreter.output("Stack empty.");
         }
-    }
+    }                                              /* public void dot_c() */
     
-    /** Primitive to display all stack entries and their classes.
-     * .sc        o1 .. oN -- o1 .. oN
-     */
+    /** Nondestructively dump FIJI data stack objects and their types. */
     public void dot_sc() {
         if (stack.size() > 0) {
-            for (Enumeration e = stack.elements(); e.hasMoreElements();) {
-                Object o = e.nextElement();
+            for (Object o : stack) {
                 if (null != o) {
                     myInterpreter.output("`" + o + " /*" + o.getClass() + "*/` ");
                 }
@@ -510,6 +505,10 @@ public class Engine implements SoftWoehr, verbose {
             myInterpreter.output("Empty stack. ");
         }
     }
+    
+
+    
+
     
     /** .         o1 -- */
     public void dot() {
@@ -730,7 +729,7 @@ public class Engine implements SoftWoehr, verbose {
     throws com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NonReflectedType
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.StackUnderflow
     , com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotClassName {
-        push(new Integer(((Long)pop()).intValue()));
+        push(Integer.valueOf(((Long)pop()).intValue()));
         stackEntryToPrimParam();
     }
     
@@ -788,7 +787,7 @@ public class Engine implements SoftWoehr, verbose {
      * base? -- L
      */
     public void pushBase() {
-        push(new Long(myInterpreter.getBase()));
+        push(Long.valueOf(myInterpreter.getBase()));
     }
     
     /** Set input base.
@@ -802,7 +801,7 @@ public class Engine implements SoftWoehr, verbose {
      * state   --- t|f
      */
     public void doState() {
-        push(new Boolean(getState()));
+        push(Boolean.valueOf(getState()));
     }
     
     /** Makes current definition immediate.
@@ -814,7 +813,7 @@ public class Engine implements SoftWoehr, verbose {
     /** Tests Definition on top of stack for immediacy.
      */
     public void isImmediate() {
-        push(new Boolean(((Definition)pop()).getImmediate()));
+        push(Boolean.valueOf(((Definition)pop()).getImmediate()));
     }
     
     /** >class   o1 -- c1 */
@@ -848,10 +847,10 @@ public class Engine implements SoftWoehr, verbose {
         Class c = null;
         
         if (o.getClass() == cJavaParam) {                   /* If it's already a JavaParam, accumulate as-is.*/
-            ((JavaArgs) peek()).addElement(o);
+            ((JavaArgs) peek()).add((JavaParam)o);
         }
         else                 /* It's not yet a JavaParam, accumulate it as one.*/ {
-            ((JavaArgs) peek()).addElement(new JavaParam(o));
+            ((JavaArgs) peek()).add(new JavaParam(o));
         }                                                           /* End if*/
     }
     
@@ -1009,12 +1008,12 @@ public class Engine implements SoftWoehr, verbose {
     
     /** Leave boolean true on stack */
     public void pushTrue() {
-        push(new Boolean(true));
+        push(Boolean.valueOf(true));
     }
     
     /** Leave boolean false on stack */
     public void pushFalse() {
-        push(new Boolean(false));
+        push(Boolean.valueOf(false));
     }
     
     /** Leave null on stack */
@@ -1028,7 +1027,7 @@ public class Engine implements SoftWoehr, verbose {
     
     /** Invert the boolean on top of stack. */
     public void not() {
-        push( new Boolean(
+        push( Boolean.valueOf(
         ((Boolean) pop()).booleanValue() == false
         )
         );
@@ -1038,21 +1037,21 @@ public class Engine implements SoftWoehr, verbose {
     public void and() {
         boolean lhs = ((Boolean) pop()).booleanValue();
         boolean rhs = ((Boolean) pop()).booleanValue();
-        push(new Boolean(lhs && rhs));
+        push(Boolean.valueOf(lhs && rhs));
     }                                                 /* public void and ()*/
     
     /** OR two booleans on top of stack. */
     public void or() {
         boolean lhs = ((Boolean) pop()).booleanValue();
         boolean rhs = ((Boolean) pop()).booleanValue();
-        push(new Boolean(lhs || rhs));
+        push(Boolean.valueOf(lhs || rhs));
     }                                                  /* public void or ()*/
     
     /** XOR two booleans on top of stack. */
     public void xor() {
         boolean lhs = ((Boolean) pop()).booleanValue();
         boolean rhs = ((Boolean) pop()).booleanValue();
-        push(new Boolean(lhs ^ rhs));
+        push(Boolean.valueOf(lhs ^ rhs));
     }                                                 /* public void xor ()*/
     
     /** Compare two objects for equality. */
@@ -1061,14 +1060,14 @@ public class Engine implements SoftWoehr, verbose {
         Object b = pop();
         if (a == null || b == null) {
             if (a == null && b == null) {
-                push(new Boolean(true));
+                push(Boolean.valueOf(true));
             }
             else {
-                push(new Boolean(false));
+                push(Boolean.valueOf(false));
             }                                                         /* End if*/
         }
         else {
-            push(new Boolean(a.equals(b)));
+            push(Boolean.valueOf(a.equals(b)));
         }                                                           /* End if*/
     }                                             /* public void isEqual ()*/
     
@@ -1078,14 +1077,14 @@ public class Engine implements SoftWoehr, verbose {
         Object b = pop();
         if (a == null || b == null) {
             if (a == null && b == null) {
-                push(new Boolean(false));
+                push(Boolean.valueOf(false));
             }
             else {
-                push(new Boolean(true));
+                push(Boolean.valueOf(true));
             }                                                         /* End if*/
         }
         else {
-            push(new Boolean(!a.equals(b)));
+            push(Boolean.valueOf(!a.equals(b)));
         }                                                           /* End if*/
     }                                           /* public void isUnequal ()*/
     
@@ -1097,13 +1096,13 @@ public class Engine implements SoftWoehr, verbose {
         Object o = pop();
         final Class c  = o.getClass();
         if (c == cString) {
-            push( new Boolean(0
+            push( Boolean.valueOf(0
             <
             ((String) pop()).compareTo((String) o)
             ));
         }
         else if (c == cLong) {
-            push( new Boolean( ((Long)pop()).longValue()
+            push( Boolean.valueOf( ((Long)pop()).longValue()
             > ((Long)o)    .longValue()
             ));
         }
@@ -1120,13 +1119,13 @@ public class Engine implements SoftWoehr, verbose {
         Object o = pop();
         final Class c  = o.getClass();
         if (c == cString) {
-            push( new Boolean(0
+            push( Boolean.valueOf(0
             >
             ((String) pop()).compareTo((String) o)
             ));
         }
         else if (c == cLong) {
-            push( new Boolean( ((Long)pop()).longValue()
+            push( Boolean.valueOf( ((Long)pop()).longValue()
             < ((Long)o)    .longValue()
             ));
         }
@@ -1149,7 +1148,7 @@ public class Engine implements SoftWoehr, verbose {
             push(new String((String) pop() + (String) o));
         }
         else if (c == cLong) {
-            push(new Long(((Long)o).longValue() + ((Long)pop()).longValue()));
+            push(Long.valueOf(((Long)o).longValue() + ((Long)pop()).longValue()));
         }
         else {
             // throw bAdAdD (if not both same class)
@@ -1163,7 +1162,7 @@ public class Engine implements SoftWoehr, verbose {
     public void mul() {
         Long multiplier   = (Long) pop();
         Long multiplicand = (Long) pop();
-        push(new Long(multiplicand.longValue() * multiplier.longValue()));
+        push(Long.valueOf(multiplicand.longValue() * multiplier.longValue()));
     }
     
     /** Divide two longs.
@@ -1173,7 +1172,7 @@ public class Engine implements SoftWoehr, verbose {
     public void div() {
         Long divisor = (Long) pop();
         Long dividend = (Long) pop();
-        push(new Long(dividend.longValue() / divisor.longValue()));
+        push(Long.valueOf(dividend.longValue() / divisor.longValue()));
     }
     
     /** Subtract two longs.
@@ -1183,7 +1182,7 @@ public class Engine implements SoftWoehr, verbose {
     public void sub() {
         Long subtrahend = (Long) pop();
         Long sum        = (Long) pop();
-        push(new Long(sum.longValue() - subtrahend.longValue()));
+        push(Long.valueOf(sum.longValue() - subtrahend.longValue()));
     }
     
     /** Modulus of two longs.
@@ -1193,7 +1192,7 @@ public class Engine implements SoftWoehr, verbose {
     public void mod() {
         Long divisor = (Long) pop();
         Long dividend = (Long) pop();
-        push(new Long(dividend.longValue() % divisor.longValue()));
+        push(Long.valueOf(dividend.longValue() % divisor.longValue()));
     }
     
     /** Create a new java.lang.reflect.Array of one dimension.
@@ -1828,7 +1827,7 @@ public class Engine implements SoftWoehr, verbose {
             int origin = ((Integer) p.getObject()).intValue();
             int destination =   /* Okay - inner Interpreter while loop tests .LT.*/
             getCurrentDefinition().compositionLength();
-            p.setObject(new Integer((destination - origin) - 1));  /* Resolution.*/
+            p.setObject(Integer.valueOf((destination - origin) - 1));  /* Resolution.*/
       /* "Minus one" because this is the bump delta to the instruction
        * pointer, which latter has already been post-incremented in the
        * inner Interpreter loop.
@@ -1948,7 +1947,7 @@ public class Engine implements SoftWoehr, verbose {
             int destination = ((Integer) p.getObject()).intValue();
             int origin =
             getCurrentDefinition().compositionLength();
-            p.setObject(new Integer((destination-origin) - 1));/* Resolution backwards.*/
+            p.setObject(Integer.valueOf((destination-origin) - 1));/* Resolution backwards.*/
             p.compile(this);                                      /* Lay it down.*/
         }
         else                                                      /* Not valid.*/ {
@@ -2055,11 +2054,11 @@ public class Engine implements SoftWoehr, verbose {
      */
     public void doDo(ParameterizedPrimitive.Do p) {
         int index = ((Long)pop()).intValue();
-        announce("'do' index is " + new Integer(index));
+        announce("'do' index is " + Integer.valueOf(index));
         int limit = ((Long)pop()).intValue();
-        announce("'do' limit is " + new Integer(limit));
+        announce("'do' limit is " + Integer.valueOf(limit));
         int egress = ((Integer) p.getObject()).intValue();
-        announce("'do' egress is " + new Integer(egress));
+        announce("'do' egress is " + Integer.valueOf(egress));
         innerInterpreter.startLoop(limit, index, egress);
     }
     
@@ -2169,7 +2168,7 @@ public class Engine implements SoftWoehr, verbose {
       /*  postincremented  past this compilation. */
             getCurrentDefinition().compositionLength() + 1;
             int delta = destination - origin;/* Backwards value.                 */
-            p.setObject(new Integer(origin)); /* 'leave' Resolution for the 'do'.*/
+            p.setObject(Integer.valueOf(origin)); /* 'leave' Resolution for the 'do'.*/
             p = new ParameterizedPrimitive.Loop(delta);/* Create the resolved Loop.*/
             p.compile(this);                        /* Compile the resolved loop.*/
         }
@@ -2224,8 +2223,8 @@ public class Engine implements SoftWoehr, verbose {
       /*  postincremented  past this compilation. */
             getCurrentDefinition().compositionLength() + 1;
             int delta = destination - origin;/* Backwards Resolution.            */
-            announce("Delta compiling +loop is " + new Integer(delta));
-            p.setObject(new Integer(origin)); /* 'leave' Resolution for the 'do'.*/
+            announce("Delta compiling +loop is " + Integer.valueOf(delta));
+            p.setObject(Integer.valueOf(origin)); /* 'leave' Resolution for the 'do'.*/
             p =                             /* Now create the PlusLoop, resolved.*/
             new ParameterizedPrimitive     /* Create new PlusLoop.             */
             .PlusLoop(delta);                       /* Backwards Resolution.*/
@@ -2242,7 +2241,7 @@ public class Engine implements SoftWoehr, verbose {
     
     /** Return a loop index. */
     public void index() {
-        push(new Long(innerInterpreter.ithIndex(((Long)pop()).intValue())));
+        push(Long.valueOf(innerInterpreter.ithIndex(((Long)pop()).intValue())));
     }                                               /* public void index ()*/
     
     /** Perform a leave at runtime */
@@ -2439,7 +2438,7 @@ public class Engine implements SoftWoehr, verbose {
  * e.g., java.lang.String.equals(java.lang.Object o) but the Object
  * is a String.
  */
-class JavaArgs extends Vector {
+class JavaArgs extends ArrayList<JavaParam> {
     /** Create a JavaArgs object to pass args to java method invocation.
      */
     public JavaArgs() {}                     /* Needs an arity/1 on Object[]*/
@@ -2455,9 +2454,9 @@ class JavaArgs extends Vector {
     public synchronized Object[] toObjectArray() {
         int sz = size();
         Object result[] = new Object[sz];
-        Enumeration e = elements();
-        for (int i = 0; i < sz ; ++i) {
-            result[i] = ((JavaParam) (e.nextElement())).getRealObject();
+        int i = 0;
+        for (JavaParam p : this) {
+            result[i++] = p.getRealObject();
         }                                                          /* End for*/
         return result;
     }
@@ -2471,11 +2470,11 @@ class JavaArgs extends Vector {
     public synchronized Class[] toClassArray() {
         int sz = size();
         Class result[] = new Class[sz];
-        Enumeration e = elements();
-        for (int i = 0; i < sz ; ++i) {
-            result[i] = ((JavaParam) (e.nextElement())).getSignatureClass();
+        int i = 0;
+        for (JavaParam p : this) {
+            result[i++] = p.getSignatureClass();
         }                                                          /* End for*/
         return result;
     }
-}                                                /* End of JavaArgs class*/
-/*  End of engine.java */
+    
+}                                                         /* End of JavaArgs*/

@@ -39,13 +39,7 @@ public class FijiInputComboBox extends JComboBox {
     protected final void re_init() {
         setEditable(true);
         setAutoscrolls(true);
-        addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fijiInputComboBoxActionPerformed(evt);
-            }
-        }
-        );
+        addActionListener(evt -> fijiInputComboBoxActionPerformed(evt));
     }
 
     /**

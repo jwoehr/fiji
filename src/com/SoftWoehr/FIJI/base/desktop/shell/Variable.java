@@ -53,7 +53,7 @@ public class Variable extends Semantic implements SoftWoehr, verbose, Serializab
     private boolean isverbose = true;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Does the work of notifying shutdown clients. */
     private ShutdownHelper shutdownHelper = new ShutdownHelper();
@@ -127,7 +127,7 @@ public class Variable extends Semantic implements SoftWoehr, verbose, Serializab
      * @see com.SoftWoehr.util.verbosity
      * @param s  The string to conditionally announce.
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demonstrate <code>Variable</code>.
      * @param argv not used

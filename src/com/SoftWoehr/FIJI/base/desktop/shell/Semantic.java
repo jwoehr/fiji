@@ -51,7 +51,7 @@ public class Semantic implements SoftWoehr, verbose, Serializable {
     public boolean isverbose = false;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     private String myName;
     
@@ -97,7 +97,7 @@ public class Semantic implements SoftWoehr, verbose, Serializable {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Identification.
      * @return Name of the Semantic

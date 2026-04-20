@@ -73,7 +73,7 @@ public class TextAreaOutputStream extends OutputStream
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
     /**
      * The text area we stream for
      */
@@ -172,11 +172,6 @@ public class TextAreaOutputStream extends OutputStream
      * @see com.SoftWoehr.util.verbosity
      * @param s String to announce (during debugging).
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
-
     /**
      * Demonstrate <code>TextAreaOutputStream</code>.
      *

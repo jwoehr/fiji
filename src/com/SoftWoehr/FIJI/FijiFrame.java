@@ -83,73 +83,45 @@ public class FijiFrame extends javax.swing.JFrame {
         fileNewMenuItem.setToolTipText("Empty the text area and reinstance as a new file.");
         fileNewMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_N);
         fileNewMenuItem.setText("New");
-        fileNewMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileNewMenuItemActionPerformed(evt);
-            }
-        });
+        fileNewMenuItem.addActionListener(evt -> fileNewMenuItemActionPerformed(evt));
         
         fileMenu.add(fileNewMenuItem);
         fileOpenMenuItem.setToolTipText("Open a file in the text area, replacing the text area's contents.");
         fileOpenMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_O);
         fileOpenMenuItem.setText("Open");
-        fileOpenMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileOpenMenuItemActionPerformed(evt);
-            }
-        });
+        fileOpenMenuItem.addActionListener(evt -> fileOpenMenuItemActionPerformed(evt));
         
         fileMenu.add(fileOpenMenuItem);
         fileInsertMenuItem.setToolTipText("Insert a file into the text area at current cursor.");
         fileInsertMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         fileInsertMenuItem.setText("Insert");
-        fileInsertMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileInsertMenuItemActionPerformed(evt);
-            }
-        });
+        fileInsertMenuItem.addActionListener(evt -> fileInsertMenuItemActionPerformed(evt));
         
         fileMenu.add(fileInsertMenuItem);
         fileMenu.add(jSeparator4);
         fileSaveMenuItem.setToolTipText("Save contents of the text area to file.");
         fileSaveMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_S);
         fileSaveMenuItem.setText("Save");
-        fileSaveMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileSaveMenuItemActionPerformed(evt);
-            }
-        });
+        fileSaveMenuItem.addActionListener(evt -> fileSaveMenuItemActionPerformed(evt));
         
         fileMenu.add(fileSaveMenuItem);
         fileSaveAsMenuItem.setToolTipText("Save contents of the edit area under a changed filename.");
         fileSaveAsMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         fileSaveAsMenuItem.setText("Save as");
-        fileSaveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileSaveAsMenuItemActionPerformed(evt);
-            }
-        });
+        fileSaveAsMenuItem.addActionListener(evt -> fileSaveAsMenuItemActionPerformed(evt));
         
         fileMenu.add(fileSaveAsMenuItem);
         fileSaveSelectedMenuItem.setToolTipText("Save selected text from edit area to file.");
         fileSaveSelectedMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         fileSaveSelectedMenuItem.setText("Save Selected");
-        fileSaveSelectedMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileSaveSelectedMenuItemActionPerformed(evt);
-            }
-        });
+        fileSaveSelectedMenuItem.addActionListener(evt -> fileSaveSelectedMenuItemActionPerformed(evt));
         
         fileMenu.add(fileSaveSelectedMenuItem);
         fileMenu.add(jSeparator3);
         fileExitMenuItem.setToolTipText("Bye!");
         fileExitMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_X);
         fileExitMenuItem.setText("Exit");
-        fileExitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileExitMenuItemActionPerformed(evt);
-            }
-        });
+        fileExitMenuItem.addActionListener(evt -> fileExitMenuItemActionPerformed(evt));
         
         fileMenu.add(fileExitMenuItem);
         menuBar.add(fileMenu);
@@ -159,62 +131,38 @@ public class FijiFrame extends javax.swing.JFrame {
         editCutMenuItem.setToolTipText("Cut to clipboard.");
         editCutMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_C);
         editCutMenuItem.setText("Cut");
-        editCutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCutMenuItemActionPerformed(evt);
-            }
-        });
+        editCutMenuItem.addActionListener(evt -> editCutMenuItemActionPerformed(evt));
         
         editMenu.add(editCutMenuItem);
         editCopyMenuItem.setToolTipText("Copy into clipboard.");
         editCopyMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_O);
         editCopyMenuItem.setText("Copy");
-        editCopyMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCopyMenuItemActionPerformed(evt);
-            }
-        });
+        editCopyMenuItem.addActionListener(evt -> editCopyMenuItemActionPerformed(evt));
         
         editMenu.add(editCopyMenuItem);
         editPasteMenuItem.setToolTipText("Copy from clipboard.");
         editPasteMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_P);
         editPasteMenuItem.setText("Paste");
-        editPasteMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editPasteMenuItemActionPerformed(evt);
-            }
-        });
+        editPasteMenuItem.addActionListener(evt -> editPasteMenuItemActionPerformed(evt));
         
         editMenu.add(editPasteMenuItem);
         editSelectAllMenuItem.setToolTipText("Select all the text in the text area.");
         editSelectAllMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         editSelectAllMenuItem.setText("Select All");
-        editSelectAllMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editSelectAllMenuItemActionPerformed(evt);
-            }
-        });
+        editSelectAllMenuItem.addActionListener(evt -> editSelectAllMenuItemActionPerformed(evt));
         
         editMenu.add(editSelectAllMenuItem);
         editMenu.add(jSeparator2);
         editFindMenuItem.setToolTipText("Find text");
         editFindMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         editFindMenuItem.setText("Find");
-        editFindMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editFindMenuItemActionPerformed(evt);
-            }
-        });
+        editFindMenuItem.addActionListener(evt -> editFindMenuItemActionPerformed(evt));
         
         editMenu.add(editFindMenuItem);
         editReplaceMenuItem.setToolTipText("Find text and replace it.");
         editReplaceMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_R);
         editReplaceMenuItem.setText("Replace");
-        editReplaceMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editReplaceMenuItemActionPerformed(evt);
-            }
-        });
+        editReplaceMenuItem.addActionListener(evt -> editReplaceMenuItemActionPerformed(evt));
         
         editMenu.add(editReplaceMenuItem);
         menuBar.add(editMenu);
@@ -224,21 +172,13 @@ public class FijiFrame extends javax.swing.JFrame {
         interpretSelectedMenuItem.setToolTipText("Forward selected text to Fiji interpreter.");
         interpretSelectedMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_I);
         interpretSelectedMenuItem.setText("Interpret Selected");
-        interpretSelectedMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                interpretSelectedMenuItemActionPerformed(evt);
-            }
-        });
+        interpretSelectedMenuItem.addActionListener(evt -> interpretSelectedMenuItemActionPerformed(evt));
         
         interpretMenu.add(interpretSelectedMenuItem);
         interpretLoadMenuItem.setToolTipText("Load and interpret a FIJI source file.");
         interpretLoadMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         interpretLoadMenuItem.setText("Load FIJI Source");
-        interpretLoadMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                interpretLoadMenuItemActionPerformed(evt);
-            }
-        });
+        interpretLoadMenuItem.addActionListener(evt -> interpretLoadMenuItemActionPerformed(evt));
         
         interpretMenu.add(interpretLoadMenuItem);
         menuBar.add(interpretMenu);
@@ -248,27 +188,20 @@ public class FijiFrame extends javax.swing.JFrame {
         helpMenuItem.setToolTipText("Get help");
         helpMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_L);
         helpMenuItem.setText("Help");
-        helpMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                helpMenuItemActionPerformed(evt);
-            }
-        });
+        helpMenuItem.addActionListener(evt -> helpMenuItemActionPerformed(evt));
         
         helpMenu.add(helpMenuItem);
         aboutMenuItem.setToolTipText("About Fiji ForthIsh Java Interpreter");
         aboutMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_A);
         aboutMenuItem.setText("About");
-        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuItemActionPerformed(evt);
-            }
-        });
+        aboutMenuItem.addActionListener(evt -> aboutMenuItemActionPerformed(evt));
         
         helpMenu.add(aboutMenuItem);
         menuBar.add(helpMenu);
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }

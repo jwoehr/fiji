@@ -61,7 +61,7 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
     /**
      * Helper for verbose mode.
      */
-    private verbosity v = new verbosity(this);
+
 
     /**
      * Does the work of notifying shutdown clients.
@@ -480,10 +480,6 @@ public class Error extends java.lang.Error implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
 
     /**
      * Demonstrate <code>Error</code>.

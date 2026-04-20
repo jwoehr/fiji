@@ -64,7 +64,7 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
 
     /**
      * Interpreter instance associated with this ShellTextArea.
@@ -276,11 +276,6 @@ public class ShellTextArea extends TextArea implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
-
     /**
      * Demonstrate <code>ShellTextArea</code>.
      *

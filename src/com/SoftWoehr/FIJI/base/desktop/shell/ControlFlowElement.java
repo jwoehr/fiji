@@ -58,7 +58,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
     /**  Flags whether we are in verbose mode. */
     private boolean isverbose = true;
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Does the work of notifying shutdown clients. */
     private ShutdownHelper shutdownHelper = new ShutdownHelper();
@@ -160,7 +160,7 @@ public class ControlFlowElement implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demonstrate <code>ControlFlowElement</code>.
      * @param argv Args to main () not currently used.

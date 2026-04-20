@@ -55,13 +55,13 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
     public boolean isverbose = false;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** This is the compiled definition */
     private Semantic body[];
     
     /** This is the definition under compilation */
-    private transient Vector composition;
+    private transient List<Semantic> composition;
     
     /** If true, the word's execution semantics are performed
      * at compile time.
@@ -109,13 +109,6 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
      */
     public void    setVerbose  (boolean tf) {isverbose = tf;  }
     
-    /** Emit a string message if set verbose.
-     * @see com.SoftWoehr.util.verbose
-     * @see com.SoftWoehr.util.verbosity
-     * @param s string to announce if verbose
-     */
-    public void    announce    (String s)   {v.announce(s);   }
-    
     /** Set the word immediate, i.e.,  if true, its execution
      * semantics will be performed at compile time.
      * @param tf  if true, its execution semantics
@@ -138,7 +131,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
     /** Start a definition. */
     public void commence() {
         body = null;
-        composition = new Vector();
+        composition = new ArrayList<>();
     }
     
     /** Finish a definition.
@@ -147,9 +140,9 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
      */
     public void complete() {
         body = new Semantic[composition.size()];
-        Enumeration e = composition.elements();
-        for (int i = 0; e.hasMoreElements(); i++) {
-            body[i] = (Semantic) e.nextElement();
+        int i = 0;
+        for (Semantic s : composition) {
+            body[i++] = s;
         }
         composition = null;
     }
@@ -161,7 +154,7 @@ public class Definition extends Semantic implements SoftWoehr, verbose, Serializ
      * @param s Semantic to append
      */
     public void append(Semantic s) {
-        composition.addElement(s);
+        composition.add(s);
     }
     
     /** Execution semantics (what this does at runtime).

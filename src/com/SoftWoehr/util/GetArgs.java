@@ -91,10 +91,10 @@ public class GetArgs implements SoftWoehr, verbose {
     private boolean isverbose = true;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Holds the Argument objects, as many as parsed. */
-    private Vector optList, argList;
+    private List<Argument> optList, argList;
     
     /** Option introducers. */
     private String optionIntroducers = "-";
@@ -114,8 +114,8 @@ public class GetArgs implements SoftWoehr, verbose {
     public void reinit(String argv[]) {
         int i;
         
-        optList = new Vector();
-        argList = new Vector();
+        optList = new ArrayList<>();
+        argList = new ArrayList<>();
         
         String tempOpt;    /* A potential option while we're processing it.*/
         String theOpt;   /* The option marker_char + opt_letter, e.g., -x .*/
@@ -148,14 +148,14 @@ public class GetArgs implements SoftWoehr, verbose {
                 }  /*  Done looking for argument to option. */    /* End if*/
                 
         /* We can now store our option and its argument (if any). */
-                optList.addElement(new Argument(theOpt, tempArg, position));
+                optList.add(new Argument(theOpt, tempArg, position));
             }  /* Done processing found option. */		  /* End if*/
             
             else	      /* Wasn't an option, must be just a plain argument.*/ {
                 tempArg = tempOpt;		/* Already have it in hand.*/
                 tempOpt = null;				       /* No option*/
         /* Add to list of plain arguments */
-                argList.addElement(new Argument(tempOpt, tempArg, position));
+                argList.add(new Argument(tempOpt, tempArg, position));
             }							  /* End if*/
             position++;
         }  /* Done looping through string array of command line. *//* End for*/
@@ -232,7 +232,7 @@ public class GetArgs implements SoftWoehr, verbose {
     public Argument nthOption(int n) {
         Argument a = null;
         if (n < optList.size()) {
-            a = (Argument) (optList.elementAt(n));
+            a = optList.get(n);
         }
         return a;
     }
@@ -245,7 +245,7 @@ public class GetArgs implements SoftWoehr, verbose {
     public Argument nthArgument(int n) {
         Argument a = null;
         if (n < argList.size()) {
-            a = (Argument) (argList.elementAt(n));
+            a = argList.get(n);
         }
         return a;
     }
@@ -283,7 +283,7 @@ public class GetArgs implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demo GetArgs by displaying any opts or args passed in.
      * @param argv Args to use to test the GetArgs

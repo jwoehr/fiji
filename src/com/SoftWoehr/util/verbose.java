@@ -46,7 +46,12 @@ public interface verbose {
   void setVerbose(boolean b);
 
   /** Say something if the object is in verbose mode, be silent otherwise. */
-  void announce (String message);
+  default void announce (String message) {
+    if (isVerbose()) {
+        System.err.println(message);
+        System.err.flush();
+    }
   }
+}
 
 /*  End of verbose.java */

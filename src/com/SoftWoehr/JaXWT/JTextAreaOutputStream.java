@@ -7,7 +7,6 @@
  */
 package com.SoftWoehr.JaXWT;
 
-import com.SoftWoehr.util.verbosity;
 import javax.swing.JTextArea;
 
 /**
@@ -28,7 +27,7 @@ public class JTextAreaOutputStream extends java.io.OutputStream implements com.S
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
 
     /**
      * Creates new JTextAreaOutputStream
@@ -166,16 +165,6 @@ public class JTextAreaOutputStream extends java.io.OutputStream implements com.S
         is_verbose = b;
     }
 
-    /**
-     * Say something if the object is in verbose mode, be silent otherwise.
-     *
-     * @see com.SoftWoehr.util.verbose
-     * @see com.SoftWoehr.util.verbosity
-     * @param message Message to emit of Java is verbose.
-     */
-    @Override
-    public void announce(String message) {
-        v.announce(message);
-    }
+
 
 }

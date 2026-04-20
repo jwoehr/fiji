@@ -72,7 +72,7 @@ public class Desktop extends Window implements ActionListener,
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
 
     /**
      * *******************************************
@@ -323,14 +323,6 @@ public class Desktop extends Window implements ActionListener,
      */
     public void setVerbose(boolean tf) {
         isverbose = tf;
-    }
-
-    /**
-     * @see com.SoftWoehr.util.verbose
-     * @see com.SoftWoehr.util.verbosity
-     */
-    public void announce(String s) {
-        v.announce(s);
     }
 
     /**

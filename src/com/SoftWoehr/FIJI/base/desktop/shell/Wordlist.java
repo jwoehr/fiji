@@ -1,12 +1,17 @@
-/* Wordlist.java ...  lists of semantics     */
-/** ****************************************** */
+/* Wordlist.java ... a dictionary of Semantics */
+/*********************************************/
 /* Copyright *C* 1999, 2001                  */
- /* All Rights Reserved.                      */
- /* Jack J. Woehr jax@softwoehr.com           */
- /* http://www.softwoehr.com                  */
- /* http://fiji.sourceforge.net               */
- /* P.O. Box 82, Beulah, Colorado 81023 USA  */
-/** ****************************************** */
+/* All Rights Reserved.                      */
+/* Jack J. Woehr jax@softwoehr.com           */
+/* http://www.softwoehr.com                  */
+/* http://fiji.sourceforge.net               */
+/* P.O. Box 82, Beulah, Colorado 81023 USA  */
+/*********************************************/
+/*                                           */
+/*    This Program is Free SoftWoehr.        */
+/*                                           */
+/* THERE IS NO GUARANTEE, NO WARRANTY AT ALL */
+/*********************************************/
 /*
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,24 +25,25 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 package com.SoftWoehr.FIJI.base.desktop.shell;
 
-import java.io.*;
-import java.util.*;
-
-import com.SoftWoehr.*;
-import com.SoftWoehr.util.*;
+import com.SoftWoehr.SoftWoehr;
+import com.SoftWoehr.util.verbose;
+import com.SoftWoehr.util.verbosity;
+import java.io.Serializable;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Stack;
 
 /**
- * This is a word list of Semantics. They are keyed by their names. If a
- * Semantic of an existing name is keyed in, the previous is lost.
+ * A dictionary of Semantics
  *
  * @author $Author: jwoehr $
  * @version $Revision: 1.1 $
  */
-public final class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
+public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializable {
 
     /**
      * Revision level
@@ -49,7 +55,6 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
      *
      * @return the rcsid
      */
-    @Override
     public String rcsId() {
         return rcsid;
     }
@@ -57,8 +62,7 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
     /**
      * Flags whether we are in verbose mode.
      */
-    public boolean isverbose = false;
-
+    private boolean isverbose = false;
     /**
      * Helper for verbose mode.
      */
@@ -93,28 +97,6 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
     public void reinit(String name) {
         setName(name);
         wordlist = new Hashtable();
-    }
-
-    /**
-     * Do a string dump wordlist's name.
-     *
-     * @return the string representation
-     */
-    @Override
-    public String toString() {
-        String result = "A Wordlist named " + getName();
-        return result;
-    }
-
-    /**
-     * shutdown() here does nothing.
-     *
-     * @see com.SoftWoehr.SoftWoehr#shutdown
-     * @return always 0
-     */
-    @Override
-    public int shutdown() {
-        return 0;
     }
 
     /**
@@ -176,17 +158,19 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
     /* public void put(Semantic s)*/
     /**
      * Find a WordlistEntry by name in a wordlist.
+     *
+     * @param name The name of the word to find
+     * @return the WordlistEntry or null
      */
     private WordlistEntry findEntry(String name) {
         return (WordlistEntry) wordlist.get(name);
     }
 
-    /* public Semantic findEntry(String name)*/
     /**
      * Find a Semantic by name in a wordlist.
      *
-     * @param name name of sought Semantic
-     * @return The sought Semantic or <CODE>null</CODE>
+     * @param name The name of the word to find
+     * @return the Semantic or null
      */
     public Semantic find(String name) {
         Semantic s = null;
@@ -213,25 +197,39 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
             if (null == s) {
                 wordlist.remove(name);
             }
-            /* End if*/
         }
-        /* End if*/
     }
 
-    /* public void forget (String name)*/
     /**
-     * Utterly discard a wordlist entry.
+     * Delete entirely the most recent Semantic keyed by name in a Wordlist.
      *
-     * @param name entry to discard
+     * @param name Key to discard
      */
     public void discard(String name) {
         wordlist.remove(name);
     }
 
     /**
-     * Return a string of all words in the wordlist.
+     * Put a Semantic in a wordlist by keying it by name. Note that this adds a
+     * new Semantic to a WordlistEntry but doesn't throw out the old Semantic
+     * under the same name.
      *
-     * @return The string
+     * @param s The Semantic
+     */
+    public void insert(Semantic s) {
+        WordlistEntry entry = findEntry(s.getName());
+        if (null == entry) {
+            entry = new WordlistEntry(s);
+            wordlist.put(s.getName(), entry);
+        } else {
+            entry.push(s);
+        }
+    }
+
+    /**
+     * Return names of all words in the wordlist.
+     *
+     * @return String of words
      */
     public String words() {
         String result = "";
@@ -243,11 +241,40 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
                 announce(result + "\n");
             }
         }
-        /* End for*/
         return result;
     }
 
     /* public String words ()*/
+    /**
+     * Do a string dump wordlist.
+     *
+     * @return String representing wordlist.
+     */
+    public String dump() {
+        String result = "Dumping Wordlist:\n";
+        WordlistEntry entry;
+        for (Enumeration e = wordlist.elements(); e.hasMoreElements();) {
+            entry = (WordlistEntry) (e.nextElement());
+            if (null != entry) {
+                result += entry.dump() + "\n";
+                announce(result + "\n");
+            }
+        }
+        return result;
+    }
+
+    /* public String dump ()*/
+    /**
+     * shutdown() here does nothing.
+     *
+     * @see com.SoftWoehr.SoftWoehr#shutdown()
+     * @return always 0
+     */
+    @Override
+    public int shutdown() {
+        return 0;
+    }
+
     /**
      * Create a default wordlist for initial engine. Each invocation of this
      * method results in a unique instance. Alternatively, the list could be a
@@ -299,33 +326,21 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
             defaultList.put(new Primitive("execute", "execute"));
             defaultList.put(new Primitive("compile", "compile"));
             defaultList.put(new Primitive("[" /* Special compilation semantics.*/,
-                    "leftBracket",
-                    "leftBracket"
-            ));
+                    "stopCompile"));
             defaultList.put(new Primitive("]" /* Special compilation semantics.*/,
-                    "rightBracket",
-                    "rightBracket"
-            ));
+                    "startCompile"));
             defaultList.put(new Primitive("base", "popBase"));
             defaultList.put(new Primitive("base?", "pushBase"));
             defaultList.put(new Primitive("state", "doState"));
             defaultList.put(new Primitive("immediate?", "isImmediate"));
             defaultList.put(new Primitive("immediate"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "setCurrentImmediate"
-            ));
+                    "doImmediate"));
             defaultList.put(new Primitive("\"" /* Special compilation semantics.*/,
-                    "doubleQuote",
-                    "compileDoubleQuote"
-            ));
+                    "doString"));
             defaultList.put(new Primitive("`" /* Special compilation semantics.*/,
-                    "backTick",
-                    "compileBackTick"
-            ));
+                    "doBacktick"));
             defaultList.put(new Primitive("\\" /* Special compilation semantics.*/,
-                    "comment",
-                    "comment"
-            ));
+                    "doComment"));
             defaultList.put(new Primitive("exit", "doExit"));
             defaultList.put(new Primitive("not", "not"));
             defaultList.put(new Primitive("and", "and"));
@@ -347,64 +362,36 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
             defaultList.put(new Primitive("@", "fetch"));
             defaultList.put(new Primitive("value", "newValue"));
             defaultList.put(new Primitive("to" /* Special compilation semantics.*/,
-                    "toValue",
-                    "compileToValue"
-            ));
+                    "doTo"));
             defaultList.put(new Primitive("{", "newAnonymousDefinition"));
             defaultList.put(new Primitive("}",
-                    "compileOnly" /* Special compilation semantics.*/,
-                    "concludeAnonymousDefinition"
-            ));
+                    "endAnonymousDefinition" /* Special compilation semantics.*/));
             defaultList.put(new Primitive(":", "newDefinition"));
             defaultList.put(new Primitive(";" /* Special compilation semantics.*/,
-                    "compileOnly",
-                    "concludeDefinition"
-            ));
+                    "endDefinition"));
             defaultList.put(new Primitive("if" /* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileConditionalBranch"
-            ));
+                    "doIf"));
             defaultList.put(new Primitive("else"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileAndResolveBranch"
-            ));
+                    "doElse"));
             defaultList.put(new Primitive("then"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "resolveBranch"
-            ));
+                    "doThen"));
             defaultList.put(new Primitive("begin"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "pushUnconditionalBranch"
-            ));
+                    "doBegin"));
             defaultList.put(new Primitive("again"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileUnconditionalBackwardsBranch"
-            ));
+                    "doAgain"));
             defaultList.put(new Primitive("until"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileConditionalBackwardsBranch"
-            ));
+                    "doUntil"));
             defaultList.put(new Primitive("while"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileConditionalBranch" /* == 'if'*/
-            ));
+                    "doWhile"));
             defaultList.put(new Primitive("repeat"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "resolveTwoBranches"
-            ));
+                    "doRepeat"));
             defaultList.put(new Primitive("cr", "cr"));
             defaultList.put(new Primitive("do" /* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileDo"
-            ));
+                    "doDo"));
             defaultList.put(new Primitive("loop"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compileLoop"
-            ));
+                    "doLoop"));
             defaultList.put(new Primitive("+loop"/* Special compilation semantics.*/,
-                    "compileOnly",
-                    "compilePlusLoop"
-            ));
+                    "doPlusLoop"));
             defaultList.put(new Primitive("leave", "doLeave"));
             defaultList.put(new Primitive("index", "index"));
             defaultList.put(new Primitive("verbose", "runtimeVerbose"));
@@ -417,156 +404,150 @@ public final class Wordlist extends Semantic implements SoftWoehr, verbose, Seri
             defaultList.put(new Primitive("version", "version"));
             defaultList.put(new Primitive("getorder", "getOrder"));
             defaultList.put(new Primitive("setorder", "setOrder"));
-            defaultList.put(new Primitive("wordlist", "newWordlist"));
-            defaultList.put(new Primitive("setcurrent", "setCurrent"));
-            defaultList.put(new Primitive("getcurrent", "getCurrent"));
             defaultList.put(new Primitive("words", "words"));
             defaultList.put(new Primitive("forget", "forget"));
             defaultList.put(new Primitive("discard", "discard"));
-            defaultList.put(defaultList);
-            /* Add self to list!*/
-        } /* End try*/ catch (Exception e) {
-            e.printStackTrace(System.err);
+            defaultList.put(new Primitive("see", "see"));
+            defaultList.put(new Primitive("dump", "dump"));
+        } catch (com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotStringOnStack ex) {
+            System.err.println("Catastrophe in Wordlist.defaultWordlist() " + ex);
         }
-        /* End catch*/
         return defaultList;
     }
 
     /**
-     * Write out the wordlist to disk with an eye to a later reload.
+     * Demonstrate <code>Wordlist</code>.
      *
-     * @param f The file obect to write us out to.
-     * @throws FileNotFoundException If file can't be used.
-     * @throws IOException If error writing file.
-     */
-    public void save(File f)
-            throws FileNotFoundException, IOException {
-        try (FileOutputStream ostream = new FileOutputStream(f)) {
-            ObjectOutputStream p = new ObjectOutputStream(ostream);
-            p.writeObject(this);
-            p.flush();
-        }
-    }
-
-    /**
-     * Reload a Wordlist from a file
-     *
-     * @param f The file obect to write us out to.
-     * @throws FileNotFoundException If file can't be used.
-     * @throws IOException If error writing file.
-     * @throws ClassNotFoundException If can't be made a class.
-     * @return the Wordlist
-     */
-    public static Wordlist reload(File f)
-            throws java.io.FileNotFoundException,
-            java.io.IOException,
-            java.lang.ClassNotFoundException {
-        Wordlist w;
-        try (FileInputStream istream = new FileInputStream(f)) {
-            ObjectInputStream p = new ObjectInputStream(istream);
-            w = (Wordlist) p.readObject();
-        }
-        return w;
-    }
-
-    /**
-     * Demonstrate <code>Wordlist<code>.
-     *
-     * @param argv not currently used
+     * @param argv passed to GetArgs
      */
     public static void main(String argv[]) {
+
+        GetArgs myArgs = new GetArgs(argv);
+        /* Assimilate the command line. */
+        Wordlist theWordlist = Wordlist.defaultWordlist();
+        /* Instance of Wordlist we're demoing.*/
+
+        // GPL'ed SoftWoehr announces itself.
+        System.out.println("Wordlist, Copyright (C) 1999, 2016 Jack J. Woehr.");
+        System.out.println("Wordlist comes with ABSOLUTELY NO WARRANTY;");
+        System.out.println("Please see the file COPYING and/or COPYING.LIB");
+        System.out.println("which you should have received with this software.");
+        System.out.println("This is free software, and you are welcome to redistribute it");
+        System.out.println("under certain conditions enumerated in COPYING and/or COPYING.LIB.");
+
+        // See if user passed in the -v flag to request verbosity.
+        for (int i = 0; i < myArgs.optionCount(); i++) {
+            if (myArgs.nthOption(i).getOption().substring(1, 2).equals("v")) {
+                theWordlist.setVerbose(true);
+            }
+            /* End if*/
+        }
+
+        // Your code goes here.
+        // -------------------
+        System.out.println("Disard resulted in " + theWordlist.discard("arf"));
+        System.out.println("Words are " + theWordlist.words());
+        System.out.println("Re-instating arf.");
+        try {
+            theWordlist.put(new Primitive("arf", "arf"));
+        } catch (com.SoftWoehr.FIJI.base.Exceptions.desktop.shell.NotStringOnStack ex) {
+            System.err.println("Catastrophe in Wordlist.main() " + ex);
+        }
+        System.out.println("Words are " + theWordlist.words());
+        System.out.println(theWordlist.dump());
+        // -------------------
+
     }
 }
-
 /* End of Wordlist class*/
+
 /**
- * The entries in a Wordlist are composite entities, an active defintion for an
- * entry and a stack of previous definitions which were overridden by
- * redefinition of the same name. Thus when we 'forget' a definition, the
- * previous definition of that same name in this same wordlist is restored to
- * visibility.
+ * Class representing a wordlist entry. A wordlist entry has a name and a stack
+ * of definitions.
  */
 class WordlistEntry implements Serializable {
 
-    /**
-     * Create a WordlistEntry on a Semantic.
-     *
-     * @param s the Semantic
-     */
-    public WordlistEntry(Semantic s) {
-        semantic = s;
-        semanticStack = null;/* Only have a stack if one needed, memory impact.*/
-    }
-
-    /**
-     * The active Semantic of a word.
-     */
     private Semantic semantic;
-
     /**
-     * The stack of previous Semantics of this same word.
+     * This is where previous Semantics for a name are stored when a new
+     * Semantic for the same name is pushed.
      */
     private Stack semanticStack;
 
     /**
-     * Get the Semantic to which this entry refers.
+     * Create a WordlistEntry on a Semantic.
      *
-     * @return the Semantic
+     * @param s The semantic.
+     */
+    public WordlistEntry(Semantic s) {
+        semantic = s;
+        semanticStack = null;
+    }
+
+    /**
+     * Get the active semantic for the word.
+     *
+     * @return the active semantic for the word.
      */
     public Semantic getSemantic() {
         return semantic;
     }
 
     /**
-     * Get the name of the semantic to which this entry refers.
+     * Get name of word.
      *
-     * @return name of the Semantic
+     * @return name of word.
      */
     public String getName() {
         return semantic.getName();
     }
 
     /**
-     * Change the active Semantic. Save the old one on a stack
+     * Push a new Semantic for the word.
      *
-     * @param s the Semantic
+     * @param s the new semantic
      */
     public void push(Semantic s) {
         if (null == semanticStack) {
             semanticStack = new Stack();
-            /* Create as needed.*/
         }
-        /* End if*/
         semanticStack.push(semantic);
         semantic = s;
     }
 
-    /* public void pushSemantic (Semantic s)*/
     /**
-     * Pop the Semantic stack to restore an active Semantic, discarding that
-     * which was the active Semantic. Returns that Semantic which becomes the
-     * active Semantic as a a result of this operation.
+     * Pop a Semantic for the word. If no previous Semantic is stacked, return
+     * null to signal that the WordlistEntry itself should be removed from the
+     * Wordlist.
      *
-     * @return the previous Semantic
+     * @return the popped semantic
      */
     public Semantic pop() {
-        semantic = null;
-        /* Throw away active Semantic.*/
+        Semantic previousTop = semantic;
         if (null != semanticStack)/* If we have a stack of previous Semantic(s) ...*/ {
-            // .. then it's a non-empty stack, since we chuck our empties.
-            semantic = (Semantic) semanticStack.pop();
-            /* Restore previous.*/
+            if (!semanticStack.empty()) /* ... and there's one on the stack ...*/ {
+                semantic = (Semantic) semanticStack.pop();
+                /* ... then pop it to be the new active Semantic.*/
+            }
             if (semanticStack.empty()) /* Don't keep empty stacks, memory impact.*/ {
                 semanticStack = null;
-                /* Chuck away if empty, memory impact.*/
             }
-            /* End if*/
+        } else /* No stack of previous Semantics.*/ {
+            previousTop = null;
+            /* Signal to caller to remove this entry from the Wordlist.*/
         }
-        /* End if*/
-        return semantic;
-        /* Lets caller know if this entry is dead (== null).*/
+        return previousTop;
     }
-    /* public Semantic popSemantic ()*/
+
+    /**
+     * String dump of the word list entry.
+     *
+     * @return the dump
+     */
+    public String dump() {
+        return "Word: " + getName() + " " + getSemantic().toString();
+    }
 }
 /* End of WordlistEntry class*/
+
  /*  End of Wordlist.java */

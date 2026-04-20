@@ -29,9 +29,11 @@ package com.SoftWoehr.util;
 
 import java.util.*;
 
-/** A simple linked list implementation
+/** A classic linked list implementation.
+ * @author $Author: jwoehr $
+ * @version $Revision: 1.1 $
  */
-public class LinkedList {
+public class LinkedList implements Iterable<LinkedList.Linkable> {
     
     /** Interface presented by a node
      */
@@ -62,14 +64,13 @@ public class LinkedList {
      * @param node to postpend
      */
     public void addTail(Linkable node) {
-        Enumeration e = enumerate();
-        if (!e.hasMoreElements()) {
+        if (!iterator().hasNext()) {
             addHead(node);
         }
         else {
             Linkable lastNode = null;
-            while (e.hasMoreElements()) {
-                lastNode = (Linkable) e.nextElement();
+            for (Linkable current : this) {
+                lastNode = current;
             }
             if (lastNode == null) {
                 head = node;
@@ -87,14 +88,14 @@ public class LinkedList {
     public void remove(Linkable node) {
         Linkable previous = null;
         Linkable current = head;
-        Enumeration e = enumerate();
-        while (e.hasMoreElements()) {
-            if (current == e.nextElement()) {
+        Iterator<Linkable> iter = iterator();
+        while (iter.hasNext()) {
+            if (current == iter.next()) {
                 
                 if (previous == null) {
                     
-                    if (e.hasMoreElements()) {
-                        head = (Linkable) e.nextElement();
+                    if (iter.hasNext()) {
+                        head = iter.next();
                     }
                     else {
                         head = null;
@@ -102,8 +103,8 @@ public class LinkedList {
                 }
                 
                 else {
-                    if (e.hasMoreElements()) {
-                        previous.setNext((Linkable) e.nextElement());
+                    if (iter.hasNext()) {
+                        previous.setNext(iter.next());
                         current.setNext(null);
                     }
                     else {
@@ -113,6 +114,8 @@ public class LinkedList {
                 
                 break;
             }
+            previous = current;
+            current = (Linkable) current.getNext();
         }
     }
     
@@ -120,10 +123,8 @@ public class LinkedList {
      * @return number of elements in list.
      */
     public int numberOfElements() {
-        Enumeration e = enumerate();
         int elements = 0;
-        while (e.hasMoreElements()) {
-            e.nextElement();
+        for (Linkable link : this) {
             elements++;
         }
         return elements;
@@ -153,6 +154,28 @@ public class LinkedList {
         };
     }
     
+    @Override
+    public Iterator iterator() {
+        return new Iterator() {
+            Linkable current = head;
+            
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+            
+            @Override
+            public Object next() {
+                if (current == null) {
+                    throw new NoSuchElementException("LinkedList");
+                }
+                Linkable value = current;
+                current = (Linkable) current.getNext();
+                return value;
+            }
+        };
+    }
+    
     /** Test linked list of argument strings
      * @param argv strings to link
      */
@@ -173,26 +196,23 @@ public class LinkedList {
         System.out.println("I created a LinkedList of your command-line arguments.");
         System.out.println("It has " + l.numberOfElements() + " elements.");
         System.out.println("Here's a backwards-linked-list listing of all (if any) of the command line arguments:");
-        Enumeration e = l.enumerate();
-        while (e.hasMoreElements()) {
-            System.out.println(((LinkableString) e.nextElement()).string());
+        for (Linkable link : l) {
+            System.out.println(((LinkableString) link).string());
         }
         
         System.out.println("Now I'll add an element to the tail.");
         l.addTail(new LinkableString("Hi, I'm the tail node!"));
         System.out.println("Here's a backwards-linked-list listing of all (if any) of the command line arguments:");
-        e = l.enumerate();
-        while (e.hasMoreElements()) {
-            System.out.println(((LinkableString) e.nextElement()).string());
+        for (Linkable link : l) {
+            System.out.println(((LinkableString) link).string());
         }
         
         while (l.head != null) {
             System.out.println("Now I'll remove the head element.");
             l.remove(l.head);
             System.out.println("The list now has " + l.numberOfElements() + " element(s) remaining.");
-            e = l.enumerate();
-            while (e.hasMoreElements()) {
-                System.out.println(((LinkableString) e.nextElement()).string());
+            for (Linkable link : l) {
+                System.out.println(((LinkableString) link).string());
             }
         }
         

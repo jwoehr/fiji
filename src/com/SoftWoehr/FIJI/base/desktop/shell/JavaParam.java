@@ -60,7 +60,7 @@ public class JavaParam implements SoftWoehr, verbose {
     /**  Flags whether we are in verbose mode. */
     private boolean isverbose = false;
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** The actual object passed as a parameter. */
     private Object realObject;
@@ -149,7 +149,7 @@ public class JavaParam implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbose
      * @see com.SoftWoehr.util.verbosity
      * @param s  */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demonstrate <code>JavaParam</code>.
      * @param argv  */

@@ -55,7 +55,7 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
     public boolean isverbose = false;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** Resolved method that represents execution semantics. */
     public Method method;
@@ -133,7 +133,7 @@ class Primitive extends Semantic implements SoftWoehr, verbose, Serializable {
      * @see com.SoftWoehr.util.verbosity
      * @param s string to announce if verbose
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Execution semantics
      * @param anEngine associated Engine

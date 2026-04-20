@@ -83,7 +83,7 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
 
     /**
      * Does the work of notifying shutdown clients.
@@ -137,11 +137,10 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
         /* End if*/
         result += "\nReturn stack:";
 
-        Enumeration e = returnStack.elements();
-        if (e.hasMoreElements()) {
+        if (!returnStack.isEmpty()) {
             result += "\n";
-            while (e.hasMoreElements()) {
-                Interpretation i = (Interpretation) e.nextElement();
+            for (Object obj : returnStack) {
+                Interpretation i = (Interpretation) obj;
                 result += i.definition.toString() + "\n";
             }
         } else {
@@ -404,11 +403,6 @@ public final class InnerInterpreter implements SoftWoehr, verbose {
      * @see com.SoftWoehr.util.verbosity
      * @param s String to announce if verbose
      */
-    @Override
-    public void announce(String s) {
-        v.announce(s);
-    }
-
     /**
      * Demonstrate <code>InnerInterpreter</code>. Does nothing much currently.
      *

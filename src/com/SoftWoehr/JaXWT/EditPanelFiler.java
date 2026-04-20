@@ -150,7 +150,7 @@ public class EditPanelFiler extends Object implements TextFiler {
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
-        StringBuffer sb = new StringBuffer((int)f.length());
+        StringBuilder sb = new StringBuilder((int)f.length());
         String result = null;
         
         try {    // Read all in as chars in a buffered fashion.

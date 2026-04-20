@@ -7,7 +7,6 @@
  */
 package com.SoftWoehr.JaXWT;
 
-import com.SoftWoehr.util.verbosity;
 
 /**
  * Create an PrintStream that puts its contents to a JTextArea
@@ -26,7 +25,7 @@ public class JTextAreaPrintStream extends java.io.PrintStream implements com.Sof
     /**
      * Helper for verbose mode.
      */
-    private final verbosity v = new verbosity(this);
+
 
     /**
      * Creates new JTextAreaPrintStream
@@ -72,15 +71,5 @@ public class JTextAreaPrintStream extends java.io.PrintStream implements com.Sof
         is_verbose = b;
     }
 
-    /**
-     * Say something if the object is in verbose mode, be silent otherwise.
-     *
-     * @see com.SoftWoehr.util.verbose
-     * @see com.SoftWoehr.util.verbosity
-     * @param message Message to emit of Java is verbose.
-     */
-    @Override
-    public void announce(String message) {
-        v.announce(message);
-    }
+
 }

@@ -63,7 +63,7 @@ implements ActionListener
     private boolean isverbose = false;
     
     /**  Helper for verbose mode. */
-    private verbosity v = new verbosity(this);
+
     
     /** User and interpreter text communication. */
     private SoftWoehr mySoftWoehr;
@@ -225,7 +225,7 @@ implements ActionListener
      * @see com.SoftWoehr.util.verbosity
      * @param s String to announce
      */
-    public void    announce    (String s)   {v.announce(s);   }
+
     
     /** Demonstrate <code>ShellFrame</code>.
      * @param argv  The FIJI command line.
