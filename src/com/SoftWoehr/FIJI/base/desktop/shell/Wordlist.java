@@ -372,9 +372,9 @@ public class Wordlist extends Semantic implements SoftWoehr, verbose, Serializab
             defaultList.put(new Primitive("immediate"/* Special compilation semantics.*/,
                     "setCurrentImmediate"));
             defaultList.put(new Primitive("\"" /* Special compilation semantics.*/,
-                    "doubleQuote"));
+                    "doubleQuote", "compileDoubleQuote"));
             defaultList.put(new Primitive("`" /* Special compilation semantics.*/,
-                    "backTick"));
+                    "backTick", "compileBackTick"));
             defaultList.put(new Primitive("\\" /* Special compilation semantics.*/,
                     "comment",
                     "comment"));
