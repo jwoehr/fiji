@@ -2356,7 +2356,7 @@ public class Engine implements SoftWoehr, verbose {
      * @return The FIJI version
      */
     public static String fijiVersion() {
-        return  "1.2";
+        return  "1.3-dev";
     }
     
     /** Push the version of FIJI */

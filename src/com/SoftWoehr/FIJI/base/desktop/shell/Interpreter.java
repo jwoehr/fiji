@@ -797,7 +797,7 @@ public final class Interpreter implements SoftWoehr, verbose {
      */
     private static void printBanner() {
         System.out.println("FIJI ForthIsh Java Interpreter " + Engine.fijiVersion());
-        System.out.println("Copyright (C) 1999, 2001, 2008, 2016 by Jack J. Woehr.");
+        System.out.println("Copyright (C) 1999, 2001, 2008, 2016, 2026 by Jack J. Woehr.");
         System.out.println("FIJI comes with ABSOLUTELY NO WARRANTY;");
         System.out.println("Please see the file COPYING and/or COPYING.LIB");
         System.out.println("which you should have received with this software.");
