@@ -1,82 +1,406 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-  <meta name="generator" content="Bluefish 2.2.9" >
-  <meta http-equiv="Content-Type" content=
-  "text/html; charset=us-ascii">
-  <meta name="generator" content="Bluefish 2.2.9" >
-  <meta name="author" content="Jack Woehr" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jack Woehr">
+    <meta name="description" content="FIJI ForthIsh Java Interpreter - An interactive Java environment providing a forth-like interpretive procedural language">
+    <meta name="keywords" content="FIJI, Java, interpreter, forth, programming, open source">
+    <meta name="theme-color" content="#0066cc">
+    <title>FIJI ForthIsh Java Interpreter</title>
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --accent-bg: #e8f4f8;
+            --text-color: #2c3e50;
+            --text-secondary: #5a6c7d;
+            --link-color: #0066cc;
+            --link-hover: #0052a3;
+            --link-visited: #551a8b;
+            --border-color: #dee2e6;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --max-width: 900px;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-  <title>SoftWoehr Java Class Libraries</title>
-  <meta http-equiv="Last-Modified" content=
-  "Mon, 16 Oct 2017 05:37:04 UTC">
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: #1a1d23;
+                --secondary-bg: #242830;
+                --accent-bg: #2d333b;
+                --text-color: #e4e6eb;
+                --text-secondary: #b0b3b8;
+                --link-color: #58a6ff;
+                --link-hover: #79c0ff;
+                --link-visited: #bc8cff;
+                --border-color: #3a3f4b;
+                --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+                --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            width: 100%;
+            background-color: var(--secondary-bg);
+            padding: 60px;
+            box-shadow: var(--shadow-md);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 3px solid var(--border-color);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--link-color), var(--link-hover));
+            border-radius: 2px;
+        }
+
+        h1 {
+            color: var(--text-color);
+            font-size: clamp(2rem, 6vw, 3.5em);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            color: var(--text-color);
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 40px 0 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--link-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--accent-bg) 0%, var(--secondary-bg) 100%);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            line-height: 1.8;
+        }
+
+        .copyright a {
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .logo-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .notice {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid var(--link-color);
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .notice {
+                background: linear-gradient(135deg, #1c2938 0%, #2d3748 100%);
+            }
+        }
+
+        .notice p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .notice a {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        a:focus {
+            outline: 2px solid var(--link-color);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        a:visited {
+            color: var(--link-visited);
+        }
+
+        dl {
+            margin: 30px 0;
+        }
+
+        dt {
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        dt a {
+            font-size: 1.5em;
+            font-weight: 700;
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--link-color), var(--link-hover));
+            color: white;
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        dt a:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            color: white;
+        }
+
+        dt a:visited {
+            color: white;
+        }
+
+        dd {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 50px 0;
+            opacity: 0.6;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        footer p {
+            margin: 8px 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            dt a {
+                font-size: 1.3em;
+                padding: 8px 16px;
+            }
+
+            dd {
+                margin-left: 15px;
+                font-size: 1em;
+            }
+
+            .copyright {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            dt a {
+                font-size: 1.2em;
+                padding: 8px 12px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 20px;
+            }
+
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+
+            dt a {
+                background: none;
+                color: black;
+                border: 1px solid black;
+            }
+
+            .notice {
+                background: #f0f0f0;
+                border-left: 4px solid black;
+            }
+        }
+    </style>
 </head>
 
-<body alink="#FF0000" bgcolor="#E1E9D6" link="#0000EE" text=
-"#000000" vlink="#551A8B">
-  <center>
-    <h1><font size="10">SoftWoehr Java Class Libraries</font></h1>
-  </center>
+<body>
+    <div class="container">
+        <header>
+            <h1>FIJI ForthIsh Java Interpreter</h1>
+        </header>
 
-  <center>
-    Copyright &copy; 2000 - 2017<br>
-    <a href=
-    "mailto:jwoehr@softwoehr.com?subject=SoftWoehr%20Java%20Class%20Libraries">
-    Jack J. Woehr</a><br>
-    <img src="images/jaxos2.jpg" nosave="" height="32" width=
-    "32"><br>
-    PO Box 82<br>
-    Beulah, Colorado 81023<br>
-    <a href="http://www.softwoehr.com">http://www.softwoehr.com</a>
-  </center>
+        <div class="copyright">
+            Copyright &copy; 2000 - 2017<br>
+            <a href="mailto:jwoehr@softwoehr.com?subject=SoftWoehr%20Java%20Class%20Libraries">Jack J. Woehr</a>
+            <div class="logo-container">
+                <img src="images/jaxos2.jpg" alt="SoftWoehr Logo" class="logo" width="48" height="48">
+            </div>
+            PO Box 82<br>
+            Beulah, Colorado 81023<br>
+            <a href="http://www.softwoehr.com">http://www.softwoehr.com</a>
+        </div>
 
-  <p>The <b>SoftWoehr Java Class Libraries</b> are tools,
-  components and applications the author distributes in various
-  forms as free, open source software.</p>
+        <div class="notice">
+            <p>FIJI is now distributed from <a href="https://github.com/jwoehr/fiji">Github</a></p>
+        </div>
 
-  <p><i>Not all of these components may be in the archive you have
-  downloaded.</i></p>
+        <section>
+            <h2 id="contents">Documentation for FIJI</h2>
 
-  <p><u>In particular, FIJI is now distributed by itself from
-  <a href=
-  "http://fiji.sourceforge.net">http://fiji.sourceforge.net</a> so
-  FIJI archives will contain only the FIJI documentation.</u></p>
+            <dl>
+                <dt><a href="FIJI/index.html">FIJI</a></dt>
+                <dd>ForthIsh Java Interpreter provides an interactive Java environment. Open source software.</dd>
+            </dl>
+        </section>
 
-  <h2><a name="Contents" id="Contents"></a>Documentation for
-  SoftWoehr Java Class Libraries</h2>
+        <hr>
 
-  <dl>
-    <dt><a href="FIJI/index.html"><font size=
-    "+2">FIJI</font></a></dt>
-
-    <dd>ForthIsh Java Interpreter provides an interactive Java
-    environment. Open source software.</dd>
-
-    <dt><a href="JTOpenContrib/index.html">JTOpenContrib</a></dt>
-
-    <dd>Code corpus contributed under the <a href=
-    "http://oss.software.ibm.com/developerworks/opensource/license10.html">
-    IBM Public License</a> to the <a href=
-    "http://oss.software.ibm.com/developerworks/opensource/jt400/">JTOpen
-    Project</a>.</dd>
-
-    <dt>MQContrib</dt>
-
-    <dd>
-      <dl>
-        <dt>Open source code corpus to interoperate with <a href=
-        "http://www.ad.ibm.com/ts/mqseries">IBM MQSeries</a>.</dt>
-      </dl><a href="WordMavin/index.html">WortMavin</a>
-
-      <dl>
-        <dt>A unicode word processor.</dt>
-      </dl>
-    </dd>
-  </dl>
-  <hr width="100%">
-  <br>
-  <i>Fairmount, Colorado</i><br>
-  <i>August 26, 2001</i>
+        <footer>
+            <p>Fairmount, Colorado</p>
+            <p>August 26, 2001</p>
+        </footer>
+    </div>
 </body>
+
 </html>
