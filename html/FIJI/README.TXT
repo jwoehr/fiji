@@ -3,7 +3,7 @@ FIJI README.TXT
 This is the installation documentation for FIJI. Please read this document
 before attempting to use the software.
 
-This is the gamma release of version 1.2 of FIJI ForthIsh Java Interpreter.
+This is the alpha release of version 1.3 of FIJI ForthIsh Java Interpreter.
 
 FIJI and all its source files and documentation are
 Copyright 1998, 1999, 2000, 2001, 2026
@@ -106,6 +106,9 @@ You should examine all additional files.
 
 Changes from Previous Versions
 ------------------------------
+1.3 alpha
+    2026-??-?? ... Massive update using agentic code assist.
+
 1.2 gamma
     2001-10-15 ... Added manifest file to jar to launch FIJIGui direct from
                    jar.

@@ -347,45 +347,73 @@
 
     <h2 id="table-of-contents">Table of Contents</h2>
 
+
     <ul>
-      <li><a href="#thetop">Top of Page</a></li>
+      <li><a href="#thetop">Top of Page</a>
+      </li>
+
 
       <li><a href="#introduction">Introduction</a>
+      </li>
+
+
+      <li style="list-style: none; display: inline">
         <ul>
-          <li><a href="#building-fiji">Building FIJI</a></li>
-          <li><a href="#ambiguous-terminology">Ambiguous terminology</a></li>
+          <li><a href="#building-fiji">Building FIJI</a><br>
+          </li>
         </ul>
       </li>
+
+
+      <li>
+        <a href="#introduction"></a>
+
+        <ul>
+          <li><a href="#ambiguous-terminology">Ambiguous
+              terminology</a>
+          </li>
+        </ul>
+      </li>
+
 
       <li><a href="#description">Description</a>
       </li>
 
-      <li><a href="#what-use-is-fiji">What Use is
+
+      <li><a href="fiji.html#What%20Use%20is%20FIJI???">What Use is
           FIJI?</a>
       </li>
+
 
       <li>
         <a href="#invocation">Invocation</a>
 
         <ul>
+          <li><a href="#Command-line%20form%20of%20the%20interpreter">Command-line
+              form of the interpreter</a>
+          </li>
+
 
           <li><a href="#awt-form-of-the-interpreter">AWT form
               of the interpreter</a>
           </li>
+
 
           <li>
             <a href="#swing-form-of-the-interpreter">Swing
               form of the interpreter</a>
 
             <ul>
-              <li><a href="#launching-fijigui-from-the-jar-file">Launching FIJIGui from the .jar file</a></li>
+              <li>Launching FIJIGui from the .jar file</li>
             </ul>
           </li>
+
 
           <li><a href="#fijiapplet">FijiApplet</a>
           </li>
         </ul>
       </li>
+
 
       <li>
         <a href="#operation">Operation</a>
@@ -394,31 +422,38 @@
           <li><a href="#execution-model">Execution Model</a>
           </li>
 
+
           <li><a href="#input-stream">Input Stream</a>
           </li>
+
 
           <li><a href="#lexing">Lexing</a>
           </li>
 
+
           <li><a href="#parsing">Parsing</a>
           </li>
+
 
           <li>
             <a href="#interpretation">Interpretation</a>
 
             <ul>
-              <li><a href="#lack-of-interpretive-semantics">Lack of
+              <li><a href="#Lack%20of%20Interpretive%20Semantics">Lack of
                   Interpretive Semantics</a>
               </li>
 
+
               <li><a href="#literals">Literals</a>
               </li>
+
 
               <li><a href="#current-input-base">Current Input
                   Base</a>
               </li>
             </ul>
           </li>
+
 
           <li>
             <a href="#compilation">Compilation</a>
@@ -428,22 +463,27 @@
                   Definition</a>
               </li>
 
-              <li><a href="#default-compilation-semantics">Default
+
+              <li><a href="#Default%20Compilation%20Semantics">Default
                   Compilation Semantics</a>
               </li>
 
-              <li><a href="#special-compilation-semantics">Special
+
+              <li><a href="#Special%20Compilation%20Semantics">Special
                   Compilation Semantics</a>
               </li>
             </ul>
           </li>
 
+
           <li><a href="#stack">Object Reference Stack ("The
               Stack")</a>
           </li>
 
+
           <li><a href="#return-stack">Return Stack</a>
           </li>
+
 
           <li>
             <a href="#control-flow">Control Flow</a>
@@ -453,9 +493,11 @@
                   Operators</a>
               </li>
 
+
               <li><a href="#logical-operators">Logical
                   Operators</a>
               </li>
+
 
               <li><a href="#control-flow-stack">Control Flow
                   Stack</a>
@@ -463,132 +505,158 @@
             </ul>
           </li>
 
+
           <li><a href="#variables">Variables</a>
           </li>
 
+
           <li><a href="#definitions">Definitions</a>
           </li>
+
 
           <li>
             <a href="#wordlists">Wordlists</a>
 
             <ul>
-              <li><a href="#current-wordlist">Current Wordlist</a>
+              <li><a href="current-wordlist">Current Wordlist</a>
               </li>
 
-              <li><a href="#search-order">Search Order</a>
+
+              <li><a href="search-order">Search Order</a>
               </li>
 
-              <li><a href="#hiding-definitions">Hiding
+
+              <li><a href="hiding-definitions">Hiding
                   Definitions</a>
               </li>
 
-              <li><a href="#removing-definitions">Removing
+
+              <li><a href="removing-definitions">Removing
                   Definitions</a>
               </li>
             </ul>
           </li>
 
-          <li><a href="#exceptions">Exceptions</a>
+
+          <li><a href="#Exceptions">Exceptions</a>
           </li>
 
-          <li><a href="#file-loading">File Loading</a>
+
+          <li><a href="file-loading">File Loading</a>
           </li>
 
-          <li><a href="#persistence">Persistence</a>
+
+          <li><a href="#Persistence">Persistence</a>
           </li>
+
 
           <li>
-            <a href="#calling-java">Calling Java</a>
+            <a href="calling-java">Calling Java</a>
 
             <ul>
               <li>
-                <a href="#method-invocation">Method Invocation</a>
+                <a href="method-invocation">Method Invocation</a>
 
                 <ul>
-                  <li><a href="#invocation_on_java_collections_and_java">Invocation
+                  <li><a href="#Invocation_on_Java_Collections_and_Java">Invocation
                       on Java Collections and Java Generics</a>
                   </li>
                 </ul>
               </li>
 
-              <li><a href="#constructor-invocation">Constructor
+
+              <li><a href="constructor-invocation">Constructor
                   Invocation</a>
               </li>
 
-              <li><a href="#field-dereferencing">Field
+
+              <li><a href="field-dereferencing">Field
                   Dereferencing</a>
               </li>
             </ul>
           </li>
 
-          <li><a href="#sample-sessions">Sample Sessions</a>
+
+          <li><a href="sample-sessions">Sample Sessions</a>
           </li>
         </ul>
       </li>
 
+
       <li>
-        <a href="#fiji-wordlist">FIJI Wordlist</a>
+        <a href="fiji-wordlist">FIJI Wordlist</a>
 
         <ul>
-          <li><a href="#stack-diagrams">Stack Diagrams</a>
+          <li><a href="stack-diagrams">Stack Diagrams</a>
           </li>
 
-          <li><a href="#class-consciousness">Class
+
+          <li><a href="class-consciousness">Class
               Consciousness</a>
           </li>
 
-          <li><a href="#special-compilation-semantics-annotated">SpecialCompilation
+
+          <li><a href="#Special%20Compilation%20Semantics%20Annotated">SpecialCompilation
               Semantics Annotated</a>
           </li>
 
-          <li><a href="#interpretive-semantics-annotated">InterpretiveSemantics
+
+          <li><a href="#Interpretive%20Semantics%20Annotated">InterpretiveSemantics
               Annotated</a>
           </li>
 
-          <li><a href="#list-of-words-and-their-operations">List of
+
+          <li><a href="#List%20of%20Words%20and%20their%20Operations">List of
               Words and their Operations</a>
           </li>
         </ul>
       </li>
 
+
       <li>
-        <a href="#tips-&amp;-tricks">Tips &amp; Tricks</a>
+        <a href="tips-&amp;-tricks">Tips &amp; Tricks</a>
 
         <ul>
-          <li><a href="#fiji-for-forth-programmers">FIJI for
+          <li><a href="fiji-for-forth-programmers">FIJI for
               Forth Programmers</a>
           </li>
 
-          <li><a href="#fiji-for-java-programmers">FIJI for
+
+          <li><a href="fiji-for-java-programmers">FIJI for
               Java Programmers</a>
           </li>
         </ul>
       </li>
 
+
       <li>
-        <a href="#known-bugs">Known Bugs</a>
+        <a href="known-bugs">Known Bugs</a>
 
         <ul>
-          <li><a href="#work-in-progres">Work in Progress</a>
+          <li><a href="work-in-progres">Work in Progress</a>
           </li>
 
-          <li><a href="#threads">Threads</a>
+
+          <li><a href="#Threads">Threads</a>
           </li>
 
-          <li><a href="#write-once-my-foot">Write Once My
+
+          <li><a href="write-once-my-foot%21">Write Once My
               Foot!</a>
           </li>
 
-          <li><a href="#miscellaneous-bugs">Miscellaneous Bugs</a>
+
+          <li><a href="miscellaneous-bugs">Miscellaneous Bugs</a>
           </li>
 
-          <li><a href="#misfeatures">Misfeatures</a>
+
+          <li><a href="#Misfeatures">Misfeatures</a>
           </li>
         </ul>
       </li>
 
-      <li><a href="#revisions">Revisions</a>
+
+      <li><a href="#Revisions">Revisions</a>
       </li>
     </ul>
 
@@ -678,7 +746,7 @@
 
     <p>Fixed-width font is also used whenever streams of FIJI or
       operating system syntax are represented, and also throughout the
-      <a href="#fiji-wordlist">FIJI Wordlist</a>.
+      <a href="fiji-wordlist">FIJI Wordlist</a>.
     </p>
 
 
@@ -891,7 +959,7 @@
 
 
     <ol>
-      <li><a href="#awt-form-of-the-interpreter">Command-lineinterpreter</a>
+      <li><a href="#Command-line%20form%20of%20the%20interpreter">Command-lineinterpreter</a>
       </li>
 
 
@@ -1287,7 +1355,7 @@
           in compiling a definition.
 
           <ul>
-            <li>The <a href="#default-compilation-semantics">default compilation
+            <li>The <a href="#Default%20Compilation%20Semantics">default compilation
                 semantics</a> are to append the execution semantics of the
               word to the <a href="#current-definition">current
                 definition</a>, but differ in the case of words meant to
@@ -1360,7 +1428,7 @@
 
 
           <li>during compilation, FIJI performs the <a href="#Compilation%20semantics">compilation semantics</a> of the
-            word, typically the <a href="#default-compilation-semantics">default compilation
+            word, typically the <a href="#Default%20Compilation%20Semantics">default compilation
               semantics</a> of appending the <a href="#Execution%20semantics">execution semantics</a> of the word
             to the current Definition.</li>
         </ul>
@@ -1430,7 +1498,7 @@
     compilation state. In compilation state, words encountered by the
     interpreter have their compilation semantics executed, rather
     than their interpretive semantics. A Definition, once completed,
-    is added to the <a href="#current-wordlist">current
+    is added to the <a href="current-wordlist">current
       wordlist</a>, possibly <a href="#Hiding%20Definitions">hiding</a> a previous definition of the
     same name.
 
@@ -1475,7 +1543,7 @@
     <p>Invoking <a href="#immediate">immediate</a> anywhere in the
       body of a word's definition causes the word's compilation
       semantics to be identical to its execution semantics. This is the
-      mechanism afforded the user of providing <a href="#special-compilation-semantics">special compilation
+      mechanism afforded the user of providing <a href="#Special%20Compilation%20Semantics">special compilation
         semantics</a> to a word. The word may be composed by the
       programmer such that it tests <a href="#state">state</a> and
       branches accordingly at runtime versus compile time.</p>
@@ -1663,7 +1731,7 @@
     To compile nested control flow statements, a control flow stack
     is present and is in use only at compile time. The effect of each
     of the control flow words on the control flow stack is documented
-    in the <a href="#fiji-wordlist">FIJI Wordlist</a>. Note that
+    in the <a href="fiji-wordlist">FIJI Wordlist</a>. Note that
     control flow statements are balanced and must be matched by the
     following rules:
 
@@ -1748,7 +1816,7 @@
 
     <p>Just creating a wordlist does not guarantee that it will be
       searched by the interpreter. You must subsequently add the
-      wordlist to the <a href="#search-order">search order</a> for the
+      wordlist to the <a href="search-order">search order</a> for the
       words in it to be found. Also, for new words defined to be added
       to the wordlist, the wordlist must set to be the <a href="#Current%20Wordlist">current wordlist</a>.</p>
 
@@ -1759,7 +1827,7 @@
     The wordlist to which any new word will be added is called the
     current wordlist. You can change the current wordlist via
     <code><a href="#setcurrent">setcurrent</a></code>. When FIJI is started, the
-    current wordlist is the <a href="#fiji-wordlist">FIJI
+    current wordlist is the <a href="fiji-wordlist">FIJI
       Wordlist</a>.
 
     <h4>
@@ -1783,7 +1851,7 @@
 
 
     <p>When you start FIJI, the only wordlist in the search order is
-      the <a href="#fiji-wordlist">FIJI Wordlist</a>.</p>
+      the <a href="fiji-wordlist">FIJI Wordlist</a>.</p>
 
 
     <h4>
@@ -1799,7 +1867,7 @@
       <li>If the new definition is in a different wordlist than the
         extant definition, the extant definition is <em>implicitly
           hidden</em> at such times as the wordlist with the new
-        definition is ahead in the <a href="#search-order">search
+        definition is ahead in the <a href="search-order">search
           order</a> of the wordlist with the extant definition. The extant
         definition thus hidden will again become findable should
 
@@ -1855,7 +1923,7 @@
     <ul>
       <li>A definition can only be removed if it can be found, i.e.,
         it must be in a wordlist which at the time appears in the
-        <a href="#search-order">search order</a>.
+        <a href="search-order">search order</a>.
       </li>
 
 
@@ -2612,9 +2680,9 @@
       <h2 id="special-compilation-semantics-annotated">Special
         Compilation Semantics Annotated
     </h3>
-    As noted above, the <a href="#default-compilation-semantics">default compilation
+    As noted above, the <a href="#Default%20Compilation%20Semantics">default compilation
       semantics</a> of a word is to append its execution semantics to
-    the current definition. Many words possess <a href="#special-compilation-semantics">special compilation
+    the current definition. Many words possess <a href="#Special%20Compilation%20Semantics">special compilation
       semantics</a>, e.g., <code><a href="#doublequotes">"</a></code> ("doublequotes") which in interpretive
     mode pushes a string, but in compilation mode, compiles the
     string to be pushed at runtime when the definition it is compiled
@@ -2808,7 +2876,7 @@
             <code><span class="larger">"Opencall" pushes an empty JavaArgs
           object, an accumulator for the objects intended to be
           passed to a Java method invocation. See the discussion of
-          <a href="#calling-java">calling Java</a>.</span></code>
+          <a href="calling-java">calling Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
           "#%29">)</a><a href="#,">,</a></span></code>
@@ -2939,7 +3007,7 @@
             <code><span class="larger">to return the character 'l' on the
           reference stack, but easier is the shortcut builtin FIJI
           word <a href="#Longtointparam">Long&gt;intparam</a>. See
-          the discussion of <a href="#calling-java">calling
+          the discussion of <a href="calling-java">calling
           Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
@@ -2967,7 +3035,7 @@
           meaningful return may be stored in a FIJI <a href=
           "#variable">variable</a> or <a href="#value">value</a>.
           Null returns you should <a href="#drop">drop</a>. See the
-          discussion of <a href="#calling-java">calling
+          discussion of <a href="calling-java">calling
           Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
@@ -3028,7 +3096,7 @@
           <td>
             <code><span class="larger">Adds the object o on top-of-stack to
           the Javaparam underneath it. See the discussion of
-          <a href="#calling-java">calling Java</a>.</span></code>
+          <a href="calling-java">calling Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
           "#%28">(</a><a href="">)</a></span></code>
@@ -3433,7 +3501,7 @@
             </blockquote>
             <code><span class="larger">pops the java.lang.Long 1 and pushes
           back the class object 'long'. See the discussion of
-          <a href="#calling-java">calling Java</a>.</span></code>
+          <a href="calling-java">calling Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
           "#%28%29">()</a><a href=
@@ -4192,7 +4260,7 @@
           by <em>s</em>. If there is no previous definition of the
           word represented by <em>s</em>, remove that entry from
           the wordlit in which it was found. See discussion of
-          <a href="#hiding-definitions">hiding
+          <a href="hiding-definitions">hiding
           definitions</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
@@ -4630,7 +4698,7 @@
           <td>
             <code><span class="larger">Pops a class object and pushes back
           the class object of the original class's primitive type.
-          See the discussion of <a href="#calling-java">calling
+          See the discussion of <a href="calling-java">calling
           Java</a>.</span></code>
 
             <p><code><span class="larger">See also: <a href=
@@ -5477,16 +5545,20 @@
       </li>
     </ol>
     You may wish to explore genuine Forth systems to get a feel for
-    Forth itself. If you have Linux, you may well have gforth
+    Forth itself. You may start browsing the Web for free Forth
+    resources at the author's <a href="http://www.well.com/user/jax/rcfb/forth.html">JaxRCFB Forth
+      Page</a>. Also, if you have Linux, you may well have gforth
     installed already, a fine Standard Forth implementation.<br>
 
     <hr width="100%">
 
 
+    <h2 id="known-bugs">Known Bugs</h2>
+    <a href="#table-of-contents">[Table of Contents]</a>
 
+    <h3>
       <h2 id="work-in-progres">Work in Progress
-   </h2>
-    between JVMs. I have tested FIJI on the following platforms:
+    </h3>
     <strong>FIJI</strong> is very much a work in progress. FIJI
     currently lacks the following planned feature:
 

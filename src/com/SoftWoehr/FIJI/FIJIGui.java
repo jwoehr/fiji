@@ -29,7 +29,7 @@ public class FIJIGui extends Object implements Runnable {
      * The screen title
      */
     public static final String BASE_TITLE = "SoftWoehr FIJI ForthIsh Java Interpreter";
-    public static final String RELEASE_LEVEL = "gamma";
+    public static final String RELEASE_LEVEL = "alpha";
 
     private final FijiProperties properties = new FijiProperties();
 
