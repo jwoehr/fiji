@@ -283,8 +283,8 @@
         Copyright &copy; 1998, 2001, 2008, 2015, 2017<br>
         by<br>
         <a href="mailto:jax@softwoehr.com">Jack J. Woehr</a><br>
-        PO Box 51<br>
-        Golden, Colorado 80402-0051 USA
+        PO Box 82<br>
+        Beulah, Colorado 81023 USA
       </p>
     </div>
 
@@ -615,10 +615,9 @@
       operation.<br></p>
 
 
-    <h3>
-      <h2 id="building_fiji">Building
+    <h2 id="building_fiji">Building
         FIJI<br>
-    </h3>
+    </h2>
 
 
     <p>The FIJI project was originally coded before <a href="http://ant.apache.org/">Apache Ant</a> came along. FIJI now
@@ -682,10 +681,9 @@
     </p>
 
 
-    <h3>
-      <h2 id="ambiguous-terminology">Ambiguous
+    <h2 id="ambiguous-terminology">Ambiguous
         Terminology
-    </h3>
+    </h2>
     There is some ambiguity in the terminology used in FIJI and also
     in the terminology associated with the Java source to FIJI.
 
@@ -962,10 +960,9 @@
     </p>
 
 
-    <h3>
-      <h2 id="awt-form-of-the-interpreter">AWT form of the
+    <h2 id="awt-form-of-the-interpreter">AWT form of the
         interpreter
-    </h3>
+    </h2>
     The following:
 
     <blockquote>
@@ -1019,10 +1016,9 @@
     </p>
 
 
-    <h3>
-      <h2 id="swing-form-of-the-interpreter">Swing form of the
+    <h2 id="swing-form-of-the-interpreter">Swing form of the
         interpreter
-    </h3>
+    </h2>
     The following:
 
     <blockquote>
@@ -1089,10 +1085,9 @@
     </blockquote>
 
 
-    <h4>
-      <h2 id="launching-fijigui-from-the-jar-file">Launching
+    <h2 id="launching-fijigui-from-the-jar-file">Launching
         FIJIGui from the .jar file
-    </h4>
+    </h2>
     Alternatively to the <a href="#Swing%20form%20of%20the%20interpreter">above</a>, you may
     launch the Swing (Java Foundation Class) GUI form of FIJI by
     invoking it as the main class of the FIJI jar file.
@@ -1105,9 +1100,8 @@
     or pull down the File-Quit menu option. You may also use
     <code><a href="#sysexit"><span class="larger">sysexit</span></a></code>.
 
-    <h3>
-      <h2 id="fijiapplet">FijiApplet
-    </h3>
+    <h2 id="fijiapplet">FijiApplet
+    </h2>
 
 
     <p><em><strong>Note:</strong> This is 1998 documentation, I
@@ -1193,18 +1187,16 @@
     </p>
 
 
-    <h3>
-      <h2 id="execution-model">Execution Model
-    </h3>
+    <h2 id="execution-model">Execution Model
+    </h2>
     FIJI is a functional language which operates on a stack of
     references to Java objects. All object services come from Java.
     Fiji is several stacks, an intepreter, a compiler, an execution
     engine, and a default Wordlist coded in Java on top of the Java
     virtual machine and class libraries.
 
-    <h3>
-      <h2 id="input-stream">Input Stream
-    </h3>
+    <h2 id="input-stream">Input Stream
+    </h2>
     FIJI itself interprets Strings. When running interactively, FIJI
     takes its input from an input stream.
 
@@ -1220,9 +1212,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="lexing">Lexing
-    </h3>
+    <h2 id="lexing">Lexing
+    </h2>
     Forth and FIJI both have only one lexical rule:
 
     <ol>
@@ -1233,9 +1224,8 @@
     </ol>
 
 
-    <h3>
-      <h2 id="parsing">Parsing
-    </h3>
+    <h2 id="parsing">Parsing
+    </h2>
     An interpreter <code>com.SoftWoehr.desktop.shell.interpreter</code> takes
     Strings, parses out each lexeme and processes it. FIJI findable
     lexical entities are called <strong><em>words</em></strong> after
@@ -1252,9 +1242,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="semantics">Semantics
-    </h3>
+    <h2 id="semantics">Semantics
+    </h2>
     A word may have separate or identical interpretive semantics,
     execution semantics, and compilation semantics.
 
@@ -1310,9 +1299,8 @@
       semantics</a> of appending the execution semantics of the word to
     the current definition.
 
-    <h3>
-      <h2 id="interpretation">Interpretation
-    </h3>
+    <h2 id="interpretation">Interpretation
+    </h2>
     FIJI treats input as a stream of words whose semantics are
     performed upon encounter by the interpreter. Most tokens have
     dual semantics, one appropriate to interpretation in the present,
@@ -1322,18 +1310,16 @@
     compilation mode, the compilation semantics are performed
     instead.
 
-    <h4>
-      <h2 id="lack-of-interpretive-semantics">Lack of
+    <h2 id="lack-of-interpretive-semantics">Lack of
         Interpretive Semantics
-    </h4>
+    </h2>
     Some words have no meaning outside the compile-time composition
     of a <a href="#definitions">Definition</a>, e.g., <code><a href=
   "#if"><span class="larger">if</span></a></code>. That is, they lack
     <a href="interpretive-semantics">interpretive semantics</a>.
 
-    <h4>
-      <h2 id="literals">Literals
-    </h4>
+    <h2 id="literals">Literals
+    </h2>
     The semantics of a string or numeric literal is by default to
     push a <code><span class="larger">java.lang.String</span></code> or a
     <code><span class="larger">java.lang.Long</span></code> to an <a href="#Stack">objectreference stack</a> analogous
@@ -1416,16 +1402,14 @@
     </ol>
 
 
-    <h4>
-      <h2 id="current-input-base">Current Input Base
-    </h4>
+    <h2 id="current-input-base">Current Input Base
+    </h2>
     Numbers parsed by the interpreter are interpreted in the current
     input base. This is set via <a href="#base">base</a> and fetched
     via <a href="#base?">base?</a>.
 
-    <h3>
-      <h2 id="compilation">Compilation
-    </h3>
+    <h2 id="compilation">Compilation
+    </h2>
     Starting a <a href="#definitions">Definition</a> places FIJI in
     compilation state. In compilation state, words encountered by the
     interpreter have their compilation semantics executed, rather
@@ -1434,9 +1418,8 @@
       wordlist</a>, possibly <a href="#Hiding%20Definitions">hiding</a> a previous definition of the
     same name.
 
-    <h4>
-      <h2 id="current-definition">Current Definition
-    </h4>
+    <h2 id="current-definition">Current Definition
+    </h2>
     A Definition is typically started by the action of&nbsp;
     <code><a href="#:"><span class="larger">:</span></a></code>&nbsp;
     ("colon") and completed by&nbsp;&nbsp; <a href="#;">;</a>&nbsp;
@@ -1462,10 +1445,9 @@
     </ol>
 
 
-    <h4>
-      <h2 id="default-compilation-semantics">Default
+    <h2 id="default-compilation-semantics">Default
         Compilation Semantics
-    </h4>
+    </h2>
     The default compilation behavior of a word is to append its
     execution semantics to the current definition. This applies to
     all words in the FIJI Wordlist for which no special compilation
@@ -1481,10 +1463,9 @@
       branches accordingly at runtime versus compile time.</p>
 
 
-    <h4>
-      <h2 id="special-compilation-semantics">Special
+    <h2 id="special-compilation-semantics">Special
         Compilation Semantics
-    </h4>
+    </h2>
     A word may possess special compilation semantics, that is, some
     behavior other than that of appending its execution semantics to
     the current definition when encountered by FIJI in compile state.
@@ -1521,10 +1502,9 @@
       the definition as in Forth.</p>
 
 
-    <h3>
-      <h2 id="stack">Object Reference Stack ("The
+    <h2 id="stack">Object Reference Stack ("The
         Stack")
-    </h3>
+    </h2>
     FIJI maintains a Last-In, First-Out (LIFO) object reference
     stack. All function operands are pulled from this reference
     stack, and all returns are pushed thither. Variable references
@@ -1564,9 +1544,8 @@
       they are on the stack.</p>
 
 
-    <h3>
-      <h2 id="return-stack">Return Stack
-    </h3>
+    <h2 id="return-stack">Return Stack
+    </h2>
     FIJI possesses a return stack upon which <a href="#Definitions">Definitions</a> being executed nest. That is,
     Definitions contain other Definitions, so as execution semantics
     are nested into, a return record is pushed on the return stack.
@@ -1579,9 +1558,8 @@
     <p>The FIJI return stack may be examined via the word <a href="#.r">.r</a> .</p>
 
 
-    <h3>
-      <h2 id="control-flow">Control Flow
-    </h3>
+    <h2 id="control-flow">Control Flow
+    </h2>
     Fiji possesses typical Forth-like control flow:
 
     <ul>
@@ -1605,9 +1583,8 @@
     data type to the stack, as do the FIJI <a href="#Comparison%20Operators">comparison operators</a> and <a
       href="#Logical%20Operators">logical operators</a>.
 
-    <h4>
-      <h2 id="comparison-operators">Comparison Operators
-    </h4>
+    <h2 id="comparison-operators">Comparison Operators
+    </h2>
 
 
     <blockquote>
@@ -1634,9 +1611,8 @@
     </blockquote>
 
 
-    <h4>
-      <h2 id="logical-operators">Logical Operators
-    </h4>
+    <h2 id="logical-operators">Logical Operators
+    </h2>
 
 
     <ul>
@@ -1657,9 +1633,8 @@
     </ul>
 
 
-    <h4>
-      <h2 id="control-flow-stack">Control Flow Stack
-    </h4>
+    <h2 id="control-flow-stack">Control Flow Stack
+    </h2>
     To compile nested control flow statements, a control flow stack
     is present and is in use only at compile time. The effect of each
     of the control flow words on the control flow stack is documented
@@ -1706,9 +1681,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="variables">Variables
-    </h3>
+    <h2 id="variables">Variables
+    </h2>
     Both types of Forth variable are supported, <code><a href=
   "#variable"><span class="larger">variable</span></a></code> and
     <code><a href="#value"><span class="larger">value</span></a></code>.
@@ -1728,9 +1702,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="definitions">Definitions
-    </h3>
+    <h2 id="definitions">Definitions
+    </h2>
     New words may be defined and linked into the current Wordlist in
     typical Forth fashion using <code><a href="#:">:</a></code> and <a href="#;">;</a>. In FIJI, as in
     Forth a definition of the same name as a previous definition
@@ -1738,9 +1711,8 @@
     different and is
     described below.
 
-    <h3>
-      <h2 id="wordlists">Wordlists
-    </h3>
+    <h2 id="wordlists">Wordlists
+    </h2>
     FIJI Definitions are kept in Wordlists. You can create a new
     named Wordlist via <code><a href="#wordlist">wordlist</a></code>. Wordlists themselves are named
     entities and can be placed on the <a href="#stack">object
@@ -1753,18 +1725,16 @@
       to the wordlist, the wordlist must set to be the <a href="#Current%20Wordlist">current wordlist</a>.</p>
 
 
-    <h4>
-      <h2 id="current-wordlist">Current Wordlist
-    </h4>
+    <h2 id="current-wordlist">Current Wordlist
+    </h2>
     The wordlist to which any new word will be added is called the
     current wordlist. You can change the current wordlist via
     <code><a href="#setcurrent">setcurrent</a></code>. When FIJI is started, the
     current wordlist is the <a href="#fiji-wordlist">FIJI
       Wordlist</a>.
 
-    <h4>
-      <h2 id="search-order">Search Order
-    </h4>
+    <h2 id="search-order">Search Order
+    </h2>
     When FIJI interprets your input, it looks for each word in
     wordlists kept in a search order. The wordlists are searched in
     the order you set. You may add wordlists to the search order and
@@ -1786,9 +1756,8 @@
       the <a href="#fiji-wordlist">FIJI Wordlist</a>.</p>
 
 
-    <h4>
-      <h2 id="hiding-definitions">Hiding Definitions
-    </h4>
+    <h2 id="hiding-definitions">Hiding Definitions
+    </h2>
     When a new definition <em>has the same name</em> as another
     pre-existing definition, the pre-existing definition may be
     explicitly or implicitly hidden by the new definition. This is
@@ -1828,9 +1797,8 @@
     possible to remove all definitions possessing a particular name
     at once from a wordlist, as described below.
 
-    <h4>
-      <h2 id="removing-definitions">Removing Definitions
-    </h4>
+    <h2 id="removing-definitions">Removing Definitions
+    </h2>
     There are two ways to remove a definition from a wordlist.
 
     <ol>
@@ -1867,9 +1835,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="exceptions">Exceptions
-    </h3>
+    <h2 id="exceptions">Exceptions
+    </h2>
     FIJI mostly catches Java exceptions, prints a stack trace, and
     continues by executing <a href="#quit">quit</a>. To clean up at
     any time, you may use any of
@@ -1896,28 +1863,24 @@
       needed after other more pressing features are completed.</p>
 
 
-    <h3>
-      <h2 id="file-loading">File Loading
-    </h3>
+    <h2 id="file-loading">File Loading
+    </h2>
     You may load FIJI source code from a text file via <code><a href=
   "#load"><span class="larger">load</span></a></code>.
 
-    <h3>
-      <h2 id="persistence">Persistence
-    </h3>
+    <h2 id="persistence">Persistence
+    </h2>
     Not yet implemented is a scheme for wordlist persistence, which
     will allow wordlists to be saved and then reloaded in their
     compiled form. This scheme will have to wait until the author
     switches over to JDK 1.2 which is not yet available on Linux.
 
-    <h3>
-      <h2 id="calling-java">Calling Java
-    </h3>
+    <h2 id="calling-java">Calling Java
+    </h2>
 
 
-    <h4>
-      <h2 id="method-invocation">Method Invocation
-    </h4>
+    <h2 id="method-invocation">Method Invocation
+    </h2>
     Java Objects and Classes are pushed to the stack and their
     methods invoked upon them. No assignment is needed to preserve
     the returns of constructors and methods: the resulting objects
@@ -2019,10 +1982,9 @@
     <code><a href=""><span class="larger">()</span></a></code> .<br>
 
 
-    <h5>
-      <h2 id="invocation_on_java_collections_and_java">Invocation on Java
+    <h2 id="invocation_on_java_collections_and_java">Invocation on Java
         Collections and Java Generics
-    </h5>
+    </h2>
     Java Generics (the typifying of the java.util collection classes)
     are a <big><span style="font-family: monospace;">javac</span></big> compiler trick. The
     collection itself thinks set members are of the type represented
@@ -2036,10 +1998,9 @@
     <big><span style="font-family: monospace;">java.lang.Object</span>
       <small>.</small></big>
 
-    <h4>
-      <h2 id="constructor-invocation">Constructor
+    <h2 id="constructor-invocation">Constructor
         Invocation
-    </h4>
+    </h2>
     FIJI pretends that Java constructor invocation is the invocation
     of a method named <code><span class="larger">new</span></code>. Thus, to
     create a new java.io.File you may enter:
@@ -2051,9 +2012,8 @@
     etc., just as you would in FIJI to invoke any other object or
     class method.
 
-    <h4>
-      <h2 id="field-dereferencing">Field Dereferencing
-    </h4>
+    <h2 id="field-dereferencing">Field Dereferencing
+    </h2>
     The FIJI words <code><a href="#@"><span class="larger">@</span></a></code>
     and <code><a href="%21"><span class="larger">!</span></a></code> can be
     used to dereference object and class data fields. These words, if
@@ -2062,15 +2022,13 @@
     second-of-stack. See the documentation for these words for
     further details.
 
-    <h3>
-      <h2 id="sample-sessions">Sample sessions
-    </h3>
+    <h2 id="sample-sessions">Sample sessions
+    </h2>
     These sample sessions focus mostly on the interaction of FIJI
     with direct calls to Java .
 
-    <h4>
-      <h2 id="session-one">Session One
-    </h4>
+    <h2 id="session-one">Session One
+    </h2>
     The following example assumes there is a class file
     <code><span class="larger">Hello.class</span></code> in the current
     directory which implements <code>java.lang.Runnable</code>...
@@ -2241,9 +2199,8 @@
     </p>
 
 
-    <h4>
-      <h2 id="session-two">Session Two
-    </h4>
+    <h2 id="session-two">Session Two
+    </h2>
     <code><span class="larger">java.lang.Runtime class getRuntime ( )
   totalMemory ( )</span></code>
 
@@ -2259,10 +2216,9 @@
     </p>
 
 
-    <h4>
-      <h2 id="session_three">Session
+    <h2 id="session_three">Session
         Three
-    </h4>
+    </h2>
     <big><span style="font-family: monospace;">variable
         mywindow</span><br style="font-family: monospace;">
       <span style="font-family: monospace;">javax.swing.JFrame class
@@ -2346,9 +2302,8 @@
       interpreter startup.</p>
 
 
-    <h3>
-      <h2 id="stack-diagrams">Stack Diagrams
-    </h3>
+    <h2 id="stack-diagrams">Stack Diagrams
+    </h2>
     In this section, each FIJI <strong><em>word</em></strong> in the
     FIJI Wordlist, is shown with a Forth-like stack diagram, the
     state of the relevant region of the stack prior to the word's
@@ -2477,10 +2432,9 @@
       which follow of stack activity should be understood.</p>
 
 
-    <h3>
-      <h2 id="control-flow-stack-effects">Control Flow Stack
+    <h2 id="control-flow-stack-effects">Control Flow Stack
         Effects
-    </h3>
+    </h2>
     Additional stack diagrams of effect on the <a href="#Control%20Flow%20Stack">control flow stack</a> are provided
     where relevant. The following abbreviations apply:<br>
     &nbsp;
@@ -2519,9 +2473,8 @@
     <br>
     &nbsp;
 
-    <h3>
-      <h2 id="return-stack-effects">Return Stack Effects
-    </h3>
+    <h2 id="return-stack-effects">Return Stack Effects
+    </h2>
     Additional stack diagrams of effect on the <a href="#Return%20Stack">return stack</a> are provided where relevant.
     The following abbreviations apply:<br>
     &nbsp;
@@ -2540,9 +2493,8 @@
     </table>
 
 
-    <h3>
-      <h2 id="input-stream-effects">Input Stream Effects
-    </h3>
+    <h2 id="input-stream-effects">Input Stream Effects
+    </h2>
     Additional diagrams of effect on the <a href="#Input%20Stream">input stream</a> are provided where relevant.
     The following abbreviations apply:<br>
     &nbsp;
@@ -2592,9 +2544,8 @@
     </table>
 
 
-    <h3>
-      <h2 id="class-consciousness">Class Consciousness
-    </h3>
+    <h2 id="class-consciousness">Class Consciousness
+    </h2>
     Many FIJI words are class-aware and several possess different
     stack diagrams depending up what they find on top-of-stack when
     they are called. For example, <code><a href="#+">+</a></code>&nbsp; can add two Longs or two Strings.
@@ -2608,10 +2559,9 @@
       are appreciated.</p>
 
 
-    <h3>
-      <h2 id="special-compilation-semantics-annotated">Special
+    <h2 id="special-compilation-semantics-annotated">Special
         Compilation Semantics Annotated
-    </h3>
+    </h2>
     As noted above, the <a href="#default-compilation-semantics">default compilation
       semantics</a> of a word is to append its execution semantics to
     the current definition. Many words possess <a href="#special-compilation-semantics">special compilation
@@ -2624,18 +2574,16 @@
       semantics are both annotated.</p>
 
 
-    <h3>
-      <h2 id="interpretive-semantics-annotated">Interpretive
+    <h2 id="interpretive-semantics-annotated">Interpretive
         Semantics Annotated
-    </h3>
+    </h2>
     Interpretive semantics by <a href="#default%20interpretive%20semantics">default</a> match the
     execution semantics. Where there is a difference, or where
     interpretive semantics are absent, this is annotated.
 
-    <h3>
-      <h2 id="list-of-words-and-their-operations">List of
+    <h2 id="list-of-words-and-their-operations">List of
         Words and their Operations
-    </h3>
+    </h2>
     Classes which are part of the <code>com.SoftWoehr.desktop.shell</code> package are listed
     without the package name prepended. Familiar Java classes and
     types such as Object and Class are sometimes mentioned without
@@ -5393,10 +5341,9 @@
     <h2 id="tips-&amp;-tricks">Tips &amp; Tricks</h2>
     <a href="#table-of-contents">[Table of Contents]</a>
 
-    <h3>
-      <h2 id="fiji-for-forth-programmers">FIJI for Forth
+    <h2 id="fiji-for-forth-programmers">FIJI for Forth
         Programmers
-    </h3>
+    </h2>
     FIJI is a Forthlike procedural wrapper for Java. If there is a
     Forthlike facility missing from FIJI that is necessary for your
     work, please <a href="mailto:jax@well.com">write to me</a> about
@@ -5443,10 +5390,9 @@
         gustibus non disputandum est</em>.</p>
 
 
-    <h3>
-      <h2 id="fiji-for-java-programmers">FIJI for Java
+    <h2 id="fiji-for-java-programmers">FIJI for Java
         Programmers
-    </h3>
+    </h2>
     FIJI shares with Forth the simplicity of a unidirectional parser.
     This has several advantages, among them being:
 
@@ -5495,9 +5441,8 @@
     </ul>
     among other features.
 
-    <h3>
-      <h2 id="threads">Threads
-    </h3>
+    <h2 id="threads">Threads
+    </h2>
 
 
     <ul>
@@ -5511,9 +5456,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="write-once-my-foot">Write Once My Foot!
-    </h3>
+    <h2 id="write-once-my-foot">Write Once My Foot!
+    </h2>
     There are definitely differences from platform to platform and
     from applet environment to applet environment. I haven't yet
     taken time to figure these all out. You may experience variations
@@ -5523,9 +5467,8 @@
     ahead of any output resulting from the previous input!? You and I
     will have some fun debugging together, it's easy to see!
 
-    <h3>
-      <h2 id="miscellaneous-bugs">Miscellaneous bugs
-    </h3>
+    <h2 id="miscellaneous-bugs">Miscellaneous bugs
+    </h2>
 
 
     <ul>
@@ -5547,9 +5490,8 @@
     </ul>
 
 
-    <h3>
-      <h2 id="misfeatures">Misfeatures
-    </h3>
+    <h2 id="misfeatures">Misfeatures
+    </h2>
 
 
     <ul>
