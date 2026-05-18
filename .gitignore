@@ -1,3 +1,26 @@
+# NetBeans specific
 /nbproject/private/
 /build/
 /dist/
+
+# Maven specific
+/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# IDE specific
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS specific
+.DS_Store
+Thumbs.db
