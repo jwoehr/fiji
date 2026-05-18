@@ -29,10 +29,10 @@ mvn package
 
 This creates several JAR files in the `target/` directory:
 
-- `fiji-1.0.0.jar` - Main application JAR (requires dependencies in classpath)
-- `fiji-1.0.0-jar-with-dependencies.jar` - Standalone JAR with all dependencies included
-- `fiji-1.0.0-sources.jar` - Source code JAR
-- `fiji-1.0.0-javadoc.jar` - Javadoc JAR
+- `fiji-1.3.jar` - Main application JAR (requires dependencies in classpath)
+- `fiji-1.3-jar-with-dependencies.jar` - Standalone JAR with all dependencies included
+- `fiji-1.3-sources.jar` - Source code JAR
+- `fiji-1.3-javadoc.jar` - Javadoc JAR
 
 Dependencies are also copied to `target/lib/`:
 
@@ -57,13 +57,13 @@ mvn install
 The standalone JAR includes all dependencies:
 
 ```bash
-java -jar target/fiji-1.0.0-jar-with-dependencies.jar
+java -jar target/fiji-1.3-jar-with-dependencies.jar
 ```
 
 ### Using the Main JAR with Dependencies
 
 ```bash
-java -jar target/fiji-1.0.0.jar
+java -jar target/fiji-1.3.jar
 ```
 
 This requires the dependencies in `target/lib/` to be in the classpath (handled automatically by the manifest).
@@ -71,13 +71,13 @@ This requires the dependencies in `target/lib/` to be in the classpath (handled 
 ### GUI Mode
 
 ```bash
-java -jar target/fiji-1.0.0-jar-with-dependencies.jar --gui
+java -jar target/fiji-1.3-jar-with-dependencies.jar --gui
 ```
 
 Or:
 
 ```bash
-java -jar target/fiji-1.0.0-jar-with-dependencies.jar -g
+java -jar target/fiji-1.3-jar-with-dependencies.jar -g
 ```
 
 ## Dependencies
@@ -99,10 +99,10 @@ fiji/
     ├── classes/               # Compiled classes
     ├── test-classes/          # Compiled test classes
     ├── lib/                   # Runtime dependencies
-    ├── fiji-1.0.0.jar         # Main JAR
-    ├── fiji-1.0.0-jar-with-dependencies.jar  # Standalone JAR
-    ├── fiji-1.0.0-sources.jar # Source JAR
-    └── fiji-1.0.0-javadoc.jar # Javadoc JAR
+    ├── fiji-1.3.jar         # Main JAR
+    ├── fiji-1.3-jar-with-dependencies.jar  # Standalone JAR
+    ├── fiji-1.3-sources.jar # Source JAR
+    └── fiji-1.3-javadoc.jar # Javadoc JAR
 ```
 
 ## Common Maven Commands

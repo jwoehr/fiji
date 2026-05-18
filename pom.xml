@@ -7,7 +7,7 @@
 
     <groupId>com.softwoehr</groupId>
     <artifactId>fiji</artifactId>
-    <version>1.0.0</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
 
     <name>FIJI</name>
